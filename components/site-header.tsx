@@ -1,5 +1,6 @@
 import Link from "next/link";
 
+import { ThemeToggle } from "@/components/theme-toggle";
 import { Button } from "@/components/ui/button";
 
 export function SiteHeader() {
@@ -16,6 +17,7 @@ export function SiteHeader() {
           <Button asChild variant="ghost" size="sm">
             <Link href="/registry.json">Registry</Link>
           </Button>
+          <ThemeToggle />
           <Button asChild size="sm">
             <Link href="/components/tag-input">Get started</Link>
           </Button>
