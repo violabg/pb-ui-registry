@@ -1,36 +1,74 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# shadcd/ui registry
+
+A web-based registry for shadcn/ui components, built with Next.js 16. Browse, preview, and install shadcn-compatible components with ease.
+
+## Features
+
+- **Component Browser**: Explore a curated collection of shadcn/ui components with live previews
+- **Installation Commands**: Copy ready-to-use `npx shadcn add` commands for each component
+- **Registry API**: Access components programmatically via JSON endpoints
+- **Modern Stack**: Built with Next.js 16, React 19, and Tailwind CSS v4
+
+## Prerequisites
+
+- Node.js 18+
+- pnpm (recommended) or npm/yarn
 
 ## Getting Started
 
-First, run the development server:
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/violabg/shadcd-registry.git
+   cd shadcd-registry
+   ```
+
+2. Install dependencies:
+
+   ```bash
+   pnpm install
+   ```
+
+3. Start the development server:
+
+   ```bash
+   pnpm dev
+   ```
+
+4. Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+## Usage
+
+### Browsing Components
+
+Navigate to `/components` to browse the available components. Each component page includes:
+
+- Live preview
+- Installation command
+- Usage examples
+- Dependencies
+
+### Using the Registry
+
+To add a component to your shadcn project:
+
+1. Find the component you want on the registry
+2. Copy the installation command (e.g., `npx shadcn@latest add http://localhost:3000/registry/alert-dialog`)
+3. Run the command in your project directory
+
+### Registry API
+
+Access the full registry data via JSON:
+
+- `/registry.json` - Complete registry index
+- `/registry/[name]` - Individual component data
+
+## Building the Registry
+
+To build the component registry for distribution:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+pnpm registry:build
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+This generates optimized component files ready for consumption by shadcn CLI.
