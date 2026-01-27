@@ -255,12 +255,12 @@ function getSiteUrl() {
   );
 }
 
-export function getRegistryUrlTemplate() {
-  return `${getSiteUrl()}/registry/{name}`;
+export function getRegistryUrlTemplate(name: string) {
+  return `${getSiteUrl()}/registry/${name}`;
 }
 
 export function getInstallCommand(name: string) {
-  return `npx shadcn@latest add ${name} --registry ${getRegistryUrlTemplate()}`;
+  return `npx shadcn@latest add ${name} --registry ${getRegistryUrlTemplate(name)}`;
 }
 
 export async function getRegistryItems(): Promise<RegistryItemSummary[]> {
