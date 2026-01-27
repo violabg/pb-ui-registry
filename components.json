@@ -21,6 +21,6 @@
   "menuColor": "default",
   "menuAccent": "subtle",
   "registries": {
-    "@shadcd": "http://localhost:3000/registry/{name}"
+    "@shadcd": "https://pb-ui-five.vercel.app/registry/{name}"
   }
 }
