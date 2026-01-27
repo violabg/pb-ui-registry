@@ -20,5 +20,7 @@
   },
   "menuColor": "default",
   "menuAccent": "subtle",
-  "registries": {}
+  "registries": {
+    "@shadcd": "http://localhost:3000/registry/{name}"
+  }
 }
