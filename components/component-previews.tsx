@@ -75,9 +75,9 @@ export function ComponentPreview({ name }: ComponentPreviewProps) {
     case "alert-dialog":
       return (
         <AlertDialog>
-          <AlertDialogTrigger asChild>
-            <Button>Confirm delete</Button>
-          </AlertDialogTrigger>
+          <AlertDialogTrigger
+            render={<Button>Confirm delete</Button>}
+          ></AlertDialogTrigger>
           <AlertDialogContent>
             <AlertDialogHeader>
               <AlertDialogTitle>Delete project?</AlertDialogTitle>
@@ -153,9 +153,9 @@ export function ComponentPreview({ name }: ComponentPreviewProps) {
     case "dropdown-menu":
       return (
         <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="outline">Open menu</Button>
-          </DropdownMenuTrigger>
+          <DropdownMenuTrigger
+            render={<Button variant="outline">Open menu</Button>}
+          ></DropdownMenuTrigger>
           <DropdownMenuContent align="start">
             <DropdownMenuLabel>Account</DropdownMenuLabel>
             <DropdownMenuItem>Profile</DropdownMenuItem>

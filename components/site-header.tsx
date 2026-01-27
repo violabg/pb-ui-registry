@@ -11,16 +11,21 @@ export function SiteHeader() {
           shadcd/ui
         </Link>
         <nav className="flex items-center gap-2">
-          <Button asChild variant="ghost" size="sm">
-            <Link href="/components">Components</Link>
-          </Button>
-          <Button asChild variant="ghost" size="sm">
-            <Link href="/registry.json">Registry</Link>
-          </Button>
+          <Button
+            variant="ghost"
+            size="sm"
+            render={<Link href="/components">Components</Link>}
+          ></Button>
+          <Button
+            variant="ghost"
+            size="sm"
+            render={<Link href="/registry.json">Registry</Link>}
+          ></Button>
           <ThemeToggle />
-          <Button asChild size="sm">
-            <Link href="/components/tag-input">Get started</Link>
-          </Button>
+          <Button
+            size="sm"
+            render={<Link href="/components/tag-input">Get started</Link>}
+          ></Button>
         </nav>
       </div>
     </header>

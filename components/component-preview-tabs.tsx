@@ -4,7 +4,7 @@ import Link from "next/link";
 import * as React from "react";
 
 import { CodeBlock } from "@/components/code-block";
-import { Button } from "@/components/ui/button";
+import { buttonVariants } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 type ComponentPreviewTabsProps = {
@@ -26,9 +26,15 @@ export function ComponentPreviewTabs({
     <section className="bg-card shadow-sm border border-border rounded-lg">
       <div className="flex justify-between items-center px-4 py-3 border-border border-b">
         <div className="font-medium text-sm">Example</div>
-        <Button asChild variant="outline" size="sm">
-          <Link href={registryHref}>Registry JSON</Link>
-        </Button>
+        <Link
+          className={buttonVariants({
+            variant: "outline",
+            size: "sm",
+          })}
+          href={registryHref}
+        >
+          Registry JSON
+        </Link>
       </div>
       <Tabs defaultValue={defaultTab} className="p-4">
         <TabsList>

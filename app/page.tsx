@@ -27,21 +27,26 @@ export default async function Home() {
           </p>
         </div>
         <div className="flex flex-wrap gap-3">
-          <Button asChild size="lg">
-            <Link href="/components">Browse components</Link>
-          </Button>
-          <Button asChild variant="outline" size="lg">
-            <Link href="/registry.json">Registry JSON</Link>
-          </Button>
+          <Button
+            size="lg"
+            render={<Link href="/components">Browse components</Link>}
+          ></Button>
+          <Button
+            variant="outline"
+            size="lg"
+            render={<Link href="/registry.json">Registry JSON</Link>}
+          ></Button>
         </div>
       </section>
 
       <section className="flex flex-col gap-4">
         <div className="flex justify-between items-center">
           <h2 className="font-semibold text-lg">Featured components</h2>
-          <Button asChild variant="ghost" size="sm">
-            <Link href="/components">View all</Link>
-          </Button>
+          <Button
+            variant="ghost"
+            size="sm"
+            render={<Link href="/components">View all</Link>}
+          ></Button>
         </div>
         <div className="gap-4 grid md:grid-cols-2">
           {featured.map((item) => (
