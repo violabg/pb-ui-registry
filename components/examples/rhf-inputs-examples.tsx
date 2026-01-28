@@ -1,7 +1,9 @@
 "use client";
 
+import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { z } from "zod";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -17,24 +19,40 @@ import {
   TextareaField,
 } from "@/components/ui/rhf-inputs";
 
-type FormValues = {
-  username: string;
-  email: string;
-  password: string;
-  bio: string;
-  country: string;
-  skills: string[];
-  tags: string[];
-  experience: number;
-  role: "developer" | "designer" | "manager";
-  notifications: boolean;
-  terms: boolean;
-};
+const formSchema = z.object({
+  username: z
+    .string()
+    .min(3, "Username must be at least 3 characters")
+    .regex(
+      /^[a-zA-Z0-9_]+$/,
+      "Username can only contain letters, numbers, and underscores",
+    ),
+  email: z.string().email("Invalid email address"),
+  password: z
+    .string()
+    .min(8, "Password must be at least 8 characters")
+    .regex(/[a-z]/, "Password must contain at least one lowercase letter")
+    .regex(/[A-Z]/, "Password must contain at least one uppercase letter")
+    .regex(/[0-9]/, "Password must contain at least one number"),
+  bio: z.string().max(500, "Bio must not exceed 500 characters").optional(),
+  country: z.string().min(1, "Please select a country"),
+  skills: z.array(z.string()).min(1, "Please select at least one skill"),
+  tags: z.array(z.string()).min(1, "Please add at least one tag"),
+  experience: z.number().min(0).max(20),
+  role: z.enum(["developer", "designer", "manager"]),
+  notifications: z.boolean(),
+  terms: z.boolean().refine((val) => val === true, {
+    message: "You must accept the terms and conditions",
+  }),
+});
+
+type FormValues = z.infer<typeof formSchema>;
 
 export function RhfInputsDemo() {
   const [submittedData, setSubmittedData] = useState<FormValues | null>(null);
 
   const { control, handleSubmit } = useForm<FormValues>({
+    resolver: zodResolver(formSchema),
     defaultValues: {
       username: "",
       email: "",
@@ -189,6 +207,8 @@ export function RhfInputsDemo() {
 
 export const RhfInputsDemoCode = `import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -204,24 +224,37 @@ import {
   TextareaField,
 } from "@/components/ui/rhf-inputs";
 
-type FormValues = {
-  username: string;
-  email: string;
-  password: string;
-  bio: string;
-  country: string;
-  skills: string[];
-  tags: string[];
-  experience: number;
-  role: "developer" | "designer" | "manager";
-  notifications: boolean;
-  terms: boolean;
-};
+const formSchema = z.object({
+  username: z
+    .string()
+    .min(3, "Username must be at least 3 characters")
+    .regex(/^[a-zA-Z0-9_]+$/, "Username can only contain letters, numbers, and underscores"),
+  email: z.string().email("Invalid email address"),
+  password: z
+    .string()
+    .min(8, "Password must be at least 8 characters")
+    .regex(/[a-z]/, "Password must contain at least one lowercase letter")
+    .regex(/[A-Z]/, "Password must contain at least one uppercase letter")
+    .regex(/[0-9]/, "Password must contain at least one number"),
+  bio: z.string().max(500, "Bio must not exceed 500 characters").optional(),
+  country: z.string().min(1, "Please select a country"),
+  skills: z.array(z.string()).min(1, "Please select at least one skill"),
+  tags: z.array(z.string()).min(1, "Please add at least one tag"),
+  experience: z.number().min(0).max(20),
+  role: z.enum(["developer", "designer", "manager"]),
+  notifications: z.boolean(),
+  terms: z.boolean().refine((val) => val === true, {
+    message: "You must accept the terms and conditions",
+  }),
+});
+
+type FormValues = z.infer<typeof formSchema>;
 
 export function RhfInputsDemo() {
   const [submittedData, setSubmittedData] = useState<FormValues | null>(null);
 
   const { control, handleSubmit } = useForm<FormValues>({
+    resolver: zodResolver(formSchema),
     defaultValues: {
       username: "",
       email: "",
