@@ -27,8 +27,10 @@ const inputSchema = z.object({
     .regex(/^[a-zA-Z0-9_]+$/, "Only letters, numbers, and underscores"),
 });
 
+type InputFormValues = z.infer<typeof inputSchema>;
+
 export function RhfInputFieldDemo() {
-  const { control, handleSubmit } = useForm({
+  const { control, handleSubmit } = useForm<InputFormValues>({
     resolver: zodResolver(inputSchema),
     defaultValues: { username: "" },
   });
@@ -88,8 +90,10 @@ const checkboxSchema = z.object({
   terms: z.boolean().refine((val) => val === true, "You must accept the terms"),
 });
 
+type CheckboxFormValues = z.infer<typeof checkboxSchema>;
+
 export function RhfCheckboxFieldDemo() {
-  const { control, handleSubmit } = useForm({
+  const { control, handleSubmit } = useForm<CheckboxFormValues>({
     resolver: zodResolver(checkboxSchema),
     defaultValues: { terms: false },
   });
@@ -144,8 +148,10 @@ const selectSchema = z.object({
   country: z.string().min(1, "Please select a country"),
 });
 
+type SelectFormValues = z.infer<typeof selectSchema>;
+
 export function RhfSelectFieldDemo() {
-  const { control, handleSubmit } = useForm({
+  const { control, handleSubmit } = useForm<SelectFormValues>({
     resolver: zodResolver(selectSchema),
     defaultValues: { country: "" },
   });
@@ -212,8 +218,10 @@ const textareaSchema = z.object({
   bio: z.string().max(500, "Bio must not exceed 500 characters"),
 });
 
+type TextareaFormValues = z.infer<typeof textareaSchema>;
+
 export function RhfTextareaFieldDemo() {
-  const { control, handleSubmit } = useForm({
+  const { control, handleSubmit } = useForm<TextareaFormValues>({
     resolver: zodResolver(textareaSchema),
     defaultValues: { bio: "" },
   });
@@ -338,8 +346,10 @@ const sliderSchema = z.object({
   volume: z.number().min(0).max(100),
 });
 
+type SliderFormValues = z.infer<typeof sliderSchema>;
+
 export function RhfSliderFieldDemo() {
-  const { control, handleSubmit } = useForm({
+  const { control, handleSubmit } = useForm<SliderFormValues>({
     resolver: zodResolver(sliderSchema),
     defaultValues: { volume: 50 },
   });
@@ -400,8 +410,10 @@ const switchSchema = z.object({
   notifications: z.boolean(),
 });
 
+type SwitchFormValues = z.infer<typeof switchSchema>;
+
 export function RhfSwitchFieldDemo() {
-  const { control, handleSubmit } = useForm({
+  const { control, handleSubmit } = useForm<SwitchFormValues>({
     resolver: zodResolver(switchSchema),
     defaultValues: { notifications: false },
   });
@@ -461,8 +473,10 @@ const passwordSchema = z.object({
     .regex(/[0-9]/, "Must contain number"),
 });
 
+type PasswordFormValues = z.infer<typeof passwordSchema>;
+
 export function RhfPasswordFieldDemo() {
-  const { control, handleSubmit } = useForm({
+  const { control, handleSubmit } = useForm<PasswordFormValues>({
     resolver: zodResolver(passwordSchema),
     defaultValues: { password: "" },
   });
@@ -524,8 +538,10 @@ const tagSchema = z.object({
   tags: z.array(z.string()).min(1, "Please add at least one tag"),
 });
 
+type TagFormValues = z.infer<typeof tagSchema>;
+
 export function RhfInputWithTagFieldDemo() {
-  const { control, handleSubmit } = useForm({
+  const { control, handleSubmit } = useForm<TagFormValues>({
     resolver: zodResolver(tagSchema),
     defaultValues: { tags: [] },
   });
@@ -582,8 +598,10 @@ const multiSelectSchema = z.object({
   skills: z.array(z.string()).min(1, "Please select at least one skill"),
 });
 
+type MultiSelectFormValues = z.infer<typeof multiSelectSchema>;
+
 export function RhfMultiSelectFieldDemo() {
-  const { control, handleSubmit } = useForm({
+  const { control, handleSubmit } = useForm<MultiSelectFormValues>({
     resolver: zodResolver(multiSelectSchema),
     defaultValues: { skills: [] },
   });
@@ -650,8 +668,10 @@ const dateSchema = z.object({
   birthDate: z.date().optional(),
 });
 
+type DateFormValues = z.infer<typeof dateSchema>;
+
 export function RhfInputDateFieldDemo() {
-  const { control, handleSubmit } = useForm({
+  const { control, handleSubmit } = useForm<DateFormValues>({
     resolver: zodResolver(dateSchema),
     defaultValues: { birthDate: undefined },
   });
