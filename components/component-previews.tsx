@@ -1,6 +1,6 @@
 "use client";
 
-import { TagInputPreview } from "@/components/tag-input-preview";
+import { TagInputDemo } from "@/components/examples/tag-input-examples";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -240,7 +240,7 @@ export function ComponentPreview({ name }: ComponentPreviewProps) {
         </div>
       );
     case "tag-input":
-      return <TagInputPreview />;
+      return <TagInputDemo />;
     default:
       return (
         <p className="text-muted-foreground text-sm">

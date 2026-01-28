@@ -29,11 +29,13 @@ export default async function Home() {
         <div className="flex flex-wrap gap-3">
           <Button
             size="lg"
+            nativeButton={false}
             render={<Link href="/components">Browse components</Link>}
           ></Button>
           <Button
             variant="outline"
             size="lg"
+            nativeButton={false}
             render={<Link href="/registry.json">Registry JSON</Link>}
           ></Button>
         </div>
@@ -45,6 +47,7 @@ export default async function Home() {
           <Button
             variant="ghost"
             size="sm"
+            nativeButton={false}
             render={<Link href="/components">View all</Link>}
           ></Button>
         </div>

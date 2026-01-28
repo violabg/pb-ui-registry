@@ -1,11 +1,73 @@
 import {
+  AlertDialogDemo,
+  AlertDialogDemoCode,
+  BadgeDemo,
+  BadgeDemoCode,
+  ButtonDemo,
+  ButtonDemoCode,
+  ButtonSizes,
+  ButtonSizesCode,
+  CardDemo,
+  CardDemoCode,
+  CheckboxDemo,
+  CheckboxDemoCode,
+  CheckboxDisabled,
+  CheckboxDisabledCode,
+  ComboboxDemo,
+  ComboboxDemoCode,
+  CommandDemo,
+  CommandDemoCode,
+  DateFieldDemo,
+  DateFieldDemoCode,
+  DialogDemo,
+  DialogDemoCode,
+  DropdownMenuDemo,
+  DropdownMenuDemoCode,
+  FieldDemo,
+  FieldDemoCode,
+  FileUploadDemo,
+  FileUploadDemoCode,
+  InputDemo,
+  InputDemoCode,
+  InputGroupDemo,
+  InputGroupDemoCode,
+  LabelDemo,
+  LabelDemoCode,
+  MultiSelectDemo,
+  MultiSelectDemoCode,
+  PasswordInputDemo,
+  PasswordInputDemoCode,
+  PopoverDemo,
+  PopoverDemoCode,
+  RadioGroupDemo,
+  RadioGroupDemoCode,
+  RhfInputsDemo,
+  RhfInputsDemoCode,
+  SelectDemo,
+  SelectDemoCode,
+  SeparatorDemo,
+  SeparatorDemoCode,
+  SliderDemo,
+  SliderDemoCode,
+  SliderRange,
+  SliderRangeCode,
+  SwitchDemo,
+  SwitchDemoCode,
+  SwitchSmall,
+  SwitchSmallCode,
+  TabsDemo,
+  TabsDemoCode,
+  TabsLineVariant,
+  TabsLineVariantCode,
   TagInputDemo,
   TagInputDemoCode,
   TagInputDisabled,
   TagInputDisabledCode,
   TagInputMax,
   TagInputMaxCode,
-} from "@/components/tag-input-preview";
+  TextareaDemo,
+  TextareaDemoCode,
+} from "@/components/examples";
 import React from "react";
 
 export type Example = {
@@ -34,6 +96,244 @@ export const examples: Record<string, Example[]> = {
       title: "Disabled",
       component: <TagInputDisabled />,
       code: TagInputDisabledCode,
+    },
+  ],
+  "alert-dialog": [
+    {
+      name: "default",
+      title: "Default",
+      component: <AlertDialogDemo />,
+      code: AlertDialogDemoCode,
+    },
+  ],
+  badge: [
+    {
+      name: "default",
+      title: "Variants",
+      component: <BadgeDemo />,
+      code: BadgeDemoCode,
+    },
+  ],
+  button: [
+    {
+      name: "default",
+      title: "Variants",
+      component: <ButtonDemo />,
+      code: ButtonDemoCode,
+    },
+    {
+      name: "sizes",
+      title: "Sizes",
+      component: <ButtonSizes />,
+      code: ButtonSizesCode,
+    },
+  ],
+  card: [
+    {
+      name: "default",
+      title: "Default",
+      component: <CardDemo />,
+      code: CardDemoCode,
+    },
+  ],
+  combobox: [
+    {
+      name: "default",
+      title: "Default",
+      component: <ComboboxDemo />,
+      code: ComboboxDemoCode,
+    },
+  ],
+  "dropdown-menu": [
+    {
+      name: "default",
+      title: "Default",
+      component: <DropdownMenuDemo />,
+      code: DropdownMenuDemoCode,
+    },
+  ],
+  field: [
+    {
+      name: "default",
+      title: "Default",
+      component: <FieldDemo />,
+      code: FieldDemoCode,
+    },
+  ],
+  input: [
+    {
+      name: "default",
+      title: "Default",
+      component: <InputDemo />,
+      code: InputDemoCode,
+    },
+  ],
+  "input-group": [
+    {
+      name: "default",
+      title: "Default",
+      component: <InputGroupDemo />,
+      code: InputGroupDemoCode,
+    },
+  ],
+  label: [
+    {
+      name: "default",
+      title: "Default",
+      component: <LabelDemo />,
+      code: LabelDemoCode,
+    },
+  ],
+  select: [
+    {
+      name: "default",
+      title: "Default",
+      component: <SelectDemo />,
+      code: SelectDemoCode,
+    },
+  ],
+  separator: [
+    {
+      name: "default",
+      title: "Default",
+      component: <SeparatorDemo />,
+      code: SeparatorDemoCode,
+    },
+  ],
+  textarea: [
+    {
+      name: "default",
+      title: "Default",
+      component: <TextareaDemo />,
+      code: TextareaDemoCode,
+    },
+  ],
+  checkbox: [
+    {
+      name: "default",
+      title: "Default",
+      component: <CheckboxDemo />,
+      code: CheckboxDemoCode,
+    },
+    {
+      name: "disabled",
+      title: "Disabled",
+      component: <CheckboxDisabled />,
+      code: CheckboxDisabledCode,
+    },
+  ],
+  switch: [
+    {
+      name: "default",
+      title: "Default",
+      component: <SwitchDemo />,
+      code: SwitchDemoCode,
+    },
+    {
+      name: "small",
+      title: "Small Size",
+      component: <SwitchSmall />,
+      code: SwitchSmallCode,
+    },
+  ],
+  slider: [
+    {
+      name: "default",
+      title: "Default",
+      component: <SliderDemo />,
+      code: SliderDemoCode,
+    },
+    {
+      name: "range",
+      title: "Range",
+      component: <SliderRange />,
+      code: SliderRangeCode,
+    },
+  ],
+  "radio-group": [
+    {
+      name: "default",
+      title: "Default",
+      component: <RadioGroupDemo />,
+      code: RadioGroupDemoCode,
+    },
+  ],
+  popover: [
+    {
+      name: "default",
+      title: "Default",
+      component: <PopoverDemo />,
+      code: PopoverDemoCode,
+    },
+  ],
+  dialog: [
+    {
+      name: "default",
+      title: "Default",
+      component: <DialogDemo />,
+      code: DialogDemoCode,
+    },
+  ],
+  command: [
+    {
+      name: "default",
+      title: "Default",
+      component: <CommandDemo />,
+      code: CommandDemoCode,
+    },
+  ],
+  "datefield-rac": [
+    {
+      name: "default",
+      title: "Default",
+      component: <DateFieldDemo />,
+      code: DateFieldDemoCode,
+    },
+  ],
+  "password-input": [
+    {
+      name: "default",
+      title: "Default",
+      component: <PasswordInputDemo />,
+      code: PasswordInputDemoCode,
+    },
+  ],
+  "file-upload": [
+    {
+      name: "default",
+      title: "Default",
+      component: <FileUploadDemo />,
+      code: FileUploadDemoCode,
+    },
+  ],
+  "multi-select": [
+    {
+      name: "default",
+      title: "Default",
+      component: <MultiSelectDemo />,
+      code: MultiSelectDemoCode,
+    },
+  ],
+  tabs: [
+    {
+      name: "default",
+      title: "Default",
+      component: <TabsDemo />,
+      code: TabsDemoCode,
+    },
+    {
+      name: "line-variant",
+      title: "Line Variant",
+      component: <TabsLineVariant />,
+      code: TabsLineVariantCode,
+    },
+  ],
+  "rhf-inputs": [
+    {
+      name: "default",
+      title: "Overview",
+      component: <RhfInputsDemo />,
+      code: RhfInputsDemoCode,
     },
   ],
 };

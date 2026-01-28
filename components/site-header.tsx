@@ -14,16 +14,19 @@ export function SiteHeader() {
           <Button
             variant="ghost"
             size="sm"
+            nativeButton={false}
             render={<Link href="/components">Components</Link>}
           ></Button>
           <Button
             variant="ghost"
             size="sm"
+            nativeButton={false}
             render={<Link href="/registry.json">Registry</Link>}
           ></Button>
           <ThemeToggle />
           <Button
             size="sm"
+            nativeButton={false}
             render={<Link href="/components/tag-input">Get started</Link>}
           ></Button>
         </nav>

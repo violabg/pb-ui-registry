@@ -2,7 +2,6 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { ComponentPreviewTabs } from "@/components/component-preview-tabs";
-import { ComponentPreview } from "@/components/component-previews";
 import { InstallCommand } from "@/components/install-command";
 import { Badge } from "@/components/ui/badge";
 import { examples } from "@/lib/examples";
@@ -26,13 +25,12 @@ export default async function ComponentPage({
   params: Promise<{ name: string }>;
 }) {
   const { name } = await params;
-  const item = await getRegistryItem(name, true);
+  const item = await getRegistryItem(name);
 
   if (!item) {
     notFound();
   }
 
-  const source = item.files?.[0]?.content ?? "";
   const componentExamples = examples[name] || [];
 
   return (
@@ -83,21 +81,6 @@ export default async function ComponentPage({
             <InstallCommand command={getInstallCommand(item.name)} />
           </div>
 
-          <div className="flex flex-col gap-4">
-            <h2
-              id="component-source"
-              className="font-semibold text-xl tracking-tight scroll-m-20"
-            >
-              Component Source
-            </h2>
-            <ComponentPreviewTabs
-              preview={<ComponentPreview name={name} />}
-              code={source}
-              language="tsx"
-              registryHref={`/registry/${item.name}`}
-            />
-          </div>
-
           {componentExamples.length > 0 && (
             <div className="flex flex-col gap-8">
               <h2 className="font-semibold text-2xl tracking-tight scroll-m-20">
@@ -134,14 +117,6 @@ export default async function ComponentPage({
                       className="text-muted-foreground hover:text-foreground line-clamp-1"
                     >
                       Installation
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      href="#component-source"
-                      className="text-muted-foreground hover:text-foreground line-clamp-1"
-                    >
-                      Component Source
                     </Link>
                   </li>
                   {componentExamples.length > 0 && (

@@ -243,6 +243,283 @@ const registryItems: RegistryItem[] = [
       },
     ],
   },
+  {
+    name: "checkbox",
+    title: "Checkbox",
+    description: "Toggle control for boolean values.",
+    type: "registry:ui",
+    docs: "/components/checkbox",
+    categories: ["forms"],
+    files: [
+      {
+        path: "components/ui/checkbox.tsx",
+        target: "components/ui/checkbox.tsx",
+        type: "registry:ui",
+      },
+    ],
+  },
+  {
+    name: "switch",
+    title: "Switch",
+    description: "Toggle switch for on/off states.",
+    type: "registry:ui",
+    docs: "/components/switch",
+    categories: ["forms"],
+    files: [
+      {
+        path: "components/ui/switch.tsx",
+        target: "components/ui/switch.tsx",
+        type: "registry:ui",
+      },
+    ],
+  },
+  {
+    name: "slider",
+    title: "Slider",
+    description: "Range input for selecting numeric values.",
+    type: "registry:ui",
+    docs: "/components/slider",
+    categories: ["forms"],
+    files: [
+      {
+        path: "components/ui/slider.tsx",
+        target: "components/ui/slider.tsx",
+        type: "registry:ui",
+      },
+    ],
+  },
+  {
+    name: "radio-group",
+    title: "Radio Group",
+    description: "Single selection from multiple options.",
+    type: "registry:ui",
+    docs: "/components/radio-group",
+    categories: ["forms"],
+    files: [
+      {
+        path: "components/ui/radio-group.tsx",
+        target: "components/ui/radio-group.tsx",
+        type: "registry:ui",
+      },
+    ],
+  },
+  {
+    name: "popover",
+    title: "Popover",
+    description: "Floating content panel with positioning.",
+    type: "registry:ui",
+    docs: "/components/popover",
+    categories: ["overlay"],
+    files: [
+      {
+        path: "components/ui/popover.tsx",
+        target: "components/ui/popover.tsx",
+        type: "registry:ui",
+      },
+    ],
+  },
+  {
+    name: "dialog",
+    title: "Dialog",
+    description: "Modal window for focused interactions.",
+    type: "registry:ui",
+    docs: "/components/dialog",
+    categories: ["overlay"],
+    registryDependencies: ["button"],
+    files: [
+      {
+        path: "components/ui/dialog.tsx",
+        target: "components/ui/dialog.tsx",
+        type: "registry:ui",
+      },
+    ],
+  },
+  {
+    name: "command",
+    title: "Command",
+    description: "Command palette with search and keyboard navigation.",
+    type: "registry:ui",
+    docs: "/components/command",
+    categories: ["overlay", "navigation"],
+    registryDependencies: ["dialog", "input-group"],
+    dependencies: ["cmdk"],
+    files: [
+      {
+        path: "components/ui/command.tsx",
+        target: "components/ui/command.tsx",
+        type: "registry:ui",
+      },
+    ],
+  },
+  {
+    name: "datefield-rac",
+    title: "Date Field",
+    description: "Date and time input with segmented fields.",
+    type: "registry:ui",
+    docs: "/components/datefield-rac",
+    categories: ["forms", "data-entry"],
+    dependencies: ["react-aria-components"],
+    files: [
+      {
+        path: "components/ui/datefield-rac.tsx",
+        target: "components/ui/datefield-rac.tsx",
+        type: "registry:ui",
+      },
+    ],
+  },
+  {
+    name: "password-input",
+    title: "Password Input",
+    description: "Text input with visibility toggle for passwords.",
+    type: "registry:ui",
+    docs: "/components/password-input",
+    categories: ["forms"],
+    registryDependencies: ["input"],
+    files: [
+      {
+        path: "components/ui/password-input.tsx",
+        target: "components/ui/password-input.tsx",
+        type: "registry:ui",
+      },
+    ],
+  },
+  {
+    name: "file-upload",
+    title: "File Upload",
+    description: "Drag and drop file upload with preview.",
+    type: "registry:ui",
+    docs: "/components/file-upload",
+    categories: ["forms", "data-entry"],
+    registryDependencies: ["button", "input", "label"],
+    files: [
+      {
+        path: "components/ui/file-upload.tsx",
+        target: "components/ui/file-upload.tsx",
+        type: "registry:ui",
+      },
+    ],
+  },
+  {
+    name: "multi-select",
+    title: "Multi Select",
+    description: "Select multiple options with grouped support.",
+    type: "registry:ui",
+    docs: "/components/multi-select",
+    categories: ["forms"],
+    registryDependencies: ["badge", "button", "command", "popover"],
+    files: [
+      {
+        path: "components/ui/multi-select.tsx",
+        target: "components/ui/multi-select.tsx",
+        type: "registry:ui",
+      },
+    ],
+  },
+  {
+    name: "tabs",
+    title: "Tabs",
+    description: "Tabbed interface for organized content.",
+    type: "registry:ui",
+    docs: "/components/tabs",
+    categories: ["navigation", "layout"],
+    files: [
+      {
+        path: "components/ui/tabs.tsx",
+        target: "components/ui/tabs.tsx",
+        type: "registry:ui",
+      },
+    ],
+  },
+  {
+    name: "rhf-inputs",
+    title: "React Hook Form Inputs",
+    description: "Form field components with React Hook Form integration.",
+    type: "registry:ui",
+    docs: "/components/rhf-inputs",
+    categories: ["forms", "data-entry"],
+    registryDependencies: [
+      "field",
+      "input",
+      "checkbox",
+      "select",
+      "textarea",
+      "radio-group",
+      "slider",
+      "switch",
+      "tag-input",
+      "password-input",
+      "multi-select",
+      "datefield-rac",
+    ],
+    dependencies: ["react-hook-form"],
+    files: [
+      {
+        path: "components/ui/rhf-inputs/index.ts",
+        target: "components/ui/rhf-inputs/index.ts",
+        type: "registry:ui",
+      },
+      {
+        path: "components/ui/rhf-inputs/base-controller.tsx",
+        target: "components/ui/rhf-inputs/base-controller.tsx",
+        type: "registry:ui",
+      },
+      {
+        path: "components/ui/rhf-inputs/checkbox-field.tsx",
+        target: "components/ui/rhf-inputs/checkbox-field.tsx",
+        type: "registry:ui",
+      },
+      {
+        path: "components/ui/rhf-inputs/input-field.tsx",
+        target: "components/ui/rhf-inputs/input-field.tsx",
+        type: "registry:ui",
+      },
+      {
+        path: "components/ui/rhf-inputs/input-date-field.tsx",
+        target: "components/ui/rhf-inputs/input-date-field.tsx",
+        type: "registry:ui",
+      },
+      {
+        path: "components/ui/rhf-inputs/input-with-tag-field.tsx",
+        target: "components/ui/rhf-inputs/input-with-tag-field.tsx",
+        type: "registry:ui",
+      },
+      {
+        path: "components/ui/rhf-inputs/multi-select-field.tsx",
+        target: "components/ui/rhf-inputs/multi-select-field.tsx",
+        type: "registry:ui",
+      },
+      {
+        path: "components/ui/rhf-inputs/password-field.tsx",
+        target: "components/ui/rhf-inputs/password-field.tsx",
+        type: "registry:ui",
+      },
+      {
+        path: "components/ui/rhf-inputs/radio-group-field.tsx",
+        target: "components/ui/rhf-inputs/radio-group-field.tsx",
+        type: "registry:ui",
+      },
+      {
+        path: "components/ui/rhf-inputs/select-field.tsx",
+        target: "components/ui/rhf-inputs/select-field.tsx",
+        type: "registry:ui",
+      },
+      {
+        path: "components/ui/rhf-inputs/slider-field.tsx",
+        target: "components/ui/rhf-inputs/slider-field.tsx",
+        type: "registry:ui",
+      },
+      {
+        path: "components/ui/rhf-inputs/switch-field.tsx",
+        target: "components/ui/rhf-inputs/switch-field.tsx",
+        type: "registry:ui",
+      },
+      {
+        path: "components/ui/rhf-inputs/textarea-field.tsx",
+        target: "components/ui/rhf-inputs/textarea-field.tsx",
+        type: "registry:ui",
+      },
+    ],
+  },
 ];
 
 function normalizeSiteUrl(siteUrl: string) {
@@ -264,15 +541,15 @@ export function getInstallCommand(name: string) {
 }
 
 export async function getRegistryItems(): Promise<RegistryItemSummary[]> {
-  return registryItems.map(
-    ({ name, title, description, docs, categories }) => ({
+  return registryItems
+    .map(({ name, title, description, docs, categories }) => ({
       name,
       title,
       description,
       docs,
       categories,
-    }),
-  );
+    }))
+    .sort((a, b) => a.name.localeCompare(b.name));
 }
 
 export async function getRegistryItem(

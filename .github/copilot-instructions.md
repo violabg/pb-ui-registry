@@ -71,6 +71,8 @@ A Next.js 16 component registry website for browsing, previewing, and installing
 - `ComponentPreviewTabs` wraps previews with code toggle
 - Examples use `ComponentPreviewTabs` for each variant
 
+Important: component detail pages should NOT show the full original component source code. Pages must display the live preview and the example usage code only (the example's `code` string). The raw component source (the files listed in `RegistryItem.files`) is available via the registry API (`/registry/[name]` and `/registry.json`) and should not be rendered inline on component pages. This keeps pages focused on usage and prevents exposing implementation details in the UI.
+
 ## Build & Deployment
 
 ### Commands
