@@ -27,23 +27,26 @@ const formSchema = z.object({
       /^[a-zA-Z0-9_]+$/,
       "Username can only contain letters, numbers, and underscores",
     ),
-  email: z.string().email("Invalid email address"),
+  email: z.email(),
   password: z
     .string()
     .min(8, "Password must be at least 8 characters")
     .regex(/[a-z]/, "Password must contain at least one lowercase letter")
     .regex(/[A-Z]/, "Password must contain at least one uppercase letter")
     .regex(/[0-9]/, "Password must contain at least one number"),
-  bio: z.string().max(500, "Bio must not exceed 500 characters").optional(),
+  bio: z
+    .string()
+    .max(500, "Bio must not exceed 500 characters")
+    .min(3, "Username must be at least 3 characters"),
   country: z.string().min(1, "Please select a country"),
   skills: z.array(z.string()).min(1, "Please select at least one skill"),
   tags: z.array(z.string()).min(1, "Please add at least one tag"),
   experience: z.number().min(0).max(20),
   role: z.enum(["developer", "designer", "manager"]),
   notifications: z.boolean(),
-  terms: z.boolean().refine((val) => val === true, {
-    message: "You must accept the terms and conditions",
-  }),
+  terms: z
+    .boolean()
+    .refine((val) => val === true, "You must accept the terms and conditions"),
 });
 
 type FormValues = z.infer<typeof formSchema>;
@@ -107,6 +110,7 @@ export function RhfInputsDemo() {
           label="Bio"
           placeholder="Tell us about yourself..."
           description="Max 500 characters"
+          required
         />
 
         <div className="gap-4 grid grid-cols-1 md:grid-cols-2">
@@ -243,9 +247,9 @@ const formSchema = z.object({
   experience: z.number().min(0).max(20),
   role: z.enum(["developer", "designer", "manager"]),
   notifications: z.boolean(),
-  terms: z.boolean().refine((val) => val === true, {
-    message: "You must accept the terms and conditions",
-  }),
+  terms: z
+    .boolean()
+    .refine((val) => val === true, "You must accept the terms and conditions"),
 });
 
 type FormValues = z.infer<typeof formSchema>;
