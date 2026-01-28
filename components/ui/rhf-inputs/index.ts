@@ -1,4 +1,5 @@
 export { CheckboxField } from "./checkbox-field";
+export { InputDateField } from "./input-date-field";
 export { InputField } from "./input-field";
 export { InputWithTagField } from "./input-with-tag-field";
 export { MultiSelectField } from "./multi-select-field";

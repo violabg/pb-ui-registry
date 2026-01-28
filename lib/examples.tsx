@@ -41,8 +41,30 @@ import {
   PopoverDemoCode,
   RadioGroupDemo,
   RadioGroupDemoCode,
+  RhfCheckboxFieldDemo,
+  RhfCheckboxFieldDemoCode,
+  RhfInputDateFieldDemo,
+  RhfInputDateFieldDemoCode,
+  RhfInputFieldDemo,
+  RhfInputFieldDemoCode,
   RhfInputsDemo,
   RhfInputsDemoCode,
+  RhfInputWithTagFieldDemo,
+  RhfInputWithTagFieldDemoCode,
+  RhfMultiSelectFieldDemo,
+  RhfMultiSelectFieldDemoCode,
+  RhfPasswordFieldDemo,
+  RhfPasswordFieldDemoCode,
+  RhfRadioGroupFieldDemo,
+  RhfRadioGroupFieldDemoCode,
+  RhfSelectFieldDemo,
+  RhfSelectFieldDemoCode,
+  RhfSliderFieldDemo,
+  RhfSliderFieldDemoCode,
+  RhfSwitchFieldDemo,
+  RhfSwitchFieldDemoCode,
+  RhfTextareaFieldDemo,
+  RhfTextareaFieldDemoCode,
   SelectDemo,
   SelectDemoCode,
   SeparatorDemo,
@@ -334,6 +356,102 @@ export const examples: Record<string, Example[]> = {
       title: "Overview",
       component: <RhfInputsDemo />,
       code: RhfInputsDemoCode,
+    },
+  ],
+  "rhf-input-field": [
+    {
+      name: "default",
+      title: "Default",
+      component: <RhfInputFieldDemo />,
+      code: RhfInputFieldDemoCode,
+    },
+  ],
+  "rhf-checkbox-field": [
+    {
+      name: "default",
+      title: "Default",
+      component: <RhfCheckboxFieldDemo />,
+      code: RhfCheckboxFieldDemoCode,
+    },
+  ],
+  "rhf-select-field": [
+    {
+      name: "default",
+      title: "Default",
+      component: <RhfSelectFieldDemo />,
+      code: RhfSelectFieldDemoCode,
+    },
+  ],
+  "rhf-textarea-field": [
+    {
+      name: "default",
+      title: "Default",
+      component: <RhfTextareaFieldDemo />,
+      code: RhfTextareaFieldDemoCode,
+    },
+  ],
+  "rhf-radio-group-field": [
+    {
+      name: "default",
+      title: "Default",
+      component: <RhfRadioGroupFieldDemo />,
+      code: RhfRadioGroupFieldDemoCode,
+    },
+  ],
+  "rhf-slider-field": [
+    {
+      name: "default",
+      title: "Default",
+      component: <RhfSliderFieldDemo />,
+      code: RhfSliderFieldDemoCode,
+    },
+  ],
+  "rhf-switch-field": [
+    {
+      name: "default",
+      title: "Default",
+      component: <RhfSwitchFieldDemo />,
+      code: RhfSwitchFieldDemoCode,
+    },
+  ],
+  "rhf-password-field": [
+    {
+      name: "default",
+      title: "Default",
+      component: <RhfPasswordFieldDemo />,
+      code: RhfPasswordFieldDemoCode,
+    },
+  ],
+  "rhf-input-with-tag-field": [
+    {
+      name: "default",
+      title: "Default",
+      component: <RhfInputWithTagFieldDemo />,
+      code: RhfInputWithTagFieldDemoCode,
+    },
+  ],
+  "rhf-multi-select-field": [
+    {
+      name: "default",
+      title: "Default",
+      component: <RhfMultiSelectFieldDemo />,
+      code: RhfMultiSelectFieldDemoCode,
+    },
+  ],
+  "rhf-input-date-field": [
+    {
+      name: "default",
+      title: "Default",
+      component: <RhfInputDateFieldDemo />,
+      code: RhfInputDateFieldDemoCode,
+    },
+  ],
+  "rhf-base-controller": [
+    {
+      name: "default",
+      title: "Usage",
+      component: <RhfInputFieldDemo />,
+      code: RhfInputFieldDemoCode,
     },
   ],
 };
