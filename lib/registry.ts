@@ -635,6 +635,23 @@ const registryItems: RegistryItem[] = [
     ],
   },
   {
+    name: "rhf-file-upload-field",
+    title: "RHF File Upload Field",
+    description: "File upload field with React Hook Form integration.",
+    type: "registry:ui",
+    docs: "/components/rhf-file-upload-field",
+    categories: ["forms"],
+    registryDependencies: ["rhf-base-controller", "file-upload"],
+    dependencies: ["react-hook-form"],
+    files: [
+      {
+        path: "components/ui/rhf-inputs/file-upload-field.tsx",
+        target: "components/ui/rhf-inputs/file-upload-field.tsx",
+        type: "registry:ui",
+      },
+    ],
+  },
+  {
     name: "rhf-inputs",
     title: "React Hook Form Inputs (All)",
     description:
@@ -655,6 +672,7 @@ const registryItems: RegistryItem[] = [
       "rhf-input-with-tag-field",
       "rhf-multi-select-field",
       "rhf-input-date-field",
+      "rhf-file-upload-field",
     ],
     dependencies: ["react-hook-form"],
     files: [

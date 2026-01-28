@@ -43,6 +43,8 @@ import {
   RadioGroupDemoCode,
   RhfCheckboxFieldDemo,
   RhfCheckboxFieldDemoCode,
+  RhfFileUploadFieldDemo,
+  RhfFileUploadFieldDemoCode,
   RhfInputDateFieldDemo,
   RhfInputDateFieldDemoCode,
   RhfInputFieldDemo,
@@ -436,6 +438,14 @@ export const examples: Record<string, Example[]> = {
       title: "Default",
       component: <RhfMultiSelectFieldDemo />,
       code: RhfMultiSelectFieldDemoCode,
+    },
+  ],
+  "rhf-file-upload-field": [
+    {
+      name: "default",
+      title: "Default",
+      component: <RhfFileUploadFieldDemo />,
+      code: RhfFileUploadFieldDemoCode,
     },
   ],
   "rhf-input-date-field": [

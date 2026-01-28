@@ -26,6 +26,7 @@ export interface FileUploadProps {
   disabled?: boolean;
   /** Whether the field is required */
   required?: boolean;
+  showError?: boolean;
   className?: string;
   validateResumeFile?: (file: File) => {
     valid: boolean;
@@ -59,6 +60,7 @@ export function FileUpload({
   uploadingText = "Uploading...",
   viewCurrentFileText = "View current file",
   replaceText = "Replace",
+  showError = true,
 }: FileUploadProps) {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [isDragging, setIsDragging] = useState(false);
@@ -273,7 +275,7 @@ export function FileUpload({
         <p className="text-muted-foreground text-sm">{description}</p>
       )}
 
-      {displayError && (
+      {showError && displayError && (
         <p className="text-destructive text-sm">{displayError}</p>
       )}
     </div>

@@ -111,6 +111,8 @@ export { RhfInputsDemo, RhfInputsDemoCode } from "./rhf-inputs-examples";
 export {
   RhfCheckboxFieldDemo,
   RhfCheckboxFieldDemoCode,
+  RhfFileUploadFieldDemo,
+  RhfFileUploadFieldDemoCode,
   RhfInputDateFieldDemo,
   RhfInputDateFieldDemoCode,
   RhfInputFieldDemo,

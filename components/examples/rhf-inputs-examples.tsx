@@ -8,6 +8,7 @@ import { z } from "zod";
 import { Button } from "@/components/ui/button";
 import {
   CheckboxField,
+  FileUploadField,
   InputDateField,
   InputField,
   InputWithTagField,
@@ -48,6 +49,7 @@ const formSchema = z.object({
   tags: z.array(z.string()).min(1, "Please add at least one tag"),
   experience: z.number().min(0).max(20),
   role: z.enum(["developer", "designer", "manager"]),
+  resume: z.instanceof(File, { message: "Please upload your resume" }),
   notifications: z.boolean(),
   terms: z
     .boolean()
@@ -72,12 +74,14 @@ export function RhfInputsDemo() {
       tags: [],
       experience: 0,
       role: "developer",
+      resume: undefined,
       notifications: false,
       terms: false,
     },
   });
 
   const onSubmit = (data: FormValues) => {
+    console.log("🚀 ~ onSubmit ~ data:", data);
     setSubmittedData(data);
   };
 
@@ -189,6 +193,14 @@ export function RhfInputsDemo() {
           ]}
         />
 
+        <FileUploadField
+          control={control}
+          name="resume"
+          label="Resume"
+          description="Upload your resume (PDF, DOC, DOCX)"
+          required
+        />
+
         <div className="space-y-4">
           <SwitchField
             control={control}
@@ -230,6 +242,7 @@ import { z } from "zod";
 import { Button } from "@/components/ui/button";
 import {
   CheckboxField,
+  FileUploadField,
   InputDateField,
   InputField,
   InputWithTagField,
@@ -264,6 +277,7 @@ const formSchema = z.object({
   tags: z.array(z.string()).min(1, "Please add at least one tag"),
   experience: z.number().min(0).max(20),
   role: z.enum(["developer", "designer", "manager"]),
+  resume: z.instanceof(File, { message: "Please upload your resume" }),
   notifications: z.boolean(),
   terms: z
     .boolean()
@@ -288,6 +302,7 @@ export function RhfInputsDemo() {
       tags: [],
       experience: 0,
       role: "developer",
+      resume: undefined,
       notifications: false,
       terms: false,
     },
@@ -397,6 +412,14 @@ export function RhfInputsDemo() {
           { value: "designer", label: "Designer" },
           { value: "manager", label: "Manager" },
         ]}
+      />
+
+      <FileUploadField
+        control={control}
+        name="resume"
+        label="Resume"
+        description="Upload your resume (PDF, DOC, DOCX)"
+        required
       />
 
       <SwitchField
