@@ -32,7 +32,7 @@ export function InputWithTagField<T extends FieldValues>({
           placeholder={placeholder}
           value={(field.value as string[] | undefined) || []}
           onValueChange={(newTags: string[]) => field.onChange(newTags)}
-          // invalid={!!fieldState.error}
+          aria-invalid={!!fieldState.error}
         />
       )}
     </BaseController>

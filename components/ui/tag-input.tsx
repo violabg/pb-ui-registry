@@ -64,7 +64,7 @@ export function TagInput({
     <div
       data-slot="tag-input"
       className={cn(
-        "flex flex-wrap items-center gap-2 bg-background px-2.5 py-2 border border-input rounded-md w-full min-h-10 text-foreground",
+        "flex flex-wrap items-center gap-2 bg-background px-2.5 py-2 border border-input aria-invalid:border-destructive focus-within:border-ring dark:aria-invalid:border-destructive/50 rounded-md aria-invalid:ring-[3px] aria-invalid:ring-destructive/20 focus-within:ring-[3px] focus-within:ring-ring/50 dark:aria-invalid:ring-destructive/40 w-full min-h-10 text-foreground",
         disabled && "opacity-50",
         className,
       )}
