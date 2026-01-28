@@ -647,13 +647,13 @@ export function Demo() {
 
 // Input Date Field Example
 const dateSchema = z.object({
-  birthDate: z.date(),
+  birthDate: z.date().optional(),
 });
 
 export function RhfInputDateFieldDemo() {
   const { control, handleSubmit } = useForm({
     resolver: zodResolver(dateSchema),
-    defaultValues: { birthDate: new Date() },
+    defaultValues: { birthDate: undefined },
   });
 
   return (
@@ -661,12 +661,7 @@ export function RhfInputDateFieldDemo() {
       onSubmit={handleSubmit((data) => console.log(data))}
       className="space-y-4 max-w-sm"
     >
-      <InputDateField
-        control={control}
-        name="birthDate"
-        label="Birth Date"
-        required
-      />
+      <InputDateField control={control} name="birthDate" label="Birth Date" />
       <Button type="submit">Submit</Button>
     </form>
   );
@@ -679,13 +674,13 @@ import { Button } from "@/components/ui/button";
 import { InputDateField } from "@/components/ui/rhf-inputs";
 
 const schema = z.object({
-  birthDate: z.date(),
+  birthDate: z.date().optional(),
 });
 
 export function Demo() {
   const { control, handleSubmit } = useForm({
     resolver: zodResolver(schema),
-    defaultValues: { birthDate: new Date() },
+    defaultValues: { birthDate: undefined },
   });
 
   return (
@@ -694,7 +689,6 @@ export function Demo() {
         control={control}
         name="birthDate"
         label="Birth Date"
-        required
       />
       <Button type="submit">Submit</Button>
     </form>
