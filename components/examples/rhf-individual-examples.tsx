@@ -65,8 +65,10 @@ const schema = z.object({
     .regex(/^[a-zA-Z0-9_]+$/, "Only letters, numbers, and underscores"),
 });
 
+type FormValues = z.infer<typeof schema>;
+
 export function Demo() {
-  const { control, handleSubmit } = useForm({
+  const { control, handleSubmit } = useForm<FormValues>({
     resolver: zodResolver(schema),
     defaultValues: { username: "" },
   });
@@ -124,8 +126,10 @@ const schema = z.object({
   terms: z.boolean().refine((val) => val === true, "You must accept the terms"),
 });
 
+type FormValues = z.infer<typeof schema>;
+
 export function Demo() {
-  const { control, handleSubmit } = useForm({
+  const { control, handleSubmit } = useForm<FormValues>({
     resolver: zodResolver(schema),
     defaultValues: { terms: false },
   });
@@ -188,8 +192,10 @@ const schema = z.object({
   country: z.string().min(1, "Please select a country"),
 });
 
+type FormValues = z.infer<typeof schema>;
+
 export function Demo() {
-  const { control, handleSubmit } = useForm({
+  const { control, handleSubmit } = useForm<FormValues>({
     resolver: zodResolver(schema),
     defaultValues: { country: "" },
   });
@@ -253,8 +259,10 @@ const schema = z.object({
   bio: z.string().max(500, "Bio must not exceed 500 characters"),
 });
 
+type FormValues = z.infer<typeof schema>;
+
 export function Demo() {
-  const { control, handleSubmit } = useForm({
+  const { control, handleSubmit } = useForm<FormValues>({
     resolver: zodResolver(schema),
     defaultValues: { bio: "" },
   });
@@ -317,8 +325,10 @@ const schema = z.object({
   role: z.enum(["developer", "designer", "manager"]),
 });
 
+type FormValues = z.infer<typeof schema>;
+
 export function Demo() {
-  const { control, handleSubmit } = useForm({
+  const { control, handleSubmit } = useForm<FormValues>({
     resolver: zodResolver(schema),
     defaultValues: { role: "developer" },
   });
@@ -383,8 +393,10 @@ const schema = z.object({
   volume: z.number().min(0).max(100),
 });
 
+type FormValues = z.infer<typeof schema>;
+
 export function Demo() {
-  const { control, handleSubmit } = useForm({
+  const { control, handleSubmit } = useForm<FormValues>({
     resolver: zodResolver(schema),
     defaultValues: { volume: 50 },
   });
@@ -444,8 +456,10 @@ const schema = z.object({
   notifications: z.boolean(),
 });
 
+type FormValues = z.infer<typeof schema>;
+
 export function Demo() {
-  const { control, handleSubmit } = useForm({
+  const { control, handleSubmit } = useForm<FormValues>({
     resolver: zodResolver(schema),
     defaultValues: { notifications: false },
   });
@@ -513,8 +527,10 @@ const schema = z.object({
     .regex(/[0-9]/, "Must contain number"),
 });
 
+type FormValues = z.infer<typeof schema>;
+
 export function Demo() {
-  const { control, handleSubmit } = useForm({
+  const { control, handleSubmit } = useForm<FormValues>({
     resolver: zodResolver(schema),
     defaultValues: { password: "" },
   });
@@ -573,8 +589,10 @@ const schema = z.object({
   tags: z.array(z.string()).min(1, "Please add at least one tag"),
 });
 
+type FormValues = z.infer<typeof schema>;
+
 export function Demo() {
-  const { control, handleSubmit } = useForm({
+  const { control, handleSubmit } = useForm<FormValues>({
     resolver: zodResolver(schema),
     defaultValues: { tags: [] },
   });
@@ -638,8 +656,10 @@ const schema = z.object({
   skills: z.array(z.string()).min(1, "Please select at least one skill"),
 });
 
+type FormValues = z.infer<typeof schema>;
+
 export function Demo() {
-  const { control, handleSubmit } = useForm({
+  const { control, handleSubmit } = useForm<FormValues>({
     resolver: zodResolver(schema),
     defaultValues: { skills: [] },
   });
@@ -697,8 +717,10 @@ const schema = z.object({
   birthDate: z.date().optional(),
 });
 
+type FormValues = z.infer<typeof schema>;
+
 export function Demo() {
-  const { control, handleSubmit } = useForm({
+  const { control, handleSubmit } = useForm<FormValues>({
     resolver: zodResolver(schema),
     defaultValues: { birthDate: undefined },
   });
