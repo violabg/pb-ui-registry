@@ -677,6 +677,30 @@ function getSiteUrl() {
   );
 }
 
+/**
+ * Helper to get the full registry URL for a dependency.
+ * Custom registry items (those defined in this registry) need full URLs,
+ * while official shadcn components can use just the name.
+ */
+function getRegistryDependencyUrl(name: string): string {
+  // List of component names that exist in this custom registry
+  const customRegistryItems = registryItems.map((item) => item.name);
+
+  if (customRegistryItems.includes(name)) {
+    return `${getSiteUrl()}/registry/${name}`;
+  }
+  // Return just the name for official shadcn components
+  return name;
+}
+
+/**
+ * Transform registryDependencies to use full URLs for custom items
+ */
+function resolveRegistryDependencies(deps?: string[]): string[] | undefined {
+  if (!deps) return undefined;
+  return deps.map(getRegistryDependencyUrl);
+}
+
 export function getRegistryUrlTemplate(name: string) {
   return `${getSiteUrl()}/registry/${name}`;
 }
@@ -707,8 +731,16 @@ export async function getRegistryItem(
     return null;
   }
 
+  // Resolve registryDependencies to use full URLs for custom registry items
+  const resolvedItem = {
+    ...item,
+    registryDependencies: resolveRegistryDependencies(
+      item.registryDependencies,
+    ),
+  };
+
   if (!withContent || !item.files?.length) {
-    return item;
+    return resolvedItem;
   }
 
   const files = await Promise.all(
@@ -724,7 +756,7 @@ export async function getRegistryItem(
   );
 
   return {
-    ...item,
+    ...resolvedItem,
     files,
   };
 }
