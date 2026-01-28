@@ -8,6 +8,7 @@ import { z } from "zod";
 import { Button } from "@/components/ui/button";
 import {
   CheckboxField,
+  InputDateField,
   InputField,
   InputWithTagField,
   MultiSelectField,
@@ -28,6 +29,10 @@ const formSchema = z.object({
       "Username can only contain letters, numbers, and underscores",
     ),
   email: z.email(),
+  birthDate: z.custom(
+    (val) => val !== null && val !== undefined,
+    "Birth date is required",
+  ),
   password: z
     .string()
     .min(8, "Password must be at least 8 characters")
@@ -59,6 +64,7 @@ export function RhfInputsDemo() {
     defaultValues: {
       username: "",
       email: "",
+      birthDate: null,
       password: "",
       bio: "",
       country: "",
@@ -95,6 +101,13 @@ export function RhfInputsDemo() {
             required
           />
         </div>
+
+        <InputDateField
+          control={control}
+          name="birthDate"
+          label="Birth Date"
+          required
+        />
 
         <PasswordField
           control={control}
@@ -217,6 +230,7 @@ import { z } from "zod";
 import { Button } from "@/components/ui/button";
 import {
   CheckboxField,
+  InputDateField,
   InputField,
   InputWithTagField,
   MultiSelectField,
@@ -234,6 +248,10 @@ const formSchema = z.object({
     .min(3, "Username must be at least 3 characters")
     .regex(/^[a-zA-Z0-9_]+$/, "Username can only contain letters, numbers, and underscores"),
   email: z.email({ message: "Invalid email address" }),
+  birthDate: z.custom(
+    (val) => val !== null && val !== undefined,
+    "Birth date is required",
+  ),
   password: z
     .string()
     .min(8, "Password must be at least 8 characters")
@@ -262,6 +280,7 @@ export function RhfInputsDemo() {
     defaultValues: {
       username: "",
       email: "",
+      birthDate: null,
       password: "",
       bio: "",
       country: "",
@@ -297,6 +316,13 @@ export function RhfInputsDemo() {
           required
         />
       </div>
+
+      <InputDateField
+        control={control}
+        name="birthDate"
+        label="Birth Date"
+        required
+      />
 
       <PasswordField
         control={control}
