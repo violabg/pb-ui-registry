@@ -37,5 +37,10 @@
     "eslint-config-next": "16.1.6",
     "tailwindcss": "^4.1.18",
     "typescript": "^5.9.3"
+  },
+  "pnpm": {
+    "overrides": {
+      "zod": "^4.3.6"
+    }
   }
 }

@@ -233,7 +233,7 @@ const formSchema = z.object({
     .string()
     .min(3, "Username must be at least 3 characters")
     .regex(/^[a-zA-Z0-9_]+$/, "Username can only contain letters, numbers, and underscores"),
-  email: z.string().email("Invalid email address"),
+  email: z.email({ message: "Invalid email address" }),
   password: z
     .string()
     .min(8, "Password must be at least 8 characters")
