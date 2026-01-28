@@ -26,8 +26,18 @@ export interface FileUploadProps {
   disabled?: boolean;
   /** Whether the field is required */
   required?: boolean;
-  /** Custom className */
   className?: string;
+  validateResumeFile?: (file: File) => {
+    valid: boolean;
+    error?: string | undefined;
+  };
+  clickToUploadText?: string;
+  orDragAndDropText?: string;
+  fileTypesText?: string;
+  invalidFileErrorText?: string;
+  uploadingText?: string;
+  viewCurrentFileText?: string;
+  replaceText?: string;
 }
 
 export function FileUpload({
@@ -41,6 +51,14 @@ export function FileUpload({
   disabled = false,
   required = false,
   className,
+  validateResumeFile,
+  clickToUploadText = "Click to upload",
+  orDragAndDropText = "or drag and drop",
+  fileTypesText = "PDF, DOC, DOCX (max 10MB)",
+  invalidFileErrorText = "Invalid file",
+  uploadingText = "Uploading...",
+  viewCurrentFileText = "View current file",
+  replaceText = "Replace",
 }: FileUploadProps) {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [isDragging, setIsDragging] = useState(false);
@@ -49,11 +67,18 @@ export function FileUpload({
 
   const handleFileChange = useCallback(
     (file: File | null) => {
+      if (validateResumeFile && file) {
+        const validation = validateResumeFile(file);
+        if (!validation.valid) {
+          setValidationError(validation.error || invalidFileErrorText);
+          return;
+        }
+      }
       setValidationError(null);
       setSelectedFile(file);
       onFileSelect(file);
     },
-    [onFileSelect],
+    [onFileSelect, validateResumeFile, invalidFileErrorText],
   );
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -154,9 +179,7 @@ export function FileUpload({
         {isUploading ? (
           <div className="flex flex-col justify-center items-center py-4">
             <Loader2 className="mb-2 w-8 h-8 text-primary animate-spin" />
-            <p className="text-muted-foreground text-sm">
-              Caricamento in corso...
-            </p>
+            <p className="text-muted-foreground text-sm">{uploadingText}</p>
           </div>
         ) : hasSelectedFile ? (
           <div className="flex justify-between items-center">
@@ -195,7 +218,7 @@ export function FileUpload({
                   className="text-primary text-xs hover:underline"
                   onClick={(e) => e.stopPropagation()}
                 >
-                  Visualizza file corrente
+                  {viewCurrentFileText}
                 </a>
               </div>
             </div>
@@ -211,7 +234,7 @@ export function FileUpload({
                 disabled={disabled}
               >
                 <Upload className="mr-1 size-4" />
-                Sostituisci
+                {replaceText}
               </Button>
               {onRemoveExisting && (
                 <Button
@@ -235,12 +258,12 @@ export function FileUpload({
             <Upload className="mb-2 w-8 h-8 text-muted-foreground" />
             <p className="text-muted-foreground text-sm text-center">
               <span className="font-medium text-primary">
-                Clicca per caricare
+                {clickToUploadText}
               </span>{" "}
-              o trascina qui il file
+              {orDragAndDropText}
             </p>
             <p className="mt-1 text-muted-foreground text-xs">
-              PDF, DOC, DOCX (max 10MB)
+              {fileTypesText}
             </p>
           </div>
         )}
