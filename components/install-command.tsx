@@ -23,13 +23,11 @@ export function InstallCommand({ command, className }: InstallCommandProps) {
   const commands = {
     npm: `npx shadcn@latest add ${args}`,
     pnpm: `pnpm dlx shadcn@latest add ${args}`,
-    yarn: `npx shadcn@latest add ${args}`,
-    bun: `bun x shadcn@latest add ${args}`,
+    yarn: `yarn shadcn@latest add ${args}`,
+    bun: `bunx --bun shadcn@latest add ${args}`,
   };
 
   const [hasCopied, setHasCopied] = React.useState(false);
-  const [activeTab, setActiveTab] =
-    React.useState<keyof typeof commands>("npm");
 
   React.useEffect(() => {
     if (hasCopied) {
@@ -48,22 +46,18 @@ export function InstallCommand({ command, className }: InstallCommandProps) {
   return (
     <div
       className={cn(
-        "relative bg-zinc-950 p-4 rounded-xl ring-1 ring-zinc-800",
+        "relative bg-zinc-100 dark:bg-zinc-950 p-4 rounded-xl ring-1 ring-zinc-200 dark:ring-zinc-800",
         className,
       )}
     >
-      <Tabs
-        defaultValue="npm"
-        onValueChange={(value) => setActiveTab(value as keyof typeof commands)}
-        className="relative"
-      >
+      <Tabs defaultValue="npm" className="relative">
         <div className="flex justify-between items-center pb-3">
           <TabsList className="gap-4 bg-transparent p-0">
             {Object.keys(commands).map((key) => (
               <TabsTrigger
                 key={key}
                 value={key}
-                className="bg-transparent data-[state=active]:bg-transparent data-[state=active]:shadow-none p-0 pb-1 border-transparent data-[state=active]:border-white border-b-2 rounded-none h-auto text-zinc-400 data-[state=active]:text-zinc-50 hover:text-zinc-200 transition-colors"
+                className="bg-transparent data-[state=active]:bg-transparent data-[state=active]:shadow-none p-0 pb-1 border-transparent data-[state=active]:border-zinc-900 dark:data-[state=active]:border-white border-b-2 rounded-none h-auto text-zinc-500 data-[state=active]:text-zinc-900 hover:text-zinc-700 dark:data-[state=active]:text-zinc-50 dark:hover:text-zinc-200 dark:text-zinc-400 transition-colors"
               >
                 {key}
               </TabsTrigger>
@@ -73,13 +67,13 @@ export function InstallCommand({ command, className }: InstallCommandProps) {
         {Object.entries(commands).map(([key, cmd]) => (
           <TabsContent key={key} value={key} className="mt-0">
             <div className="flex justify-between items-center gap-4">
-              <code className="flex-1 font-mono text-zinc-50 text-sm break-all">
+              <code className="flex-1 font-mono text-zinc-900 dark:text-zinc-50 text-sm break-all">
                 {cmd}
               </code>
               <Button
                 variant="ghost"
                 size="icon"
-                className="hover:bg-zinc-800 w-6 h-6 text-zinc-400 hover:text-zinc-50"
+                className="hover:bg-zinc-200 dark:hover:bg-zinc-800 w-6 h-6 text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-50 dark:text-zinc-400"
                 onClick={() => copyToClipboard(cmd)}
               >
                 {hasCopied ? (
