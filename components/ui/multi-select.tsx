@@ -48,6 +48,7 @@ export function MultiSelect({
   disabled = false,
 }: MultiSelectProps) {
   const [open, setOpen] = React.useState(false);
+  const scrollPosRef = React.useRef<{ x: number; y: number } | null>(null);
 
   const handleUnselect = (item: string) => {
     onChange(selected.filter((i) => i !== item));
@@ -74,8 +75,31 @@ export function MultiSelect({
     }, {});
   }, [options, grouped]);
 
+  // Handle open state change with scroll preservation
+  const handleOpenChange = (isOpen: boolean) => {
+    if (isOpen) {
+      // Save scroll position before opening
+      scrollPosRef.current = { x: window.scrollX, y: window.scrollY };
+
+      // Restore scroll position after popover animation and focus
+      requestAnimationFrame(() => {
+        if (scrollPosRef.current) {
+          window.scrollTo(scrollPosRef.current.x, scrollPosRef.current.y);
+        }
+      });
+      // Also use setTimeout as a fallback
+      setTimeout(() => {
+        if (scrollPosRef.current) {
+          window.scrollTo(scrollPosRef.current.x, scrollPosRef.current.y);
+          scrollPosRef.current = null;
+        }
+      }, 50);
+    }
+    setOpen(isOpen);
+  };
+
   return (
-    <Popover open={open} onOpenChange={setOpen}>
+    <Popover open={open} onOpenChange={handleOpenChange}>
       <PopoverTrigger
         render={
           <Button
