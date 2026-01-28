@@ -45,7 +45,7 @@ export default async function ComponentPage({
               >
                 Components
               </Link>
-              <h1 className="font-bold text-3xl leading-tight tracking-tight">
+              <h1 className="font-bold text-4xl leading-tight tracking-tight scroll-m-20">
                 {item.title}
               </h1>
               <p className="text-muted-foreground text-lg">
