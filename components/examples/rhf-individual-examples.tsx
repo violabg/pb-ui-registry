@@ -2,7 +2,7 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import * as z from "zod";
+import { z } from "zod";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -54,7 +54,7 @@ export function RhfInputFieldDemo() {
 
 export const RhfInputFieldDemoCode = `import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import * as z from "zod";
+import { z } from "zod";
 import { Button } from "@/components/ui/button";
 import { InputField } from "@/components/ui/rhf-inputs";
 
@@ -118,7 +118,7 @@ export function RhfCheckboxFieldDemo() {
 
 export const RhfCheckboxFieldDemoCode = `import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import * as z from "zod";
+import { z } from "zod";
 import { Button } from "@/components/ui/button";
 import { CheckboxField } from "@/components/ui/rhf-inputs";
 
@@ -184,7 +184,7 @@ export function RhfSelectFieldDemo() {
 
 export const RhfSelectFieldDemoCode = `import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import * as z from "zod";
+import { z } from "zod";
 import { Button } from "@/components/ui/button";
 import { SelectField } from "@/components/ui/rhf-inputs";
 
@@ -251,7 +251,7 @@ export function RhfTextareaFieldDemo() {
 
 export const RhfTextareaFieldDemoCode = `import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import * as z from "zod";
+import { z } from "zod";
 import { Button } from "@/components/ui/button";
 import { TextareaField } from "@/components/ui/rhf-inputs";
 
@@ -317,7 +317,7 @@ export function RhfRadioGroupFieldDemo() {
 
 export const RhfRadioGroupFieldDemoCode = `import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import * as z from "zod";
+import { z } from "zod";
 import { Button } from "@/components/ui/button";
 import { RadioGroupField } from "@/components/ui/rhf-inputs";
 
@@ -385,7 +385,7 @@ export function RhfSliderFieldDemo() {
 
 export const RhfSliderFieldDemoCode = `import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import * as z from "zod";
+import { z } from "zod";
 import { Button } from "@/components/ui/button";
 import { SliderField } from "@/components/ui/rhf-inputs";
 
@@ -448,7 +448,7 @@ export function RhfSwitchFieldDemo() {
 
 export const RhfSwitchFieldDemoCode = `import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import * as z from "zod";
+import { z } from "zod";
 import { Button } from "@/components/ui/button";
 import { SwitchField } from "@/components/ui/rhf-inputs";
 
@@ -514,7 +514,7 @@ export function RhfPasswordFieldDemo() {
 
 export const RhfPasswordFieldDemoCode = `import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import * as z from "zod";
+import { z } from "zod";
 import { Button } from "@/components/ui/button";
 import { PasswordField } from "@/components/ui/rhf-inputs";
 
@@ -581,7 +581,7 @@ export function RhfInputWithTagFieldDemo() {
 
 export const RhfInputWithTagFieldDemoCode = `import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import * as z from "zod";
+import { z } from "zod";
 import { Button } from "@/components/ui/button";
 import { InputWithTagField } from "@/components/ui/rhf-inputs";
 
@@ -648,7 +648,7 @@ export function RhfMultiSelectFieldDemo() {
 
 export const RhfMultiSelectFieldDemoCode = `import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import * as z from "zod";
+import { z } from "zod";
 import { Button } from "@/components/ui/button";
 import { MultiSelectField } from "@/components/ui/rhf-inputs";
 
@@ -709,7 +709,7 @@ export function RhfInputDateFieldDemo() {
 
 export const RhfInputDateFieldDemoCode = `import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import * as z from "zod";
+import { z } from "zod";
 import { Button } from "@/components/ui/button";
 import { InputDateField } from "@/components/ui/rhf-inputs";
 
