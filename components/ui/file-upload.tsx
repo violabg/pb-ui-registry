@@ -28,7 +28,7 @@ export interface FileUploadProps {
   required?: boolean;
   showError?: boolean;
   className?: string;
-  validateResumeFile?: (file: File) => {
+  validateFile?: (file: File) => {
     valid: boolean;
     error?: string | undefined;
   };
@@ -52,7 +52,7 @@ export function FileUpload({
   disabled = false,
   required = false,
   className,
-  validateResumeFile,
+  validateFile,
   clickToUploadText = "Click to upload",
   orDragAndDropText = "or drag and drop",
   fileTypesText = "PDF, DOC, DOCX (max 10MB)",
@@ -69,8 +69,8 @@ export function FileUpload({
 
   const handleFileChange = useCallback(
     (file: File | null) => {
-      if (validateResumeFile && file) {
-        const validation = validateResumeFile(file);
+      if (validateFile && file) {
+        const validation = validateFile(file);
         if (!validation.valid) {
           setValidationError(validation.error || invalidFileErrorText);
           return;
@@ -80,7 +80,7 @@ export function FileUpload({
       setSelectedFile(file);
       onFileSelect(file);
     },
-    [onFileSelect, validateResumeFile, invalidFileErrorText],
+    [onFileSelect, validateFile, invalidFileErrorText],
   );
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
