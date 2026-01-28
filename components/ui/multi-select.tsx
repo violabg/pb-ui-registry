@@ -1,7 +1,7 @@
 "use client";
 
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import {
   Command,
   CommandEmpty,
@@ -103,24 +103,14 @@ export function MultiSelect({
             <Badge
               variant="secondary"
               key={item}
-              className="group/badge relative ps-2 pe-7 border-none rounded-md h-7 font-medium text-secondary-foreground text-xs transition-colors"
+              className="group/badge relative ps-2 pe-1 border-none rounded-md h-7 font-medium text-secondary-foreground text-xs transition-colors"
             >
               <span className="max-w-[120px] truncate">
                 {options.find((option) => option.value === item)?.label || item}
               </span>
               <span
                 role="button"
-                tabIndex={0}
-                aria-label={`Remove ${
-                  options.find((option) => option.value === item)?.label || item
-                }`}
-                className="absolute -inset-y-px flex justify-center items-center bg-transparent hover:bg-black/5 dark:hover:bg-white/5 p-0 focus-visible:border-ring rounded-e-md outline-none focus-visible:ring-[3px] focus-visible:ring-ring/50 size-7 text-secondary-foreground/70 hover:text-secondary-foreground transition-all cursor-pointer -end-px"
-                onKeyDown={(e) => {
-                  if (e.key === "Enter" || e.key === " ") {
-                    e.preventDefault();
-                    handleUnselect(item);
-                  }
-                }}
+                className={`${buttonVariants({ variant: "ghost", size: "icon-xs" })} text-muted-foreground hover:text-foreground`}
                 onMouseDown={(e) => {
                   e.preventDefault();
                   e.stopPropagation();
@@ -129,8 +119,12 @@ export function MultiSelect({
                   e.stopPropagation();
                   handleUnselect(item);
                 }}
+                aria-disabled={disabled}
+                aria-label={`Remove ${
+                  options.find((option) => option.value === item)?.label || item
+                }`}
               >
-                <X className="w-3.5 h-3.5" />
+                <X className="size-3.5" />
               </span>
             </Badge>
           ))}

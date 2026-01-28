@@ -1,6 +1,6 @@
 "use client";
 
-import { XIcon } from "lucide-react";
+import { X } from "lucide-react";
 import * as React from "react";
 
 import { Badge } from "@/components/ui/badge";
@@ -64,14 +64,18 @@ export function TagInput({
     <div
       data-slot="tag-input"
       className={cn(
-        "flex flex-wrap items-center gap-2 bg-background px-2.5 py-2 border border-input aria-invalid:border-destructive aria-invalid:focus-within:border-destructive focus-within:border-ring dark:aria-invalid:border-destructive/50 rounded-md aria-invalid:focus-within:ring-destructive/50 focus-within:ring-[3px] focus-within:ring-ring/50 w-full min-h-10 text-foreground",
+        "flex flex-wrap items-center gap-2 bg-transparent dark:bg-input/30 px-2.5 py-2 border border-input aria-invalid:border-destructive aria-invalid:focus-within:border-destructive focus-within:border-ring dark:aria-invalid:border-destructive/50 rounded-md aria-invalid:focus-within:ring-destructive/50 focus-within:ring-[3px] focus-within:ring-ring/50 w-full min-h-10 text-foreground",
         disabled && "opacity-50",
         className,
       )}
       {...props}
     >
       {value.map((tag) => (
-        <Badge key={tag} variant="secondary" className="gap-1 pr-1">
+        <Badge
+          key={tag}
+          variant="secondary"
+          className="group/badge relative ps-2 pe-1 border-none rounded-md h-7 font-medium text-secondary-foreground text-xs transition-colors"
+        >
           <span className="max-w-56 truncate">{tag}</span>
           <Button
             type="button"
@@ -82,7 +86,7 @@ export function TagInput({
             disabled={disabled}
             aria-label={`Remove ${tag}`}
           >
-            <XIcon />
+            <X className="size-3.5" />
           </Button>
         </Badge>
       ))}
