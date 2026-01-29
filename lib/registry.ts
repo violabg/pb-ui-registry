@@ -728,7 +728,7 @@ export function getRegistryUrlTemplate(name: string) {
 }
 
 export function getInstallCommand(name: string) {
-  return `npx shadcn@latest add @pb-ui/${name}`;
+  return `npx shadcn@latest add ${getRegistryUrlTemplate(name)}`;
 }
 
 export async function getRegistryItems(): Promise<RegistryItemSummary[]> {
