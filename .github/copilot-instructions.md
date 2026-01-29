@@ -11,10 +11,13 @@
 
 - **Adding a New Component**:
   1. Create the UI component in `components/ui/[name].tsx`.
-  2. Register the item in `registryItems` within `lib/registry.ts`.
+  2. Register the item in `registryItems` within `lib/registry.ts`, including:
+     - `registryDependencies`: all local UI components the file imports (e.g., `["button", "input"]`)
+     - `dependencies`: any npm packages required (e.g., `["cmdk"]`)
   3. Create examples in `components/examples/[name]-examples.tsx`.
   4. Export examples in `components/examples/index.ts`.
   5. Map examples to the component in `lib/examples.tsx`.
+- **Editing a Component**: If you add/remove imports from `@/components/ui/`, update `registryDependencies` in `lib/registry.ts` accordingly.
 - **Command**: `pnpm registry:build` uses `shadcn build` to generate the optimized registry files.
 - **Command**: `pnpm dev` for local development.
 
@@ -25,6 +28,7 @@
 - **Icon Sizing**: Default all icons to `size-4` unless they are explicitly part of a specific variant (e.g., `icon-xs` uses `size-3`).
 - **Tailwind v4**: Use semantic tokens from `globals.css` (e.g., `bg-primary`, `text-muted-foreground`, `border-input`). Avoid hardcoded hex/oklch values in components.
 - **Registry URLs**: Relative dependency names in `registryDependencies` (e.g., `button`) are automatically resolved to this registry's full URL if they exist locally.
+- **Registry Dependencies Rule**: When creating or editing a component, you **must** update `registryDependencies` in `lib/registry.ts` to include all local UI components that the file imports from `@/components/ui/`. This ensures the shadcn CLI installs all required components. Also add npm packages to the `dependencies` array (e.g., `react-hook-form`, `cmdk`).
 
 ## Key Files & Directories
 

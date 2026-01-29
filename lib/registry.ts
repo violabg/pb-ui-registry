@@ -39,6 +39,7 @@ const registryItems: RegistryItem[] = [
     type: "registry:ui",
     docs: "/components/alert-dialog",
     categories: ["overlay", "feedback"],
+    registryDependencies: ["button"],
     files: [
       {
         path: "components/ui/alert-dialog.tsx",
@@ -99,6 +100,7 @@ const registryItems: RegistryItem[] = [
     type: "registry:ui",
     docs: "/components/combobox",
     categories: ["forms"],
+    registryDependencies: ["button", "input-group"],
     files: [
       {
         path: "components/ui/combobox.tsx",
@@ -129,6 +131,7 @@ const registryItems: RegistryItem[] = [
     type: "registry:ui",
     docs: "/components/field",
     categories: ["forms"],
+    registryDependencies: ["label", "separator"],
     files: [
       {
         path: "components/ui/field.tsx",
@@ -159,6 +162,7 @@ const registryItems: RegistryItem[] = [
     type: "registry:ui",
     docs: "/components/input-group",
     categories: ["forms"],
+    registryDependencies: ["button", "input", "textarea"],
     files: [
       {
         path: "components/ui/input-group.tsx",
@@ -406,7 +410,7 @@ const registryItems: RegistryItem[] = [
     type: "registry:ui",
     docs: "/components/multi-select",
     categories: ["forms"],
-    registryDependencies: ["badge", "button", "command", "popover"],
+    registryDependencies: ["combobox"],
     files: [
       {
         path: "components/ui/multi-select.tsx",
@@ -522,7 +526,7 @@ const registryItems: RegistryItem[] = [
     type: "registry:ui",
     docs: "/components/rhf-radio-group-field",
     categories: ["forms"],
-    registryDependencies: ["rhf-base-controller", "radio-group"],
+    registryDependencies: ["rhf-base-controller", "radio-group", "label"],
     dependencies: ["react-hook-form"],
     files: [
       {
