@@ -94,7 +94,12 @@ export {
 export { FileUploadDemo, FileUploadDemoCode } from "./file-upload-examples";
 
 // Multi Select
-export { MultiSelectDemo, MultiSelectDemoCode } from "./multi-select-examples";
+export {
+  MultiSelectDemo,
+  MultiSelectDemoCode,
+  MultiSelectGroupedDemo,
+  MultiSelectGroupedDemoCode,
+} from "./multi-select-examples";
 
 // Tabs
 export {

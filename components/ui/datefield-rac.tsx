@@ -62,7 +62,7 @@ function DateSegment({ className, ...props }: DateSegmentProps) {
 }
 
 const dateInputStyle =
-  "relative inline-flex h-9 w-full items-center overflow-hidden whitespace-nowrap rounded-md border border-input bg-transparent dark:bg-input/30 px-3 py-2 text-sm shadow-xs transition-[color,box-shadow] outline-none data-focus-within:border-ring data-focus-within:ring-ring/50 data-focus-within:ring-[3px] aria-invalid:border-destructive aria-invalid:data-focus-within:ring-destructive/50 aria-invalid:data-focus-within:border-destructive";
+  "relative inline-flex h-9 w-full items-center overflow-hidden whitespace-nowrap rounded-md border border-input bg-transparent dark:bg-input/30 px-3 py-2 text-sm shadow-xs transition-[color,box-shadow] outline-none data-focus-within:border-ring data-focus-within:ring-ring/50 data-focus-within:ring-[3px] aria-invalid:border-destructive aria-invalid:data-focus-within:ring-destructive/50 aria-invalid:data-focus-within:border-destructive dark:aria-invalid:border-destructive/50";
 
 interface DateInputProps extends DateInputPropsRac {
   className?: string;

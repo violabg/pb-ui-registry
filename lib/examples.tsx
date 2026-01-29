@@ -35,6 +35,8 @@ import {
   LabelDemoCode,
   MultiSelectDemo,
   MultiSelectDemoCode,
+  MultiSelectGroupedDemo,
+  MultiSelectGroupedDemoCode,
   PasswordInputDemo,
   PasswordInputDemoCode,
   PopoverDemo,
@@ -336,6 +338,12 @@ export const examples: Record<string, Example[]> = {
       title: "Default",
       component: <MultiSelectDemo />,
       code: MultiSelectDemoCode,
+    },
+    {
+      name: "grouped",
+      title: "Grouped",
+      component: <MultiSelectGroupedDemo />,
+      code: MultiSelectGroupedDemoCode,
     },
   ],
   tabs: [
