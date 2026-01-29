@@ -1,4 +1,4 @@
-# shadcd-registry
+# pb-ui-registry
 
 A modern, high-performance component registry for [shadcn/ui](https://ui.shadcn.com/) compatible components, built with Next.js 16, Tailwind CSS v4, and Base UI.
 
@@ -8,7 +8,7 @@ A modern, high-performance component registry for [shadcn/ui](https://ui.shadcn.
 
 ---
 
-`shadcd-registry` provides a visual gallery and a programmatic API for distributing reusable UI components. It is designed to work seamlessly with the `shadcn` CLI, allowing for instant installation of complex components, including a full suite of React Hook Form (RHF) integrated inputs.
+`pb-ui-registry` provides a visual gallery and a programmatic API for distributing reusable UI components. It is designed to work seamlessly with the `shadcn` CLI, allowing for instant installation of complex components, including a full suite of React Hook Form (RHF) integrated inputs.
 
 ## ⚡ Quick Start
 
@@ -50,8 +50,8 @@ npx shadcn@latest add https://shadcd.com/registry/multi-select.json
 1.  **Clone the repository**
 
     ```bash
-    git clone https://github.com/violabg/shadcd-registry.git
-    cd shadcd-registry
+    git clone https://github.com/violabg/pb-ui-registry.git
+    cd pb-ui-registry
     ```
 
 2.  **Install dependencies**

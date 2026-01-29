@@ -1,4 +1,4 @@
-# AI Coding Agent Instructions for shadcd-registry
+# AI Coding Agent Instructions for pb-ui-registry
 
 ## Big Picture
 

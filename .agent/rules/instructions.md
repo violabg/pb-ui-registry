@@ -2,41 +2,38 @@
 trigger: always_on
 ---
 
-# AI Coding Agent Instructions for shadcd-registry
+# AI Coding Agent Instructions for pb-ui-registry
 
-## Big picture
+## Big Picture
 
-- Next.js 16 App Router registry site: server pages in `app/`, reusable UI in `components/`, shared data in `lib/`.
-- Registry data is the source of truth in `lib/registry.ts` (`registryItems[]`), which drives routes, install commands, and API output.
-- Example data lives in `lib/examples.tsx` (`examples[componentName] = Example[]`) and is rendered by preview UI in `components/`.
+- **Architecture**: A Next.js 16 App Router registry site that serves JSON component data for the `shadcn` CLI.
+- **Source of Truth**: `lib/registry.ts` contains `registryItems[]`, which defines every component, its files, and dependencies.
+- **Component Stack**: Uses `@base-ui/react` primitives, `cva`, Tailwind v4, and Lucide icons.
+- **Data Flow**: `lib/registry.ts` -> Registry API (`app/registry/[name]/route.ts`) -> UI Browser (`app/components/page.tsx`).
 
-## Key routes & data flow
+## Critical Workflows
 
-- Browse: `/components` in [app/components/page.tsx](app/components/page.tsx) lists registry items.
-- Detail: `/components/[name]` in [app/components/[name]/page.tsx](app/components/[name]/page.tsx) uses `generateStaticParams()` for static output.
-- Registry APIs: [app/registry.json/route.ts](app/registry.json/route.ts) and [app/registry/[name]/route.ts](app/registry/[name]/route.ts) serve full component sources for the CLI.
-- Install command UI pulls from registry endpoints (see [components/install-command.tsx](components/install-command.tsx)).
+- **Adding a New Component**:
+  1. Create the UI component in `components/ui/[name].tsx`.
+  2. Register the item in `registryItems` within `lib/registry.ts`.
+  3. Create examples in `components/examples/[name]-examples.tsx`.
+  4. Export examples in `components/examples/index.ts`.
+  5. Map examples to the component in `lib/examples.tsx`.
+- **Command**: `pnpm registry:build` uses `shadcn build` to generate the optimized registry files.
+- **Command**: `pnpm dev` for local development.
 
-## UI component conventions
+## Project Conventions
 
-- `components/ui/*.tsx` are client components using `@base-ui/react`, `cva`, Tailwind v4 tokens, and `cn()` from `lib/utils.ts` (e.g., [components/ui/button.tsx](components/ui/button.tsx)).
-- Keep icons at `size-4` unless a variant says otherwise.
-- Use semantic tokens (`bg-primary`, `text-muted-foreground`, `border`) and `dark:` overrides.
+- **Dual-Update Rule**: When editing an example in `components/examples/`, you **must** update both the JSX component and its corresponding `const [Name]Code` string snippet.
+- **RHF Pattern**: All form components with React Hook Form integration must use the `BaseController` from `components/ui/rhf-inputs/base-controller.tsx` to handle labels, errors, and validation state consistently.
+- **Icon Sizing**: Default all icons to `size-4` unless they are explicitly part of a specific variant (e.g., `icon-xs` uses `size-3`).
+- **Tailwind v4**: Use semantic tokens from `globals.css` (e.g., `bg-primary`, `text-muted-foreground`, `border-input`). Avoid hardcoded hex/oklch values in components.
+- **Registry URLs**: Relative dependency names in `registryDependencies` (e.g., `button`) are automatically resolved to this registry's full URL if they exist locally.
 
-## Examples & previews
+## Key Files & Directories
 
-- Examples are defined once in `lib/examples.tsx` and surfaced via preview tabs in [components/component-preview-tabs.tsx](components/component-preview-tabs.tsx).
-- Component pages must show live previews + example `code` only; do not render raw component source (that is reserved for `/registry/*`).
-- When editing or adding an example for `/components/[name]`, always update the example’s `code` snippet in `lib/examples.tsx` to match the rendered JSX.
-
-## Critical workflows
-
-- Dev server: `pnpm dev`.
-- Build: `pnpm build` (static pages for all components).
-- Registry package build: `pnpm registry:build` (uses `shadcn@latest`).
-- Lint: `pnpm lint`.
-
-## Configuration & dependencies
-
-- `NEXT_PUBLIC_SITE_URL` controls the base URL used in install commands (defaults to <http://localhost:3000>).
-- Registry item `registryDependencies` must match component names in `components/ui/` (e.g., `tag-input` depends on `badge`, `button`, `input`).
+- `lib/registry.ts`: The registry configuration (files, dependencies, categories).
+- `lib/examples.tsx`: The mapping of components to their browse-page examples.
+- `components/ui/`: Atomic UI components.
+- `components/ui/rhf-inputs/`: Standardized React Hook Form field wrappers.
+- `app/registry.json/route.ts`: The full registry index endpoint.
