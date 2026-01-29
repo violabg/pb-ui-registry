@@ -18,7 +18,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "shadcd/ui registry",
+  title: "pb-ui registry",
   description: "shadcn-compatible registry and documentation site",
 };
 

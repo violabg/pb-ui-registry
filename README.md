@@ -1,4 +1,4 @@
-# shadcd/ui registry
+# pb-ui registry
 
 A web-based registry for shadcn/ui components, built with Next.js 16. Browse, preview, and install shadcn-compatible components with ease.
 
