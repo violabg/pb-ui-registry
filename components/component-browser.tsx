@@ -37,55 +37,106 @@ export function ComponentBrowser({ items }: ComponentBrowserProps) {
     });
   }, [items, query]);
 
+  const { rhfItems, baseItems } = React.useMemo(() => {
+    const rhf: RegistryItemSummary[] = [];
+    const base: RegistryItemSummary[] = [];
+
+    for (const item of filtered) {
+      if (item.name.startsWith("rhf-")) {
+        rhf.push(item);
+      } else {
+        base.push(item);
+      }
+    }
+
+    // Sort RHF items to put "rhf-inputs" first, then by title
+    rhf.sort((a, b) => {
+      if (a.name === "rhf-inputs") return -1;
+      if (b.name === "rhf-inputs") return 1;
+      return a.title.localeCompare(b.title);
+    });
+
+    return { rhfItems: rhf, baseItems: base };
+  }, [filtered]);
+
   return (
-    <section className="flex flex-col gap-6">
-      <div className="flex flex-col gap-2">
-        <h1 className="font-semibold text-3xl">Components</h1>
-        <p className="text-muted-foreground text-sm">
-          Browse the registry and copy installation commands or component code.
-        </p>
+    <section className="flex flex-col gap-10">
+      <div className="flex flex-col gap-6">
+        <div className="flex flex-col gap-2">
+          <h1 className="font-semibold text-3xl">Components</h1>
+          <p className="text-muted-foreground text-sm">
+            Browse the registry and copy installation commands or component
+            code.
+          </p>
+        </div>
+        <div className="flex items-center gap-2">
+          <Input
+            value={query}
+            onChange={(event) => setQuery(event.target.value)}
+            placeholder="Search components..."
+            className="max-w-md"
+          />
+          <span className="text-muted-foreground text-xs">
+            {filtered.length} components
+          </span>
+        </div>
       </div>
-      <div className="flex items-center gap-2">
-        <Input
-          value={query}
-          onChange={(event) => setQuery(event.target.value)}
-          placeholder="Search components..."
-          className="max-w-md"
-        />
-        <span className="text-muted-foreground text-xs">
-          {filtered.length} components
-        </span>
-      </div>
-      <div className="gap-4 grid md:grid-cols-2">
-        {filtered.map((item) => (
-          <Link
-            key={item.name}
-            href={item.docs ?? `/components/${item.name}`}
-            className={cn(
-              "flex flex-col gap-3 bg-card shadow-sm hover:shadow-md p-4 border border-border hover:border-primary/50 rounded-lg text-card-foreground transition",
-            )}
-          >
-            <div>
-              <div className="font-semibold text-base">{item.title}</div>
-              <div className="text-muted-foreground text-sm">{item.name}</div>
-            </div>
-            {item.description && (
-              <p className="text-muted-foreground text-sm">
-                {item.description}
-              </p>
-            )}
-            {item.categories?.length ? (
-              <div className="flex flex-wrap gap-2">
-                {item.categories.map((category) => (
-                  <Badge key={category} variant="secondary">
-                    {category}
-                  </Badge>
-                ))}
-              </div>
-            ) : null}
-          </Link>
-        ))}
-      </div>
+
+      {rhfItems.length > 0 && (
+        <div className="flex flex-col gap-4">
+          <h2 className="pb-2 border-border border-b font-bold text-2xl tracking-tight">
+            React Hook Form
+          </h2>
+          <div className="gap-4 grid md:grid-cols-2">
+            {rhfItems.map((item) => (
+              <ComponentCard key={item.name} item={item} />
+            ))}
+          </div>
+        </div>
+      )}
+
+      {baseItems.length > 0 && (
+        <div className="flex flex-col gap-4">
+          <h2 className="pb-2 border-border border-b font-bold text-2xl tracking-tight">
+            Base Components
+          </h2>
+          <div className="gap-4 grid md:grid-cols-2">
+            {baseItems.map((item) => (
+              <ComponentCard key={item.name} item={item} />
+            ))}
+          </div>
+        </div>
+      )}
     </section>
+  );
+}
+
+function ComponentCard({ item }: { item: RegistryItemSummary }) {
+  return (
+    <Link
+      href={item.docs ?? `/components/${item.name}`}
+      className={cn(
+        "flex flex-col gap-3 bg-card shadow-sm hover:shadow-md p-4 border border-border hover:border-primary/50 rounded-lg text-card-foreground transition",
+      )}
+    >
+      <div>
+        <div className="font-semibold text-base">{item.title}</div>
+        <div className="text-muted-foreground text-sm">{item.name}</div>
+      </div>
+      {item.description && (
+        <p className="text-muted-foreground text-sm line-clamp-2">
+          {item.description}
+        </p>
+      )}
+      {item.categories?.length ? (
+        <div className="flex flex-wrap gap-2 mt-auto">
+          {item.categories.map((category) => (
+            <Badge key={category} variant="secondary">
+              {category}
+            </Badge>
+          ))}
+        </div>
+      ) : null}
+    </Link>
   );
 }

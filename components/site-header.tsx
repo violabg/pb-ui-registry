@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 
 export function SiteHeader() {
   return (
-    <header className="border-border border-b">
+    <header className="top-0 z-50 sticky bg-background/80 backdrop-blur-sm border-border border-b">
       <div className="flex justify-between items-center gap-4 mx-auto px-4 sm:px-6 py-4 w-full max-w-7xl">
         <Link
           href="/"
