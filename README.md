@@ -1,6 +1,6 @@
 # pb-ui-registry
 
-A modern, high-performance component registry for [shadcn/ui](https://ui.shadcn.com/) compatible components, built with Next.js 16, Tailwind CSS v4, and Base UI.
+A modern, high-performance component registry for [pb-ui](https://pb-ui-five.vercel.app/) compatible components, built with Next.js 16, Tailwind CSS v4, and Base UI.
 
 [![Next.js](https://img.shields.io/badge/Next.js-16-black?logo=nextdotjs)](https://nextjs.org/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind-v4-38bdf8?logo=tailwindcss)](https://tailwindcss.com/)
@@ -16,11 +16,11 @@ Install any component directly into your project using the `shadcn` CLI:
 
 ```bash
 # Example: Adding the Multi-Select component
-npx shadcn@latest add https://shadcd.com/registry/multi-select.json
+npx shadcn@latest add https://pb-ui-five.vercel.app/registry/multi-select
 ```
 
 > [!TIP]
-> You can browse all available components and their interactive previews at [shadcd.com/components](https://shadcd.com/components).
+> You can browse all available components and their interactive previews at [pb-ui-five.vercel.app/components](https://pb-ui-five.vercel.app/components).
 
 ## ✨ Key Features
 
