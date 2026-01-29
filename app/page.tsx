@@ -17,9 +17,8 @@ export default function GetStartedPage() {
             Build faster with <span className="text-primary">pb-ui</span>
           </h1>
           <p className="max-w-2xl text-muted-foreground text-xl/relaxed">
-            A curated collection of copy-paste components built with Radix UI
-            and Tailwind CSS. Designed to be customized and adapted to your
-            needs.
+            A curated collection of copy-paste components built with Base UI and
+            Tailwind CSS. Designed to be customized and adapted to your needs.
           </p>
           <div className="flex gap-4 mt-4">
             <Link
