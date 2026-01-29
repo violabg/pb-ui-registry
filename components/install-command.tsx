@@ -14,11 +14,13 @@ type InstallCommandProps = {
 
 export function InstallCommand({ command, className }: InstallCommandProps) {
   // Extract the args from the command (remove "npx shadcn@latest add ")
-  // The command comes in as "npx shadcn@latest add http://..."
-  // We handle both "npx shadcn@latest add" and just "shadcn@latest add" just in case.
+  // The command comes in as "npx shadcn@latest add @pb-ui/component-name"
+  // We handle various package manager prefixes.
   const args = command
     .replace(/^npx shadcn@latest add /, "")
-    .replace(/^pnpm dlx shadcn@latest add /, "");
+    .replace(/^pnpm dlx shadcn@latest add /, "")
+    .replace(/^yarn shadcn@latest add /, "")
+    .replace(/^bunx --bun shadcn@latest add /, "");
 
   const commands = {
     npm: `npx shadcn@latest add ${args}`,

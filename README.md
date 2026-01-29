@@ -12,11 +12,25 @@ A modern, high-performance component registry for [pb-ui](https://pb-ui-five.ver
 
 ## ⚡ Quick Start
 
+### 1. Configure the registry
+
+Add the `@pb-ui` registry to your `components.json`:
+
+```json
+{
+  "registries": {
+    "@pb-ui": "https://pb-ui-five.vercel.app/registry/{name}"
+  }
+}
+```
+
+### 2. Install components
+
 Install any component directly into your project using the `shadcn` CLI:
 
 ```bash
 # Example: Adding the Multi-Select component
-npx shadcn@latest add https://pb-ui-five.vercel.app/registry/multi-select
+npx shadcn@latest add @pb-ui/multi-select
 ```
 
 > [!TIP]
