@@ -14,6 +14,7 @@ type DatePickerFieldProps<T extends FieldValues> = Omit<
   "children"
 > & {
   placeholder?: string;
+  formatString?: string;
   calendarProps?: React.ComponentProps<typeof Calendar>;
   buttonProps?: React.ComponentProps<typeof Button>;
 };
@@ -26,9 +27,19 @@ export function DatePickerField<T extends FieldValues>({
   disableFieldError = false,
   required,
   placeholder = "Pick a date",
+  formatString,
   calendarProps,
   buttonProps,
 }: DatePickerFieldProps<T>) {
+  const formatter = React.useMemo(
+    () =>
+      new Intl.DateTimeFormat("it-IT", {
+        day: "2-digit",
+        month: "2-digit",
+        year: "numeric",
+      }),
+    [],
+  );
   const {
     className: buttonClassName,
     variant,
@@ -67,7 +78,11 @@ export function DatePickerField<T extends FieldValues>({
           >
             <CalendarIcon className="me-2 size-4" />
             {field.value ? (
-              format(field.value as Date, "PPP")
+              formatString ? (
+                format(field.value as Date, formatString)
+              ) : (
+                formatter.format(field.value as Date)
+              )
             ) : (
               <span>{placeholder}</span>
             )}

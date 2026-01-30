@@ -72,6 +72,61 @@ export function Demo() {
   );
 }`;
 
+export function RhfDatePickerFieldDefaultValuesDemo() {
+  const { control, handleSubmit } = useForm<DatePickerValues>({
+    resolver: zodResolver(datePickerSchema),
+    defaultValues: { eventDate: new Date("2026-02-01") },
+  });
+
+  return (
+    <form
+      onSubmit={handleSubmit((data) => console.log(data))}
+      className="space-y-4 max-w-sm"
+    >
+      <DatePickerField
+        control={control}
+        name="eventDate"
+        label="Event Date"
+        placeholder="Pick a date"
+        calendarProps={{ captionLayout: "dropdown" }}
+      />
+      <Button type="submit">Submit</Button>
+    </form>
+  );
+}
+
+export const RhfDatePickerFieldDefaultValuesDemoCode = `import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
+import { Button } from "@/components/ui/button";
+import { DatePickerField } from "@/components/ui/rhf-inputs";
+
+const schema = z.object({
+  eventDate: z.date().optional(),
+});
+
+type FormValues = z.infer<typeof schema>;
+
+export function Demo() {
+  const { control, handleSubmit } = useForm<FormValues>({
+    resolver: zodResolver(schema),
+    defaultValues: { eventDate: new Date("2026-02-01") },
+  });
+
+  return (
+    <form onSubmit={handleSubmit((data) => console.log(data))}>
+      <DatePickerField
+        control={control}
+        name="eventDate"
+        label="Event Date"
+        placeholder="Pick a date"
+        calendarProps={{ captionLayout: "dropdown" }}
+      />
+      <Button type="submit">Submit</Button>
+    </form>
+  );
+}`;
+
 const rangeSchema = z.object({
   travelRange: z
     .object({
@@ -127,6 +182,76 @@ export function Demo() {
   const { control, handleSubmit } = useForm<FormValues>({
     resolver: zodResolver(schema),
     defaultValues: { travelRange: undefined },
+  });
+
+  return (
+    <form onSubmit={handleSubmit((data) => console.log(data))}>
+      <RangeDatePickerField
+        control={control}
+        name="travelRange"
+        label="Travel Dates"
+        placeholder="Pick a date range"
+        calendarProps={{ numberOfMonths: 2 }}
+      />
+      <Button type="submit">Submit</Button>
+    </form>
+  );
+}`;
+
+export function RhfRangeDatePickerFieldDefaultValuesDemo() {
+  const { control, handleSubmit } = useForm<RangeValues>({
+    resolver: zodResolver(rangeSchema),
+    defaultValues: {
+      travelRange: {
+        from: new Date("2026-02-01"),
+        to: new Date("2026-02-07"),
+      },
+    },
+  });
+
+  return (
+    <form
+      onSubmit={handleSubmit((data) => console.log(data))}
+      className="space-y-4 max-w-sm"
+    >
+      <RangeDatePickerField
+        control={control}
+        name="travelRange"
+        label="Travel Dates"
+        placeholder="Pick a date range"
+        calendarProps={{ numberOfMonths: 2 }}
+      />
+      <Button type="submit">Submit</Button>
+    </form>
+  );
+}
+
+export const RhfRangeDatePickerFieldDefaultValuesDemoCode = `import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
+import { Button } from "@/components/ui/button";
+import { RangeDatePickerField } from "@/components/ui/rhf-inputs";
+
+const schema = z.object({
+  travelRange: z
+    .object({
+      from: z.date().optional(),
+      to: z.date().optional(),
+    })
+    .optional(),
+});
+
+type FormValues = z.infer<typeof schema>;
+
+export function Demo() {
+  const { control, handleSubmit } = useForm<FormValues>({
+    resolver: zodResolver(schema),
+    defaultValues: {
+      travelRange: {
+        from: new Date("2026-02-01"),
+        to: new Date("2026-02-07"),
+      },
+    },
   });
 
   return (

@@ -47,6 +47,8 @@ import {
   RadioGroupDemoCode,
   RhfCheckboxFieldDemo,
   RhfCheckboxFieldDemoCode,
+  RhfDatePickerFieldDefaultValuesDemo,
+  RhfDatePickerFieldDefaultValuesDemoCode,
   RhfDatePickerFieldDemo,
   RhfDatePickerFieldDemoCode,
   RhfFileUploadFieldDemo,
@@ -67,6 +69,8 @@ import {
   RhfPasswordFieldDemoCode,
   RhfRadioGroupFieldDemo,
   RhfRadioGroupFieldDemoCode,
+  RhfRangeDatePickerFieldDefaultValuesDemo,
+  RhfRangeDatePickerFieldDefaultValuesDemoCode,
   RhfRangeDatePickerFieldDemo,
   RhfRangeDatePickerFieldDemoCode,
   RhfSelectFieldDemo,
@@ -493,6 +497,12 @@ export const examples: Record<string, Example[]> = {
       component: <RhfDatePickerFieldDemo />,
       code: RhfDatePickerFieldDemoCode,
     },
+    {
+      name: "default-values",
+      title: "Default Values",
+      component: <RhfDatePickerFieldDefaultValuesDemo />,
+      code: RhfDatePickerFieldDefaultValuesDemoCode,
+    },
   ],
   "rhf-range-date-picker-field": [
     {
@@ -500,6 +510,12 @@ export const examples: Record<string, Example[]> = {
       title: "Default",
       component: <RhfRangeDatePickerFieldDemo />,
       code: RhfRangeDatePickerFieldDemoCode,
+    },
+    {
+      name: "default-values",
+      title: "Default Values",
+      component: <RhfRangeDatePickerFieldDefaultValuesDemo />,
+      code: RhfRangeDatePickerFieldDefaultValuesDemoCode,
     },
   ],
   "rhf-time-picker-field": [

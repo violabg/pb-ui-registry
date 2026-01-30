@@ -1,5 +1,6 @@
 import { format } from "date-fns";
 import { CalendarIcon } from "lucide-react";
+import * as React from "react";
 import { DateRange } from "react-day-picker";
 import { FieldValues } from "react-hook-form";
 
@@ -14,6 +15,7 @@ type RangeDatePickerFieldProps<T extends FieldValues> = Omit<
   "children"
 > & {
   placeholder?: string;
+  formatString?: string;
   calendarProps?: React.ComponentProps<typeof Calendar>;
   buttonProps?: React.ComponentProps<typeof Button>;
 };
@@ -26,9 +28,19 @@ export function RangeDatePickerField<T extends FieldValues>({
   disableFieldError = false,
   required,
   placeholder = "Pick a date range",
+  formatString,
   calendarProps,
   buttonProps,
 }: RangeDatePickerFieldProps<T>) {
+  const formatter = React.useMemo(
+    () =>
+      new Intl.DateTimeFormat("it-IT", {
+        day: "2-digit",
+        month: "2-digit",
+        year: "numeric",
+      }),
+    [],
+  );
   const {
     className: buttonClassName,
     variant,
@@ -49,8 +61,12 @@ export function RangeDatePickerField<T extends FieldValues>({
         const hasValue = Boolean(range?.from);
         const display = range?.from
           ? range.to
-            ? `${format(range.from, "PPP")} - ${format(range.to, "PPP")}`
-            : format(range.from, "PPP")
+            ? formatString
+              ? `${format(range.from, formatString)} - ${format(range.to, formatString)}`
+              : `${formatter.format(range.from)} - ${formatter.format(range.to)}`
+            : formatString
+              ? format(range.from, formatString)
+              : formatter.format(range.from)
           : null;
 
         return (
