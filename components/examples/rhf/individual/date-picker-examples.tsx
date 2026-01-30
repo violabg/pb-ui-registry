@@ -7,6 +7,7 @@ import { z } from "zod";
 import { Button } from "@/components/ui/button";
 import {
   DatePickerField,
+  DateTimePickerField,
   RangeDatePickerField,
   TimePickerField,
 } from "@/components/ui/rhf-inputs";
@@ -323,6 +324,67 @@ export function Demo() {
         label="Start Time"
         showSeconds
         step={1}
+      />
+      <Button type="submit">Submit</Button>
+    </form>
+  );
+}`;
+
+const dateTimeSchema = z.object({
+  eventDateTime: z.date().optional(),
+});
+
+type DateTimeValues = z.infer<typeof dateTimeSchema>;
+
+export function RhfDateTimePickerFieldDemo() {
+  const { control, handleSubmit } = useForm<DateTimeValues>({
+    resolver: zodResolver(dateTimeSchema),
+    defaultValues: { eventDateTime: undefined },
+  });
+
+  return (
+    <form
+      onSubmit={handleSubmit((data) => console.log(data))}
+      className="space-y-4 max-w-sm"
+    >
+      <DateTimePickerField
+        control={control}
+        name="eventDateTime"
+        label="Event Date & Time"
+        placeholder="Pick a date & time"
+        calendarProps={{ captionLayout: "dropdown" }}
+      />
+      <Button type="submit">Submit</Button>
+    </form>
+  );
+}
+
+export const RhfDateTimePickerFieldDemoCode = `import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
+import { Button } from "@/components/ui/button";
+import { DateTimePickerField } from "@/components/ui/rhf-inputs";
+
+const schema = z.object({
+  eventDateTime: z.date().optional(),
+});
+
+type FormValues = z.infer<typeof schema>;
+
+export function Demo() {
+  const { control, handleSubmit } = useForm<FormValues>({
+    resolver: zodResolver(schema),
+    defaultValues: { eventDateTime: undefined },
+  });
+
+  return (
+    <form onSubmit={handleSubmit((data) => console.log(data))}>
+      <DateTimePickerField
+        control={control}
+        name="eventDateTime"
+        label="Event Date & Time"
+        placeholder="Pick a date & time"
+        calendarProps={{ captionLayout: "dropdown" }}
       />
       <Button type="submit">Submit</Button>
     </form>

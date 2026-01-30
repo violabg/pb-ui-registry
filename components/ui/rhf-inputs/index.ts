@@ -1,5 +1,6 @@
 export { CheckboxField } from "./checkbox-field";
 export { DatePickerField } from "./date-picker-field";
+export { DateTimePickerField } from "./date-time-picker-field";
 export { FileUploadField } from "./file-upload-field";
 export { InputDateField } from "./input-date-field";
 export { InputField } from "./input-field";

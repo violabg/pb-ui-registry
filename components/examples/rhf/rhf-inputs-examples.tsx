@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button";
 import {
   CheckboxField,
   DatePickerField,
+  DateTimePickerField,
   FileUploadField,
   InputDateField,
   InputField,
@@ -38,6 +39,7 @@ const formSchema = z.object({
     "Birth date is required",
   ),
   eventDate: z.date({ message: "Event date is required" }),
+  eventDateTime: z.date({ message: "Event date & time is required" }),
   travelDates: z.object({
     from: z.date({ message: "Start date is required" }),
     to: z.date({ message: "End date is required" }),
@@ -77,6 +79,7 @@ export function RhfInputsDemo() {
       email: "",
       birthDate: null,
       eventDate: undefined,
+      eventDateTime: undefined,
       travelDates: undefined,
       startTime: "",
       password: "",
@@ -141,6 +144,15 @@ export function RhfInputsDemo() {
             required
           />
         </div>
+
+        <DateTimePickerField
+          control={control}
+          name="eventDateTime"
+          label="Event Date & Time"
+          placeholder="Pick a date & time"
+          calendarProps={{ captionLayout: "dropdown" }}
+          required
+        />
 
         <RangeDatePickerField
           control={control}
@@ -281,6 +293,7 @@ import { Button } from "@/components/ui/button";
 import {
   CheckboxField,
   DatePickerField,
+  DateTimePickerField,
   FileUploadField,
   InputDateField,
   InputField,
@@ -310,6 +323,7 @@ const formSchema = z.object({
     "Birth date is required",
   ),
   eventDate: z.date({ message: "Event date is required" }),
+  eventDateTime: z.date({ message: "Event date & time is required" }),
   travelDates: z.object({
     from: z.date({ message: "Start date is required" }),
     to: z.date({ message: "End date is required" }),
@@ -349,6 +363,7 @@ export function RhfInputsDemo() {
       email: "",
       birthDate: null,
       eventDate: undefined,
+      eventDateTime: undefined,
       travelDates: undefined,
       startTime: "",
       password: "",
@@ -413,6 +428,15 @@ export function RhfInputsDemo() {
             required
           />
         </div>
+
+        <DateTimePickerField
+          control={control}
+          name="eventDateTime"
+          label="Event Date & Time"
+          placeholder="Pick a date & time"
+          calendarProps={{ captionLayout: "dropdown" }}
+          required
+        />
 
         <RangeDatePickerField
           control={control}

@@ -678,6 +678,29 @@ const registryItems: RegistryItem[] = [
     ],
   },
   {
+    name: "rhf-date-time-picker-field",
+    title: "RHF Date Time Picker Field",
+    description: "Date and time picker field with React Hook Form integration.",
+    type: "registry:ui",
+    docs: "/components/rhf-date-time-picker-field",
+    categories: ["forms"],
+    registryDependencies: [
+      "rhf-base-controller",
+      "calendar",
+      "popover",
+      "button",
+      "input",
+    ],
+    dependencies: ["react-hook-form", "date-fns"],
+    files: [
+      {
+        path: "components/ui/rhf-inputs/date-time-picker-field.tsx",
+        target: "components/ui/rhf-inputs/date-time-picker-field.tsx",
+        type: "registry:ui",
+      },
+    ],
+  },
+  {
     name: "rhf-range-date-picker-field",
     title: "RHF Range Date Picker Field",
     description: "Range date picker field with React Hook Form integration.",
@@ -755,6 +778,7 @@ const registryItems: RegistryItem[] = [
       "rhf-multi-select-field",
       "rhf-input-date-field",
       "rhf-date-picker-field",
+      "rhf-date-time-picker-field",
       "rhf-range-date-picker-field",
       "rhf-time-picker-field",
       "rhf-file-upload-field",
