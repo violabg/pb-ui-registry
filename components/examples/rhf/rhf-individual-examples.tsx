@@ -1,7 +1,7 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
+import { Resolver, useForm } from "react-hook-form";
 import { z } from "zod";
 
 import { Button } from "@/components/ui/button";
@@ -684,54 +684,158 @@ export function Demo() {
   );
 }`;
 
-// Input Date Field Example
-const dateSchema = z.object({
-  birthDate: z.date().optional(),
+// Input Date Field Example (Empty)
+const emptyDateSchema = z.object({
+  emptyDate: z.preprocess(
+    (value) => (typeof value === "string" ? new Date(value) : value),
+    z.date().optional(),
+  ),
 });
 
-type DateFormValues = z.infer<typeof dateSchema>;
+type EmptyDateFormInput = z.input<typeof emptyDateSchema>;
+type EmptyDateFormOutput = z.output<typeof emptyDateSchema>;
 
-export function RhfInputDateFieldDemo() {
-  const { control, handleSubmit } = useForm<DateFormValues>({
-    resolver: zodResolver(dateSchema),
-    defaultValues: { birthDate: undefined },
+export function RhfInputDateFieldEmptyDemo() {
+  const { control, handleSubmit } = useForm<EmptyDateFormInput>({
+    resolver: zodResolver(emptyDateSchema) as Resolver<EmptyDateFormInput>,
+    defaultValues: {
+      emptyDate: undefined,
+    },
   });
 
   return (
     <form
-      onSubmit={handleSubmit((data) => console.log(data))}
+      onSubmit={handleSubmit((data) =>
+        console.log(data as EmptyDateFormOutput),
+      )}
       className="space-y-4 max-w-sm"
     >
-      <InputDateField control={control} name="birthDate" label="Birth Date" />
+      <InputDateField control={control} name="emptyDate" label="Empty Date" />
       <Button type="submit">Submit</Button>
     </form>
   );
 }
 
-export const RhfInputDateFieldDemoCode = `import { useForm } from "react-hook-form";
+export const RhfInputDateFieldEmptyDemoCode = `import { Resolver, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { Button } from "@/components/ui/button";
 import { InputDateField } from "@/components/ui/rhf-inputs";
 
 const schema = z.object({
-  birthDate: z.date().optional(),
+  emptyDate: z.preprocess(
+    (value) => (typeof value === "string" ? new Date(value) : value),
+    z.date().optional(),
+  ),
 });
 
-type FormValues = z.infer<typeof schema>;
+type FormInput = z.input<typeof schema>;
+type FormOutput = z.output<typeof schema>;
 
 export function Demo() {
-  const { control, handleSubmit } = useForm<FormValues>({
-    resolver: zodResolver(schema),
-    defaultValues: { birthDate: undefined },
+  const { control, handleSubmit } = useForm<FormInput>({
+    resolver: zodResolver(schema) as Resolver<FormInput>,
+    defaultValues: {
+      emptyDate: undefined,
+    },
   });
 
   return (
-    <form onSubmit={handleSubmit((data) => console.log(data))}>
+    <form onSubmit={handleSubmit((data) => console.log(data as FormOutput))}>
+      <InputDateField
+        control={control}
+        name="emptyDate"
+        label="Empty Date"
+      />
+      <Button type="submit">Submit</Button>
+    </form>
+  );
+}`;
+
+// Input Date Field Example (Default Values)
+const dateSchema = z.object({
+  birthDate: z.preprocess(
+    (value) => (typeof value === "string" ? new Date(value) : value),
+    z.date(),
+  ),
+  hireDate: z.preprocess(
+    (value) => (typeof value === "string" ? new Date(value) : value),
+    z.date(),
+  ),
+});
+
+type DateFormInput = z.input<typeof dateSchema>;
+type DateFormOutput = z.output<typeof dateSchema>;
+
+export function RhfInputDateFieldDefaultDemo() {
+  const { control, handleSubmit } = useForm<DateFormInput>({
+    resolver: zodResolver(dateSchema) as Resolver<DateFormInput>,
+    defaultValues: {
+      birthDate: new Date("1971-03-23T23:00:00.000Z"),
+      hireDate: "2026-02-01",
+    },
+  });
+
+  return (
+    <form
+      onSubmit={handleSubmit((data) => console.log(data as DateFormOutput))}
+      className="space-y-4 max-w-sm"
+    >
       <InputDateField
         control={control}
         name="birthDate"
-        label="Birth Date"
+        label="Birth Date (Date)"
+      />
+      <InputDateField
+        control={control}
+        name="hireDate"
+        label="Hire Date (String)"
+      />
+      <Button type="submit">Submit</Button>
+    </form>
+  );
+}
+
+export const RhfInputDateFieldDefaultDemoCode = `import { Resolver, useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
+import { Button } from "@/components/ui/button";
+import { InputDateField } from "@/components/ui/rhf-inputs";
+
+const schema = z.object({
+  birthDate: z.preprocess(
+    (value) => (typeof value === "string" ? new Date(value) : value),
+    z.date(),
+  ),
+  hireDate: z.preprocess(
+    (value) => (typeof value === "string" ? new Date(value) : value),
+    z.date(),
+  ),
+});
+
+type FormInput = z.input<typeof schema>;
+type FormOutput = z.output<typeof schema>;
+
+export function Demo() {
+  const { control, handleSubmit } = useForm<FormInput>({
+    resolver: zodResolver(schema) as Resolver<FormInput>,
+    defaultValues: {
+      birthDate: new Date("2026-01-30"),
+      hireDate: "2026-02-01",
+    },
+  });
+
+  return (
+    <form onSubmit={handleSubmit((data) => console.log(data as FormOutput))}>
+      <InputDateField
+        control={control}
+        name="birthDate"
+        label="Birth Date (Date)"
+      />
+      <InputDateField
+        control={control}
+        name="hireDate"
+        label="Hire Date (String)"
       />
       <Button type="submit">Submit</Button>
     </form>

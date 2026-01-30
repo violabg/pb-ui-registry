@@ -8,6 +8,7 @@ import { z } from "zod";
 import { Button } from "@/components/ui/button";
 import {
   CheckboxField,
+  DatePickerField,
   FileUploadField,
   InputDateField,
   InputField,
@@ -15,10 +16,12 @@ import {
   MultiSelectField,
   PasswordField,
   RadioGroupField,
+  RangeDatePickerField,
   SelectField,
   SliderField,
   SwitchField,
   TextareaField,
+  TimePickerField,
 } from "@/components/ui/rhf-inputs";
 
 const formSchema = z.object({
@@ -34,6 +37,12 @@ const formSchema = z.object({
     (val) => val !== null && val !== undefined,
     "Birth date is required",
   ),
+  eventDate: z.date({ message: "Event date is required" }),
+  travelDates: z.object({
+    from: z.date({ message: "Start date is required" }),
+    to: z.date({ message: "End date is required" }),
+  }),
+  startTime: z.date({ message: "Start time is required" }),
   password: z
     .string()
     .min(8, "Password must be at least 8 characters")
@@ -67,6 +76,9 @@ export function RhfInputsDemo() {
       username: "",
       email: "",
       birthDate: null,
+      eventDate: undefined,
+      travelDates: undefined,
+      startTime: undefined,
       password: "",
       bio: "",
       country: "",
@@ -109,6 +121,33 @@ export function RhfInputsDemo() {
           control={control}
           name="birthDate"
           label="Birth Date"
+          required
+        />
+
+        <div className="gap-4 grid grid-cols-1 md:grid-cols-2">
+          <DatePickerField
+            control={control}
+            name="eventDate"
+            label="Event Date"
+            placeholder="Pick a date"
+            calendarProps={{ captionLayout: "dropdown" }}
+            required
+          />
+          <TimePickerField
+            control={control}
+            name="startTime"
+            label="Start Time"
+            showSeconds
+            required
+          />
+        </div>
+
+        <RangeDatePickerField
+          control={control}
+          name="travelDates"
+          label="Travel Dates"
+          placeholder="Pick a date range"
+          calendarProps={{ numberOfMonths: 2 }}
           required
         />
 
@@ -241,6 +280,7 @@ import { z } from "zod";
 import { Button } from "@/components/ui/button";
 import {
   CheckboxField,
+  DatePickerField,
   FileUploadField,
   InputDateField,
   InputField,
@@ -248,10 +288,12 @@ import {
   MultiSelectField,
   PasswordField,
   RadioGroupField,
+  RangeDatePickerField,
   SelectField,
   SliderField,
   SwitchField,
   TextareaField,
+  TimePickerField,
 } from "@/components/ui/rhf-inputs";
 
 const formSchema = z.object({
@@ -267,6 +309,12 @@ const formSchema = z.object({
     (val) => val !== null && val !== undefined,
     "Birth date is required",
   ),
+  eventDate: z.date({ message: "Event date is required" }),
+  travelDates: z.object({
+    from: z.date({ message: "Start date is required" }),
+    to: z.date({ message: "End date is required" }),
+  }),
+  startTime: z.date({ message: "Start time is required" }),
   password: z
     .string()
     .min(8, "Password must be at least 8 characters")
@@ -300,6 +348,9 @@ export function RhfInputsDemo() {
       username: "",
       email: "",
       birthDate: null,
+      eventDate: undefined,
+      travelDates: undefined,
+      startTime: undefined,
       password: "",
       bio: "",
       country: "",
@@ -342,6 +393,33 @@ export function RhfInputsDemo() {
           control={control}
           name="birthDate"
           label="Birth Date"
+          required
+        />
+
+        <div className="gap-4 grid grid-cols-1 md:grid-cols-2">
+          <DatePickerField
+            control={control}
+            name="eventDate"
+            label="Event Date"
+            placeholder="Pick a date"
+            calendarProps={{ captionLayout: "dropdown" }}
+            required
+          />
+          <TimePickerField
+            control={control}
+            name="startTime"
+            label="Start Time"
+            showSeconds
+            required
+          />
+        </div>
+
+        <RangeDatePickerField
+          control={control}
+          name="travelDates"
+          label="Travel Dates"
+          placeholder="Pick a date range"
+          calendarProps={{ numberOfMonths: 2 }}
           required
         />
 

@@ -1,3 +1,9 @@
+import {
+  getLocalTimeZone,
+  parseDate,
+  parseDateTime,
+} from "@internationalized/date";
+import { format } from "date-fns";
 import { DateFieldProps, DateValue } from "react-aria-components";
 import { FieldValues } from "react-hook-form";
 import { DateField, DateInput, DateInputProps } from "../datefield-rac";
@@ -7,8 +13,31 @@ type FieldInputProps<T extends FieldValues> = Omit<
   BaseControllerProps<T>,
   "children"
 > &
-  Omit<DateFieldProps<DateValue>, "value" | "onChange" | "children"> &
-  Pick<DateInputProps, "className" | "unstyled">;
+  Omit<DateFieldProps<DateValue>, "value" | "onChange" | "children"> & {
+    defaultValue?: Date | string;
+  } & Pick<DateInputProps, "className" | "unstyled">;
+
+type DateLike = Date | string | null | undefined;
+
+function toDateValue(value: DateLike): DateValue | undefined {
+  if (!value) return undefined;
+  if (value instanceof Date) {
+    const dateString = format(value, "yyyy-MM-dd");
+    return parseDate(dateString);
+  }
+  if (typeof value === "string") {
+    try {
+      return parseDate(value);
+    } catch {
+      try {
+        return parseDateTime(value);
+      } catch {
+        return undefined;
+      }
+    }
+  }
+  return undefined;
+}
 
 export function InputDateField<T extends FieldValues>({
   control,
@@ -20,6 +49,8 @@ export function InputDateField<T extends FieldValues>({
   required,
   ...inputProps
 }: FieldInputProps<T>) {
+  const { defaultValue, ...restInputProps } = inputProps;
+
   return (
     <BaseController
       control={control}
@@ -30,8 +61,25 @@ export function InputDateField<T extends FieldValues>({
       disableFieldError={disableFieldError}
     >
       {({ field, fieldState }) => {
+        const resolvedValue = toDateValue(field.value as DateLike);
+        const resolvedDefaultValue = toDateValue(defaultValue);
+
         return (
-          <DateField className="*:not-first:mt-2" {...field} {...inputProps}>
+          <DateField
+            className="*:not-first:mt-2"
+            value={resolvedValue}
+            defaultValue={resolvedDefaultValue}
+            onChange={(nextValue) => {
+              if (!nextValue) {
+                field.onChange(undefined);
+                return;
+              }
+
+              const timeZone = getLocalTimeZone();
+              field.onChange(nextValue.toDate(timeZone));
+            }}
+            {...restInputProps}
+          >
             <DateInput
               className={className}
               aria-invalid={!!fieldState.error}
