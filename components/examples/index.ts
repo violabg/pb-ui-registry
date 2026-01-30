@@ -172,3 +172,61 @@ export {
   TagInputMax,
   TagInputMaxCode,
 } from "./tag-input-examples";
+
+// Number Input
+export { NumberInputDemo, NumberInputDemoCode } from "./number-input-examples";
+
+// Input OTP
+export { InputOtpDemo, InputOtpDemoCode } from "./input-otp-examples";
+
+// Color Picker
+export { ColorPickerDemo, ColorPickerDemoCode } from "./color-picker-examples";
+
+// Rating
+export {
+  RatingDemo,
+  RatingDemoCode,
+  RatingReadOnly,
+  RatingReadOnlyCode,
+} from "./rating-examples";
+
+// New RHF Individual Examples
+export {
+  RhfComboboxFieldDemo,
+  RhfComboboxFieldDemoCode,
+} from "./rhf/individual/combobox-field-examples";
+
+export {
+  RhfNumberFieldDemo,
+  RhfNumberFieldDemoCode,
+} from "./rhf/individual/number-field-examples";
+
+export {
+  RhfOtpFieldDemo,
+  RhfOtpFieldDemoCode,
+} from "./rhf/individual/otp-field-examples";
+
+export {
+  RhfCheckboxGroupFieldDemo,
+  RhfCheckboxGroupFieldDemoCode,
+} from "./rhf/individual/checkbox-group-field-examples";
+
+export {
+  RhfPhoneFieldDemo,
+  RhfPhoneFieldDemoCode,
+} from "./rhf/individual/phone-field-examples";
+
+export {
+  RhfCurrencyFieldDemo,
+  RhfCurrencyFieldDemoCode,
+} from "./rhf/individual/currency-field-examples";
+
+export {
+  RhfColorPickerFieldDemo,
+  RhfColorPickerFieldDemoCode,
+} from "./rhf/individual/color-picker-field-examples";
+
+export {
+  RhfRatingFieldDemo,
+  RhfRatingFieldDemoCode,
+} from "./rhf/individual/rating-field-examples";
