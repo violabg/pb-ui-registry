@@ -66,7 +66,7 @@ export default function GetStartedPage() {
       </div>
 
       <div className="gap-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mb-16">
-        <div className="bg-card/50 p-6 border rounded-xl">
+        <div className="bg-card shadow-sm p-6 border rounded-xl">
           <div className="flex items-center gap-4 mb-4">
             <div className="flex justify-center items-center bg-primary/10 rounded-lg size-10 text-primary">
               <CheckCircle2 className="size-6" />
@@ -78,7 +78,7 @@ export default function GetStartedPage() {
             and validation states out of the box.
           </p>
         </div>
-        <div className="bg-card/50 p-6 border rounded-xl">
+        <div className="bg-card shadow-sm p-6 border rounded-xl">
           <div className="flex items-center gap-4 mb-4">
             <div className="flex justify-center items-center bg-primary/10 rounded-lg size-10 text-primary">
               <Terminal className="size-6" />
@@ -90,7 +90,7 @@ export default function GetStartedPage() {
             rely on across your forms.
           </p>
         </div>
-        <div className="bg-card/50 p-6 border rounded-xl">
+        <div className="bg-card shadow-sm p-6 border rounded-xl">
           <div className="flex items-center gap-4 mb-4">
             <div className="flex justify-center items-center bg-primary/10 rounded-lg size-10 text-primary">
               <Package className="size-6" />
