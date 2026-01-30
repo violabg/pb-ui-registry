@@ -174,7 +174,12 @@ export {
 } from "./tag-input-examples";
 
 // Number Input
-export { NumberInputDemo, NumberInputDemoCode } from "./number-input-examples";
+export {
+  NumberInputDecimalDemo,
+  NumberInputDecimalDemoCode,
+  NumberInputDemo,
+  NumberInputDemoCode,
+} from "./number-input-examples";
 
 // Input OTP
 export { InputOtpDemo, InputOtpDemoCode } from "./input-otp-examples";
@@ -197,6 +202,8 @@ export {
 } from "./rhf/individual/combobox-field-examples";
 
 export {
+  RhfNumberFieldDecimalDemo,
+  RhfNumberFieldDecimalDemoCode,
   RhfNumberFieldDemo,
   RhfNumberFieldDemoCode,
 } from "./rhf/individual/number-field-examples";
@@ -217,8 +224,12 @@ export {
 } from "./rhf/individual/phone-field-examples";
 
 export {
+  RhfCurrencyFieldCentsDemo,
+  RhfCurrencyFieldCentsDemoCode,
   RhfCurrencyFieldDemo,
   RhfCurrencyFieldDemoCode,
+  RhfCurrencyFieldEuroDemo,
+  RhfCurrencyFieldEuroDemoCode,
 } from "./rhf/individual/currency-field-examples";
 
 export {

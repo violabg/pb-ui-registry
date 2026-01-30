@@ -43,6 +43,8 @@ import {
   MultiSelectDemoCode,
   MultiSelectGroupedDemo,
   MultiSelectGroupedDemoCode,
+  NumberInputDecimalDemo,
+  NumberInputDecimalDemoCode,
   NumberInputDemo,
   NumberInputDemoCode,
   PasswordInputDemo,
@@ -63,8 +65,12 @@ import {
   RhfColorPickerFieldDemoCode,
   RhfComboboxFieldDemo,
   RhfComboboxFieldDemoCode,
+  RhfCurrencyFieldCentsDemo,
+  RhfCurrencyFieldCentsDemoCode,
   RhfCurrencyFieldDemo,
   RhfCurrencyFieldDemoCode,
+  RhfCurrencyFieldEuroDemo,
+  RhfCurrencyFieldEuroDemoCode,
   RhfDatePickerFieldDefaultValuesDemo,
   RhfDatePickerFieldDefaultValuesDemoCode,
   RhfDatePickerFieldDemo,
@@ -85,6 +91,8 @@ import {
   RhfInputWithTagFieldDemoCode,
   RhfMultiSelectFieldDemo,
   RhfMultiSelectFieldDemoCode,
+  RhfNumberFieldDecimalDemo,
+  RhfNumberFieldDecimalDemoCode,
   RhfNumberFieldDemo,
   RhfNumberFieldDemoCode,
   RhfOtpFieldDemo,
@@ -578,6 +586,12 @@ export const examples: Record<string, Example[]> = {
       component: <NumberInputDemo />,
       code: NumberInputDemoCode,
     },
+    {
+      name: "decimal",
+      title: "Decimal",
+      component: <NumberInputDecimalDemo />,
+      code: NumberInputDecimalDemoCode,
+    },
   ],
   "input-otp": [
     {
@@ -625,6 +639,12 @@ export const examples: Record<string, Example[]> = {
       component: <RhfNumberFieldDemo />,
       code: RhfNumberFieldDemoCode,
     },
+    {
+      name: "decimal",
+      title: "Decimal",
+      component: <RhfNumberFieldDecimalDemo />,
+      code: RhfNumberFieldDecimalDemoCode,
+    },
   ],
   "rhf-otp-field": [
     {
@@ -653,9 +673,21 @@ export const examples: Record<string, Example[]> = {
   "rhf-currency-field": [
     {
       name: "default",
-      title: "Default",
+      title: "Default (USD)",
       component: <RhfCurrencyFieldDemo />,
       code: RhfCurrencyFieldDemoCode,
+    },
+    {
+      name: "euro",
+      title: "Euro",
+      component: <RhfCurrencyFieldEuroDemo />,
+      code: RhfCurrencyFieldEuroDemoCode,
+    },
+    {
+      name: "with-cents",
+      title: "With Cents",
+      component: <RhfCurrencyFieldCentsDemo />,
+      code: RhfCurrencyFieldCentsDemoCode,
     },
   ],
   "rhf-color-picker-field": [

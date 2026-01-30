@@ -80,3 +80,79 @@ export function RhfNumberFieldDemo() {
     </form>
   );
 }`;
+
+const decimalSchema = z.object({
+  rating: z.number().min(0, "Minimum 0").max(10, "Maximum 10"),
+});
+
+type DecimalFormValues = z.infer<typeof decimalSchema>;
+
+export function RhfNumberFieldDecimalDemo() {
+  const { control, handleSubmit } = useForm<DecimalFormValues>({
+    resolver: zodResolver(decimalSchema),
+    defaultValues: { rating: 5.0 },
+  });
+
+  const onSubmit = (data: DecimalFormValues) => {
+    alert(JSON.stringify(data, null, 2));
+  };
+
+  return (
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className="space-y-4 w-full max-w-sm"
+    >
+      <NumberField
+        control={control}
+        name="rating"
+        label="Rating"
+        min={0}
+        max={10}
+        step={0.1}
+        required
+      />
+      <Button type="submit">Submit</Button>
+    </form>
+  );
+}
+
+export const RhfNumberFieldDecimalDemoCode = `"use client";
+
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+
+import { Button } from "@/components/ui/button";
+import { NumberField } from "@/components/ui/rhf-inputs/number-field";
+
+const schema = z.object({
+  rating: z.number().min(0, "Minimum 0").max(10, "Maximum 10"),
+});
+
+type FormValues = z.infer<typeof schema>;
+
+export function RhfNumberFieldDecimalDemo() {
+  const { control, handleSubmit } = useForm<FormValues>({
+    resolver: zodResolver(schema),
+    defaultValues: { rating: 5.0 },
+  });
+
+  const onSubmit = (data: FormValues) => {
+    alert(JSON.stringify(data, null, 2));
+  };
+
+  return (
+    <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 w-full max-w-sm">
+      <NumberField
+        control={control}
+        name="rating"
+        label="Rating"
+        min={0}
+        max={10}
+        step={0.1}
+        required
+      />
+      <Button type="submit">Submit</Button>
+    </form>
+  );
+}`;

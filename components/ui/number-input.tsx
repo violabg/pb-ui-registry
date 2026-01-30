@@ -31,22 +31,36 @@ function NumberInput({
   className,
   ...props
 }: NumberInputProps) {
+  // Calculate decimal precision from step
+  const precision = React.useMemo(() => {
+    const stepStr = String(step);
+    const decimalIndex = stepStr.indexOf(".");
+    return decimalIndex >= 0 ? stepStr.length - decimalIndex - 1 : 0;
+  }, [step]);
+
+  const formatValue = React.useCallback(
+    (val: number) => val.toFixed(precision),
+    [precision],
+  );
+
   const [inputValue, setInputValue] = React.useState<string>(
-    value != null ? String(value) : "",
+    value != null ? formatValue(value) : "",
   );
 
   React.useEffect(() => {
-    setInputValue(value != null ? String(value) : "");
-  }, [value]);
+    setInputValue(value != null ? formatValue(value) : "");
+  }, [value, formatValue]);
 
   const clampValue = React.useCallback(
     (val: number): number => {
       let clamped = val;
       if (min != null && clamped < min) clamped = min;
       if (max != null && clamped > max) clamped = max;
-      return clamped;
+      // Round to step precision to avoid floating point issues
+      const factor = Math.pow(10, precision);
+      return Math.round(clamped * factor) / factor;
     },
-    [min, max],
+    [min, max, precision],
   );
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -66,7 +80,7 @@ function NumberInput({
 
   const handleBlur = () => {
     if (value != null) {
-      setInputValue(String(value));
+      setInputValue(formatValue(value));
     } else {
       setInputValue("");
     }

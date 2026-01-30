@@ -17,6 +17,7 @@ type CurrencyFieldProps<T extends FieldValues> = Omit<
   placeholder?: string;
   disabled?: boolean;
   className?: string;
+  allowCents?: boolean;
 };
 
 function CurrencyInput({
@@ -26,11 +27,14 @@ function CurrencyInput({
   min,
   max,
   currencySymbol,
+  decimalSeparator,
   placeholder,
   disabled,
   id,
   error,
   required,
+  allowCents = false,
+  formatValue,
 }: {
   value: number | null | undefined;
   onChange: (value: number | null) => void;
@@ -38,30 +42,50 @@ function CurrencyInput({
   min?: number;
   max?: number;
   currencySymbol: string;
+  decimalSeparator: string;
   placeholder?: string;
   disabled?: boolean;
   id: string;
   error?: boolean;
   required?: boolean;
+  allowCents?: boolean;
+  formatValue: (value: number) => string;
 }) {
   const [inputValue, setInputValue] = React.useState<string>(
-    value != null ? String(value) : "",
+    value != null ? formatValue(value) : "",
   );
+  const [isFocused, setIsFocused] = React.useState(false);
 
   React.useEffect(() => {
-    setInputValue(value != null ? String(value) : "");
-  }, [value]);
+    if (!isFocused) {
+      setInputValue(value != null ? formatValue(value) : "");
+    }
+  }, [value, formatValue, isFocused]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const raw = e.target.value.replace(/[^0-9.-]/g, "");
+    const input = e.target.value;
+
+    // Allow digits, minus, and the locale-specific decimal separator
+    const escapedSep = decimalSeparator.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    const pattern = allowCents
+      ? new RegExp(`[^0-9${escapedSep}-]`, "g")
+      : /[^0-9-]/g;
+
+    const raw = input.replace(pattern, "");
+
+    // Normalize decimal separator to period for parsing
+    const normalized = raw.replace(decimalSeparator, ".");
+
     setInputValue(raw);
 
-    if (raw === "" || raw === "-") {
+    if (normalized === "" || normalized === "-") {
       onChange(null);
       return;
     }
 
-    const parsed = parseFloat(raw);
+    const parsed = allowCents
+      ? parseFloat(normalized)
+      : parseInt(normalized, 10);
     if (!isNaN(parsed)) {
       let clamped = parsed;
       if (min != null) clamped = Math.max(min, clamped);
@@ -70,9 +94,22 @@ function CurrencyInput({
     }
   };
 
-  const handleBlurInput = () => {
+  const handleFocus = () => {
+    setIsFocused(true);
+    // Show raw number when focused for easier editing
     if (value != null) {
-      setInputValue(String(value));
+      const rawValue = allowCents
+        ? String(value).replace(".", decimalSeparator)
+        : String(value);
+      setInputValue(rawValue);
+    }
+  };
+
+  const handleBlurInput = () => {
+    setIsFocused(false);
+    // Format value on blur
+    if (value != null) {
+      setInputValue(formatValue(value));
     } else {
       setInputValue("");
     }
@@ -90,6 +127,7 @@ function CurrencyInput({
         inputMode="decimal"
         value={inputValue}
         onChange={handleChange}
+        onFocus={handleFocus}
         onBlur={handleBlurInput}
         placeholder={placeholder}
         disabled={disabled}
@@ -116,6 +154,7 @@ export function CurrencyField<T extends FieldValues>({
   placeholder,
   disabled = false,
   className,
+  allowCents = false,
 }: CurrencyFieldProps<T>) {
   const currencySymbol = React.useMemo(() => {
     return (
@@ -129,6 +168,24 @@ export function CurrencyField<T extends FieldValues>({
         .find((part) => part.type === "currency")?.value ?? "$"
     );
   }, [locale, currency]);
+
+  const decimalSeparator = React.useMemo(() => {
+    return (
+      new Intl.NumberFormat(locale)
+        .formatToParts(1.1)
+        .find((part) => part.type === "decimal")?.value ?? "."
+    );
+  }, [locale]);
+
+  const formatValue = React.useCallback(
+    (value: number) => {
+      return new Intl.NumberFormat(locale, {
+        minimumFractionDigits: allowCents ? 2 : 0,
+        maximumFractionDigits: allowCents ? 2 : 0,
+      }).format(value);
+    },
+    [locale, allowCents],
+  );
 
   return (
     <BaseController
@@ -148,11 +205,14 @@ export function CurrencyField<T extends FieldValues>({
             min={min}
             max={max}
             currencySymbol={currencySymbol}
+            decimalSeparator={decimalSeparator}
             placeholder={placeholder}
             disabled={disabled}
             id={field.name}
             error={!!fieldState.error}
             required={required}
+            allowCents={allowCents}
+            formatValue={formatValue}
           />
         </div>
       )}
