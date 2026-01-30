@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
@@ -17,6 +18,51 @@ export async function generateStaticParams() {
   const items = await getRegistryItems();
 
   return items.map((item) => ({ name: item.name }));
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ name: string }>;
+}): Promise<Metadata> {
+  const { name } = await params;
+  const item = await getRegistryItem(name);
+
+  if (!item) {
+    return {
+      title: "Component not found",
+      description: "The requested component could not be found.",
+      robots: {
+        index: false,
+        follow: false,
+      },
+    };
+  }
+
+  const title = `${item.title} RHF input`;
+  const description =
+    item.description ||
+    "React Hook Form input with Zod-ready validation, available from the pb-ui registry.";
+  const url = item.docs || `/components/${item.name}`;
+
+  return {
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      url,
+      type: "article",
+    },
+    twitter: {
+      card: "summary",
+      title,
+      description,
+    },
+    alternates: {
+      canonical: url,
+    },
+  };
 }
 
 export default async function ComponentPage({

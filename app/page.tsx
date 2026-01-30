@@ -1,8 +1,31 @@
 import { InstallCommand } from "@/components/install-command";
 import { ArrowRight, CheckCircle2, Package, Terminal } from "lucide-react";
+import type { Metadata } from "next";
 import Link from "next/link";
 
 export const dynamic = "force-static";
+
+export const metadata: Metadata = {
+  title: "React Hook Form inputs with Zod",
+  description:
+    "A curated React Hook Form input collection with Zod integration, shipped as a shadcn-compatible registry.",
+  openGraph: {
+    title: "React Hook Form inputs with Zod",
+    description:
+      "A curated React Hook Form input collection with Zod integration, shipped as a shadcn-compatible registry.",
+    url: "/",
+    type: "website",
+  },
+  twitter: {
+    card: "summary",
+    title: "React Hook Form inputs with Zod",
+    description:
+      "A curated React Hook Form input collection with Zod integration, shipped as a shadcn-compatible registry.",
+  },
+  alternates: {
+    canonical: "/",
+  },
+};
 
 export default function GetStartedPage() {
   return (
@@ -11,14 +34,14 @@ export default function GetStartedPage() {
         <div className="z-10 relative flex flex-col gap-4 max-w-3xl">
           <div className="inline-flex items-center gap-2 bg-primary/10 px-3 py-1 border border-primary/20 rounded-full w-fit font-medium text-primary text-sm">
             <Package className="size-4" />
-            <span>Registry, not library</span>
+            <span>RHF + Zod ready</span>
           </div>
           <h1 className="font-bold text-5xl sm:text-7xl leading-tight tracking-tight">
-            Build faster with <span className="text-primary">pb-ui</span>
+            Build forms faster with <span className="text-primary">pb-ui</span>
           </h1>
           <p className="max-w-2xl text-muted-foreground text-xl/relaxed">
-            A curated collection of copy-paste components built with Base UI and
-            Tailwind CSS. Designed to be customized and adapted to your needs.
+            A curated React Hook Form input collection with Zod integration,
+            built on Base UI and Tailwind CSS. Copy, paste, and customize.
           </p>
           <div className="flex gap-4 mt-4">
             <Link
@@ -31,7 +54,7 @@ export default function GetStartedPage() {
           </div>
         </div>
 
-        <div className="top-1/2 -right-20 -z-10 absolute bg-primary/10 blur-3xl rounded-full w-[600px] h-[600px] -translate-y-1/2 pointer-events-none" />
+        <div className="top-1/2 -right-20 -z-10 absolute bg-primary/10 blur-3xl rounded-full w-150 h-150 -translate-y-1/2 pointer-events-none" />
       </div>
 
       <div className="gap-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mb-16">
@@ -40,11 +63,11 @@ export default function GetStartedPage() {
             <div className="flex justify-center items-center bg-primary/10 rounded-lg size-10 text-primary">
               <CheckCircle2 className="size-6" />
             </div>
-            <h3 className="font-semibold text-xl">Re-usable</h3>
+            <h3 className="font-semibold text-xl">RHF-first</h3>
           </div>
           <p className="text-muted-foreground">
-            Components that you can copy and paste into your apps. Accessible,
-            customizable, and open source.
+            Inputs designed for React Hook Form with consistent labels, errors,
+            and validation states out of the box.
           </p>
         </div>
         <div className="bg-card/50 p-6 border rounded-xl">
@@ -52,11 +75,11 @@ export default function GetStartedPage() {
             <div className="flex justify-center items-center bg-primary/10 rounded-lg size-10 text-primary">
               <Terminal className="size-6" />
             </div>
-            <h3 className="font-semibold text-xl">CLI Ready</h3>
+            <h3 className="font-semibold text-xl">Zod-integrated</h3>
           </div>
           <p className="text-muted-foreground">
-            Install components directly from the command line using the shadcn
-            CLI tool.
+            Schema-first validation with Zod-friendly patterns and types you can
+            rely on across your forms.
           </p>
         </div>
         <div className="bg-card/50 p-6 border rounded-xl">
@@ -64,11 +87,11 @@ export default function GetStartedPage() {
             <div className="flex justify-center items-center bg-primary/10 rounded-lg size-10 text-primary">
               <Package className="size-6" />
             </div>
-            <h3 className="font-semibold text-xl">Modern Stack</h3>
+            <h3 className="font-semibold text-xl">Registry workflow</h3>
           </div>
           <p className="text-muted-foreground">
-            Built with the latest technologies: React 19, Next.js 16, and
-            Tailwind CSS v4.
+            Install inputs directly from the CLI with the shadcn registry, then
+            customize the code to fit your app.
           </p>
         </div>
       </div>
@@ -77,11 +100,11 @@ export default function GetStartedPage() {
         <div className="flex lg:flex-row flex-col lg:items-center gap-10">
           <div className="flex-1 space-y-6">
             <h2 className="font-bold text-3xl tracking-tight">
-              Start building in seconds
+              Start building RHF inputs in seconds
             </h2>
             <p className="text-muted-foreground text-lg">
-              Add components to your project using the CLI. No complex setup or
-              configuration required.
+              Add React Hook Form inputs with the CLI and wire them to Zod
+              schemas without extra boilerplate.
             </p>
             <div className="flex flex-col gap-4">
               <div className="flex items-start gap-3">
@@ -91,7 +114,7 @@ export default function GetStartedPage() {
                 <div>
                   <h4 className="font-medium">Run the add command</h4>
                   <p className="text-muted-foreground text-sm">
-                    Use the shadcn CLI to add new components.
+                    Pull the input you need from the pb-ui registry.
                   </p>
                 </div>
               </div>
@@ -100,9 +123,9 @@ export default function GetStartedPage() {
                   2
                 </div>
                 <div>
-                  <h4 className="font-medium">Customize code</h4>
+                  <h4 className="font-medium">Connect Zod schemas</h4>
                   <p className="text-muted-foreground text-sm">
-                    The code is yours. Modify it to fit your needs.
+                    Validate once and share types across your form.
                   </p>
                 </div>
               </div>

@@ -1,6 +1,6 @@
 # pb-ui-registry
 
-A modern, high-performance component registry for [pb-ui](https://pb-ui-five.vercel.app/) compatible components, built with Next.js 16, Tailwind CSS v4, and Base UI.
+A React Hook Form input collection with Zod integration, delivered as a modern, high-performance registry for [pb-ui](https://pb-ui-five.vercel.app/) compatible components, built with Next.js 16, Tailwind CSS v4, and Base UI.
 
 [![Next.js](https://img.shields.io/badge/Next.js-16-black?logo=nextdotjs)](https://nextjs.org/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind-v4-38bdf8?logo=tailwindcss)](https://tailwindcss.com/)
@@ -8,7 +8,7 @@ A modern, high-performance component registry for [pb-ui](https://pb-ui-five.ver
 
 ---
 
-`pb-ui-registry` provides a visual gallery and a programmatic API for distributing reusable UI components. It is designed to work seamlessly with the `shadcn` CLI, allowing for instant installation of complex components, including a full suite of React Hook Form (RHF) integrated inputs.
+`pb-ui-registry` provides a visual gallery and a programmatic API for distributing React Hook Form inputs with Zod-ready validation patterns. It is designed to work seamlessly with the `shadcn` CLI, allowing for instant installation of complex input components and their dependencies.
 
 ## ⚡ Quick Start
 
@@ -26,7 +26,7 @@ Add the `@pb-ui` registry to your `components.json`:
 
 ### 2. Install components
 
-Install any component directly into your project using the `shadcn` CLI:
+Install any React Hook Form input directly into your project using the `shadcn` CLI:
 
 ```bash
 # Example: Adding the Multi-Select component
@@ -38,9 +38,9 @@ npx shadcn@latest add @pb-ui/multi-select
 
 ## ✨ Key Features
 
+- **RHF + Zod First-Class Support**: A comprehensive set of React Hook Form inputs with Zod-friendly validation patterns and types.
 - **Tailwind CSS v4**: Built from the ground up to leverage the latest CSS-only theming and performance improvements.
 - **Base UI & RAC**: Uses `@base-ui/react` and `react-aria-components` for accessible, unstyled foundations.
-- **RHF First-Class Support**: Includes a comprehensive set of "RHF Inputs" with pre-configured controllers for `react-hook-form` and `zod`.
 - **CLI-Ready**: Fully compatible with the `shadcn` CLI for automated dependency management and installation.
 - **Interactive Previews**: Every component in the registry includes multiple usage examples and live previews.
 
