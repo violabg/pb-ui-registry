@@ -1,3 +1,4 @@
+import { CodeBlock } from "@/components/code-block";
 import { InstallCommand } from "@/components/install-command";
 import { ArrowRight, CheckCircle2, Package, Terminal } from "lucide-react";
 import type { Metadata } from "next";
@@ -106,6 +107,19 @@ export default function GetStartedPage() {
               Add React Hook Form inputs with the CLI and wire them to Zod
               schemas without extra boilerplate.
             </p>
+            <div className="space-y-2">
+              <p className="text-muted-foreground text-sm">
+                Add the registry to your components.json before running the
+                command.
+              </p>
+              <CodeBlock
+                code={`"registries": {
+  "@pb-ui": "https://pb-ui-five.vercel.app/registry/{name}"
+}`}
+                language="json"
+                className="bg-background border border-border/60"
+              />
+            </div>
             <div className="flex flex-col gap-4">
               <div className="flex items-start gap-3">
                 <div className="flex justify-center items-center bg-background mt-1 border border-primary rounded-full size-6 text-primary shrink-0">
@@ -140,7 +154,7 @@ export default function GetStartedPage() {
               </div>
               <div className="p-4">
                 <InstallCommand
-                  command="npx shadcn@latest add"
+                  command="npx shadcn@latest add @pb-ui/multi-select"
                   className="w-full"
                 />
               </div>

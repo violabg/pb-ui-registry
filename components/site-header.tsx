@@ -1,3 +1,4 @@
+import { Github } from "lucide-react";
 import Link from "next/link";
 
 import { Logo } from "@/components/logo";
@@ -29,6 +30,21 @@ export function SiteHeader() {
             render={
               <Link href="/registry.json" target="_blank">
                 Registry
+              </Link>
+            }
+          ></Button>
+          <Button
+            variant="ghost"
+            size="icon-sm"
+            nativeButton={false}
+            render={
+              <Link
+                href="https://github.com/violabg/pb-ui-registry"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="GitHub repository"
+              >
+                <Github className="size-4" />
               </Link>
             }
           ></Button>
