@@ -1,6 +1,5 @@
 "use client";
-import { format, isValid } from "date-fns";
-import { InputHTMLAttributes, useEffect, useState } from "react";
+import { InputHTMLAttributes } from "react";
 import { ControllerFieldState, FieldValues } from "react-hook-form";
 
 import { Input } from "../input";
@@ -14,24 +13,10 @@ type TimePickerFieldProps<T extends FieldValues> = Omit<
     showSeconds?: boolean;
   };
 
-function parseTimeValue(value: string) {
-  if (!value) return null;
-  const [hours, minutes, seconds] = value.split(":").map(Number);
-  if (Number.isNaN(hours) || Number.isNaN(minutes)) return null;
-  return {
-    hours,
-    minutes,
-    seconds: Number.isNaN(seconds) ? 0 : seconds,
-  };
-}
-
 function normalizeTimeValue(value: string, showSeconds: boolean) {
   if (!value) return value;
   if (!showSeconds) return value;
-  const parts = value.split(":");
-  if (parts.length === 2) {
-    return `${value}:00`;
-  }
+  if (/^\d{2}:\d{2}$/.test(value)) return `${value}:00`;
   return value;
 }
 
@@ -79,7 +64,7 @@ type TimePickerInputProps<T extends FieldValues> = {
   name: string;
   value: T[keyof T] | undefined;
   onBlur: () => void;
-  onChange: (value: Date | undefined) => void;
+  onChange: (value: string | undefined) => void;
   fieldState: ControllerFieldState;
   required?: boolean;
   showSeconds: boolean;
@@ -102,16 +87,8 @@ function TimePickerInput<T extends FieldValues>({
   inputProps,
 }: TimePickerInputProps<T>) {
   const rawValue = fieldValue as unknown;
-  const value = rawValue instanceof Date ? rawValue : undefined;
-  const formattedValue =
-    value && isValid(value)
-      ? format(value, showSeconds ? "HH:mm:ss" : "HH:mm")
-      : "";
-  const [inputValue, setInputValue] = useState(formattedValue);
-
-  useEffect(() => {
-    setInputValue(formattedValue);
-  }, [formattedValue]);
+  const value = typeof rawValue === "string" ? rawValue : "";
+  const inputValue = value;
 
   return (
     <Input
@@ -126,46 +103,23 @@ function TimePickerInput<T extends FieldValues>({
         onBlur();
 
         const normalizedValue = normalizeTimeValue(inputValue, showSeconds);
-        if (normalizedValue !== inputValue) {
-          setInputValue(normalizedValue);
-        }
-
-        const nextValue = parseTimeValue(normalizedValue);
-        if (!nextValue) {
+        if (!normalizedValue) {
           onChange(undefined);
           return;
         }
 
-        const nextDate = new Date(value ?? new Date());
-        nextDate.setHours(
-          nextValue.hours,
-          nextValue.minutes,
-          nextValue.seconds,
-          0,
-        );
-        onChange(nextDate);
+        onChange(normalizedValue);
       }}
       onChange={(event) => {
         const nextInputValue = event.target.value;
-        setInputValue(nextInputValue);
-
-        const normalizedValue = normalizeTimeValue(nextInputValue, showSeconds);
-        const nextValue = parseTimeValue(normalizedValue);
-        if (!nextValue) {
+        if (!nextInputValue) {
           if (!nextInputValue) {
             onChange(undefined);
           }
           return;
         }
 
-        const nextDate = new Date(value ?? new Date());
-        nextDate.setHours(
-          nextValue.hours,
-          nextValue.minutes,
-          nextValue.seconds,
-          0,
-        );
-        onChange(nextDate);
+        onChange(nextInputValue);
       }}
       step={step}
       {...inputProps}

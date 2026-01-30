@@ -144,7 +144,7 @@ export function Demo() {
 }`;
 
 const timeSchema = z.object({
-  startTime: z.date().optional(),
+  startTime: z.string().optional(),
 });
 
 type TimeValues = z.infer<typeof timeSchema>;
@@ -179,7 +179,7 @@ import { Button } from "@/components/ui/button";
 import { TimePickerField } from "@/components/ui/rhf-inputs";
 
 const schema = z.object({
-  startTime: z.date().optional(),
+  startTime: z.string().optional(),
 });
 
 type FormValues = z.infer<typeof schema>;

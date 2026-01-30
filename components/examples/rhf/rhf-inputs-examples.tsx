@@ -42,7 +42,7 @@ const formSchema = z.object({
     from: z.date({ message: "Start date is required" }),
     to: z.date({ message: "End date is required" }),
   }),
-  startTime: z.date({ message: "Start time is required" }),
+  startTime: z.string().min(1, "Start time is required"),
   password: z
     .string()
     .min(8, "Password must be at least 8 characters")
@@ -78,7 +78,7 @@ export function RhfInputsDemo() {
       birthDate: null,
       eventDate: undefined,
       travelDates: undefined,
-      startTime: undefined,
+      startTime: "",
       password: "",
       bio: "",
       country: "",
@@ -314,7 +314,7 @@ const formSchema = z.object({
     from: z.date({ message: "Start date is required" }),
     to: z.date({ message: "End date is required" }),
   }),
-  startTime: z.date({ message: "Start time is required" }),
+  startTime: z.string().min(1, "Start time is required"),
   password: z
     .string()
     .min(8, "Password must be at least 8 characters")
@@ -350,7 +350,7 @@ export function RhfInputsDemo() {
       birthDate: null,
       eventDate: undefined,
       travelDates: undefined,
-      startTime: undefined,
+      startTime: "",
       password: "",
       bio: "",
       country: "",
