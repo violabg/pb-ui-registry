@@ -1,5 +1,12 @@
 import { CodeBlock } from "@/components/code-block";
-import { InstallCommand } from "@/components/install-command";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+
 import { ArrowRight, CheckCircle2, Package, Terminal } from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
@@ -98,20 +105,31 @@ export default function GetStartedPage() {
       </div>
 
       <div className="bg-muted/30 p-8 md:p-12 border border-border/50 rounded-3xl">
-        <div className="flex lg:flex-row flex-col lg:items-center gap-10">
-          <div className="flex-1 space-y-6">
-            <h2 className="font-bold text-3xl tracking-tight">
-              Start building RHF inputs in seconds
-            </h2>
-            <p className="text-muted-foreground text-lg">
-              Add React Hook Form inputs with the CLI and wire them to Zod
-              schemas without extra boilerplate.
-            </p>
-            <div className="space-y-2">
-              <p className="text-muted-foreground text-sm">
-                Add the registry to your components.json before running the
-                command.
-              </p>
+        <div className="mx-auto mb-12 max-w-2xl text-center">
+          <h2 className="mb-4 font-bold text-3xl tracking-tight">
+            Start building RHF inputs in seconds
+          </h2>
+          <p className="text-muted-foreground text-lg">
+            Add React Hook Form inputs with the CLI and wire them to Zod schemas
+            without extra boilerplate.
+          </p>
+        </div>
+
+        <div className="gap-8 grid grid-cols-1 lg:grid-cols-2">
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-3">
+                <div className="flex justify-center items-center bg-primary rounded-full size-8 font-bold text-primary-foreground shrink-0">
+                  1
+                </div>
+                Configure components.json
+              </CardTitle>
+              <CardDescription>
+                Add the registry URL to your <code>components.json</code> file
+                to tell shadcn where to look for components.
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
               <CodeBlock
                 code={`"registries": {
   "@pb-ui": "https://pb-ui-five.vercel.app/registry/{name}"
@@ -119,47 +137,30 @@ export default function GetStartedPage() {
                 language="json"
                 className="bg-background border border-border/60"
               />
-            </div>
-            <div className="flex flex-col gap-4">
-              <div className="flex items-start gap-3">
-                <div className="flex justify-center items-center bg-background mt-1 border border-primary rounded-full size-6 text-primary shrink-0">
-                  1
-                </div>
-                <div>
-                  <h4 className="font-medium">Run the add command</h4>
-                  <p className="text-muted-foreground text-sm">
-                    Pull the input you need from the pb-ui registry.
-                  </p>
-                </div>
-              </div>
-              <div className="flex items-start gap-3">
-                <div className="flex justify-center items-center bg-background mt-1 border border-primary rounded-full size-6 text-primary shrink-0">
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-3">
+                <div className="flex justify-center items-center bg-primary rounded-full size-8 font-bold text-primary-foreground shrink-0">
                   2
                 </div>
-                <div>
-                  <h4 className="font-medium">Connect Zod schemas</h4>
-                  <p className="text-muted-foreground text-sm">
-                    Validate once and share types across your form.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="flex-1 w-full max-w-xl">
-            <div className="bg-background shadow-2xl p-2 rounded-xl">
-              <div className="flex items-center gap-2 px-4 py-2 border-b">
-                <div className="bg-red-500 rounded-full size-3" />
-                <div className="bg-yellow-500 rounded-full size-3" />
-                <div className="bg-green-500 rounded-full size-3" />
-              </div>
-              <div className="p-4">
-                <InstallCommand
-                  command="npx shadcn@latest add @pb-ui/multi-select"
-                  className="w-full"
-                />
-              </div>
-            </div>
-          </div>
+                Run the add command
+              </CardTitle>
+              <CardDescription>
+                Use the CLI to add any component. Dependencies and registry
+                items will be installed automatically.
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <CodeBlock
+                code="npx shadcn@latest add @pb-ui/multi-select"
+                language="bash"
+                className="bg-background border border-border/60"
+              />
+            </CardContent>
+          </Card>
         </div>
       </div>
     </div>
