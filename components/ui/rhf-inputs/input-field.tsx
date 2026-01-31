@@ -1,3 +1,5 @@
+"use client";
+
 import { InputHTMLAttributes } from "react";
 import { FieldValues } from "react-hook-form";
 import { Input } from "../input";
@@ -19,7 +21,7 @@ export function InputField<T extends FieldValues>({
   disableFieldError = false,
   required,
   ...inputProps
-}: FieldInputProps<T> & { required?: boolean }) {
+}: FieldInputProps<T>) {
   return (
     <BaseController
       control={control}
@@ -29,15 +31,13 @@ export function InputField<T extends FieldValues>({
       description={description}
       disableFieldError={disableFieldError}
     >
-      {({ field, fieldState }) => (
+      {({ field, fieldState, ariaDescribedBy }) => (
         <div className="relative">
           <Input
             id={field.name}
             aria-invalid={!!fieldState.error}
             aria-required={required}
-            aria-describedby={
-              fieldState.error ? `${field.name}-error` : undefined
-            }
+            aria-describedby={ariaDescribedBy}
             {...field}
             value={field.value ?? ""}
             {...inputProps}

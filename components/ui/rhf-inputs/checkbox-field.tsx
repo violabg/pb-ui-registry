@@ -1,3 +1,5 @@
+"use client";
+
 import { Controller, FieldValues } from "react-hook-form";
 import { Checkbox } from "../checkbox";
 import {
@@ -36,8 +38,13 @@ export function CheckboxField<T extends FieldValues>({
           <FieldContent>
             <div className="flex items-center gap-3">
               <Checkbox
+                id={field.name}
                 checked={field.value}
                 onCheckedChange={field.onChange}
+                aria-describedby={[
+                  description ? `${field.name}-description` : undefined,
+                  fieldState.error ? `${field.name}-error` : undefined,
+                ].filter(Boolean).join(" ") || undefined}
                 {...checkboxProps}
               />
               <div className="space-y-1 leading-none">
@@ -52,13 +59,13 @@ export function CheckboxField<T extends FieldValues>({
                   </FieldLabel>
                 )}
                 {description && (
-                  <FieldDescription>{description}</FieldDescription>
+                  <FieldDescription id={`${field.name}-description`}>{description}</FieldDescription>
                 )}
               </div>
             </div>
           </FieldContent>
           {!disableFieldError && fieldState.invalid && (
-            <FieldError errors={[fieldState.error]} />
+            <FieldError id={`${field.name}-error`} errors={[fieldState.error]} />
           )}
         </Field>
       )}

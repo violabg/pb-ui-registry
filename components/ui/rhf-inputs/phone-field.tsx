@@ -80,7 +80,7 @@ export function PhoneField<T extends FieldValues>({
       description={description}
       disableFieldError={disableFieldError}
     >
-      {({ field, fieldState }) => {
+      {({ field, fieldState, ariaDescribedBy }) => {
         // Parse the current value to extract country and number
         const parsePhoneValue = (value: string | undefined) => {
           if (!value) return { dialCode: selectedCountry.dialCode, number: "" };
@@ -155,9 +155,7 @@ export function PhoneField<T extends FieldValues>({
               disabled={disabled}
               aria-invalid={!!fieldState.error}
               aria-required={required}
-              aria-describedby={
-                fieldState.error ? `${field.name}-error` : undefined
-              }
+              aria-describedby={ariaDescribedBy}
               className="flex-1"
             />
           </div>

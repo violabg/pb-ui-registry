@@ -32,7 +32,7 @@ export function MultiSelectField<T extends FieldValues>({
       disableFieldError={disableFieldError}
       required={required}
     >
-      {({ field, fieldState }) => (
+      {({ field, fieldState, ariaDescribedBy }) => (
         <MultiSelect
           options={options}
           selected={field.value || []}
@@ -44,6 +44,7 @@ export function MultiSelectField<T extends FieldValues>({
           invalid={!!fieldState.error}
           grouped={grouped}
           disabled={disabled}
+          aria-describedby={ariaDescribedBy}
         />
       )}
     </BaseController>

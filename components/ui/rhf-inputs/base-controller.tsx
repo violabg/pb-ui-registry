@@ -1,3 +1,5 @@
+"use client";
+
 import { ReactNode } from "react";
 import {
   Control,
@@ -20,6 +22,7 @@ type ControllerRenderParams<T extends FieldValues> = {
   field: ControllerRenderProps<T, FieldPath<T>>;
   fieldState: ControllerFieldState;
   formState: UseFormStateReturn<T>;
+  ariaDescribedBy: string | undefined;
 };
 
 export type BaseControllerProps<T extends FieldValues> = {
@@ -45,7 +48,7 @@ export function BaseController<T extends FieldValues>({
     <Controller
       name={name}
       control={control}
-      rules={{ required: !!required }}
+      rules={{ required }}
       render={({ field, fieldState, formState }) => (
         <Field data-invalid={fieldState.invalid}>
           {label && (
@@ -59,10 +62,16 @@ export function BaseController<T extends FieldValues>({
             </FieldLabel>
           )}
           <FieldContent className="gap-1">
-            {children({ field, fieldState, formState })}
-            {description && <FieldDescription>{description}</FieldDescription>}
+            {(() => {
+              const ariaDescribedBy = [
+                description ? `${field.name}-description` : undefined,
+                fieldState.error ? `${field.name}-error` : undefined,
+              ].filter(Boolean).join(" ") || undefined;
+              return children({ field, fieldState, formState, ariaDescribedBy });
+            })()}
+            {description && <FieldDescription id={`${field.name}-description`}>{description}</FieldDescription>}
             {!disableFieldError && fieldState.invalid && (
-              <FieldError errors={[fieldState.error]} />
+              <FieldError id={`${field.name}-error`} errors={[fieldState.error]} />
             )}
           </FieldContent>
         </Field>

@@ -28,7 +28,7 @@ export function FileUploadField<T extends FieldValues>({
       description={description}
       disableFieldError={disableFieldError}
     >
-      {({ field, fieldState }) => (
+      {({ field, fieldState, ariaDescribedBy }) => (
         <FileUpload
           {...fileUploadProps}
           label=""
@@ -36,6 +36,7 @@ export function FileUploadField<T extends FieldValues>({
           required={required}
           showError={false}
           error={fieldState.error?.message}
+          aria-describedby={ariaDescribedBy}
           onFileSelect={(file) => {
             field.onChange(file);
           }}

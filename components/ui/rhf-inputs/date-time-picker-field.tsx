@@ -81,7 +81,7 @@ export function DateTimePickerField<T extends FieldValues>({
       description={description}
       disableFieldError={disableFieldError}
     >
-      {({ field, fieldState }) => {
+      {({ field, fieldState, ariaDescribedBy }) => {
         const dateValue = field.value as Date | undefined;
         const hasValue = Boolean(dateValue);
         const timeValue = dateValue ? format(dateValue, timeFormat) : "";
@@ -99,9 +99,7 @@ export function DateTimePickerField<T extends FieldValues>({
                   variant={variant ?? "outline"}
                   data-empty={!hasValue}
                   aria-invalid={!!fieldState.error}
-                  aria-describedby={
-                    fieldState.error ? `${field.name}-error` : undefined
-                  }
+                  aria-describedby={ariaDescribedBy}
                   className={cn(
                     "justify-start font-normal data-[empty=true]:text-muted-foreground text-left",
                     buttonClassName,
@@ -149,9 +147,7 @@ export function DateTimePickerField<T extends FieldValues>({
                     type="time"
                     aria-invalid={!!fieldState.error}
                     aria-required={required}
-                    aria-describedby={
-                      fieldState.error ? `${field.name}-error` : undefined
-                    }
+                    aria-describedby={ariaDescribedBy}
                     disabled={!dateValue}
                     value={timeValue}
                     onBlur={() => {

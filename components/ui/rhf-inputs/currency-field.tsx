@@ -35,6 +35,7 @@ function CurrencyInput({
   required,
   allowCents = false,
   formatValue,
+  ariaDescribedBy,
 }: {
   value: number | null | undefined;
   onChange: (value: number | null) => void;
@@ -50,6 +51,7 @@ function CurrencyInput({
   required?: boolean;
   allowCents?: boolean;
   formatValue: (value: number) => string;
+  ariaDescribedBy?: string;
 }) {
   const [inputValue, setInputValue] = React.useState<string>(
     value != null ? formatValue(value) : "",
@@ -133,7 +135,7 @@ function CurrencyInput({
         disabled={disabled}
         aria-invalid={error}
         aria-required={required}
-        aria-describedby={error ? `${id}-error` : undefined}
+        aria-describedby={ariaDescribedBy}
         className="pl-7"
       />
     </div>
@@ -196,7 +198,7 @@ export function CurrencyField<T extends FieldValues>({
       description={description}
       disableFieldError={disableFieldError}
     >
-      {({ field, fieldState }) => (
+      {({ field, fieldState, ariaDescribedBy }) => (
         <div className={cn(className)}>
           <CurrencyInput
             value={field.value}
@@ -213,6 +215,7 @@ export function CurrencyField<T extends FieldValues>({
             required={required}
             allowCents={allowCents}
             formatValue={formatValue}
+            ariaDescribedBy={ariaDescribedBy}
           />
         </div>
       )}

@@ -32,7 +32,7 @@ export function RatingField<T extends FieldValues>({
       description={description}
       disableFieldError={disableFieldError}
     >
-      {({ field, fieldState }) => (
+      {({ field, fieldState, ariaDescribedBy }) => (
         <Rating
           value={field.value ?? 0}
           onChange={(value) => field.onChange(value)}
@@ -41,6 +41,7 @@ export function RatingField<T extends FieldValues>({
           readOnly={readOnly}
           size={size}
           aria-invalid={!!fieldState.error}
+          aria-describedby={ariaDescribedBy}
           className={className}
         />
       )}

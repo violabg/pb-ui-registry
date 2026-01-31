@@ -60,7 +60,7 @@ export function InputDateField<T extends FieldValues>({
       description={description}
       disableFieldError={disableFieldError}
     >
-      {({ field, fieldState }) => {
+      {({ field, fieldState, ariaDescribedBy }) => {
         const resolvedValue = toDateValue(field.value as DateLike);
         const resolvedDefaultValue = toDateValue(defaultValue);
 
@@ -84,9 +84,7 @@ export function InputDateField<T extends FieldValues>({
               className={className}
               aria-invalid={!!fieldState.error}
               aria-required={required}
-              aria-describedby={
-                fieldState.error ? `${field.name}-error` : undefined
-              }
+              aria-describedby={ariaDescribedBy}
             />
           </DateField>
         );

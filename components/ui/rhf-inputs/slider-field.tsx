@@ -31,7 +31,7 @@ export function SliderField<T extends FieldValues>({
       description={description}
       disableFieldError={disableFieldError}
     >
-      {({ field }) => {
+      {({ field, fieldState, ariaDescribedBy }) => {
         // Base UI Slider requires a valid number array.
         // Fallback to min (or 0) when field value is undefined.
         const min = sliderProps.min ?? 0;
@@ -40,6 +40,7 @@ export function SliderField<T extends FieldValues>({
         return (
           <div className="space-y-2">
             <Slider
+              id={field.name}
               {...sliderProps}
               value={[sliderValue]}
               onValueChange={(newValue) => {
@@ -49,6 +50,8 @@ export function SliderField<T extends FieldValues>({
                   : newValue;
                 field.onChange(actualValue);
               }}
+              aria-invalid={!!fieldState.error}
+              aria-describedby={ariaDescribedBy}
             />
             {showValue && (
               <div className="text-muted-foreground text-sm text-center">

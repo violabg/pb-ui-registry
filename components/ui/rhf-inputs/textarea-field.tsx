@@ -28,7 +28,7 @@ export function TextareaField<T extends FieldValues>({
       description={description}
       disableFieldError={disableFieldError}
     >
-      {({ field, fieldState }) => (
+      {({ field, fieldState, ariaDescribedBy }) => (
         <div className="relative">
           <Textarea
             id={field.name}
@@ -36,9 +36,7 @@ export function TextareaField<T extends FieldValues>({
             {...field}
             {...textareaProps}
             aria-invalid={!!fieldState.error}
-            aria-describedby={
-              fieldState.error ? `${field.name}-error` : undefined
-            }
+            aria-describedby={ariaDescribedBy}
             className={`${maxLength ? "pr-16" : ""} ${
               textareaProps.className || ""
             }`}

@@ -65,16 +65,18 @@ export function ComboboxField<T extends FieldValues>({
       description={description}
       disableFieldError={disableFieldError}
     >
-      {({ field, fieldState }) => (
+      {({ field, fieldState, ariaDescribedBy }) => (
         <Combobox
           value={field.value ?? ""}
           onValueChange={(value) => field.onChange(value)}
           disabled={disabled}
         >
           <ComboboxInput
+            id={field.name}
             placeholder={placeholder}
             showClear={showClear}
             aria-invalid={!!fieldState.error}
+            aria-describedby={ariaDescribedBy}
             className={className}
           />
           <ComboboxContent>

@@ -24,7 +24,7 @@ export function InputWithTagField<T extends FieldValues>({
       description={description}
       disableFieldError={disableFieldError}
     >
-      {({ field, fieldState }) => (
+      {({ field, fieldState, ariaDescribedBy }) => (
         <TagInput
           id={field.name}
           // The TagInput component expects an array of tags
@@ -33,6 +33,7 @@ export function InputWithTagField<T extends FieldValues>({
           value={(field.value as string[] | undefined) || []}
           onValueChange={(newTags: string[]) => field.onChange(newTags)}
           aria-invalid={!!fieldState.error}
+          aria-describedby={ariaDescribedBy}
         />
       )}
     </BaseController>

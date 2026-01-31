@@ -34,7 +34,7 @@ export function NumberField<T extends FieldValues>({
       description={description}
       disableFieldError={disableFieldError}
     >
-      {({ field, fieldState }) => (
+      {({ field, fieldState, ariaDescribedBy }) => (
         <NumberInput
           id={field.name}
           value={field.value ?? null}
@@ -46,9 +46,7 @@ export function NumberField<T extends FieldValues>({
           disabled={disabled}
           aria-invalid={!!fieldState.error}
           aria-required={required}
-          aria-describedby={
-            fieldState.error ? `${field.name}-error` : undefined
-          }
+          aria-describedby={ariaDescribedBy}
           className={className}
           {...inputProps}
         />

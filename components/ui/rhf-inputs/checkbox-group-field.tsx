@@ -42,7 +42,7 @@ export function CheckboxGroupField<T extends FieldValues>({
       description={description}
       disableFieldError={disableFieldError}
     >
-      {({ field, fieldState }) => {
+      {({ field, fieldState, ariaDescribedBy }) => {
         const values: string[] = Array.isArray(field.value) ? field.value : [];
 
         const handleChange = (optionValue: string, checked: boolean) => {
@@ -56,9 +56,7 @@ export function CheckboxGroupField<T extends FieldValues>({
         return (
           <div
             role="group"
-            aria-describedby={
-              fieldState.error ? `${field.name}-error` : undefined
-            }
+            aria-describedby={ariaDescribedBy}
             className={`flex ${
               orientation === "horizontal"
                 ? "flex-row flex-wrap gap-4"

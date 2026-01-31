@@ -1,3 +1,5 @@
+"use client";
+
 import { Control, Controller, FieldPath, FieldValues } from "react-hook-form";
 import {
   Field,
@@ -49,7 +51,7 @@ export function SwitchField<T extends FieldValues>({
                 )}
               </FieldLabel>
             )}
-            {description && <FieldDescription>{description}</FieldDescription>}
+            {description && <FieldDescription id={`${field.name}-description`}>{description}</FieldDescription>}
           </div>
           <FieldContent className="flex justify-end items-end">
             <Switch
@@ -59,7 +61,7 @@ export function SwitchField<T extends FieldValues>({
             />
           </FieldContent>
           {!disableFieldError && fieldState.invalid && (
-            <FieldError errors={[fieldState.error]} />
+            <FieldError id={`${field.name}-error`} errors={[fieldState.error]} />
           )}
         </Field>
       )}

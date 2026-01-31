@@ -36,10 +36,13 @@ export function RadioGroupField<T extends FieldValues>({
       description={description}
       disableFieldError={disableFieldError}
     >
-      {({ field }) => (
+      {({ field, fieldState, ariaDescribedBy }) => (
         <RadioGroup
+          id={field.name}
           value={field.value}
           onValueChange={field.onChange}
+          aria-invalid={!!fieldState.error}
+          aria-describedby={ariaDescribedBy}
           {...radioGroupProps}
         >
           {options.map((option) => (

@@ -60,7 +60,7 @@ export function SelectField<T extends FieldValues>({
       description={description}
       disableFieldError={disableFieldError}
     >
-      {({ field, fieldState }) => {
+      {({ field, fieldState, ariaDescribedBy }) => {
         return (
           <Select
             value={field.value ?? EMPTY_SELECT_VALUE}
@@ -71,8 +71,10 @@ export function SelectField<T extends FieldValues>({
             {...selectProps}
           >
             <SelectTrigger
+              id={field.name}
               aria-required={required}
               aria-invalid={!!fieldState.error}
+              aria-describedby={ariaDescribedBy}
               data-invalid={!!fieldState.error}
               {...triggerProps}
             >

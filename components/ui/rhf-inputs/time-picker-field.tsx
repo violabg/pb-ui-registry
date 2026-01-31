@@ -43,7 +43,7 @@ export function TimePickerField<T extends FieldValues>({
       description={description}
       disableFieldError={disableFieldError}
     >
-      {({ field, fieldState }) => (
+      {({ field, fieldState, ariaDescribedBy }) => (
         <TimePickerInput
           name={field.name}
           value={field.value}
@@ -54,6 +54,7 @@ export function TimePickerField<T extends FieldValues>({
           showSeconds={showSeconds}
           step={resolvedStep}
           inputProps={restInputProps}
+          ariaDescribedBy={ariaDescribedBy}
         />
       )}
     </BaseController>
@@ -73,6 +74,7 @@ type TimePickerInputProps<T extends FieldValues> = {
     InputHTMLAttributes<HTMLInputElement>,
     "name" | "id" | "type"
   >;
+  ariaDescribedBy?: string;
 };
 
 function TimePickerInput<T extends FieldValues>({
@@ -85,6 +87,7 @@ function TimePickerInput<T extends FieldValues>({
   showSeconds,
   step,
   inputProps,
+  ariaDescribedBy,
 }: TimePickerInputProps<T>) {
   const rawValue = fieldValue as unknown;
   const value = typeof rawValue === "string" ? rawValue : "";
@@ -97,7 +100,7 @@ function TimePickerInput<T extends FieldValues>({
       type="time"
       aria-invalid={!!fieldState.error}
       aria-required={required}
-      aria-describedby={fieldState.error ? `${name}-error` : undefined}
+      aria-describedby={ariaDescribedBy}
       value={inputValue}
       onBlur={() => {
         onBlur();
@@ -113,9 +116,7 @@ function TimePickerInput<T extends FieldValues>({
       onChange={(event) => {
         const nextInputValue = event.target.value;
         if (!nextInputValue) {
-          if (!nextInputValue) {
-            onChange(undefined);
-          }
+          onChange(undefined);
           return;
         }
 

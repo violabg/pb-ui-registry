@@ -56,7 +56,7 @@ export function RangeDatePickerField<T extends FieldValues>({
       description={description}
       disableFieldError={disableFieldError}
     >
-      {({ field, fieldState }) => {
+      {({ field, fieldState, ariaDescribedBy }) => {
         const range = field.value as DateRange | undefined;
         const hasValue = Boolean(range?.from);
         const display = range?.from
@@ -77,9 +77,7 @@ export function RangeDatePickerField<T extends FieldValues>({
                   variant={variant ?? "outline"}
                   data-empty={!hasValue}
                   aria-invalid={!!fieldState.error}
-                  aria-describedby={
-                    fieldState.error ? `${field.name}-error` : undefined
-                  }
+                  aria-describedby={ariaDescribedBy}
                   className={cn(
                     "justify-start font-normal data-[empty=true]:text-muted-foreground text-left",
                     buttonClassName,

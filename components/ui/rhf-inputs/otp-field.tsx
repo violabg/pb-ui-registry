@@ -37,7 +37,7 @@ export function OTPField<T extends FieldValues>({
       description={description}
       disableFieldError={disableFieldError}
     >
-      {({ field, fieldState }) => (
+      {({ field, fieldState, ariaDescribedBy }) => (
         <InputOTP
           id={field.name}
           maxLength={length}
@@ -46,6 +46,7 @@ export function OTPField<T extends FieldValues>({
           disabled={disabled}
           pattern={pattern?.source}
           aria-invalid={!!fieldState.error}
+          aria-describedby={ariaDescribedBy}
           className={className}
         >
           <InputOTPGroup>

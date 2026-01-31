@@ -30,13 +30,15 @@ export function ColorPickerField<T extends FieldValues>({
       description={description}
       disableFieldError={disableFieldError}
     >
-      {({ field, fieldState }) => (
+      {({ field, fieldState, ariaDescribedBy }) => (
         <ColorPicker
+          id={field.name}
           value={field.value ?? "#000000"}
           onChange={(value) => field.onChange(value)}
           showInput={showInput}
           disabled={disabled}
           aria-invalid={!!fieldState.error}
+          aria-describedby={ariaDescribedBy}
           className={className}
         />
       )}
