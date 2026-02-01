@@ -11,6 +11,7 @@ import {
   getRegistryItem,
   getRegistryItems,
 } from "@/lib/registry";
+import { groupToSidebarSections } from "@/lib/registry-groups";
 
 export const dynamic = "force-static";
 
@@ -73,6 +74,9 @@ export default async function ComponentPage({
   const { name } = await params;
   const item = await getRegistryItem(name);
 
+  const allItems = await getRegistryItems();
+  const sections = groupToSidebarSections(allItems);
+
   if (!item) {
     notFound();
   }
@@ -80,8 +84,34 @@ export default async function ComponentPage({
   const componentExamples = examples[name] || [];
 
   return (
-    <div className="mx-auto px-4 py-10 max-w-7xl container">
-      <div className="lg:gap-10 lg:grid lg:grid-cols-[1fr_240px]">
+    <div className="px-4 py-10 w-full">
+      <div className="lg:gap-10 lg:grid lg:grid-cols-[1fr_240px] xl:grid-cols-[240px_1fr_240px]">
+        <aside className="hidden xl:block">
+          <div className="top-24 sticky pr-4 h-[calc(100vh-6rem)] overflow-y-auto">
+            {sections.map((section) => (
+              <div key={section.key} className="mb-6">
+                <div className="mb-2 font-semibold">{section.key}</div>
+                <ul className="space-y-1 m-0 p-0 list-none">
+                  {section.items.map((it) => (
+                    <li key={it.name}>
+                      <Link
+                        href={`/components/${it.name}`}
+                        className={`block text-sm ${
+                          it.name === item.name
+                            ? "text-foreground font-medium"
+                            : "text-muted-foreground hover:text-foreground"
+                        }`}
+                      >
+                        {it.title}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </aside>
+
         <div className="flex flex-col gap-10 min-w-0">
           <div className="flex flex-col gap-4">
             <div className="flex flex-col gap-2">

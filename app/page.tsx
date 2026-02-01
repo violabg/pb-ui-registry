@@ -37,7 +37,7 @@ export const metadata: Metadata = {
 
 export default function GetStartedPage() {
   return (
-    <div className="mx-auto px-4 py-16 max-w-7xl container">
+    <div className="px-4 py-16 w-full">
       <div className="relative mb-16 overflow-hidden">
         <div className="z-10 relative flex flex-col gap-4 max-w-3xl">
           <div className="inline-flex items-center gap-2 bg-primary/10 px-3 py-1 border border-primary/20 rounded-full w-fit font-medium text-primary text-sm">
@@ -45,7 +45,7 @@ export default function GetStartedPage() {
             <span>RHF + Zod ready</span>
           </div>
           <h1 className="font-bold text-5xl sm:text-7xl leading-tight tracking-tight">
-            Build forms faster with <span className="text-primary">pb-ui</span>
+            Build forms faster with <span className="text-primary">PB-UI</span>
           </h1>
           <p className="max-w-2xl text-muted-foreground text-xl/relaxed">
             A curated React Hook Form input collection with Zod integration,

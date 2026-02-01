@@ -1,6 +1,8 @@
 import { ComponentBrowser } from "@/components/component-browser";
 import { getRegistryItems } from "@/lib/registry";
+import { groupToSidebarSections } from "@/lib/registry-groups";
 import type { Metadata } from "next";
+import Link from "next/link";
 
 export const dynamic = "force-static";
 
@@ -29,9 +31,37 @@ export const metadata: Metadata = {
 export default async function ComponentsPage() {
   const items = await getRegistryItems();
 
+  const sections = groupToSidebarSections(items);
+
   return (
-    <div className="mx-auto px-4 sm:px-6 py-10 w-full max-w-7xl">
-      <ComponentBrowser items={items} />
+    <div className="px-4 sm:px-6 py-10 w-full">
+      <div className="lg:gap-10 lg:grid lg:grid-cols-[240px_1fr]">
+        <aside className="hidden lg:block">
+          <div className="top-24 sticky pr-4 h-[calc(100vh-6rem)] overflow-y-auto">
+            {sections.map((section) => (
+              <div key={section.key} className="mb-6">
+                <div className="mb-2 font-semibold">{section.key}</div>
+                <ul className="space-y-1 m-0 p-0 list-none">
+                  {section.items.map((item) => (
+                    <li key={item.name}>
+                      <Link
+                        href={`/components/${item.name}`}
+                        className="block text-muted-foreground hover:text-foreground text-sm"
+                      >
+                        {item.title}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </aside>
+
+        <main>
+          <ComponentBrowser items={items} />
+        </main>
+      </div>
     </div>
   );
 }
