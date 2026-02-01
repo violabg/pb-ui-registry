@@ -18,7 +18,6 @@ function Tabs({
         "group/tabs flex data-[orientation=horizontal]:flex-col gap-2",
         className,
       )}
-      suppressHydrationWarning
       {...props}
     />
   );
