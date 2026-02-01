@@ -21,7 +21,7 @@ export function RhfRadioGroupFieldDemo() {
 
   return (
     <form
-      onSubmit={handleSubmit((data) => console.log(data))}
+      onSubmit={handleSubmit((data) => alert(JSON.stringify(data, null, 2)))}
       className="space-y-4 max-w-sm"
     >
       <RadioGroupField
@@ -59,7 +59,7 @@ export function Demo() {
   });
 
   return (
-    <form onSubmit={handleSubmit((data) => console.log(data))}>
+    <form onSubmit={handleSubmit((data) => alert(JSON.stringify(data, null, 2)))}>
       <RadioGroupField
         control={control}
         name="role"

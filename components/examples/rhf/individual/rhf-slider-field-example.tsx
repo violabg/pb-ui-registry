@@ -21,7 +21,7 @@ export function RhfSliderFieldDemo() {
 
   return (
     <form
-      onSubmit={handleSubmit((data) => console.log(data))}
+      onSubmit={handleSubmit((data) => alert(JSON.stringify(data, null, 2)))}
       className="space-y-4 max-w-sm"
     >
       <SliderField
@@ -57,7 +57,7 @@ export function Demo() {
   });
 
   return (
-    <form onSubmit={handleSubmit((data) => console.log(data))}>
+    <form onSubmit={handleSubmit((data) => alert(JSON.stringify(data, null, 2)))}>
       <SliderField
         control={control}
         name="volume"

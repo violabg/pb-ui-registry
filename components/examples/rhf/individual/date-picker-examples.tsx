@@ -26,7 +26,7 @@ export function RhfDatePickerFieldDemo() {
 
   return (
     <form
-      onSubmit={handleSubmit((data) => console.log(data))}
+      onSubmit={handleSubmit((data) => alert(JSON.stringify(data, null, 2)))}
       className="space-y-4 max-w-sm"
     >
       <DatePickerField
@@ -60,7 +60,7 @@ export function Demo() {
   });
 
   return (
-    <form onSubmit={handleSubmit((data) => console.log(data))}>
+    <form onSubmit={handleSubmit((data) => alert(JSON.stringify(data, null, 2)))}>
       <DatePickerField
         control={control}
         name="eventDate"
@@ -81,7 +81,7 @@ export function RhfDatePickerFieldDefaultValuesDemo() {
 
   return (
     <form
-      onSubmit={handleSubmit((data) => console.log(data))}
+      onSubmit={handleSubmit((data) => alert(JSON.stringify(data, null, 2)))}
       className="space-y-4 max-w-sm"
     >
       <DatePickerField
@@ -115,7 +115,7 @@ export function Demo() {
   });
 
   return (
-    <form onSubmit={handleSubmit((data) => console.log(data))}>
+    <form onSubmit={handleSubmit((data) => alert(JSON.stringify(data, null, 2)))}>
       <DatePickerField
         control={control}
         name="eventDate"
@@ -147,7 +147,7 @@ export function RhfRangeDatePickerFieldDemo() {
 
   return (
     <form
-      onSubmit={handleSubmit((data) => console.log(data))}
+      onSubmit={handleSubmit((data) => alert(JSON.stringify(data, null, 2)))}
       className="space-y-4 max-w-sm"
     >
       <RangeDatePickerField
@@ -186,7 +186,7 @@ export function Demo() {
   });
 
   return (
-    <form onSubmit={handleSubmit((data) => console.log(data))}>
+    <form onSubmit={handleSubmit((data) => alert(JSON.stringify(data, null, 2)))}>
       <RangeDatePickerField
         control={control}
         name="travelRange"
@@ -212,7 +212,7 @@ export function RhfRangeDatePickerFieldDefaultValuesDemo() {
 
   return (
     <form
-      onSubmit={handleSubmit((data) => console.log(data))}
+      onSubmit={handleSubmit((data) => alert(JSON.stringify(data, null, 2)))}
       className="space-y-4 max-w-sm"
     >
       <RangeDatePickerField
@@ -256,7 +256,7 @@ export function Demo() {
   });
 
   return (
-    <form onSubmit={handleSubmit((data) => console.log(data))}>
+    <form onSubmit={handleSubmit((data) => alert(JSON.stringify(data, null, 2)))}>
       <RangeDatePickerField
         control={control}
         name="travelRange"
@@ -283,7 +283,7 @@ export function RhfTimePickerFieldDemo() {
 
   return (
     <form
-      onSubmit={handleSubmit((data) => console.log(data))}
+      onSubmit={handleSubmit((data) => alert(JSON.stringify(data, null, 2)))}
       className="space-y-4 max-w-sm"
     >
       <TimePickerField
@@ -317,7 +317,7 @@ export function Demo() {
   });
 
   return (
-    <form onSubmit={handleSubmit((data) => console.log(data))}>
+    <form onSubmit={handleSubmit((data) => alert(JSON.stringify(data, null, 2)))}>
       <TimePickerField
         control={control}
         name="startTime"
@@ -344,7 +344,7 @@ export function RhfDateTimePickerFieldDemo() {
 
   return (
     <form
-      onSubmit={handleSubmit((data) => console.log(data))}
+      onSubmit={handleSubmit((data) => alert(JSON.stringify(data, null, 2)))}
       className="space-y-4 max-w-sm"
     >
       <DateTimePickerField
@@ -378,7 +378,7 @@ export function Demo() {
   });
 
   return (
-    <form onSubmit={handleSubmit((data) => console.log(data))}>
+    <form onSubmit={handleSubmit((data) => alert(JSON.stringify(data, null, 2)))}>
       <DateTimePickerField
         control={control}
         name="eventDateTime"
