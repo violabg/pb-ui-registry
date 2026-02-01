@@ -18,8 +18,8 @@ export function DropdownMenuDemo() {
         render={<Button variant="outline">Open menu</Button>}
       />
       <DropdownMenuContent align="end" className="w-48">
-        <DropdownMenuLabel>Account</DropdownMenuLabel>
         <DropdownMenuGroup>
+          <DropdownMenuLabel>Account</DropdownMenuLabel>
           <DropdownMenuItem>Profile</DropdownMenuItem>
           <DropdownMenuItem>Billing</DropdownMenuItem>
           <DropdownMenuItem>Settings</DropdownMenuItem>
@@ -47,8 +47,8 @@ export function DropdownMenuDemo() {
     <DropdownMenu>
       <DropdownMenuTrigger render={<Button variant="outline">Open menu</Button>} />
       <DropdownMenuContent align="end" className="w-48">
-        <DropdownMenuLabel>Account</DropdownMenuLabel>
         <DropdownMenuGroup>
+          <DropdownMenuLabel>Account</DropdownMenuLabel>
           <DropdownMenuItem>Profile</DropdownMenuItem>
           <DropdownMenuItem>Billing</DropdownMenuItem>
           <DropdownMenuItem>Settings</DropdownMenuItem>

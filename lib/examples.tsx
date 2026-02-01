@@ -7,6 +7,8 @@ import {
   ButtonDemoCode,
   ButtonSizes,
   ButtonSizesCode,
+  CalendarDemo,
+  CalendarDemoCode,
   CardDemo,
   CardDemoCode,
   CheckboxDemo,
@@ -55,6 +57,8 @@ import {
   RadioGroupDemoCode,
   RatingDemo,
   RatingDemoCode,
+  RatingHalf,
+  RatingHalfCode,
   RatingReadOnly,
   RatingReadOnlyCode,
   RhfCheckboxFieldDemo,
@@ -109,6 +113,8 @@ import {
   RhfRangeDatePickerFieldDemoCode,
   RhfRatingFieldDemo,
   RhfRatingFieldDemoCode,
+  RhfRatingFieldHalfDemo,
+  RhfRatingFieldHalfDemoCode,
   RhfSelectFieldDemo,
   RhfSelectFieldDemoCode,
   RhfSliderFieldDemo,
@@ -622,6 +628,12 @@ export const examples: Record<string, Example[]> = {
       component: <RatingReadOnly />,
       code: RatingReadOnlyCode,
     },
+    {
+      name: "half",
+      title: "Half Star",
+      component: <RatingHalf />,
+      code: RatingHalfCode,
+    },
   ],
   // New RHF Components
   "rhf-combobox-field": [
@@ -704,6 +716,20 @@ export const examples: Record<string, Example[]> = {
       title: "Default",
       component: <RhfRatingFieldDemo />,
       code: RhfRatingFieldDemoCode,
+    },
+    {
+      name: "half",
+      title: "Half Star",
+      component: <RhfRatingFieldHalfDemo />,
+      code: RhfRatingFieldHalfDemoCode,
+    },
+  ],
+  calendar: [
+    {
+      name: "default",
+      title: "Default",
+      component: <CalendarDemo />,
+      code: CalendarDemoCode,
     },
   ],
 };

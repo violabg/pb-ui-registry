@@ -191,9 +191,14 @@ export { ColorPickerDemo, ColorPickerDemoCode } from "./color-picker-examples";
 export {
   RatingDemo,
   RatingDemoCode,
+  RatingHalf,
+  RatingHalfCode,
   RatingReadOnly,
   RatingReadOnlyCode,
 } from "./rating-examples";
+
+// Calendar
+export { CalendarDemo, CalendarDemoCode } from "./calendar-examples";
 
 // New RHF Individual Examples
 export {
@@ -240,4 +245,6 @@ export {
 export {
   RhfRatingFieldDemo,
   RhfRatingFieldDemoCode,
+  RhfRatingFieldHalfDemo,
+  RhfRatingFieldHalfDemoCode,
 } from "./rhf/individual/rating-field-examples";

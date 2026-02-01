@@ -131,6 +131,7 @@ export function RhfInputsDemo() {
   });
 
   const onSubmit = (data: FormValues) => {
+    alert(JSON.stringify(data, null, 2));
     setSubmittedData(data);
   };
 
@@ -552,6 +553,7 @@ export function RhfInputsDemo() {
   });
 
   const onSubmit = (data: FormValues) => {
+    alert(JSON.stringify(data, null, 2));
     setSubmittedData(data);
   };
 

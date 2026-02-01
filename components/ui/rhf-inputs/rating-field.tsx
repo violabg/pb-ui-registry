@@ -20,6 +20,7 @@ export function RatingField<T extends FieldValues>({
   max,
   disabled,
   readOnly,
+  allowHalf,
   size,
   className,
 }: RatingFieldProps<T>) {
@@ -39,6 +40,7 @@ export function RatingField<T extends FieldValues>({
           max={max}
           disabled={disabled}
           readOnly={readOnly}
+          allowHalf={allowHalf}
           size={size}
           aria-invalid={!!fieldState.error}
           aria-describedby={ariaDescribedBy}
