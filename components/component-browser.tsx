@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import * as React from "react";
+import { ViewTransition } from "react";
 
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
@@ -120,22 +121,28 @@ function ComponentCard({ item }: { item: RegistryItemSummary }) {
       )}
     >
       <div>
-        <div className="font-semibold text-base">{item.title}</div>
+        <ViewTransition name={`title-${item.name}`}>
+          <div className="font-semibold text-base">{item.title}</div>
+        </ViewTransition>
         <div className="text-muted-foreground text-sm">{item.name}</div>
       </div>
       {item.description && (
-        <p className="text-muted-foreground text-sm line-clamp-2">
-          {item.description}
-        </p>
+        <ViewTransition name={`description-${item.name}`}>
+          <p className="text-muted-foreground text-sm line-clamp-2">
+            {item.description}
+          </p>
+        </ViewTransition>
       )}
       {item.categories?.length ? (
-        <div className="flex flex-wrap gap-2 mt-auto">
-          {item.categories.map((category) => (
-            <Badge key={category} variant="secondary">
-              {category}
-            </Badge>
-          ))}
-        </div>
+        <ViewTransition name={`categories-${item.name}`}>
+          <div className="flex flex-wrap gap-2 mt-auto">
+            {item.categories.map((category) => (
+              <Badge key={category} variant="secondary">
+                {category}
+              </Badge>
+            ))}
+          </div>
+        </ViewTransition>
       ) : null}
     </Link>
   );

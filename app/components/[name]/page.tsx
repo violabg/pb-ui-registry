@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { ViewTransition } from "react";
 
 import { ComponentPreviewTabs } from "@/components/component-preview-tabs";
 import { InstallCommand } from "@/components/install-command";
@@ -121,30 +122,36 @@ export default async function ComponentPage({
               >
                 Components
               </Link>
-              <h1 className="font-bold text-4xl leading-tight tracking-tight scroll-m-20">
-                {item.title}
-              </h1>
-              <p className="text-muted-foreground text-lg">
-                {item.description}
-              </p>
+              <ViewTransition name={`title-${item.name}`}>
+                <h1 className="font-bold text-4xl leading-tight tracking-tight scroll-m-20">
+                  {item.title}
+                </h1>
+              </ViewTransition>
+              <ViewTransition name={`description-${item.name}`}>
+                <p className="text-muted-foreground text-lg">
+                  {item.description}
+                </p>
+              </ViewTransition>
             </div>
-            <div className="flex flex-wrap gap-2">
-              <Badge
-                variant="secondary"
-                className="px-2.5 py-0.5 rounded-md font-medium text-xs"
-              >
-                {item.type}
-              </Badge>
-              {item.categories?.map((category) => (
+            <ViewTransition name={`categories-${item.name}`}>
+              <div className="flex flex-wrap gap-2">
                 <Badge
-                  key={category}
-                  variant="outline"
+                  variant="secondary"
                   className="px-2.5 py-0.5 rounded-md font-medium text-xs"
                 >
-                  {category}
+                  {item.type}
                 </Badge>
-              ))}
-            </div>
+                {item.categories?.map((category) => (
+                  <Badge
+                    key={category}
+                    variant="outline"
+                    className="px-2.5 py-0.5 rounded-md font-medium text-xs"
+                  >
+                    {category}
+                  </Badge>
+                ))}
+              </div>
+            </ViewTransition>
           </div>
 
           <div className="flex flex-col gap-4">
