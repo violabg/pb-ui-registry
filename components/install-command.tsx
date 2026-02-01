@@ -13,6 +13,13 @@ type InstallCommandProps = {
 };
 
 export function InstallCommand({ command, className }: InstallCommandProps) {
+  // Defer rendering until after hydration to prevent ID mismatch
+  const [mounted, setMounted] = React.useState(false);
+
+  React.useEffect(() => {
+    setMounted(true);
+  }, []);
+
   // Extract the args from the command (remove "npx shadcn@latest add ")
   // The command comes in as "npx shadcn@latest add @pb-ui/component-name"
   // We handle various package manager prefixes.
@@ -44,6 +51,34 @@ export function InstallCommand({ command, className }: InstallCommandProps) {
     navigator.clipboard.writeText(value);
     setHasCopied(true);
   }, []);
+
+  // Show skeleton during SSR to prevent hydration mismatch
+  if (!mounted) {
+    return (
+      <div
+        className={cn(
+          "relative bg-zinc-100 dark:bg-zinc-950 p-4 rounded-xl ring-1 ring-zinc-200 dark:ring-zinc-800",
+          className,
+        )}
+      >
+        <div className="flex justify-between items-center pb-3">
+          <div className="flex gap-4">
+            {["npm", "pnpm", "yarn", "bun"].map((key) => (
+              <span key={key} className="p-0 pb-1 text-zinc-500 text-sm">
+                {key}
+              </span>
+            ))}
+          </div>
+        </div>
+        <div className="flex justify-between items-center gap-4">
+          <code className="flex-1 font-mono text-zinc-900 dark:text-zinc-50 text-sm break-all">
+            {commands.npm}
+          </code>
+          <div className="w-6 h-6" />
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div
