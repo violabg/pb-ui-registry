@@ -95,6 +95,8 @@ export {
   RhfDatePickerFieldDefaultValuesDemoCode,
   RhfDatePickerFieldDemo,
   RhfDatePickerFieldDemoCode,
+  RhfDatePickerFieldFormatDemo,
+  RhfDatePickerFieldFormatDemoCode,
   RhfDateTimePickerFieldDemo,
   RhfDateTimePickerFieldDemoCode,
   RhfRangeDatePickerFieldDefaultValuesDemo,

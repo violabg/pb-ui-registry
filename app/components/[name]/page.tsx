@@ -85,7 +85,7 @@ export default async function ComponentPage({
   const componentExamples = examples[name] || [];
 
   return (
-    <div className="px-4 py-10 w-full">
+    <div className="px-4 xl:px-8 py-10 w-full">
       <div className="lg:gap-10 lg:grid lg:grid-cols-[1fr_240px] xl:grid-cols-[240px_1fr_240px]">
         <aside className="hidden xl:block">
           <div className="top-24 sticky pr-4 h-[calc(100vh-6rem)] overflow-y-auto">

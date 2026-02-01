@@ -668,7 +668,7 @@ const registryItems: RegistryItem[] = [
       "popover",
       "button",
     ],
-    dependencies: ["react-hook-form"],
+    dependencies: ["react-hook-form", "date-fns"],
     files: [
       {
         path: "components/ui/rhf-inputs/date-picker-field.tsx",

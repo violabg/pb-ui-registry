@@ -79,6 +79,8 @@ import {
   RhfDatePickerFieldDefaultValuesDemoCode,
   RhfDatePickerFieldDemo,
   RhfDatePickerFieldDemoCode,
+  RhfDatePickerFieldFormatDemo,
+  RhfDatePickerFieldFormatDemoCode,
   RhfDateTimePickerFieldDemo,
   RhfDateTimePickerFieldDemoCode,
   RhfFileUploadFieldDemo,
@@ -544,6 +546,12 @@ export const examples: Record<string, Example[]> = {
       title: "Default Values",
       component: <RhfDatePickerFieldDefaultValuesDemo />,
       code: RhfDatePickerFieldDefaultValuesDemoCode,
+    },
+    {
+      name: "custom-format",
+      title: "Custom Format",
+      component: <RhfDatePickerFieldFormatDemo />,
+      code: RhfDatePickerFieldFormatDemoCode,
     },
   ],
   "rhf-date-time-picker-field": [

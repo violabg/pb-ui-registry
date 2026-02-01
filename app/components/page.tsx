@@ -34,7 +34,7 @@ export default async function ComponentsPage() {
   const sections = groupToSidebarSections(items);
 
   return (
-    <div className="px-4 sm:px-6 py-10 w-full">
+    <div className="px-4 sm:px-6 xl:px-8 py-10 w-full">
       <div className="lg:gap-10 lg:grid lg:grid-cols-[240px_1fr]">
         <aside className="hidden lg:block">
           <div className="top-24 sticky pr-4 h-[calc(100vh-6rem)] overflow-y-auto">
