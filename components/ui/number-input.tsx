@@ -16,7 +16,11 @@ export type NumberInputProps = Omit<
   max?: number;
   step?: number;
   showControls?: boolean;
-  formatOptions?: Intl.NumberFormatOptions;
+  /** Allow decimal numbers. When false, only integers are allowed. */
+  allowDecimals?: boolean;
+  /** Maximum number of decimal places. Only applies when allowDecimals is true. */
+  decimalPlaces?: number;
+  /** Locale for decimal separator detection. Defaults to browser locale. */
   locale?: string;
 };
 
@@ -27,60 +31,128 @@ function NumberInput({
   max,
   step = 1,
   showControls = true,
+  allowDecimals = false,
+  decimalPlaces,
+  locale,
   disabled,
   className,
   ...props
 }: NumberInputProps) {
-  // Calculate decimal precision from step
-  const precision = React.useMemo(() => {
-    const stepStr = String(step);
-    const decimalIndex = stepStr.indexOf(".");
-    return decimalIndex >= 0 ? stepStr.length - decimalIndex - 1 : 0;
-  }, [step]);
+  // Get the decimal separator for the locale (defaults to browser locale)
+  const decimalSeparator = React.useMemo(() => {
+    const parts = new Intl.NumberFormat(locale).formatToParts(1.1);
+    return parts.find((part) => part.type === "decimal")?.value ?? ".";
+  }, [locale]);
 
+  // Format a number for display
   const formatValue = React.useCallback(
-    (val: number) => val.toFixed(precision),
-    [precision],
+    (val: number) => {
+      let formatted: string;
+      if (allowDecimals && decimalPlaces !== undefined) {
+        formatted = val.toFixed(decimalPlaces);
+      } else {
+        // Use enough precision to represent the number accurately
+        formatted = String(val);
+      }
+      // Replace standard decimal separator with locale-specific one
+      if (decimalSeparator !== ".") {
+        formatted = formatted.replace(".", decimalSeparator);
+      }
+      return formatted;
+    },
+    [allowDecimals, decimalPlaces, decimalSeparator],
+  );
+
+  // Parse input string to number, handling locale decimal separator
+  const parseInput = React.useCallback(
+    (input: string): number | null => {
+      if (input === "" || input === "-") return null;
+      // Normalize: replace locale decimal separator with standard dot
+      let normalized = input;
+      if (decimalSeparator !== ".") {
+        normalized = normalized.replace(decimalSeparator, ".");
+      }
+      // Also accept dot as input even if locale uses comma
+      normalized = normalized.replace(",", ".");
+      const parsed = parseFloat(normalized);
+      return isNaN(parsed) ? null : parsed;
+    },
+    [decimalSeparator],
+  );
+
+  // Clamp and round value according to constraints
+  const clampValue = React.useCallback(
+    (val: number): number => {
+      let result = val;
+      if (min != null && result < min) result = min;
+      if (max != null && result > max) result = max;
+      if (!allowDecimals) {
+        result = Math.round(result);
+      } else if (decimalPlaces !== undefined) {
+        const factor = Math.pow(10, decimalPlaces);
+        result = Math.round(result * factor) / factor;
+      }
+      return result;
+    },
+    [min, max, allowDecimals, decimalPlaces],
   );
 
   const [inputValue, setInputValue] = React.useState<string>(
     value != null ? formatValue(value) : "",
   );
 
+  // Track focus state to prevent reformatting while typing
+  const isFocusedRef = React.useRef(false);
+  const prevValueRef = React.useRef(value);
+
   React.useEffect(() => {
-    setInputValue(value != null ? formatValue(value) : "");
+    // Only update from external value when NOT focused
+    // This prevents reformatting while the user is typing
+    if (!isFocusedRef.current && value !== prevValueRef.current) {
+      setInputValue(value != null ? formatValue(value) : "");
+      prevValueRef.current = value;
+    }
   }, [value, formatValue]);
 
-  const clampValue = React.useCallback(
-    (val: number): number => {
-      let clamped = val;
-      if (min != null && clamped < min) clamped = min;
-      if (max != null && clamped > max) clamped = max;
-      // Round to step precision to avoid floating point issues
-      const factor = Math.pow(10, precision);
-      return Math.round(clamped * factor) / factor;
-    },
-    [min, max, precision],
-  );
+  const handleFocus = () => {
+    isFocusedRef.current = true;
+  };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const raw = e.target.value;
-    setInputValue(raw);
 
-    if (raw === "" || raw === "-") {
-      onChange?.(null);
+    // Allow free typing - only filter obvious garbage
+    // Allow: digits, minus sign, dot, comma (for locale flexibility)
+    const isValidChar = /^-?[\d.,]*$/.test(raw);
+    if (!isValidChar && raw !== "") return;
+
+    // If decimals not allowed, prevent typing decimal separators
+    if (!allowDecimals && (raw.includes(".") || raw.includes(","))) {
       return;
     }
 
-    const parsed = parseFloat(raw);
-    if (!isNaN(parsed)) {
-      onChange?.(clampValue(parsed));
+    setInputValue(raw);
+
+    // Parse and notify parent (without clamping during typing)
+    const parsed = parseInput(raw);
+    if (parsed !== null) {
+      onChange?.(parsed);
+    } else if (raw === "" || raw === "-") {
+      onChange?.(null);
     }
   };
 
   const handleBlur = () => {
+    isFocusedRef.current = false;
+
     if (value != null) {
-      setInputValue(formatValue(value));
+      // Clamp and format on blur
+      const clamped = clampValue(value);
+      setInputValue(formatValue(clamped));
+      prevValueRef.current = clamped;
+      if (clamped !== value) {
+        onChange?.(clamped);
+      }
     } else {
       setInputValue("");
     }
@@ -90,12 +162,26 @@ function NumberInput({
     const current = value ?? 0;
     const newValue = clampValue(current + step);
     onChange?.(newValue);
+    setInputValue(formatValue(newValue));
+    prevValueRef.current = newValue;
   };
 
   const decrement = () => {
     const current = value ?? 0;
     const newValue = clampValue(current - step);
     onChange?.(newValue);
+    setInputValue(formatValue(newValue));
+    prevValueRef.current = newValue;
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "ArrowUp") {
+      e.preventDefault();
+      if (canIncrement) increment();
+    } else if (e.key === "ArrowDown") {
+      e.preventDefault();
+      if (canDecrement) decrement();
+    }
   };
 
   const canIncrement = max == null || (value ?? 0) < max;
@@ -118,10 +204,12 @@ function NumberInput({
       )}
       <Input
         type="text"
-        inputMode="decimal"
+        inputMode={allowDecimals ? "decimal" : "numeric"}
         value={inputValue}
         onChange={handleInputChange}
+        onFocus={handleFocus}
         onBlur={handleBlur}
+        onKeyDown={handleKeyDown}
         disabled={disabled}
         className={cn("text-center", showControls && "rounded-none border-x-0")}
         {...props}

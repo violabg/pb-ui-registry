@@ -219,6 +219,8 @@ export {
   RhfNumberFieldDecimalDemoCode,
   RhfNumberFieldDemo,
   RhfNumberFieldDemoCode,
+  RhfNumberFieldLocaleDemo,
+  RhfNumberFieldLocaleDemoCode,
 } from "./rhf/individual/rhf-number-field-examples";
 
 export {

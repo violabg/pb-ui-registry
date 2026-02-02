@@ -21,6 +21,9 @@ export function NumberField<T extends FieldValues>({
   max,
   step,
   showControls,
+  allowDecimals,
+  decimalPlaces,
+  locale,
   disabled,
   className,
   ...inputProps
@@ -43,6 +46,9 @@ export function NumberField<T extends FieldValues>({
           max={max}
           step={step}
           showControls={showControls}
+          allowDecimals={allowDecimals}
+          decimalPlaces={decimalPlaces}
+          locale={locale}
           disabled={disabled}
           aria-invalid={!!fieldState.error}
           aria-required={required}

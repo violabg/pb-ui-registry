@@ -107,6 +107,8 @@ import {
   RhfNumberFieldDecimalDemoCode,
   RhfNumberFieldDemo,
   RhfNumberFieldDemoCode,
+  RhfNumberFieldLocaleDemo,
+  RhfNumberFieldLocaleDemoCode,
   RhfOtpFieldDemo,
   RhfOtpFieldDemoCode,
   RhfPasswordFieldDemo,
@@ -690,6 +692,12 @@ export const examples: Record<string, Example[]> = {
       title: "Decimal",
       component: <RhfNumberFieldDecimalDemo />,
       code: RhfNumberFieldDecimalDemoCode,
+    },
+    {
+      name: "locale",
+      title: "Locale aware (it-IT)",
+      component: <RhfNumberFieldLocaleDemo />,
+      code: RhfNumberFieldLocaleDemoCode,
     },
   ],
   "rhf-otp-field": [
