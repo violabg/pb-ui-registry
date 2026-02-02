@@ -97,6 +97,8 @@ import {
   RhfInputsDemoCode,
   RhfInputWithTagFieldDemo,
   RhfInputWithTagFieldDemoCode,
+  RhfMultiSelectFieldClearDemo,
+  RhfMultiSelectFieldClearDemoCode,
   RhfMultiSelectFieldDemo,
   RhfMultiSelectFieldDemoCode,
   RhfNumberFieldDecimalDemo,
@@ -512,6 +514,12 @@ export const examples: Record<string, Example[]> = {
       title: "Default",
       component: <RhfMultiSelectFieldDemo />,
       code: RhfMultiSelectFieldDemoCode,
+    },
+    {
+      name: "show-clear",
+      title: "With Clear Button",
+      component: <RhfMultiSelectFieldClearDemo />,
+      code: RhfMultiSelectFieldClearDemoCode,
     },
   ],
   "rhf-file-upload-field": [

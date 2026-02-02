@@ -285,6 +285,7 @@ export {
   ComboboxChip,
   ComboboxChips,
   ComboboxChipsInput,
+  ComboboxClear,
   ComboboxCollection,
   ComboboxContent,
   ComboboxEmpty,

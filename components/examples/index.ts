@@ -149,6 +149,8 @@ export {
   RhfInputFieldDemoCode,
   RhfInputWithTagFieldDemo,
   RhfInputWithTagFieldDemoCode,
+  RhfMultiSelectFieldClearDemo,
+  RhfMultiSelectFieldClearDemoCode,
   RhfMultiSelectFieldDemo,
   RhfMultiSelectFieldDemoCode,
   RhfPasswordFieldDemo,

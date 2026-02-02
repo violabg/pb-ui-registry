@@ -23,6 +23,8 @@ export {
   RhfInputWithTagFieldDemoCode,
 } from "./individual/rhf-input-with-tag-field-example";
 export {
+  RhfMultiSelectFieldClearDemo,
+  RhfMultiSelectFieldClearDemoCode,
   RhfMultiSelectFieldDemo,
   RhfMultiSelectFieldDemoCode,
 } from "./individual/rhf-multi-select-field-example";
