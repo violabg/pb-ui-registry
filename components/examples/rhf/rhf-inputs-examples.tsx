@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 
 import { Button } from "@/components/ui/button";
+import { FieldGroup, FieldLegend, FieldSet } from "@/components/ui/field";
 import {
   CheckboxField,
   CheckboxGroupField,
@@ -138,274 +139,288 @@ export function RhfInputsDemo() {
   return (
     <div className="space-y-8 w-full">
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-        {/* Text Inputs Section */}
-        <div className="space-y-4">
-          <h3 className="font-semibold text-lg">Text Inputs</h3>
-          <div className="gap-4 grid grid-cols-1 md:grid-cols-2">
-            <InputField
+        <FieldGroup>
+          {/* Text Inputs Section */}
+          <FieldSet>
+            <FieldLegend className="font-semibold text-lg!">
+              Text Inputs
+            </FieldLegend>
+            <div className="gap-4 grid grid-cols-1 md:grid-cols-2">
+              <InputField
+                control={control}
+                name="username"
+                label="Username"
+                placeholder="Enter your username"
+                required
+              />
+              <InputField
+                control={control}
+                name="email"
+                label="Email"
+                type="email"
+                placeholder="you@example.com"
+                required
+              />
+            </div>
+
+            <PasswordField
               control={control}
-              name="username"
-              label="Username"
-              placeholder="Enter your username"
+              name="password"
+              label="Password"
+              placeholder="Enter a secure password"
               required
             />
-            <InputField
+
+            <TextareaField
               control={control}
-              name="email"
-              label="Email"
-              type="email"
-              placeholder="you@example.com"
+              name="bio"
+              label="Bio"
+              placeholder="Tell us about yourself..."
+              description="Max 500 characters"
               required
             />
-          </div>
+          </FieldSet>
 
-          <PasswordField
-            control={control}
-            name="password"
-            label="Password"
-            placeholder="Enter a secure password"
-            required
-          />
-
-          <TextareaField
-            control={control}
-            name="bio"
-            label="Bio"
-            placeholder="Tell us about yourself..."
-            description="Max 500 characters"
-            required
-          />
-        </div>
-
-        {/* Date/Time Section */}
-        <div className="space-y-4">
-          <h3 className="font-semibold text-lg">Date & Time</h3>
-          <InputDateField
-            control={control}
-            name="birthDate"
-            label="Birth Date"
-            required
-          />
-
-          <div className="gap-4 grid grid-cols-1 md:grid-cols-2">
-            <DatePickerField
+          {/* Date/Time Section */}
+          <FieldSet>
+            <FieldLegend className="font-semibold text-lg!">
+              Date & Time
+            </FieldLegend>
+            <InputDateField
               control={control}
-              name="eventDate"
-              label="Event Date"
-              placeholder="Pick a date"
+              name="birthDate"
+              label="Birth Date"
+              required
+            />
+
+            <div className="gap-4 grid grid-cols-1 md:grid-cols-2">
+              <DatePickerField
+                control={control}
+                name="eventDate"
+                label="Event Date"
+                placeholder="Pick a date"
+                calendarProps={{ captionLayout: "dropdown" }}
+                required
+              />
+              <TimePickerField
+                control={control}
+                name="startTime"
+                label="Start Time"
+                showSeconds
+                required
+              />
+            </div>
+
+            <DateTimePickerField
+              control={control}
+              name="eventDateTime"
+              label="Event Date & Time"
+              placeholder="Pick a date & time"
               calendarProps={{ captionLayout: "dropdown" }}
               required
             />
-            <TimePickerField
+
+            <RangeDatePickerField
               control={control}
-              name="startTime"
-              label="Start Time"
-              showSeconds
+              name="travelDates"
+              label="Travel Dates"
+              placeholder="Pick a date range"
+              calendarProps={{ numberOfMonths: 2 }}
               required
             />
-          </div>
+          </FieldSet>
 
-          <DateTimePickerField
-            control={control}
-            name="eventDateTime"
-            label="Event Date & Time"
-            placeholder="Pick a date & time"
-            calendarProps={{ captionLayout: "dropdown" }}
-            required
-          />
+          {/* Selection Section */}
+          <FieldSet>
+            <FieldLegend className="font-semibold text-lg!">
+              Selection
+            </FieldLegend>
+            <div className="gap-4 grid grid-cols-1 md:grid-cols-2">
+              <SelectField
+                control={control}
+                name="country"
+                label="Country"
+                placeholder="Select a country"
+                required
+                options={[
+                  { value: "us", label: "United States" },
+                  { value: "uk", label: "United Kingdom" },
+                  { value: "ca", label: "Canada" },
+                  { value: "de", label: "Germany" },
+                  { value: "fr", label: "France" },
+                ]}
+              />
 
-          <RangeDatePickerField
-            control={control}
-            name="travelDates"
-            label="Travel Dates"
-            placeholder="Pick a date range"
-            calendarProps={{ numberOfMonths: 2 }}
-            required
-          />
-        </div>
+              <ComboboxField
+                control={control}
+                name="framework"
+                label="Framework"
+                placeholder="Search frameworks..."
+                required
+                options={[
+                  { value: "react", label: "React" },
+                  { value: "vue", label: "Vue" },
+                  { value: "angular", label: "Angular" },
+                  { value: "svelte", label: "Svelte" },
+                  { value: "solid", label: "Solid" },
+                ]}
+              />
+            </div>
 
-        {/* Selection Section */}
-        <div className="space-y-4">
-          <h3 className="font-semibold text-lg">Selection</h3>
-          <div className="gap-4 grid grid-cols-1 md:grid-cols-2">
-            <SelectField
+            <MultiSelectField
               control={control}
-              name="country"
-              label="Country"
-              placeholder="Select a country"
-              required
-              options={[
-                { value: "us", label: "United States" },
-                { value: "uk", label: "United Kingdom" },
-                { value: "ca", label: "Canada" },
-                { value: "de", label: "Germany" },
-                { value: "fr", label: "France" },
-              ]}
-            />
-
-            <ComboboxField
-              control={control}
-              name="framework"
-              label="Framework"
-              placeholder="Search frameworks..."
+              name="skills"
+              label="Skills"
+              placeholder="Select skills"
               required
               options={[
                 { value: "react", label: "React" },
-                { value: "vue", label: "Vue" },
-                { value: "angular", label: "Angular" },
-                { value: "svelte", label: "Svelte" },
-                { value: "solid", label: "Solid" },
+                { value: "typescript", label: "TypeScript" },
+                { value: "nodejs", label: "Node.js" },
+                { value: "python", label: "Python" },
+                { value: "design", label: "UI/UX Design" },
               ]}
             />
-          </div>
 
-          <MultiSelectField
-            control={control}
-            name="skills"
-            label="Skills"
-            placeholder="Select skills"
-            required
-            options={[
-              { value: "react", label: "React" },
-              { value: "typescript", label: "TypeScript" },
-              { value: "nodejs", label: "Node.js" },
-              { value: "python", label: "Python" },
-              { value: "design", label: "UI/UX Design" },
-            ]}
-          />
-
-          <InputWithTagField
-            control={control}
-            name="tags"
-            label="Tags"
-            placeholder="Type and press Enter to add tags"
-            required
-          />
-
-          <RadioGroupField
-            control={control}
-            name="role"
-            label="Role"
-            required
-            options={[
-              { value: "developer", label: "Developer" },
-              { value: "designer", label: "Designer" },
-              { value: "manager", label: "Manager" },
-            ]}
-          />
-
-          <CheckboxGroupField
-            control={control}
-            name="interests"
-            label="Interests"
-            required
-            options={[
-              { value: "sports", label: "Sports" },
-              { value: "music", label: "Music" },
-              { value: "movies", label: "Movies" },
-              { value: "books", label: "Books" },
-            ]}
-          />
-        </div>
-
-        {/* Number Inputs Section */}
-        <div className="space-y-4">
-          <h3 className="font-semibold text-lg">Number Inputs</h3>
-          <div className="gap-4 grid grid-cols-1 md:grid-cols-2">
-            <NumberField
+            <InputWithTagField
               control={control}
-              name="quantity"
-              label="Quantity"
-              min={1}
-              max={100}
+              name="tags"
+              label="Tags"
+              placeholder="Type and press Enter to add tags"
               required
             />
 
-            <CurrencyField
+            <RadioGroupField
               control={control}
-              name="price"
-              label="Price"
-              currency="USD"
-              placeholder="0.00"
+              name="role"
+              label="Role"
+              required
+              options={[
+                { value: "developer", label: "Developer" },
+                { value: "designer", label: "Designer" },
+                { value: "manager", label: "Manager" },
+              ]}
             />
-          </div>
 
-          <SliderField
-            control={control}
-            name="experience"
-            label="Years of Experience"
-            min={0}
-            max={20}
-            step={1}
-            showValue
-            valueFormatter={(val) => `${val} years`}
-          />
-
-          <RatingField
-            control={control}
-            name="rating"
-            label="Your Rating"
-            required
-          />
-        </div>
-
-        {/* Other Inputs Section */}
-        <div className="space-y-4">
-          <h3 className="font-semibold text-lg">Other Inputs</h3>
-          <div className="gap-4 grid grid-cols-1 md:grid-cols-2">
-            <PhoneField
+            <CheckboxGroupField
               control={control}
-              name="phone"
-              label="Phone Number"
-              defaultCountry="US"
+              name="interests"
+              label="Interests"
+              required
+              options={[
+                { value: "sports", label: "Sports" },
+                { value: "music", label: "Music" },
+                { value: "movies", label: "Movies" },
+                { value: "books", label: "Books" },
+              ]}
+            />
+          </FieldSet>
+
+          {/* Number Inputs Section */}
+          <FieldSet>
+            <FieldLegend className="font-semibold text-lg!">
+              Number Inputs
+            </FieldLegend>
+            <div className="gap-4 grid grid-cols-1 md:grid-cols-2">
+              <NumberField
+                control={control}
+                name="quantity"
+                label="Quantity"
+                min={1}
+                max={100}
+                required
+              />
+
+              <CurrencyField
+                control={control}
+                name="price"
+                label="Price"
+                currency="USD"
+                placeholder="0.00"
+              />
+            </div>
+
+            <SliderField
+              control={control}
+              name="experience"
+              label="Years of Experience"
+              min={0}
+              max={20}
+              step={1}
+              showValue
+              valueFormatter={(val) => `${val} years`}
+            />
+
+            <RatingField
+              control={control}
+              name="rating"
+              label="Your Rating"
+              required
+            />
+          </FieldSet>
+
+          {/* Other Inputs Section */}
+          <FieldSet>
+            <FieldLegend className="font-semibold text-lg!">
+              Other Inputs
+            </FieldLegend>
+            <div className="gap-4 grid grid-cols-1 md:grid-cols-2">
+              <PhoneField
+                control={control}
+                name="phone"
+                label="Phone Number"
+                defaultCountry="US"
+                required
+              />
+
+              <ColorPickerField
+                control={control}
+                name="brandColor"
+                label="Brand Color"
+                required
+              />
+            </div>
+
+            <OTPField
+              control={control}
+              name="otp"
+              label="Verification Code"
+              description="Enter the 6-digit code sent to your email"
+              length={6}
               required
             />
 
-            <ColorPickerField
+            <FileUploadField
               control={control}
-              name="brandColor"
-              label="Brand Color"
+              name="resume"
+              label="Resume"
+              description="Upload your resume (PDF, DOC, DOCX)"
               required
             />
-          </div>
+          </FieldSet>
 
-          <OTPField
-            control={control}
-            name="otp"
-            label="Verification Code"
-            description="Enter the 6-digit code sent to your email"
-            length={6}
-            required
-          />
+          {/* Boolean Inputs Section */}
+          <FieldSet>
+            <FieldLegend className="font-semibold text-lg!">
+              Toggles
+            </FieldLegend>
+            <SwitchField
+              control={control}
+              name="notifications"
+              label="Email Notifications"
+              description="Receive updates about new features"
+            />
 
-          <FileUploadField
-            control={control}
-            name="resume"
-            label="Resume"
-            description="Upload your resume (PDF, DOC, DOCX)"
-            required
-          />
-        </div>
+            <CheckboxField
+              control={control}
+              name="terms"
+              label="I accept the terms and conditions"
+              required
+            />
+          </FieldSet>
 
-        {/* Boolean Inputs Section */}
-        <div className="space-y-4">
-          <h3 className="font-semibold text-lg">Toggles</h3>
-          <SwitchField
-            control={control}
-            name="notifications"
-            label="Email Notifications"
-            description="Receive updates about new features"
-          />
-
-          <CheckboxField
-            control={control}
-            name="terms"
-            label="I accept the terms and conditions"
-            required
-          />
-        </div>
-
-        <Button type="submit">Submit Form</Button>
+          <Button type="submit">Submit Form</Button>
+        </FieldGroup>
       </form>
 
       {submittedData && (
@@ -428,6 +443,7 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 
 import { Button } from "@/components/ui/button";
+import { FieldGroup, FieldLegend, FieldSet } from "@/components/ui/field";
 import {
   CheckboxField,
   CheckboxGroupField,
@@ -560,274 +576,288 @@ export function RhfInputsDemo() {
   return (
     <div className="space-y-8 w-full">
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-        {/* Text Inputs Section */}
-        <div className="space-y-4">
-          <h3 className="font-semibold text-lg">Text Inputs</h3>
-          <div className="gap-4 grid grid-cols-1 md:grid-cols-2">
-            <InputField
+      <FieldGroup>
+          {/* Text Inputs Section */}
+          <FieldSet>
+            <FieldLegend className="font-semibold text-lg!">
+              Text Inputs
+            </FieldLegend>
+            <div className="gap-4 grid grid-cols-1 md:grid-cols-2">
+              <InputField
+                control={control}
+                name="username"
+                label="Username"
+                placeholder="Enter your username"
+                required
+              />
+              <InputField
+                control={control}
+                name="email"
+                label="Email"
+                type="email"
+                placeholder="you@example.com"
+                required
+              />
+            </div>
+
+            <PasswordField
               control={control}
-              name="username"
-              label="Username"
-              placeholder="Enter your username"
+              name="password"
+              label="Password"
+              placeholder="Enter a secure password"
               required
             />
-            <InputField
+
+            <TextareaField
               control={control}
-              name="email"
-              label="Email"
-              type="email"
-              placeholder="you@example.com"
+              name="bio"
+              label="Bio"
+              placeholder="Tell us about yourself..."
+              description="Max 500 characters"
               required
             />
-          </div>
+          </FieldSet>
 
-          <PasswordField
-            control={control}
-            name="password"
-            label="Password"
-            placeholder="Enter a secure password"
-            required
-          />
-
-          <TextareaField
-            control={control}
-            name="bio"
-            label="Bio"
-            placeholder="Tell us about yourself..."
-            description="Max 500 characters"
-            required
-          />
-        </div>
-
-        {/* Date/Time Section */}
-        <div className="space-y-4">
-          <h3 className="font-semibold text-lg">Date & Time</h3>
-          <InputDateField
-            control={control}
-            name="birthDate"
-            label="Birth Date"
-            required
-          />
-
-          <div className="gap-4 grid grid-cols-1 md:grid-cols-2">
-            <DatePickerField
+          {/* Date/Time Section */}
+          <FieldSet>
+            <FieldLegend className="font-semibold text-lg!">
+              Date & Time
+            </FieldLegend>
+            <InputDateField
               control={control}
-              name="eventDate"
-              label="Event Date"
-              placeholder="Pick a date"
+              name="birthDate"
+              label="Birth Date"
+              required
+            />
+
+            <div className="gap-4 grid grid-cols-1 md:grid-cols-2">
+              <DatePickerField
+                control={control}
+                name="eventDate"
+                label="Event Date"
+                placeholder="Pick a date"
+                calendarProps={{ captionLayout: "dropdown" }}
+                required
+              />
+              <TimePickerField
+                control={control}
+                name="startTime"
+                label="Start Time"
+                showSeconds
+                required
+              />
+            </div>
+
+            <DateTimePickerField
+              control={control}
+              name="eventDateTime"
+              label="Event Date & Time"
+              placeholder="Pick a date & time"
               calendarProps={{ captionLayout: "dropdown" }}
               required
             />
-            <TimePickerField
+
+            <RangeDatePickerField
               control={control}
-              name="startTime"
-              label="Start Time"
-              showSeconds
+              name="travelDates"
+              label="Travel Dates"
+              placeholder="Pick a date range"
+              calendarProps={{ numberOfMonths: 2 }}
               required
             />
-          </div>
+          </FieldSet>
 
-          <DateTimePickerField
-            control={control}
-            name="eventDateTime"
-            label="Event Date & Time"
-            placeholder="Pick a date & time"
-            calendarProps={{ captionLayout: "dropdown" }}
-            required
-          />
+          {/* Selection Section */}
+          <FieldSet>
+            <FieldLegend className="font-semibold text-lg!">
+              Selection
+            </FieldLegend>
+            <div className="gap-4 grid grid-cols-1 md:grid-cols-2">
+              <SelectField
+                control={control}
+                name="country"
+                label="Country"
+                placeholder="Select a country"
+                required
+                options={[
+                  { value: "us", label: "United States" },
+                  { value: "uk", label: "United Kingdom" },
+                  { value: "ca", label: "Canada" },
+                  { value: "de", label: "Germany" },
+                  { value: "fr", label: "France" },
+                ]}
+              />
 
-          <RangeDatePickerField
-            control={control}
-            name="travelDates"
-            label="Travel Dates"
-            placeholder="Pick a date range"
-            calendarProps={{ numberOfMonths: 2 }}
-            required
-          />
-        </div>
+              <ComboboxField
+                control={control}
+                name="framework"
+                label="Framework"
+                placeholder="Search frameworks..."
+                required
+                options={[
+                  { value: "react", label: "React" },
+                  { value: "vue", label: "Vue" },
+                  { value: "angular", label: "Angular" },
+                  { value: "svelte", label: "Svelte" },
+                  { value: "solid", label: "Solid" },
+                ]}
+              />
+            </div>
 
-        {/* Selection Section */}
-        <div className="space-y-4">
-          <h3 className="font-semibold text-lg">Selection</h3>
-          <div className="gap-4 grid grid-cols-1 md:grid-cols-2">
-            <SelectField
+            <MultiSelectField
               control={control}
-              name="country"
-              label="Country"
-              placeholder="Select a country"
-              required
-              options={[
-                { value: "us", label: "United States" },
-                { value: "uk", label: "United Kingdom" },
-                { value: "ca", label: "Canada" },
-                { value: "de", label: "Germany" },
-                { value: "fr", label: "France" },
-              ]}
-            />
-
-            <ComboboxField
-              control={control}
-              name="framework"
-              label="Framework"
-              placeholder="Search frameworks..."
+              name="skills"
+              label="Skills"
+              placeholder="Select skills"
               required
               options={[
                 { value: "react", label: "React" },
-                { value: "vue", label: "Vue" },
-                { value: "angular", label: "Angular" },
-                { value: "svelte", label: "Svelte" },
-                { value: "solid", label: "Solid" },
+                { value: "typescript", label: "TypeScript" },
+                { value: "nodejs", label: "Node.js" },
+                { value: "python", label: "Python" },
+                { value: "design", label: "UI/UX Design" },
               ]}
             />
-          </div>
 
-          <MultiSelectField
-            control={control}
-            name="skills"
-            label="Skills"
-            placeholder="Select skills"
-            required
-            options={[
-              { value: "react", label: "React" },
-              { value: "typescript", label: "TypeScript" },
-              { value: "nodejs", label: "Node.js" },
-              { value: "python", label: "Python" },
-              { value: "design", label: "UI/UX Design" },
-            ]}
-          />
-
-          <InputWithTagField
-            control={control}
-            name="tags"
-            label="Tags"
-            placeholder="Type and press Enter to add tags"
-            required
-          />
-
-          <RadioGroupField
-            control={control}
-            name="role"
-            label="Role"
-            required
-            options={[
-              { value: "developer", label: "Developer" },
-              { value: "designer", label: "Designer" },
-              { value: "manager", label: "Manager" },
-            ]}
-          />
-
-          <CheckboxGroupField
-            control={control}
-            name="interests"
-            label="Interests"
-            required
-            options={[
-              { value: "sports", label: "Sports" },
-              { value: "music", label: "Music" },
-              { value: "movies", label: "Movies" },
-              { value: "books", label: "Books" },
-            ]}
-          />
-        </div>
-
-        {/* Number Inputs Section */}
-        <div className="space-y-4">
-          <h3 className="font-semibold text-lg">Number Inputs</h3>
-          <div className="gap-4 grid grid-cols-1 md:grid-cols-2">
-            <NumberField
+            <InputWithTagField
               control={control}
-              name="quantity"
-              label="Quantity"
-              min={1}
-              max={100}
+              name="tags"
+              label="Tags"
+              placeholder="Type and press Enter to add tags"
               required
             />
 
-            <CurrencyField
+            <RadioGroupField
               control={control}
-              name="price"
-              label="Price"
-              currency="USD"
-              placeholder="0.00"
+              name="role"
+              label="Role"
+              required
+              options={[
+                { value: "developer", label: "Developer" },
+                { value: "designer", label: "Designer" },
+                { value: "manager", label: "Manager" },
+              ]}
             />
-          </div>
 
-          <SliderField
-            control={control}
-            name="experience"
-            label="Years of Experience"
-            min={0}
-            max={20}
-            step={1}
-            showValue
-            valueFormatter={(val) => \`\${val} years\`}
-          />
-
-          <RatingField
-            control={control}
-            name="rating"
-            label="Your Rating"
-            required
-          />
-        </div>
-
-        {/* Other Inputs Section */}
-        <div className="space-y-4">
-          <h3 className="font-semibold text-lg">Other Inputs</h3>
-          <div className="gap-4 grid grid-cols-1 md:grid-cols-2">
-            <PhoneField
+            <CheckboxGroupField
               control={control}
-              name="phone"
-              label="Phone Number"
-              defaultCountry="US"
+              name="interests"
+              label="Interests"
+              required
+              options={[
+                { value: "sports", label: "Sports" },
+                { value: "music", label: "Music" },
+                { value: "movies", label: "Movies" },
+                { value: "books", label: "Books" },
+              ]}
+            />
+          </FieldSet>
+
+          {/* Number Inputs Section */}
+          <FieldSet>
+            <FieldLegend className="font-semibold text-lg!">
+              Number Inputs
+            </FieldLegend>
+            <div className="gap-4 grid grid-cols-1 md:grid-cols-2">
+              <NumberField
+                control={control}
+                name="quantity"
+                label="Quantity"
+                min={1}
+                max={100}
+                required
+              />
+
+              <CurrencyField
+                control={control}
+                name="price"
+                label="Price"
+                currency="USD"
+                placeholder="0.00"
+              />
+            </div>
+
+            <SliderField
+              control={control}
+              name="experience"
+              label="Years of Experience"
+              min={0}
+              max={20}
+              step={1}
+              showValue
+              valueFormatter={(val) => \`\${val} years\`}
+            />
+
+            <RatingField
+              control={control}
+              name="rating"
+              label="Your Rating"
+              required
+            />
+          </FieldSet>
+
+          {/* Other Inputs Section */}
+          <FieldSet>
+            <FieldLegend className="font-semibold text-lg!">
+              Other Inputs
+            </FieldLegend>
+            <div className="gap-4 grid grid-cols-1 md:grid-cols-2">
+              <PhoneField
+                control={control}
+                name="phone"
+                label="Phone Number"
+                defaultCountry="US"
+                required
+              />
+
+              <ColorPickerField
+                control={control}
+                name="brandColor"
+                label="Brand Color"
+                required
+              />
+            </div>
+
+            <OTPField
+              control={control}
+              name="otp"
+              label="Verification Code"
+              description="Enter the 6-digit code sent to your email"
+              length={6}
               required
             />
 
-            <ColorPickerField
+            <FileUploadField
               control={control}
-              name="brandColor"
-              label="Brand Color"
+              name="resume"
+              label="Resume"
+              description="Upload your resume (PDF, DOC, DOCX)"
               required
             />
-          </div>
+          </FieldSet>
 
-          <OTPField
-            control={control}
-            name="otp"
-            label="Verification Code"
-            description="Enter the 6-digit code sent to your email"
-            length={6}
-            required
-          />
+          {/* Boolean Inputs Section */}
+          <FieldSet>
+            <FieldLegend className="font-semibold text-lg!">
+              Toggles
+            </FieldLegend>
+            <SwitchField
+              control={control}
+              name="notifications"
+              label="Email Notifications"
+              description="Receive updates about new features"
+            />
 
-          <FileUploadField
-            control={control}
-            name="resume"
-            label="Resume"
-            description="Upload your resume (PDF, DOC, DOCX)"
-            required
-          />
-        </div>
+            <CheckboxField
+              control={control}
+              name="terms"
+              label="I accept the terms and conditions"
+              required
+            />
+          </FieldSet>
 
-        {/* Boolean Inputs Section */}
-        <div className="space-y-4">
-          <h3 className="font-semibold text-lg">Toggles</h3>
-          <SwitchField
-            control={control}
-            name="notifications"
-            label="Email Notifications"
-            description="Receive updates about new features"
-          />
-
-          <CheckboxField
-            control={control}
-            name="terms"
-            label="I accept the terms and conditions"
-            required
-          />
-        </div>
-
-        <Button type="submit">Submit Form</Button>
+          <Button type="submit">Submit Form</Button>
+        </FieldGroup>
       </form>
 
       {submittedData && (
