@@ -283,7 +283,7 @@ export default function GetStartedPage() {
     <Field data-invalid={fieldState.invalid}>
       <FieldLabel>Date of birth</FieldLabel>
       <Popover>
-        <PopoverTrigger asChild>
+        <PopoverTrigger render={
           <Button
             variant="outline"
             className={cn(
@@ -299,7 +299,7 @@ export default function GetStartedPage() {
             )}
             <CalendarIcon className="opacity-50 ml-auto size-4" />
           </Button>
-        </PopoverTrigger>
+        } />
         <PopoverContent className="p-0 w-auto" align="start">
           <Calendar
             mode="single"
