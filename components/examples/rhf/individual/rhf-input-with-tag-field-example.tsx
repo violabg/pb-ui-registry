@@ -55,12 +55,69 @@ export function Demo() {
   });
 
   return (
-    <form onSubmit={handleSubmit((data) => alert(JSON.stringify(data, null, 2)))}>
+    <form onSubmit={handleSubmit((data) => alert(JSON.stringify(data, null, 2)))} className="space-y-4">
       <InputWithTagField
         control={control}
         name="tags"
         label="Tags"
         placeholder="Type and press Enter to add tags"
+        required
+      />
+      <Button type="submit">Submit</Button>
+    </form>
+  );
+}`;
+
+export function RhfInputWithTagFieldClearDemo() {
+  const { control, handleSubmit } = useForm<TagFormValues>({
+    resolver: zodResolver(tagSchema),
+    defaultValues: { tags: ["React", "Next.js", "Tailwind"] },
+  });
+
+  return (
+    <form
+      onSubmit={handleSubmit((data) => alert(JSON.stringify(data, null, 2)))}
+      className="space-y-4 max-w-sm"
+    >
+      <InputWithTagField
+        control={control}
+        name="tags"
+        label="Tags with Clear"
+        placeholder="Type and press Enter to add tags"
+        showClear
+        required
+      />
+      <Button type="submit">Submit</Button>
+    </form>
+  );
+}
+
+export const RhfInputWithTagFieldClearDemoCode = `import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
+import { Button } from "@/components/ui/button";
+import { InputWithTagField } from "@/components/ui/rhf-inputs";
+
+const schema = z.object({
+  tags: z.array(z.string()).min(1, "Please add at least one tag"),
+});
+
+type FormValues = z.infer<typeof schema>;
+
+export function Demo() {
+  const { control, handleSubmit } = useForm<FormValues>({
+    resolver: zodResolver(schema),
+    defaultValues: { tags: ["React", "Next.js", "Tailwind"] },
+  });
+
+  return (
+    <form onSubmit={handleSubmit((data) => alert(JSON.stringify(data, null, 2)))} className="space-y-4">
+      <InputWithTagField
+        control={control}
+        name="tags"
+        label="Tags with Clear"
+        placeholder="Type and press Enter to add tags"
+        showClear
         required
       />
       <Button type="submit">Submit</Button>

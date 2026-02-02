@@ -94,3 +94,34 @@ export function TagInputDisabled() {
     />
   );
 }`;
+
+export function TagInputClear() {
+  const [tags, setTags] = React.useState(["React", "Next.js", "Tailwind"]);
+
+  return (
+    <div className="flex flex-col gap-3">
+      <TagInput
+        value={tags}
+        onValueChange={setTags}
+        placeholder="Type and press Enter"
+        showClear
+      />
+    </div>
+  );
+}
+
+export const TagInputClearCode = `import { TagInput } from "@/components/ui/tag-input";
+import * as React from "react";
+
+export function TagInputClear() {
+  const [tags, setTags] = React.useState(["React", "Next.js", "Tailwind"]);
+
+  return (
+    <TagInput
+      value={tags}
+      onValueChange={setTags}
+      placeholder="Type and press Enter"
+      showClear
+    />
+  );
+}`;

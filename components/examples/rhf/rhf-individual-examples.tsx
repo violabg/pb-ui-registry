@@ -19,6 +19,8 @@ export {
   RhfInputFieldDemoCode,
 } from "./individual/rhf-input-field-example";
 export {
+  RhfInputWithTagFieldClearDemo,
+  RhfInputWithTagFieldClearDemoCode,
   RhfInputWithTagFieldDemo,
   RhfInputWithTagFieldDemoCode,
 } from "./individual/rhf-input-with-tag-field-example";

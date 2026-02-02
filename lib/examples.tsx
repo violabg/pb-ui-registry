@@ -95,6 +95,8 @@ import {
   RhfInputFieldDemoCode,
   RhfInputsDemo,
   RhfInputsDemoCode,
+  RhfInputWithTagFieldClearDemo,
+  RhfInputWithTagFieldClearDemoCode,
   RhfInputWithTagFieldDemo,
   RhfInputWithTagFieldDemoCode,
   RhfMultiSelectFieldClearDemo,
@@ -147,6 +149,8 @@ import {
   TabsDemoCode,
   TabsLineVariant,
   TabsLineVariantCode,
+  TagInputClear,
+  TagInputClearCode,
   TagInputDemo,
   TagInputDemoCode,
   TagInputDisabled,
@@ -184,6 +188,12 @@ export const examples: Record<string, Example[]> = {
       title: "Disabled",
       component: <TagInputDisabled />,
       code: TagInputDisabledCode,
+    },
+    {
+      name: "clear",
+      title: "With Clear Button",
+      component: <TagInputClear />,
+      code: TagInputClearCode,
     },
   ],
   "alert-dialog": [
@@ -506,6 +516,12 @@ export const examples: Record<string, Example[]> = {
       title: "Default",
       component: <RhfInputWithTagFieldDemo />,
       code: RhfInputWithTagFieldDemoCode,
+    },
+    {
+      name: "show-clear",
+      title: "With Clear Button",
+      component: <RhfInputWithTagFieldClearDemo />,
+      code: RhfInputWithTagFieldClearDemoCode,
     },
   ],
   "rhf-multi-select-field": [

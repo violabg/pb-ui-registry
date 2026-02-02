@@ -147,6 +147,8 @@ export {
   RhfInputDateFieldEmptyDemoCode,
   RhfInputFieldDemo,
   RhfInputFieldDemoCode,
+  RhfInputWithTagFieldClearDemo,
+  RhfInputWithTagFieldClearDemoCode,
   RhfInputWithTagFieldDemo,
   RhfInputWithTagFieldDemoCode,
   RhfMultiSelectFieldClearDemo,
@@ -169,6 +171,8 @@ export {
 
 // Tag Input
 export {
+  TagInputClear,
+  TagInputClearCode,
   TagInputDemo,
   TagInputDemoCode,
   TagInputDisabled,
