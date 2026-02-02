@@ -65,6 +65,8 @@ import {
   RhfCheckboxFieldDemoCode,
   RhfCheckboxGroupFieldDemo,
   RhfCheckboxGroupFieldDemoCode,
+  RhfCheckboxGroupFieldHorizontalDemo,
+  RhfCheckboxGroupFieldHorizontalDemoCode,
   RhfColorPickerFieldDemo,
   RhfColorPickerFieldDemoCode,
   RhfComboboxFieldDemo,
@@ -680,6 +682,12 @@ export const examples: Record<string, Example[]> = {
       title: "Default",
       component: <RhfCheckboxGroupFieldDemo />,
       code: RhfCheckboxGroupFieldDemoCode,
+    },
+    {
+      name: "horizontal",
+      title: "Horizontal",
+      component: <RhfCheckboxGroupFieldHorizontalDemo />,
+      code: RhfCheckboxGroupFieldHorizontalDemoCode,
     },
   ],
   "rhf-phone-field": [

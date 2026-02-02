@@ -105,7 +105,7 @@ export {
   RhfRangeDatePickerFieldDemoCode,
   RhfTimePickerFieldDemo,
   RhfTimePickerFieldDemoCode,
-} from "./rhf/individual/date-picker-examples";
+} from "./rhf/individual/rhf-date-picker-examples";
 
 // Password Input
 export {
@@ -206,29 +206,31 @@ export { CalendarDemo, CalendarDemoCode } from "./calendar-examples";
 export {
   RhfComboboxFieldDemo,
   RhfComboboxFieldDemoCode,
-} from "./rhf/individual/combobox-field-examples";
+} from "./rhf/individual/rhf-combobox-field-examples";
 
 export {
   RhfNumberFieldDecimalDemo,
   RhfNumberFieldDecimalDemoCode,
   RhfNumberFieldDemo,
   RhfNumberFieldDemoCode,
-} from "./rhf/individual/number-field-examples";
+} from "./rhf/individual/rhf-number-field-examples";
 
 export {
   RhfOtpFieldDemo,
   RhfOtpFieldDemoCode,
-} from "./rhf/individual/otp-field-examples";
+} from "./rhf/individual/rhf-otp-field-examples";
 
 export {
   RhfCheckboxGroupFieldDemo,
   RhfCheckboxGroupFieldDemoCode,
-} from "./rhf/individual/checkbox-group-field-examples";
+  RhfCheckboxGroupFieldHorizontalDemo,
+  RhfCheckboxGroupFieldHorizontalDemoCode,
+} from "./rhf/individual/rhf-checkbox-group-field-examples";
 
 export {
   RhfPhoneFieldDemo,
   RhfPhoneFieldDemoCode,
-} from "./rhf/individual/phone-field-examples";
+} from "./rhf/individual/rhf-phone-field-examples";
 
 export {
   RhfCurrencyFieldCentsDemo,
@@ -237,16 +239,16 @@ export {
   RhfCurrencyFieldDemoCode,
   RhfCurrencyFieldEuroDemo,
   RhfCurrencyFieldEuroDemoCode,
-} from "./rhf/individual/currency-field-examples";
+} from "./rhf/individual/rhf-currency-field-examples";
 
 export {
   RhfColorPickerFieldDemo,
   RhfColorPickerFieldDemoCode,
-} from "./rhf/individual/color-picker-field-examples";
+} from "./rhf/individual/rhf-color-picker-field-examples";
 
 export {
   RhfRatingFieldDemo,
   RhfRatingFieldDemoCode,
   RhfRatingFieldHalfDemo,
   RhfRatingFieldHalfDemoCode,
-} from "./rhf/individual/rating-field-examples";
+} from "./rhf/individual/rhf-rating-field-examples";
