@@ -204,20 +204,24 @@ export default function GetStartedPage() {
                     <CardContent className="p-1">
                       <CodeBlock
                         language="tsx"
-                        code={`<Field
+                        code={`<Controller
   control={form.control}
   name="username"
-  render={({ field }) => (
-    <FormItem>
-      <FormLabel>Username</FormLabel>
-      <FormControl>
-        <Input placeholder="shadcn" {...field} />
-      </FormControl>
-      <FormDescription>
+  render={({ field, fieldState }) => (
+    <Field data-invalid={fieldState.invalid}>
+      <FieldLabel>Username</FieldLabel>
+      <Input
+        {...field}
+        placeholder="shadcn"
+        aria-invalid={fieldState.invalid}
+      />
+      <FieldDescription>
         This is your public display name.
-      </FormDescription>
-      <FormMessage />
-    </FormItem>
+      </FieldDescription>
+      {fieldState.invalid && (
+        <FieldError errors={[fieldState.error]} />
+      )}
+    </Field>
   )}
 />`}
                         className="bg-transparent border-0"
@@ -272,30 +276,29 @@ export default function GetStartedPage() {
                     <CardContent className="p-1">
                       <CodeBlock
                         language="tsx"
-                        code={`<Field
+                        code={`<Controller
   control={form.control}
   name="dob"
-  render={({ field }) => (
-    <FormItem className="flex flex-col">
-      <FormLabel>Date of birth</FormLabel>
+  render={({ field, fieldState }) => (
+    <Field data-invalid={fieldState.invalid}>
+      <FieldLabel>Date of birth</FieldLabel>
       <Popover>
         <PopoverTrigger asChild>
-          <FormControl>
-            <Button
-              variant={"outline"}
-              className={cn(
-                "pl-3 w-[240px] font-normal text-left",
-                !field.value && "text-muted-foreground"
-              )}
-            >
-              {field.value ? (
-                format(field.value, "PPP")
-              ) : (
-                <span>Pick a date</span>
-              )}
-              <CalendarIcon className="opacity-50 ml-auto w-4 h-4" />
-            </Button>
-          </FormControl>
+          <Button
+            variant="outline"
+            className={cn(
+              "pl-3 w-[240px] font-normal text-left",
+              !field.value && "text-muted-foreground"
+            )}
+            aria-invalid={fieldState.invalid}
+          >
+            {field.value ? (
+              format(field.value, "PPP")
+            ) : (
+              <span>Pick a date</span>
+            )}
+            <CalendarIcon className="opacity-50 ml-auto size-4" />
+          </Button>
         </PopoverTrigger>
         <PopoverContent className="p-0 w-auto" align="start">
           <Calendar
@@ -309,8 +312,10 @@ export default function GetStartedPage() {
           />
         </PopoverContent>
       </Popover>
-      <FormMessage />
-    </FormItem>
+      {fieldState.invalid && (
+        <FieldError errors={[fieldState.error]} />
+      )}
+    </Field>
   )}
 />`}
                         className="bg-transparent border-0"
