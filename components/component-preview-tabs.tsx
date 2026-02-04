@@ -23,7 +23,7 @@ export function ComponentPreviewTabs({
   const defaultTab = preview ? "preview" : "code";
 
   return (
-    <section className="bg-card shadow-sm border border-border rounded-lg">
+    <section className="border border-border rounded-lg card-gradient">
       <div className="flex justify-between items-center px-4 py-3 border-border border-b">
         <div className="font-medium text-sm">Example</div>
         <Link

@@ -53,7 +53,8 @@ export default function GetStartedPage() {
             <span>RHF + Zod ready</span>
           </div>
           <h1 className="font-bold text-5xl sm:text-7xl leading-tight tracking-tight">
-            Build forms faster with <span className="text-primary">PB-UI</span>
+            Build forms faster with{" "}
+            <span className="text-gradient-primary">PB-UI</span>
           </h1>
           <p className="max-w-2xl text-muted-foreground text-xl/relaxed">
             A curated React Hook Form input collection with Zod integration,
@@ -62,7 +63,7 @@ export default function GetStartedPage() {
           <div className="flex gap-4 mt-4">
             <Link
               href="/components"
-              className="inline-flex justify-center items-center gap-2 bg-primary hover:bg-primary/90 px-6 py-3 rounded-lg font-medium text-primary-foreground transition-colors"
+              className="inline-flex justify-center items-center gap-2 bg-primary hover:bg-primary/90 px-6 py-3 rounded-lg font-medium text-primary-foreground transition-colors card-glow"
             >
               Browse Components
               <ArrowRight className="size-4" />
@@ -70,13 +71,14 @@ export default function GetStartedPage() {
           </div>
         </div>
 
-        <div className="top-1/2 -right-20 -z-10 absolute bg-primary/10 blur-3xl rounded-full w-150 h-150 -translate-y-1/2 pointer-events-none" />
+        <div className="top-1/2 -right-20 -z-10 absolute bg-primary/15 blur-3xl rounded-full w-150 h-150 -translate-y-1/2 animate-pulse pointer-events-none" />
+        <div className="top-1/3 -left-20 -z-10 absolute bg-primary/10 blur-3xl rounded-full w-100 h-100 -translate-y-1/2 pointer-events-none" />
       </FadeIn>
 
       <div className="gap-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mb-16">
         <FadeIn
           delay={0.1}
-          className="bg-linear-to-bl from-primary/10 to-transparent shadow-sm p-6 border rounded-xl overflow-hidden transition-all"
+          className="p-6 border rounded-xl overflow-hidden card-gradient card-glow"
         >
           <div className="flex items-center gap-4 mb-4">
             <div className="flex justify-center items-center bg-primary/10 rounded-lg size-10 text-primary">
@@ -91,7 +93,7 @@ export default function GetStartedPage() {
         </FadeIn>
         <FadeIn
           delay={0.2}
-          className="bg-linear-to-bl from-primary/10 to-transparent shadow-sm p-6 border rounded-xl"
+          className="p-6 border rounded-xl card-gradient card-glow"
         >
           <div className="flex items-center gap-4 mb-4">
             <div className="flex justify-center items-center bg-primary/10 rounded-lg size-10 text-primary">
@@ -106,7 +108,7 @@ export default function GetStartedPage() {
         </FadeIn>
         <FadeIn
           delay={0.3}
-          className="bg-linear-to-bl from-primary/10 to-transparent shadow-sm p-6 border rounded-xl"
+          className="p-6 border rounded-xl card-gradient card-glow"
         >
           <div className="flex items-center gap-4 mb-4">
             <div className="flex justify-center items-center bg-primary/10 rounded-lg size-10 text-primary">
@@ -121,10 +123,11 @@ export default function GetStartedPage() {
         </FadeIn>
       </div>
 
-      <FadeIn className="bg-muted/30 px-4 md:px-6 py-12 border border-border/50 rounded-3xl">
+      <FadeIn className="bg-gradient-mesh px-4 md:px-6 py-12 border border-border/50 rounded-3xl section-highlight">
         <div className="mx-auto mb-12 max-w-2xl text-center">
           <h2 className="mb-4 font-bold text-3xl tracking-tight">
-            Start building RHF inputs in seconds
+            Start building RHF inputs in{" "}
+            <span className="text-gradient-primary">seconds</span>
           </h2>
           <p className="text-muted-foreground text-lg">
             Add React Hook Form inputs with the CLI and wire them to Zod schemas
@@ -134,7 +137,7 @@ export default function GetStartedPage() {
 
         <div className="gap-8 grid grid-cols-1 lg:grid-cols-2">
           <FadeIn>
-            <Card className="bg-linear-to-bl from-primary/10 to-transparent">
+            <Card className="card-gradient card-glow">
               <CardHeader>
                 <CardTitle className="flex items-center gap-3">
                   <div className="flex justify-center items-center bg-primary rounded-full size-8 font-bold text-primary-foreground shrink-0">
@@ -160,7 +163,7 @@ export default function GetStartedPage() {
           </FadeIn>
 
           <FadeIn>
-            <Card className="bg-linear-to-bl from-primary/10 to-transparent">
+            <Card className="card-gradient card-glow">
               <CardHeader>
                 <CardTitle className="flex items-center gap-3">
                   <div className="flex justify-center items-center bg-primary rounded-full size-8 font-bold text-primary-foreground shrink-0">
@@ -188,7 +191,8 @@ export default function GetStartedPage() {
       <FadeIn className="mt-32 mb-20">
         <div className="mx-auto mb-12 max-w-3xl text-center">
           <h2 className="mb-4 font-bold text-3xl sm:text-4xl tracking-tight">
-            Stop writing the same boilerplate
+            Stop writing the same{" "}
+            <span className="text-gradient-primary">boilerplate</span>
           </h2>
           <p className="text-muted-foreground text-lg">
             See the difference between standard React Hook Form + shadcn/ui
@@ -209,7 +213,7 @@ export default function GetStartedPage() {
                   <span>Standard Approach</span>
                 </div>
                 <FadeIn>
-                  <Card className="group relative bg-muted/40 border overflow-hidden">
+                  <Card className="group relative bg-muted/30 border-gradient overflow-hidden">
                     <CardContent className="p-1">
                       <CodeBlock
                         language="tsx"
@@ -246,7 +250,7 @@ export default function GetStartedPage() {
                   <span>With PB-UI</span>
                 </div>
                 <FadeIn>
-                  <Card className="group relative bg-primary/5 border border-primary/20 overflow-hidden">
+                  <Card className="group relative overflow-hidden card-gradient card-glow">
                     <div className="top-4 right-4 absolute bg-primary/10 px-2 py-1 rounded font-medium text-primary text-xs">
                       One Component
                     </div>
@@ -281,7 +285,7 @@ export default function GetStartedPage() {
                   <span>Standard Approach</span>
                 </div>
                 <FadeIn>
-                  <Card className="group relative bg-muted/40 border overflow-hidden">
+                  <Card className="group relative bg-muted/30 border-gradient overflow-hidden">
                     <CardContent className="p-1">
                       <CodeBlock
                         language="tsx"
@@ -340,7 +344,7 @@ export default function GetStartedPage() {
                   <span>With PB-UI</span>
                 </div>
                 <FadeIn>
-                  <Card className="group relative bg-primary/5 border border-primary/20 overflow-hidden">
+                  <Card className="group relative overflow-hidden card-gradient card-glow">
                     <div className="top-4 right-4 absolute bg-primary/10 px-2 py-1 rounded font-medium text-primary text-xs">
                       One Component
                     </div>
