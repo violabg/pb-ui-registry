@@ -46,7 +46,7 @@ export const metadata: Metadata = {
 export default function GetStartedPage() {
   return (
     <div className="px-4 lg:px-8 py-16 w-full">
-      <FadeIn className="relative mb-16 overflow-hidden">
+      <FadeIn className="relative mb-16">
         <div className="z-10 relative flex flex-col items-center gap-4 mx-auto max-w-3xl text-center">
           <div className="inline-flex items-center gap-2 bg-primary/10 px-3 py-1 border border-primary/20 rounded-full w-fit font-medium text-primary text-sm">
             <Package className="size-4" />
@@ -74,7 +74,10 @@ export default function GetStartedPage() {
       </FadeIn>
 
       <div className="gap-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mb-16">
-        <FadeIn delay={0.1} className="bg-card shadow-sm p-6 border rounded-xl">
+        <FadeIn
+          delay={0.1}
+          className="bg-linear-to-bl from-primary/10 to-transparent shadow-sm p-6 border rounded-xl overflow-hidden transition-all"
+        >
           <div className="flex items-center gap-4 mb-4">
             <div className="flex justify-center items-center bg-primary/10 rounded-lg size-10 text-primary">
               <CheckCircle2 className="size-6" />
@@ -86,7 +89,10 @@ export default function GetStartedPage() {
             and validation states out of the box.
           </p>
         </FadeIn>
-        <FadeIn delay={0.2} className="bg-card shadow-sm p-6 border rounded-xl">
+        <FadeIn
+          delay={0.2}
+          className="bg-linear-to-bl from-primary/10 to-transparent shadow-sm p-6 border rounded-xl"
+        >
           <div className="flex items-center gap-4 mb-4">
             <div className="flex justify-center items-center bg-primary/10 rounded-lg size-10 text-primary">
               <Terminal className="size-6" />
@@ -98,7 +104,10 @@ export default function GetStartedPage() {
             rely on across your forms.
           </p>
         </FadeIn>
-        <FadeIn delay={0.3} className="bg-card shadow-sm p-6 border rounded-xl">
+        <FadeIn
+          delay={0.3}
+          className="bg-linear-to-bl from-primary/10 to-transparent shadow-sm p-6 border rounded-xl"
+        >
           <div className="flex items-center gap-4 mb-4">
             <div className="flex justify-center items-center bg-primary/10 rounded-lg size-10 text-primary">
               <Package className="size-6" />
@@ -125,7 +134,7 @@ export default function GetStartedPage() {
 
         <div className="gap-8 grid grid-cols-1 lg:grid-cols-2">
           <FadeIn>
-            <Card>
+            <Card className="bg-linear-to-bl from-primary/10 to-transparent">
               <CardHeader>
                 <CardTitle className="flex items-center gap-3">
                   <div className="flex justify-center items-center bg-primary rounded-full size-8 font-bold text-primary-foreground shrink-0">
@@ -151,7 +160,7 @@ export default function GetStartedPage() {
           </FadeIn>
 
           <FadeIn>
-            <Card>
+            <Card className="bg-linear-to-bl from-primary/10 to-transparent">
               <CardHeader>
                 <CardTitle className="flex items-center gap-3">
                   <div className="flex justify-center items-center bg-primary rounded-full size-8 font-bold text-primary-foreground shrink-0">

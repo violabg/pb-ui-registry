@@ -117,7 +117,7 @@ function ComponentCard({ item }: { item: RegistryItemSummary }) {
     <Link
       href={item.docs ?? `/components/${item.name}`}
       className={cn(
-        "flex flex-col gap-3 bg-card shadow-sm hover:shadow-md p-4 border border-border hover:border-primary/50 rounded-lg text-card-foreground transition",
+        "flex flex-col gap-3 hover:bg-card bg-linear-to-bl from-primary/10 to-transparent shadow-sm hover:shadow-md p-4 border border-border hover:border-primary/50 rounded-lg overflow-hidden text-card-foreground transition",
       )}
     >
       <div>
