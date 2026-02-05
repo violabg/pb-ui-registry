@@ -1,16 +1,16 @@
 import type { Metadata } from "next";
-import { JetBrains_Mono, Plus_Jakarta_Sans, Sora } from "next/font/google";
+import { JetBrains_Mono, Onest, Outfit } from "next/font/google";
 
 import { SiteHeader } from "@/components/site-header";
 import { ThemeProvider } from "@/components/theme-provider";
 import "./globals.css";
 
-const sans = Plus_Jakarta_Sans({
+const sans = Onest({
   subsets: ["latin"],
   variable: "--font-sans",
 });
 
-const display = Sora({
+const display = Outfit({
   subsets: ["latin"],
   variable: "--font-display",
 });

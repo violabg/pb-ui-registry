@@ -23,9 +23,11 @@ export function ComponentPreviewTabs({
   const defaultTab = preview ? "preview" : "code";
 
   return (
-    <section className="border border-border/60 rounded-2xl surface-ring surface-panel">
-      <div className="flex justify-between items-center px-4 py-3 border-border border-b">
-        <div className="font-medium text-sm">Example</div>
+    <section className="border border-border/70 rounded-3xl surface-ring overflow-hidden surface-panel-soft">
+      <div className="flex flex-wrap justify-between items-center gap-3 px-4 py-3 border-border border-b">
+        <div className="font-medium text-muted-foreground text-sm uppercase tracking-[0.2em]">
+          Example
+        </div>
         <Link
           className={buttonVariants({
             variant: "outline",

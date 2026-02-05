@@ -86,14 +86,15 @@ export function ComponentBrowser({ items }: ComponentBrowserProps) {
     <section className="flex flex-col gap-10">
       <div className="flex flex-col gap-6">
         <div className="flex flex-col gap-2">
-          <h1 className="font-display text-4xl tracking-tight">Components</h1>
+          <h2 className="font-display text-3xl tracking-tight">
+            Browse the library
+          </h2>
           <p className="text-muted-foreground text-sm">
-            Browse the registry and copy installation commands or component
-            code.
+            Search, filter, and jump directly into the component you need.
           </p>
         </div>
         <div className="flex flex-col gap-3">
-          <div className="flex items-center gap-2 px-3 py-2 border border-border/60 rounded-xl surface-ring surface-panel-soft">
+          <div className="flex items-center gap-2 px-3 py-2 border border-border/70 rounded-2xl surface-ring surface-panel-soft">
             <div className="relative flex-1">
               <Input
                 value={query}
@@ -133,10 +134,10 @@ export function ComponentBrowser({ items }: ComponentBrowserProps) {
                       )
                     }
                     className={cn(
-                      "inline-flex items-center px-3 py-1 border rounded-full font-medium text-xs transition",
+                      "inline-flex items-center px-3 py-1.5 border rounded-full font-medium text-xs transition",
                       isActive
                         ? "border-foreground/30 bg-foreground/10 text-foreground"
-                        : "border-border/60 text-muted-foreground hover:border-foreground/30 hover:text-foreground",
+                        : "border-border/70 text-muted-foreground hover:border-foreground/30 hover:text-foreground",
                     )}
                     aria-pressed={isActive}
                   >
@@ -156,7 +157,7 @@ export function ComponentBrowser({ items }: ComponentBrowserProps) {
                   <button
                     type="button"
                     onClick={() => setSelectedTags([])}
-                    className="inline-flex justify-center items-center border border-border/60 hover:border-foreground/30 rounded-full size-6 text-muted-foreground hover:text-foreground transition"
+                    className="inline-flex justify-center items-center border border-border/70 hover:border-foreground/30 rounded-full size-6 text-muted-foreground hover:text-foreground transition"
                     aria-label="Reset tag filters"
                   >
                     <XIcon className="size-3" />
@@ -202,7 +203,7 @@ function ComponentCard({ item }: { item: RegistryItemSummary }) {
     <Link
       href={item.docs ?? `/components/${item.name}`}
       className={cn(
-        "flex flex-col gap-3 p-4 border rounded-xl surface-ring overflow-hidden text-card-foreground surface-panel card-glow",
+        "flex flex-col gap-3 p-4 border rounded-2xl surface-ring overflow-hidden text-card-foreground surface-panel card-glow",
       )}
     >
       <div>

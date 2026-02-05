@@ -1,20 +1,15 @@
 import { CodeBlock } from "@/components/code-block";
+import { ComponentPreview } from "@/components/component-previews";
 import { FadeIn } from "@/components/fade-in";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
 
 import {
   ArrowRight,
-  CheckCircle2,
+  CircleCheck,
   Code2,
-  Package,
+  Command,
+  Layers,
   Sparkles,
-  Terminal,
+  WandSparkles,
 } from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
@@ -45,182 +40,173 @@ export const metadata: Metadata = {
 
 export default function GetStartedPage() {
   return (
-    <div className="relative bg-catalog-grid px-4 lg:px-8 py-16 w-full overflow-hidden">
-      <FadeIn className="relative mb-20">
-        <div className="z-10 relative flex flex-col items-center gap-5 mx-auto max-w-3xl text-center">
-          <div className="inline-flex items-center gap-2 px-3 py-1 border rounded-full surface-ring w-fit font-medium text-primary text-sm surface-panel-soft">
-            <Package className="size-4" />
-            <span>RHF + Zod ready</span>
-          </div>
-          <h1 className="font-display text-5xl sm:text-7xl leading-tight tracking-tight">
-            The modern library for{" "}
-            <span className="text-gradient-primary">React Hook Form</span>
-          </h1>
-          <p className="max-w-2xl text-muted-foreground text-lg sm:text-xl/relaxed">
-            A curated collection of input components with Zod integration, built
-            on Base UI and Tailwind CSS for a clean, composable form catalog.
-          </p>
-          <div className="flex flex-wrap justify-center gap-4 mt-4">
-            <Link
-              href="/components"
-              className="inline-flex justify-center items-center gap-2 bg-primary hover:bg-primary/90 px-6 py-3 rounded-lg font-medium text-primary-foreground transition-colors card-glow"
-            >
-              Browse Components
-              <ArrowRight className="size-4" />
-            </Link>
-            <Link
-              href="/registry.json"
-              className="inline-flex justify-center items-center gap-2 px-6 py-3 border border-border/70 rounded-lg surface-ring font-medium text-foreground transition-colors surface-panel-soft"
-            >
-              View Registry
-            </Link>
-          </div>
-        </div>
+    <div className="relative bg-catalog-grid px-4 lg:px-10 py-16 w-full overflow-hidden">
+      <div className="-top-32 -right-24 float-slow absolute bg-[var(--gradient-accent)] opacity-30 blur-3xl rounded-full w-[30rem] h-[30rem]" />
+      <div className="top-20 -left-20 float-slow absolute bg-primary/20 blur-3xl rounded-full w-96 h-96" />
 
-        <div className="top-1/2 -right-24 -z-10 absolute bg-primary/15 blur-3xl rounded-full w-150 h-150 -translate-y-1/2 animate-pulse pointer-events-none" />
-        <div className="top-1/3 -left-24 -z-10 absolute bg-[var(--gradient-accent)] opacity-20 blur-3xl rounded-full w-100 h-100 -translate-y-1/2 pointer-events-none" />
-      </FadeIn>
-
-      <div className="gap-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mb-20">
-        <FadeIn
-          delay={0.1}
-          className="p-6 border rounded-2xl surface-ring overflow-hidden surface-panel card-glow"
-        >
-          <div className="flex items-center gap-4 mb-4">
-            <div className="flex justify-center items-center bg-primary/10 rounded-lg size-10 text-primary">
-              <CheckCircle2 className="size-6" />
+      <section className="relative mx-auto max-w-8xl">
+        <div className="items-center gap-12 grid lg:grid-cols-[1.1fr_0.9fr]">
+          <FadeIn className="flex flex-col gap-6">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 border rounded-full surface-ring w-fit font-medium text-primary text-xs uppercase tracking-[0.2em] surface-panel-soft">
+              <Sparkles className="size-4" />
+              Registry-native form inputs
             </div>
-            <h3 className="font-semibold text-xl">RHF-first</h3>
-          </div>
-          <p className="text-muted-foreground">
-            Inputs designed for React Hook Form with consistent labels, errors,
-            and validation states out of the box.
-          </p>
-        </FadeIn>
-        <FadeIn
-          delay={0.2}
-          className="p-6 border rounded-2xl surface-ring surface-panel card-glow"
-        >
-          <div className="flex items-center gap-4 mb-4">
-            <div className="flex justify-center items-center bg-primary/10 rounded-lg size-10 text-primary">
-              <Terminal className="size-6" />
+            <h1 className="font-display text-4xl sm:text-6xl lg:text-7xl leading-[1.05] tracking-tight">
+              Shape polished RHF experiences in{" "}
+              <span className="text-gradient-primary">minutes</span>
+            </h1>
+            <p className="max-w-xl text-muted-foreground text-lg sm:text-xl/relaxed">
+              A modern, registry-first library of React Hook Form inputs with
+              Zod integration, engineered for speed, clarity, and composability.
+            </p>
+            <div className="flex flex-wrap items-center gap-4">
+              <Link
+                href="/components"
+                className="inline-flex justify-center items-center gap-2 bg-primary hover:bg-primary/90 px-6 py-3 rounded-full font-medium text-primary-foreground transition-colors card-glow"
+              >
+                Browse components
+                <ArrowRight className="size-4" />
+              </Link>
+              <Link
+                href="/registry.json"
+                className="inline-flex justify-center items-center gap-2 px-6 py-3 border border-border/70 rounded-full surface-ring font-medium text-foreground transition-colors surface-panel-soft"
+              >
+                View registry
+              </Link>
             </div>
-            <h3 className="font-semibold text-xl">Zod-integrated</h3>
-          </div>
-          <p className="text-muted-foreground">
-            Schema-first validation with Zod-friendly patterns and types you can
-            rely on across your forms.
-          </p>
-        </FadeIn>
-        <FadeIn
-          delay={0.3}
-          className="p-6 border rounded-2xl surface-ring surface-panel card-glow"
-        >
-          <div className="flex items-center gap-4 mb-4">
-            <div className="flex justify-center items-center bg-primary/10 rounded-lg size-10 text-primary">
-              <Package className="size-6" />
+            <div className="gap-6 grid grid-cols-3 pt-4 text-sm">
+              <div className="flex flex-col">
+                <span className="font-semibold text-foreground text-2xl">
+                  30+
+                </span>
+                <span className="text-muted-foreground">inputs shipped</span>
+              </div>
+              <div className="flex flex-col">
+                <span className="font-semibold text-foreground text-2xl">
+                  RHF
+                </span>
+                <span className="text-muted-foreground">first-class</span>
+              </div>
+              <div className="flex flex-col">
+                <span className="font-semibold text-foreground text-2xl">
+                  Zod
+                </span>
+                <span className="text-muted-foreground">ready</span>
+              </div>
             </div>
-            <h3 className="font-semibold text-xl">Registry workflow</h3>
-          </div>
-          <p className="text-muted-foreground">
-            Install inputs directly from the CLI with the shadcn registry, then
-            customize the code to fit your app.
-          </p>
-        </FadeIn>
-      </div>
-
-      <FadeIn className="bg-gradient-mesh px-4 md:px-6 py-12 border border-border/50 rounded-3xl section-highlight">
-        <div className="mx-auto mb-12 max-w-2xl text-center">
-          <h2 className="mb-4 font-display text-3xl tracking-tight">
-            Start building RHF inputs in{" "}
-            <span className="text-gradient-primary">seconds</span>
-          </h2>
-          <p className="text-muted-foreground text-lg">
-            Add React Hook Form inputs with the CLI and wire them to Zod schemas
-            without extra boilerplate.
-          </p>
-        </div>
-
-        <div className="gap-8 grid grid-cols-1 lg:grid-cols-2">
-          <FadeIn>
-            <Card className="card-gradient card-glow">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-3">
-                  <div className="flex justify-center items-center bg-primary rounded-full size-8 font-bold text-primary-foreground shrink-0">
-                    1
-                  </div>
-                  Configure components.json
-                </CardTitle>
-                <CardDescription>
-                  Add the registry URL to your <code>components.json</code> file
-                  to tell shadcn where to look for components.
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <CodeBlock
-                  code={`"registries": {
-  "@pb-ui": "https://pb-ui-five.vercel.app/registry/{name}"
-}`}
-                  language="json"
-                  className="bg-background border border-border/60"
-                />
-              </CardContent>
-            </Card>
           </FadeIn>
 
-          <FadeIn>
-            <Card className="card-gradient card-glow">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-3">
-                  <div className="flex justify-center items-center bg-primary rounded-full size-8 font-bold text-primary-foreground shrink-0">
-                    2
-                  </div>
-                  Run the add command
-                </CardTitle>
-                <CardDescription>
-                  Use the CLI to add any component. Dependencies and registry
-                  items will be installed automatically.
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
+          <FadeIn delay={0.1} className="relative">
+            <div className="relative p-6 border border-border/70 rounded-3xl surface-ring overflow-hidden surface-panel card-glow">
+              <div className="flex items-center gap-2 text-muted-foreground text-xs uppercase tracking-[0.18em]">
+                <Command className="size-4 text-primary" />
+                Install in one command
+              </div>
+              <div className="mt-4">
                 <CodeBlock
-                  code="npx shadcn@latest add @pb-ui/multi-select"
+                  code="npx shadcn@latest add @pb-ui/input"
                   language="bash"
-                  className="bg-background border border-border/60"
+                  className="bg-background/70 border border-border/60"
                 />
-              </CardContent>
-            </Card>
+              </div>
+              <div className="gap-3 grid mt-6 text-sm">
+                <div className="flex items-center gap-3">
+                  <CircleCheck className="size-4 text-primary" />
+                  <span>Auto-installs dependencies</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <CircleCheck className="size-4 text-primary" />
+                  <span>Typed, accessible, composable</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <CircleCheck className="size-4 text-primary" />
+                  <span>Works with Base UI + Tailwind v4</span>
+                </div>
+              </div>
+              <div className="top-4 right-4 absolute bg-primary/10 px-3 py-1 rounded-full font-medium text-primary text-xs">
+                CLI-ready
+              </div>
+            </div>
+            <div className="-bottom-8 left-8 absolute px-4 py-3 border border-border/60 rounded-2xl text-muted-foreground text-xs surface-panel-soft">
+              No boilerplate. Just components.
+            </div>
           </FadeIn>
         </div>
-      </FadeIn>
+      </section>
 
-      <FadeIn className="mt-32 mb-20">
-        <div className="mx-auto mb-12 max-w-3xl text-center">
-          <h2 className="mb-4 font-display text-3xl sm:text-4xl tracking-tight">
-            Stop writing the same{" "}
-            <span className="text-gradient-primary">boilerplate</span>
-          </h2>
-          <p className="text-muted-foreground text-lg">
-            See the difference between standard React Hook Form + shadcn/ui
-            implementation versus using our pre-built wrappers.
-          </p>
+      <section className="mx-auto mt-24 max-w-8xl">
+        <div className="gap-6 grid md:grid-cols-3">
+          <FadeIn className="p-6 border rounded-3xl surface-ring surface-panel card-glow">
+            <div className="flex items-center gap-3 mb-4">
+              <div className="flex justify-center items-center bg-primary/10 rounded-2xl size-10 text-primary">
+                <Layers className="size-5" />
+              </div>
+              <h3 className="font-semibold text-xl">Form-native APIs</h3>
+            </div>
+            <p className="text-muted-foreground">
+              RHF controllers, labels, and errors are standardized so every
+              input behaves consistently.
+            </p>
+          </FadeIn>
+          <FadeIn
+            delay={0.1}
+            className="p-6 border rounded-3xl surface-ring surface-panel card-glow"
+          >
+            <div className="flex items-center gap-3 mb-4">
+              <div className="flex justify-center items-center bg-primary/10 rounded-2xl size-10 text-primary">
+                <WandSparkles className="size-5" />
+              </div>
+              <h3 className="font-semibold text-xl">Zod in the loop</h3>
+            </div>
+            <p className="text-muted-foreground">
+              Schema validation, inline error text, and predictable types built
+              in from the start.
+            </p>
+          </FadeIn>
+          <FadeIn
+            delay={0.2}
+            className="p-6 border rounded-3xl surface-ring surface-panel card-glow"
+          >
+            <div className="flex items-center gap-3 mb-4">
+              <div className="flex justify-center items-center bg-primary/10 rounded-2xl size-10 text-primary">
+                <Sparkles className="size-5" />
+              </div>
+              <h3 className="font-semibold text-xl">Registry distribution</h3>
+            </div>
+            <p className="text-muted-foreground">
+              Install from the shadcn registry and tweak the code in your own
+              repo, without fighting black boxes.
+            </p>
+          </FadeIn>
         </div>
+      </section>
 
-        <div className="space-y-16">
-          {/* Basic Input */}
-          <div className="space-y-6">
-            <h3 className="font-medium text-muted-foreground text-sm text-center uppercase tracking-widest">
-              Basic Input
-            </h3>
-            <div className="gap-8 lg:gap-12 grid grid-cols-1 lg:grid-cols-2">
-              <div className="space-y-4">
-                <div className="flex items-center gap-2 px-1 font-semibold text-muted-foreground">
-                  <Code2 className="size-5" />
-                  <span>Standard Approach</span>
-                </div>
-                <FadeIn>
-                  <Card className="group relative bg-muted/30 border-gradient overflow-hidden">
-                    <CardContent className="p-1">
+      <section className="mx-auto mt-24 max-w-8xl">
+        <FadeIn className="flex flex-col gap-10">
+          <div className="mx-auto max-w-3xl text-center">
+            <h2 className="mb-4 font-display text-3xl sm:text-4xl tracking-tight">
+              Stop writing the same{" "}
+              <span className="text-gradient-primary">boilerplate</span>
+            </h2>
+            <p className="text-muted-foreground text-lg">
+              See the difference between standard React Hook Form + shadcn/ui
+              implementation versus using our pre-built wrappers.
+            </p>
+          </div>
+
+          <div className="space-y-16">
+            <div className="space-y-6">
+              <h3 className="font-medium text-muted-foreground text-sm text-center uppercase tracking-widest">
+                Basic Input
+              </h3>
+              <div className="gap-8 lg:gap-12 grid grid-cols-1 lg:grid-cols-2">
+                <div className="space-y-4">
+                  <div className="flex items-center gap-2 px-1 font-semibold text-muted-foreground">
+                    <Code2 className="size-5" />
+                    <span>Standard approach</span>
+                  </div>
+                  <div className="bg-muted/30 border-gradient rounded-3xl overflow-hidden">
+                    <div className="p-1">
                       <CodeBlock
                         language="tsx"
                         code={`<Controller
@@ -245,22 +231,20 @@ export default function GetStartedPage() {
 />`}
                         className="bg-transparent border-0"
                       />
-                    </CardContent>
-                  </Card>
-                </FadeIn>
-              </div>
-
-              <div className="space-y-4">
-                <div className="flex items-center gap-2 px-1 font-semibold text-primary">
-                  <Sparkles className="size-5" />
-                  <span>With PB-UI</span>
-                </div>
-                <FadeIn>
-                  <Card className="group relative overflow-hidden card-gradient card-glow">
-                    <div className="top-4 right-4 absolute bg-primary/10 px-2 py-1 rounded font-medium text-primary text-xs">
-                      One Component
                     </div>
-                    <CardContent className="p-1">
+                  </div>
+                </div>
+
+                <div className="space-y-4">
+                  <div className="flex items-center gap-2 px-1 font-semibold text-primary">
+                    <Sparkles className="size-5" />
+                    <span>With PB-UI</span>
+                  </div>
+                  <div className="relative rounded-3xl overflow-hidden card-gradient card-glow">
+                    <div className="top-4 right-4 absolute bg-primary/10 px-2 py-1 rounded-full font-medium text-primary text-xs">
+                      One component
+                    </div>
+                    <div className="p-1">
                       <CodeBlock
                         language="tsx"
                         code={`<InputField
@@ -272,27 +256,24 @@ export default function GetStartedPage() {
 />`}
                         className="bg-transparent border-0"
                       />
-                    </CardContent>
-                  </Card>
-                </FadeIn>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
 
-          {/* Date Picker */}
-          <div className="space-y-6">
-            <h3 className="font-medium text-muted-foreground text-sm text-center uppercase tracking-widest">
-              Date Picker
-            </h3>
-            <div className="gap-8 lg:gap-12 grid grid-cols-1 lg:grid-cols-2">
-              <div className="space-y-4">
-                <div className="flex items-center gap-2 px-1 font-semibold text-muted-foreground">
-                  <Code2 className="size-5" />
-                  <span>Standard Approach</span>
-                </div>
-                <FadeIn>
-                  <Card className="group relative bg-muted/30 border-gradient overflow-hidden">
-                    <CardContent className="p-1">
+            <div className="space-y-6">
+              <h3 className="font-medium text-muted-foreground text-sm text-center uppercase tracking-widest">
+                Date Picker
+              </h3>
+              <div className="gap-8 lg:gap-12 grid grid-cols-1 lg:grid-cols-2">
+                <div className="space-y-4">
+                  <div className="flex items-center gap-2 px-1 font-semibold text-muted-foreground">
+                    <Code2 className="size-5" />
+                    <span>Standard approach</span>
+                  </div>
+                  <div className="bg-muted/30 border-gradient rounded-3xl overflow-hidden">
+                    <div className="p-1">
                       <CodeBlock
                         language="tsx"
                         code={`<Controller
@@ -339,22 +320,20 @@ export default function GetStartedPage() {
 />`}
                         className="bg-transparent border-0"
                       />
-                    </CardContent>
-                  </Card>
-                </FadeIn>
-              </div>
-
-              <div className="space-y-4">
-                <div className="flex items-center gap-2 px-1 font-semibold text-primary">
-                  <Sparkles className="size-5" />
-                  <span>With PB-UI</span>
-                </div>
-                <FadeIn>
-                  <Card className="group relative overflow-hidden card-gradient card-glow">
-                    <div className="top-4 right-4 absolute bg-primary/10 px-2 py-1 rounded font-medium text-primary text-xs">
-                      One Component
                     </div>
-                    <CardContent className="p-1">
+                  </div>
+                </div>
+
+                <div className="space-y-4">
+                  <div className="flex items-center gap-2 px-1 font-semibold text-primary">
+                    <Sparkles className="size-5" />
+                    <span>With PB-UI</span>
+                  </div>
+                  <div className="relative rounded-3xl overflow-hidden card-gradient card-glow">
+                    <div className="top-4 right-4 absolute bg-primary/10 px-2 py-1 rounded-full font-medium text-primary text-xs">
+                      One component
+                    </div>
+                    <div className="p-1">
                       <CodeBlock
                         language="tsx"
                         code={`<DatePickerField
@@ -365,14 +344,149 @@ export default function GetStartedPage() {
 />`}
                         className="bg-transparent border-0"
                       />
-                    </CardContent>
-                  </Card>
-                </FadeIn>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
+        </FadeIn>
+      </section>
+
+      <section className="mx-auto mt-24 max-w-8xl">
+        <div className="flex flex-col gap-10">
+          <div className="flex flex-col gap-3">
+            <h2 className="font-display text-3xl sm:text-4xl tracking-tight">
+              Install once, ship everywhere
+            </h2>
+            <p className="max-w-2xl text-muted-foreground text-lg">
+              Point shadcn to the registry, add inputs on demand, and keep the
+              code fully editable inside your project.
+            </p>
+          </div>
+          <div className="gap-6 grid lg:grid-cols-2">
+            <FadeIn className="p-6 border border-border/70 rounded-3xl surface-ring surface-panel">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="flex justify-center items-center bg-primary rounded-full size-9 font-semibold text-primary-foreground">
+                  1
+                </div>
+                <h3 className="font-semibold text-lg">
+                  Configure the registry
+                </h3>
+              </div>
+              <p className="text-muted-foreground text-sm">
+                Add the pb-ui registry URL to your components configuration.
+              </p>
+              <div className="mt-4">
+                <CodeBlock
+                  code={`"registries": {
+  "@pb-ui": "https://pb-ui-five.vercel.app/registry/{name}"
+}`}
+                  language="json"
+                  className="bg-background/70 border border-border/60"
+                />
+              </div>
+            </FadeIn>
+            <FadeIn
+              delay={0.1}
+              className="p-6 border border-border/70 rounded-3xl surface-ring surface-panel"
+            >
+              <div className="flex items-center gap-3 mb-4">
+                <div className="flex justify-center items-center bg-primary rounded-full size-9 font-semibold text-primary-foreground">
+                  2
+                </div>
+                <h3 className="font-semibold text-lg">Add inputs instantly</h3>
+              </div>
+              <p className="text-muted-foreground text-sm">
+                Use the CLI to bring in any component, with dependencies and
+                examples included.
+              </p>
+              <div className="mt-4">
+                <CodeBlock
+                  code="npx shadcn@latest add @pb-ui/multi-select"
+                  language="bash"
+                  className="bg-background/70 border border-border/60"
+                />
+              </div>
+            </FadeIn>
+          </div>
         </div>
-      </FadeIn>
+      </section>
+
+      <section className="mx-auto mt-24 max-w-8xl">
+        <div className="flex justify-between items-end gap-6 mb-10">
+          <div>
+            <h2 className="font-display text-3xl sm:text-4xl tracking-tight">
+              Live previews, ready to drop in
+            </h2>
+            <p className="max-w-2xl text-muted-foreground text-lg">
+              Explore the catalog and copy the exact code you need for each
+              input.
+            </p>
+          </div>
+          <Link
+            href="/components"
+            className="hidden sm:inline-flex items-center gap-2 font-medium text-primary hover:text-primary/80 text-sm"
+          >
+            Explore the catalog
+            <ArrowRight className="size-4" />
+          </Link>
+        </div>
+        <div className="gap-6 grid md:grid-cols-3">
+          <FadeIn className="p-6 border border-border/70 rounded-3xl surface-ring surface-panel">
+            <div className="mb-4 font-semibold">Input</div>
+            <ComponentPreview name="input" />
+          </FadeIn>
+          <FadeIn
+            delay={0.1}
+            className="p-6 border border-border/70 rounded-3xl surface-ring surface-panel"
+          >
+            <div className="mb-4 font-semibold">Select</div>
+            <ComponentPreview name="select" />
+          </FadeIn>
+          <FadeIn
+            delay={0.2}
+            className="p-6 border border-border/70 rounded-3xl surface-ring surface-panel"
+          >
+            <div className="mb-4 font-semibold">Tag input</div>
+            <ComponentPreview name="tag-input" />
+          </FadeIn>
+        </div>
+      </section>
+
+      <section className="mx-auto mt-24 max-w-8xl">
+        <FadeIn className="relative p-10 border border-border/70 rounded-[32px] surface-ring overflow-hidden surface-panel">
+          <div className="absolute inset-0 pointer-events-none sheen-sweep" />
+          <div className="relative flex flex-col gap-4 max-w-2xl">
+            <div className="inline-flex items-center gap-2 px-3 py-1 border rounded-full surface-ring w-fit font-medium text-primary text-xs uppercase tracking-[0.2em] surface-panel-soft">
+              <Sparkles className="size-4" />
+              Ready to build
+            </div>
+            <h2 className="font-display text-3xl sm:text-4xl tracking-tight">
+              Build your next form flow with confidence
+            </h2>
+            <p className="text-muted-foreground text-lg">
+              Start with the registry, bring in the exact inputs you need, and
+              ship forms that feel consistent across every surface.
+            </p>
+            <div className="flex flex-wrap items-center gap-4">
+              <Link
+                href="/components"
+                className="inline-flex justify-center items-center gap-2 bg-primary hover:bg-primary/90 px-6 py-3 rounded-full font-medium text-primary-foreground transition-colors card-glow"
+              >
+                Start browsing
+                <ArrowRight className="size-4" />
+              </Link>
+              <Link
+                href="/registry.json"
+                className="font-medium text-foreground hover:text-primary text-sm"
+              >
+                View registry index
+              </Link>
+            </div>
+          </div>
+        </FadeIn>
+      </section>
     </div>
   );
 }

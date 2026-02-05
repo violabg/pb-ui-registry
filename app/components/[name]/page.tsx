@@ -85,146 +85,158 @@ export default async function ComponentPage({
   const componentExamples = examples[name] || [];
 
   return (
-    <div className="relative bg-catalog-grid px-4 xl:px-8 py-12 w-full">
-      <div className="lg:gap-10 lg:grid lg:grid-cols-[1fr_240px] xl:grid-cols-[240px_1fr_240px]">
-        <aside className="hidden xl:block">
-          <div className="top-24 sticky pr-4 h-[calc(100vh-6rem)] overflow-y-auto">
-            {sections.map((section) => (
-              <div key={section.key} className="mb-6">
-                <div className="mb-2 font-semibold text-muted-foreground text-sm uppercase tracking-widest">
-                  {section.key}
-                </div>
-                <ul className="space-y-1 m-0 p-0 list-none">
-                  {section.items.map((it) => (
-                    <li key={it.name}>
-                      <Link
-                        href={`/components/${it.name}`}
-                        className={`block text-sm ${
-                          it.name === item.name
-                            ? "text-foreground font-medium"
-                            : "text-muted-foreground hover:text-foreground"
-                        }`}
-                      >
-                        {it.title}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-        </aside>
-
-        <div className="flex flex-col gap-10 min-w-0">
-          <div className="flex flex-col gap-4">
-            <div className="flex flex-col gap-2">
-              <Link
-                href="/components"
-                className="text-muted-foreground text-sm hover:underline"
-              >
-                Components
-              </Link>
-              <ViewTransition name={`title-${item.name}`}>
-                <h1 className="font-display text-4xl leading-tight tracking-tight scroll-m-20">
-                  {item.title}
-                </h1>
-              </ViewTransition>
-              <ViewTransition name={`description-${item.name}`}>
-                <p className="text-muted-foreground text-lg">
-                  {item.description}
-                </p>
-              </ViewTransition>
-            </div>
-            <ViewTransition name={`categories-${item.name}`}>
-              <div className="flex flex-wrap gap-2">
-                <Badge
-                  variant="secondary"
-                  className="px-2.5 py-0.5 rounded-md font-medium text-xs"
-                >
-                  {item.type}
-                </Badge>
-                {item.categories?.map((category) => (
-                  <Badge
-                    key={category}
-                    variant="outline"
-                    className="px-2.5 py-0.5 rounded-md font-medium text-xs"
-                  >
-                    {category}
-                  </Badge>
-                ))}
-              </div>
-            </ViewTransition>
-          </div>
-
-          <div className="flex flex-col gap-4">
-            <h2
-              id="installation"
-              className="font-display text-xl tracking-tight scroll-m-20"
-            >
-              Installation
-            </h2>
-            <InstallCommand command={getInstallCommand(item.name)} />
-          </div>
-
-          {componentExamples.length > 0 && (
-            <div className="flex flex-col gap-8">
-              <h2 className="font-display text-2xl tracking-tight scroll-m-20">
-                Examples
-              </h2>
-              {componentExamples.map((example) => (
-                <div
-                  key={example.name}
-                  id={example.name}
-                  className="flex flex-col gap-4 scroll-mt-24"
-                >
-                  <h3 className="font-semibold text-lg">{example.title}</h3>
-                  <ComponentPreviewTabs
-                    preview={example.component}
-                    code={example.code}
-                    language="tsx"
-                    registryHref={`/registry/${item.name}`}
-                  />
-                </div>
-              ))}
-            </div>
-          )}
-        </div>
-
-        <div className="hidden lg:block text-sm">
-          <div className="top-10 sticky h-[calc(100vh-3.5rem)] overflow-hidden">
-            <div className="py-2 h-full overflow-y-auto">
-              <div className="space-y-4">
-                <div className="font-semibold">On This Page</div>
-                <ul className="space-y-2 m-0 pl-0 list-none">
-                  <li>
-                    <Link
-                      href="#installation"
-                      className="text-muted-foreground hover:text-foreground line-clamp-1"
-                    >
-                      Installation
-                    </Link>
-                  </li>
-                  {componentExamples.length > 0 && (
-                    <li>
-                      <span className="font-medium">Examples</span>
-                      <ul className="space-y-2 m-0 mt-2 pl-4 list-none">
-                        {componentExamples.map((example) => (
-                          <li key={example.name}>
+    <div className="relative bg-catalog-grid px-4 xl:px-10 py-12 w-full">
+      <div className="mx-auto max-w-8xl">
+        <div className="gap-10 grid lg:grid-cols-[260px_1fr] xl:grid-cols-[260px_1fr_220px]">
+          <aside className="hidden lg:block text-sm">
+            <div className="top-10 sticky h-[calc(100vh-3.5rem)] overflow-hidden">
+              <div className="py-2 h-full overflow-y-auto">
+                <div className="mb-6 p-4 border border-border/70 rounded-2xl surface-ring surface-panel-soft">
+                  <div className="mb-3 font-semibold text-muted-foreground text-xs uppercase tracking-widest">
+                    Catalog map
+                  </div>
+                  {sections.map((section) => (
+                    <div key={section.key} className="mb-6">
+                      <div className="mb-2 font-semibold text-muted-foreground text-xs uppercase tracking-widest">
+                        {section.key}
+                      </div>
+                      <ul className="space-y-1 m-0 p-0 list-none">
+                        {section.items.map((it) => (
+                          <li key={it.name}>
                             <Link
-                              href={`#${example.name}`}
-                              className="text-muted-foreground hover:text-foreground line-clamp-1"
+                              href={`/components/${it.name}`}
+                              className={`block text-sm ${
+                                it.name === item.name
+                                  ? "text-foreground font-medium"
+                                  : "text-muted-foreground hover:text-foreground"
+                              }`}
                             >
-                              {example.title}
+                              {it.title}
                             </Link>
                           </li>
                         ))}
                       </ul>
-                    </li>
-                  )}
-                </ul>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
+          </aside>
+
+          <div className="flex flex-col gap-10 min-w-0">
+            <div className="flex flex-col gap-6">
+              <Link
+                href="/components"
+                className="text-muted-foreground hover:text-foreground text-sm"
+              >
+                Components
+              </Link>
+              <div className="flex flex-col gap-3">
+                <ViewTransition name={`title-${item.name}`}>
+                  <h1 className="font-display text-4xl sm:text-5xl leading-tight tracking-tight scroll-m-20">
+                    {item.title}
+                  </h1>
+                </ViewTransition>
+                <ViewTransition name={`description-${item.name}`}>
+                  <p className="max-w-2xl text-muted-foreground text-lg">
+                    {item.description}
+                  </p>
+                </ViewTransition>
+              </div>
+              <ViewTransition name={`categories-${item.name}`}>
+                <div className="flex flex-wrap gap-2">
+                  <Badge
+                    variant="secondary"
+                    className="px-2.5 py-0.5 rounded-full font-medium text-xs"
+                  >
+                    {item.type}
+                  </Badge>
+                  {item.categories?.map((category) => (
+                    <Badge
+                      key={category}
+                      variant="outline"
+                      className="px-2.5 py-0.5 rounded-full font-medium text-xs"
+                    >
+                      {category}
+                    </Badge>
+                  ))}
+                </div>
+              </ViewTransition>
+            </div>
+            <div className="p-6 border border-border/70 rounded-3xl surface-ring surface-panel">
+              <h2
+                id="installation"
+                className="font-display text-xl tracking-tight scroll-m-20"
+              >
+                Installation
+              </h2>
+              <div className="mt-4">
+                <InstallCommand command={getInstallCommand(item.name)} />
+              </div>
+            </div>
+
+            {componentExamples.length > 0 && (
+              <div className="flex flex-col gap-8">
+                <h2 className="font-display text-2xl tracking-tight scroll-m-20">
+                  Examples
+                </h2>
+                {componentExamples.map((example) => (
+                  <div
+                    key={example.name}
+                    id={example.name}
+                    className="flex flex-col gap-4 scroll-mt-24"
+                  >
+                    <h3 className="font-semibold text-lg">{example.title}</h3>
+                    <ComponentPreviewTabs
+                      preview={example.component}
+                      code={example.code}
+                      language="tsx"
+                      registryHref={`/registry/${item.name}`}
+                    />
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
+
+          <aside className="hidden xl:block text-sm">
+            <div className="top-10 sticky h-[calc(100vh-3.5rem)] overflow-hidden">
+              <div className="py-2 h-full overflow-y-auto">
+                <div className="p-4 border border-border/70 rounded-2xl surface-ring surface-panel-soft">
+                  <div className="mb-3 font-semibold text-muted-foreground text-xs uppercase tracking-widest">
+                    On this page
+                  </div>
+                  <ul className="space-y-2 m-0 pl-0 list-none">
+                    <li>
+                      <Link
+                        href="#installation"
+                        className="text-muted-foreground hover:text-foreground line-clamp-1"
+                      >
+                        Installation
+                      </Link>
+                    </li>
+                    {componentExamples.length > 0 && (
+                      <li>
+                        <span className="font-medium">Examples</span>
+                        <ul className="space-y-2 m-0 mt-2 pl-4 list-none">
+                          {componentExamples.map((example) => (
+                            <li key={example.name}>
+                              <Link
+                                href={`#${example.name}`}
+                                className="text-muted-foreground hover:text-foreground line-clamp-1"
+                              >
+                                {example.title}
+                              </Link>
+                            </li>
+                          ))}
+                        </ul>
+                      </li>
+                    )}
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </aside>
         </div>
       </div>
     </div>
