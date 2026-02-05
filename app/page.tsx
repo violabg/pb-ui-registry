@@ -182,7 +182,7 @@ export default function GetStartedPage() {
       </section>
 
       <section className="mx-auto mt-24 max-w-8xl">
-        <FadeIn className="flex flex-col gap-10">
+        <div className="flex flex-col gap-10">
           <div className="mx-auto max-w-3xl text-center">
             <h2 className="mb-4 font-display text-3xl sm:text-4xl tracking-tight">
               Stop writing the same{" "}
@@ -205,7 +205,7 @@ export default function GetStartedPage() {
                     <Code2 className="size-5" />
                     <span>Standard approach</span>
                   </div>
-                  <div className="bg-muted/30 border-gradient rounded-3xl overflow-hidden">
+                  <FadeIn className="bg-muted/30 border-gradient rounded-3xl overflow-hidden">
                     <div className="p-1">
                       <CodeBlock
                         language="tsx"
@@ -232,7 +232,7 @@ export default function GetStartedPage() {
                         className="bg-transparent border-0"
                       />
                     </div>
-                  </div>
+                  </FadeIn>
                 </div>
 
                 <div className="space-y-4">
@@ -240,7 +240,7 @@ export default function GetStartedPage() {
                     <Sparkles className="size-5" />
                     <span>With PB-UI</span>
                   </div>
-                  <div className="relative rounded-3xl overflow-hidden card-gradient card-glow">
+                  <FadeIn className="relative rounded-3xl overflow-hidden card-gradient card-glow">
                     <div className="top-4 right-4 absolute bg-primary/10 px-2 py-1 rounded-full font-medium text-primary text-xs">
                       One component
                     </div>
@@ -257,7 +257,7 @@ export default function GetStartedPage() {
                         className="bg-transparent border-0"
                       />
                     </div>
-                  </div>
+                  </FadeIn>
                 </div>
               </div>
             </div>
@@ -272,7 +272,7 @@ export default function GetStartedPage() {
                     <Code2 className="size-5" />
                     <span>Standard approach</span>
                   </div>
-                  <div className="bg-muted/30 border-gradient rounded-3xl overflow-hidden">
+                  <FadeIn className="bg-muted/30 border-gradient rounded-3xl overflow-hidden">
                     <div className="p-1">
                       <CodeBlock
                         language="tsx"
@@ -321,7 +321,7 @@ export default function GetStartedPage() {
                         className="bg-transparent border-0"
                       />
                     </div>
-                  </div>
+                  </FadeIn>
                 </div>
 
                 <div className="space-y-4">
@@ -329,7 +329,7 @@ export default function GetStartedPage() {
                     <Sparkles className="size-5" />
                     <span>With PB-UI</span>
                   </div>
-                  <div className="relative rounded-3xl overflow-hidden card-gradient card-glow">
+                  <FadeIn className="relative rounded-3xl overflow-hidden card-gradient card-glow">
                     <div className="top-4 right-4 absolute bg-primary/10 px-2 py-1 rounded-full font-medium text-primary text-xs">
                       One component
                     </div>
@@ -345,12 +345,12 @@ export default function GetStartedPage() {
                         className="bg-transparent border-0"
                       />
                     </div>
-                  </div>
+                  </FadeIn>
                 </div>
               </div>
             </div>
           </div>
-        </FadeIn>
+        </div>
       </section>
 
       <section className="mx-auto mt-24 max-w-8xl">
