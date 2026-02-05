@@ -13,12 +13,12 @@ export function FadeIn({
   children,
   className,
   delay = 0,
-  duration = 0.5,
+  duration = 0.6,
 }: FadeInProps) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
+      initial={{ opacity: 0, y: 18, filter: "blur(6px)" }}
+      whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
       viewport={{ once: true, margin: "-50px" }}
       transition={{ duration, delay, ease: "easeOut" }}
       className={className}

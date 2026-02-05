@@ -1,5 +1,6 @@
 "use client";
 
+import { XIcon } from "lucide-react";
 import Link from "next/link";
 import * as React from "react";
 import { ViewTransition } from "react";
@@ -15,15 +16,36 @@ type ComponentBrowserProps = {
 
 export function ComponentBrowser({ items }: ComponentBrowserProps) {
   const [query, setQuery] = React.useState("");
+  const [selectedTags, setSelectedTags] = React.useState<string[]>([]);
+
+  const tags = React.useMemo(() => {
+    const tagSet = new Set<string>();
+
+    for (const item of items) {
+      item.categories?.forEach((category) => tagSet.add(category));
+    }
+
+    return Array.from(tagSet).sort((a, b) => a.localeCompare(b));
+  }, [items]);
 
   const filtered = React.useMemo(() => {
     const input = query.trim().toLowerCase();
 
-    if (!input) {
-      return items;
-    }
-
     return items.filter((item) => {
+      if (selectedTags.length > 0) {
+        const matchesTag = item.categories?.some((category) =>
+          selectedTags.includes(category),
+        );
+
+        if (!matchesTag) {
+          return false;
+        }
+      }
+
+      if (!input) {
+        return true;
+      }
+
       const haystack = [
         item.name,
         item.title,
@@ -36,7 +58,7 @@ export function ComponentBrowser({ items }: ComponentBrowserProps) {
 
       return haystack.includes(input);
     });
-  }, [items, query]);
+  }, [items, query, selectedTags]);
 
   const { rhfItems, baseItems } = React.useMemo(() => {
     const rhf: RegistryItemSummary[] = [];
@@ -64,28 +86,91 @@ export function ComponentBrowser({ items }: ComponentBrowserProps) {
     <section className="flex flex-col gap-10">
       <div className="flex flex-col gap-6">
         <div className="flex flex-col gap-2">
-          <h1 className="font-semibold text-3xl">Components</h1>
+          <h1 className="font-display text-4xl tracking-tight">Components</h1>
           <p className="text-muted-foreground text-sm">
             Browse the registry and copy installation commands or component
             code.
           </p>
         </div>
-        <div className="flex items-center gap-2">
-          <Input
-            value={query}
-            onChange={(event) => setQuery(event.target.value)}
-            placeholder="Search components..."
-            className="max-w-md"
-          />
-          <span className="text-muted-foreground text-xs">
-            {filtered.length} components
-          </span>
+        <div className="flex flex-col gap-3">
+          <div className="flex items-center gap-2 px-3 py-2 border border-border/60 rounded-xl surface-ring surface-panel-soft">
+            <div className="relative flex-1">
+              <Input
+                value={query}
+                onChange={(event) => setQuery(event.target.value)}
+                placeholder="Search components..."
+                className="bg-transparent shadow-none pr-8 border-0 focus-visible:ring-0"
+              />
+              {query ? (
+                <button
+                  type="button"
+                  onClick={() => setQuery("")}
+                  className="top-1/2 right-2 absolute text-muted-foreground hover:text-foreground transition -translate-y-1/2"
+                  aria-label="Clear search"
+                >
+                  <XIcon className="size-4" />
+                </button>
+              ) : null}
+            </div>
+            <span className="text-muted-foreground text-xs">
+              {filtered.length} components
+            </span>
+          </div>
+          {tags.length > 0 ? (
+            <div className="flex flex-wrap items-center gap-2">
+              {tags.map((tag) => {
+                const isActive = selectedTags.includes(tag);
+
+                return (
+                  <button
+                    key={tag}
+                    type="button"
+                    onClick={() =>
+                      setSelectedTags((prev) =>
+                        prev.includes(tag)
+                          ? prev.filter((value) => value !== tag)
+                          : [...prev, tag],
+                      )
+                    }
+                    className={cn(
+                      "inline-flex items-center px-3 py-1 border rounded-full font-medium text-xs transition",
+                      isActive
+                        ? "border-foreground/30 bg-foreground/10 text-foreground"
+                        : "border-border/60 text-muted-foreground hover:border-foreground/30 hover:text-foreground",
+                    )}
+                    aria-pressed={isActive}
+                  >
+                    {tag}
+                  </button>
+                );
+              })}
+              {selectedTags.length > 0 ? (
+                <div className="flex items-center gap-2">
+                  <button
+                    type="button"
+                    onClick={() => setSelectedTags([])}
+                    className="text-muted-foreground hover:text-foreground text-xs transition"
+                  >
+                    Clear filters
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setSelectedTags([])}
+                    className="inline-flex justify-center items-center border border-border/60 hover:border-foreground/30 rounded-full size-6 text-muted-foreground hover:text-foreground transition"
+                    aria-label="Reset tag filters"
+                  >
+                    <XIcon className="size-3" />
+                  </button>
+                </div>
+              ) : null}
+            </div>
+          ) : null}
         </div>
       </div>
 
       {rhfItems.length > 0 && (
         <div className="flex flex-col gap-4">
-          <h2 className="pb-2 border-border border-b font-bold text-2xl tracking-tight">
+          <h2 className="pb-2 border-border border-b font-display text-2xl tracking-tight">
             React Hook Form
           </h2>
           <div className="gap-4 grid md:grid-cols-2">
@@ -98,7 +183,7 @@ export function ComponentBrowser({ items }: ComponentBrowserProps) {
 
       {baseItems.length > 0 && (
         <div className="flex flex-col gap-4">
-          <h2 className="pb-2 border-border border-b font-bold text-2xl tracking-tight">
+          <h2 className="pb-2 border-border border-b font-display text-2xl tracking-tight">
             Base Components
           </h2>
           <div className="gap-4 grid md:grid-cols-2">
@@ -117,7 +202,7 @@ function ComponentCard({ item }: { item: RegistryItemSummary }) {
     <Link
       href={item.docs ?? `/components/${item.name}`}
       className={cn(
-        "flex flex-col gap-3 p-4 border rounded-lg overflow-hidden text-card-foreground card-gradient card-glow",
+        "flex flex-col gap-3 p-4 border rounded-xl surface-ring overflow-hidden text-card-foreground surface-panel card-glow",
       )}
     >
       <div>

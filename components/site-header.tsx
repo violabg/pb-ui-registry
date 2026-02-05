@@ -7,14 +7,14 @@ import { Button } from "@/components/ui/button";
 
 export function SiteHeader() {
   return (
-    <header className="top-0 z-50 sticky bg-background/80 backdrop-blur-sm header-gradient-border border-b">
+    <header className="top-0 z-50 relative sticky bg-background/70 backdrop-blur-xl header-gradient-border border-border/60 border-b header-sheen">
       <div className="flex justify-between items-center gap-4 mx-auto px-4 sm:px-6 py-4 w-full">
         <Link
           href="/"
           className="flex items-center gap-2 font-semibold text-base"
         >
           <Logo className="size-6 text-primary" />
-          PB-UI
+          <span className="tracking-wide">PB-UI</span>
         </Link>
         <nav className="flex items-center gap-2">
           <Button

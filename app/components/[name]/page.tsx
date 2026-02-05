@@ -85,13 +85,15 @@ export default async function ComponentPage({
   const componentExamples = examples[name] || [];
 
   return (
-    <div className="px-4 xl:px-8 py-10 w-full">
+    <div className="relative bg-catalog-grid px-4 xl:px-8 py-12 w-full">
       <div className="lg:gap-10 lg:grid lg:grid-cols-[1fr_240px] xl:grid-cols-[240px_1fr_240px]">
         <aside className="hidden xl:block">
           <div className="top-24 sticky pr-4 h-[calc(100vh-6rem)] overflow-y-auto">
             {sections.map((section) => (
               <div key={section.key} className="mb-6">
-                <div className="mb-2 font-semibold">{section.key}</div>
+                <div className="mb-2 font-semibold text-muted-foreground text-sm uppercase tracking-widest">
+                  {section.key}
+                </div>
                 <ul className="space-y-1 m-0 p-0 list-none">
                   {section.items.map((it) => (
                     <li key={it.name}>
@@ -123,7 +125,7 @@ export default async function ComponentPage({
                 Components
               </Link>
               <ViewTransition name={`title-${item.name}`}>
-                <h1 className="font-bold text-4xl leading-tight tracking-tight scroll-m-20">
+                <h1 className="font-display text-4xl leading-tight tracking-tight scroll-m-20">
                   {item.title}
                 </h1>
               </ViewTransition>
@@ -157,7 +159,7 @@ export default async function ComponentPage({
           <div className="flex flex-col gap-4">
             <h2
               id="installation"
-              className="font-semibold text-xl tracking-tight scroll-m-20"
+              className="font-display text-xl tracking-tight scroll-m-20"
             >
               Installation
             </h2>
@@ -166,7 +168,7 @@ export default async function ComponentPage({
 
           {componentExamples.length > 0 && (
             <div className="flex flex-col gap-8">
-              <h2 className="font-semibold text-2xl tracking-tight scroll-m-20">
+              <h2 className="font-display text-2xl tracking-tight scroll-m-20">
                 Examples
               </h2>
               {componentExamples.map((example) => (

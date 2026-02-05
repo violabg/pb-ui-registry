@@ -45,22 +45,22 @@ export const metadata: Metadata = {
 
 export default function GetStartedPage() {
   return (
-    <div className="px-4 lg:px-8 py-16 w-full">
-      <FadeIn className="relative mb-16">
-        <div className="z-10 relative flex flex-col items-center gap-4 mx-auto max-w-3xl text-center">
-          <div className="inline-flex items-center gap-2 bg-primary/10 px-3 py-1 border border-primary/20 rounded-full w-fit font-medium text-primary text-sm">
+    <div className="relative bg-catalog-grid px-4 lg:px-8 py-16 w-full overflow-hidden">
+      <FadeIn className="relative mb-20">
+        <div className="z-10 relative flex flex-col items-center gap-5 mx-auto max-w-3xl text-center">
+          <div className="inline-flex items-center gap-2 px-3 py-1 border rounded-full surface-ring w-fit font-medium text-primary text-sm surface-panel-soft">
             <Package className="size-4" />
             <span>RHF + Zod ready</span>
           </div>
-          <h1 className="font-bold text-5xl sm:text-7xl leading-tight tracking-tight">
-            Build forms faster with{" "}
-            <span className="text-gradient-primary">PB-UI</span>
+          <h1 className="font-display text-5xl sm:text-7xl leading-tight tracking-tight">
+            The modern library for{" "}
+            <span className="text-gradient-primary">React Hook Form</span>
           </h1>
-          <p className="max-w-2xl text-muted-foreground text-xl/relaxed">
-            A curated React Hook Form input collection with Zod integration,
-            built on Base UI and Tailwind CSS. Copy, paste, and customize.
+          <p className="max-w-2xl text-muted-foreground text-lg sm:text-xl/relaxed">
+            A curated collection of input components with Zod integration, built
+            on Base UI and Tailwind CSS for a clean, composable form catalog.
           </p>
-          <div className="flex gap-4 mt-4">
+          <div className="flex flex-wrap justify-center gap-4 mt-4">
             <Link
               href="/components"
               className="inline-flex justify-center items-center gap-2 bg-primary hover:bg-primary/90 px-6 py-3 rounded-lg font-medium text-primary-foreground transition-colors card-glow"
@@ -68,17 +68,23 @@ export default function GetStartedPage() {
               Browse Components
               <ArrowRight className="size-4" />
             </Link>
+            <Link
+              href="/registry.json"
+              className="inline-flex justify-center items-center gap-2 px-6 py-3 border border-border/70 rounded-lg surface-ring font-medium text-foreground transition-colors surface-panel-soft"
+            >
+              View Registry
+            </Link>
           </div>
         </div>
 
-        <div className="top-1/2 -right-20 -z-10 absolute bg-primary/15 blur-3xl rounded-full w-150 h-150 -translate-y-1/2 animate-pulse pointer-events-none" />
-        <div className="top-1/3 -left-20 -z-10 absolute bg-primary/10 blur-3xl rounded-full w-100 h-100 -translate-y-1/2 pointer-events-none" />
+        <div className="top-1/2 -right-24 -z-10 absolute bg-primary/15 blur-3xl rounded-full w-150 h-150 -translate-y-1/2 animate-pulse pointer-events-none" />
+        <div className="top-1/3 -left-24 -z-10 absolute bg-[var(--gradient-accent)] opacity-20 blur-3xl rounded-full w-100 h-100 -translate-y-1/2 pointer-events-none" />
       </FadeIn>
 
-      <div className="gap-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mb-16">
+      <div className="gap-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mb-20">
         <FadeIn
           delay={0.1}
-          className="p-6 border rounded-xl overflow-hidden card-gradient card-glow"
+          className="p-6 border rounded-2xl surface-ring overflow-hidden surface-panel card-glow"
         >
           <div className="flex items-center gap-4 mb-4">
             <div className="flex justify-center items-center bg-primary/10 rounded-lg size-10 text-primary">
@@ -93,7 +99,7 @@ export default function GetStartedPage() {
         </FadeIn>
         <FadeIn
           delay={0.2}
-          className="p-6 border rounded-xl card-gradient card-glow"
+          className="p-6 border rounded-2xl surface-ring surface-panel card-glow"
         >
           <div className="flex items-center gap-4 mb-4">
             <div className="flex justify-center items-center bg-primary/10 rounded-lg size-10 text-primary">
@@ -108,7 +114,7 @@ export default function GetStartedPage() {
         </FadeIn>
         <FadeIn
           delay={0.3}
-          className="p-6 border rounded-xl card-gradient card-glow"
+          className="p-6 border rounded-2xl surface-ring surface-panel card-glow"
         >
           <div className="flex items-center gap-4 mb-4">
             <div className="flex justify-center items-center bg-primary/10 rounded-lg size-10 text-primary">
@@ -125,7 +131,7 @@ export default function GetStartedPage() {
 
       <FadeIn className="bg-gradient-mesh px-4 md:px-6 py-12 border border-border/50 rounded-3xl section-highlight">
         <div className="mx-auto mb-12 max-w-2xl text-center">
-          <h2 className="mb-4 font-bold text-3xl tracking-tight">
+          <h2 className="mb-4 font-display text-3xl tracking-tight">
             Start building RHF inputs in{" "}
             <span className="text-gradient-primary">seconds</span>
           </h2>
@@ -190,7 +196,7 @@ export default function GetStartedPage() {
 
       <FadeIn className="mt-32 mb-20">
         <div className="mx-auto mb-12 max-w-3xl text-center">
-          <h2 className="mb-4 font-bold text-3xl sm:text-4xl tracking-tight">
+          <h2 className="mb-4 font-display text-3xl sm:text-4xl tracking-tight">
             Stop writing the same{" "}
             <span className="text-gradient-primary">boilerplate</span>
           </h2>

@@ -29,9 +29,12 @@ export function CodeBlock({ code, language, className }: CodeBlockProps) {
   if (!mounted) {
     return (
       <div
-        className={cn("relative border border-border rounded-lg", className)}
+        className={cn(
+          "relative border border-border/60 rounded-xl surface-panel-soft",
+          className,
+        )}
       >
-        <div className="flex justify-between items-center px-3 py-2 border-border border-b text-muted-foreground text-xs">
+        <div className="flex justify-between items-center px-3 py-2 border-border/60 border-b text-muted-foreground text-xs">
           <span>{languageKey}</span>
           <CopyButton value={code} label="Copy code" />
         </div>
@@ -43,8 +46,13 @@ export function CodeBlock({ code, language, className }: CodeBlockProps) {
   }
 
   return (
-    <div className={cn("relative border border-border rounded-lg", className)}>
-      <div className="flex justify-between items-center px-3 py-2 border-border border-b text-muted-foreground text-xs">
+    <div
+      className={cn(
+        "relative border border-border/60 rounded-xl surface-panel-soft",
+        className,
+      )}
+    >
+      <div className="flex justify-between items-center px-3 py-2 border-border/60 border-b text-muted-foreground text-xs">
         <span>{languageKey}</span>
         <CopyButton value={code} label="Copy code" />
       </div>
