@@ -492,7 +492,7 @@ export default function GetStartedPage() {
       <section className="px-4 lg:px-10 py-20">
         <div className="mx-auto max-w-8xl">
           <FadeIn variant="scale">
-            <div className="relative p-10 border border-primary/20 rounded-2xl surface-panel">
+            <div className="relative p-10 border border-primary/20 rounded-2xl overflow-hidden surface-panel">
               <div className="absolute inset-0 pointer-events-none sheen-sweep" />
               <div className="top-0 right-0 left-0 absolute bg-gradient-to-r from-transparent via-primary/50 to-transparent h-px" />
               <div className="relative flex flex-col gap-6 max-w-2xl">
