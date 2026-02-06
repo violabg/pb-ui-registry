@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ViewTransition } from "react";
 
+import { CatalogSidebar } from "@/components/catalog-sidebar";
 import { ComponentPreviewTabs } from "@/components/component-preview-tabs";
 import { FadeIn } from "@/components/fade-in";
 import { InstallCommand } from "@/components/install-command";
@@ -14,7 +15,7 @@ import {
   getRegistryItems,
 } from "@/lib/registry";
 import { groupToSidebarSections } from "@/lib/registry-groups";
-import { Blocks, ChevronRight, Download, FileCode2 } from "lucide-react";
+import { ChevronRight, Download, FileCode2 } from "lucide-react";
 
 export const dynamic = "force-static";
 
@@ -87,54 +88,11 @@ export default async function ComponentPage({
   const componentExamples = examples[name] || [];
 
   return (
-    <div className="relative bg-catalog-grid px-4 xl:px-10 py-12 w-full min-h-screen overflow-hidden">
-      {/* Floating neon accents */}
-      <div className="top-60 -right-24 float-slow absolute bg-(--neon-blue) opacity-15 blur-[100px] rounded-full size-[350px]" />
-      <div
-        className="bottom-40 -left-16 float-slow absolute bg-(--neon-magenta) opacity-10 blur-[80px] rounded-full size-[250px]"
-        style={{ animationDelay: "-5s" }}
-      />
-
+    <div className="px-4 xl:px-10 py-12 w-full min-h-screen">
       <div className="mx-auto max-w-8xl">
         <div className="gap-10 grid lg:grid-cols-[240px_1fr] xl:grid-cols-[240px_1fr_200px]">
           {/* Left Sidebar */}
-          <aside className="hidden lg:block text-sm">
-            <div className="top-10 sticky h-[calc(100vh-3.5rem)] overflow-hidden">
-              <div className="py-2 h-full overflow-y-auto">
-                <div className="p-5 border border-border/50 rounded-xl surface-panel-soft">
-                  <div className="flex items-center gap-2 mb-5 pb-3 border-border/50 border-b">
-                    <Blocks className="size-4 text-primary" />
-                    <span className="font-display font-semibold text-xs uppercase tracking-[0.15em]">
-                      Catalog
-                    </span>
-                  </div>
-                  {sections.map((section) => (
-                    <div key={section.key} className="mb-6 last:mb-0">
-                      <div className="mb-2 font-semibold text-[10px] text-muted-foreground uppercase tracking-[0.2em]">
-                        {section.key}
-                      </div>
-                      <ul className="space-y-1 m-0 p-0 list-none">
-                        {section.items.map((it) => (
-                          <li key={it.name}>
-                            <Link
-                              href={`/components/${it.name}`}
-                              className={`block py-1 text-sm transition-colors ${
-                                it.name === item.name
-                                  ? "text-primary font-medium"
-                                  : "text-muted-foreground hover:text-primary"
-                              }`}
-                            >
-                              {it.title}
-                            </Link>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </aside>
+          <CatalogSidebar sections={sections} currentItemName={item.name} />
 
           {/* Main Content */}
           <div className="flex flex-col gap-10 min-w-0">
@@ -234,42 +192,40 @@ export default async function ComponentPage({
 
           {/* Right Sidebar - Table of Contents */}
           <aside className="hidden xl:block text-sm">
-            <div className="top-10 sticky h-[calc(100vh-3.5rem)] overflow-hidden">
-              <div className="py-2 h-full overflow-y-auto">
-                <div className="p-5 border border-border/50 rounded-xl surface-panel-soft">
-                  <div className="mb-4 font-display font-semibold text-[10px] text-muted-foreground uppercase tracking-[0.2em]">
-                    On this page
-                  </div>
-                  <ul className="space-y-2 m-0 pl-0 list-none">
-                    <li>
-                      <Link
-                        href="#installation"
-                        className="text-muted-foreground hover:text-primary line-clamp-1 transition-colors"
-                      >
-                        Installation
-                      </Link>
-                    </li>
-                    {componentExamples.length > 0 && (
-                      <li>
-                        <span className="font-medium text-foreground">
-                          Examples
-                        </span>
-                        <ul className="space-y-2 m-0 mt-2 pl-3 border-border/50 border-l list-none">
-                          {componentExamples.map((example) => (
-                            <li key={example.name}>
-                              <Link
-                                href={`#${example.name}`}
-                                className="text-muted-foreground hover:text-primary line-clamp-1 transition-colors"
-                              >
-                                {example.title}
-                              </Link>
-                            </li>
-                          ))}
-                        </ul>
-                      </li>
-                    )}
-                  </ul>
+            <div className="top-12 sticky h-[calc(100vh-6rem)] overflow-y-auto">
+              <div className="p-5 border border-border/50 rounded-xl surface-panel-soft">
+                <div className="mb-4 font-display font-semibold text-[10px] text-muted-foreground uppercase tracking-[0.2em]">
+                  On this page
                 </div>
+                <ul className="space-y-2 m-0 pl-0 list-none">
+                  <li>
+                    <Link
+                      href="#installation"
+                      className="text-muted-foreground hover:text-primary line-clamp-1 transition-colors"
+                    >
+                      Installation
+                    </Link>
+                  </li>
+                  {componentExamples.length > 0 && (
+                    <li>
+                      <span className="font-medium text-foreground">
+                        Examples
+                      </span>
+                      <ul className="space-y-2 m-0 mt-2 pl-3 border-border/50 border-l list-none">
+                        {componentExamples.map((example) => (
+                          <li key={example.name}>
+                            <Link
+                              href={`#${example.name}`}
+                              className="text-muted-foreground hover:text-primary line-clamp-1 transition-colors"
+                            >
+                              {example.title}
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+                    </li>
+                  )}
+                </ul>
               </div>
             </div>
           </aside>

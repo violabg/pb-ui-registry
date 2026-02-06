@@ -43,18 +43,7 @@ export const metadata: Metadata = {
 
 export default function GetStartedPage() {
   return (
-    <div className="relative bg-catalog-grid w-full overflow-hidden">
-      {/* Floating neon orbs */}
-      <div className="top-20 -right-32 float-slow absolute bg-[var(--neon-blue)] opacity-20 blur-[100px] rounded-full size-[500px]" />
-      <div
-        className="top-60 -left-32 float-slow absolute bg-[var(--neon-magenta)] opacity-15 blur-[120px] rounded-full size-[400px]"
-        style={{ animationDelay: "-3s" }}
-      />
-      <div
-        className="right-1/4 bottom-40 float-slow absolute bg-[var(--neon-lime)] opacity-10 blur-[80px] rounded-full size-[300px]"
-        style={{ animationDelay: "-6s" }}
-      />
-
+    <div className="overflow-x-hidden">
       {/* Hero Section */}
       <section className="relative px-4 lg:px-10 pt-20 pb-24">
         <div className="mx-auto max-w-8xl">
@@ -117,7 +106,7 @@ export default function GetStartedPage() {
             </FadeIn>
 
             <FadeIn variant="slide-left" delay={0.15} className="relative">
-              <div className="relative p-6 border border-primary/20 rounded-xl surface-panel">
+              <div className="relative p-4 sm:p-6 border border-primary/20 rounded-xl surface-panel">
                 <div className="flex items-center gap-2 text-muted-foreground text-xs uppercase tracking-[0.2em]">
                   <Command className="size-4 text-primary" />
                   Install in one command
@@ -161,7 +150,7 @@ export default function GetStartedPage() {
             staggerDelay={0.1}
           >
             <StaggerItem>
-              <div className="group relative p-6 border border-border/50 rounded-xl h-full surface-panel card-glow">
+              <div className="group relative p-4 sm:p-6 border border-border/50 rounded-xl h-full surface-panel card-glow">
                 <div className="flex items-center gap-3 mb-4">
                   <div className="flex justify-center items-center bg-primary/10 group-hover:bg-primary/20 group-hover:shadow-[0_0_20px_-5px_var(--neon-blue)] border border-primary/20 rounded-lg size-12 text-primary transition-all duration-300">
                     <Layers className="size-5" />
@@ -177,7 +166,7 @@ export default function GetStartedPage() {
               </div>
             </StaggerItem>
             <StaggerItem>
-              <div className="group relative p-6 border border-border/50 rounded-xl h-full surface-panel card-glow">
+              <div className="group relative p-4 sm:p-6 border border-border/50 rounded-xl h-full surface-panel card-glow">
                 <div className="flex items-center gap-3 mb-4">
                   <div className="flex justify-center items-center bg-primary/10 group-hover:bg-primary/20 group-hover:shadow-[0_0_20px_-5px_var(--neon-blue)] border border-primary/20 rounded-lg size-12 text-primary transition-all duration-300">
                     <Cpu className="size-5" />
@@ -193,7 +182,7 @@ export default function GetStartedPage() {
               </div>
             </StaggerItem>
             <StaggerItem>
-              <div className="group relative p-6 border border-border/50 rounded-xl h-full surface-panel card-glow">
+              <div className="group relative p-4 sm:p-6 border border-border/50 rounded-xl h-full surface-panel card-glow">
                 <div className="flex items-center gap-3 mb-4">
                   <div className="flex justify-center items-center bg-primary/10 group-hover:bg-primary/20 group-hover:shadow-[0_0_20px_-5px_var(--neon-blue)] border border-primary/20 rounded-lg size-12 text-primary transition-all duration-300">
                     <Blocks className="size-5" />
@@ -404,7 +393,7 @@ export default function GetStartedPage() {
             </p>
           </FadeIn>
           <div className="gap-6 grid lg:grid-cols-2 min-w-0 overflow-hidden">
-            <FadeIn className="relative p-6 border border-border/50 rounded-xl min-w-0 surface-panel">
+            <FadeIn className="relative p-4 sm:p-6 border border-border/50 rounded-xl min-w-0 surface-panel">
               <div className="flex items-center gap-3 mb-4">
                 <div className="flex justify-center items-center bg-primary rounded-lg size-10 font-display font-bold text-primary-foreground">
                   1
@@ -427,7 +416,7 @@ export default function GetStartedPage() {
             </FadeIn>
             <FadeIn
               delay={0.1}
-              className="relative p-6 border border-border/50 rounded-xl min-w-0 surface-panel"
+              className="relative p-4 sm:p-6 border border-border/50 rounded-xl min-w-0 surface-panel"
             >
               <div className="flex items-center gap-3 mb-4">
                 <div className="flex justify-center items-center bg-primary rounded-lg size-10 font-display font-bold text-primary-foreground">
@@ -478,19 +467,19 @@ export default function GetStartedPage() {
             staggerDelay={0.1}
           >
             <StaggerItem className="h-full">
-              <div className="relative p-6 border border-border/50 rounded-xl h-full surface-panel card-glow">
+              <div className="relative p-4 sm:p-6 border border-border/50 rounded-xl h-full surface-panel card-glow">
                 <div className="mb-4 font-display font-semibold">Input</div>
                 <ComponentPreview name="input" />
               </div>
             </StaggerItem>
             <StaggerItem className="h-full">
-              <div className="relative p-6 border border-border/50 rounded-xl h-full surface-panel card-glow">
+              <div className="relative p-4 sm:p-6 border border-border/50 rounded-xl h-full surface-panel card-glow">
                 <div className="mb-4 font-display font-semibold">Select</div>
                 <ComponentPreview name="select" />
               </div>
             </StaggerItem>
             <StaggerItem className="h-full">
-              <div className="relative p-6 border border-border/50 rounded-xl h-full surface-panel card-glow">
+              <div className="relative p-4 sm:p-6 border border-border/50 rounded-xl h-full surface-panel card-glow">
                 <div className="mb-4 font-display font-semibold">Tag input</div>
                 <ComponentPreview name="tag-input" />
               </div>

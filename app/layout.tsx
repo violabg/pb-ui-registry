@@ -66,7 +66,21 @@ export default function RootLayout({
       <body className="bg-background min-h-screen font-sans antialiased">
         <ThemeProvider>
           <SiteHeader />
-          <main>{children}</main>
+          <main className="relative bg-catalog-grid w-full">
+            <div className="absolute w-full h-full overflow-hidden">
+              {/* Floating neon orbs */}
+              <div className="top-20 -right-32 float-slow absolute bg-(--neon-blue) opacity-20 blur-[100px] rounded-full size-[500px]" />
+              <div
+                className="top-60 -left-32 float-slow absolute bg-(--neon-magenta) opacity-15 blur-[120px] rounded-full size-[400px]"
+                style={{ animationDelay: "-3s" }}
+              />
+              <div
+                className="right-1/4 bottom-40 float-slow absolute bg-(--neon-lime) opacity-10 blur-[80px] rounded-full size-[400px]"
+                style={{ animationDelay: "-6s" }}
+              />
+            </div>
+            {children}
+          </main>
         </ThemeProvider>
       </body>
     </html>
