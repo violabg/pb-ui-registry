@@ -55,7 +55,7 @@ export default function GetStartedPage() {
               </div>
 
               <div className="flex flex-col gap-4">
-                <h1 className="font-display text-4xl sm:text-6xl lg:text-7xl leading-[1.05] tracking-tight">
+                <h1 className="font-display text-4xl sm:text-5xl xl:text-6xl leading-[1.05] tracking-tight">
                   Shape polished RHF experiences in{" "}
                   <span className="text-gradient-primary">minutes</span>
                 </h1>
