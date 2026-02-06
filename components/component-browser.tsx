@@ -203,7 +203,7 @@ function ComponentCard({ item }: { item: RegistryItemSummary }) {
     <Link
       href={item.docs ?? `/components/${item.name}`}
       className={cn(
-        "flex flex-col gap-3 p-4 border rounded-2xl surface-ring overflow-hidden text-card-foreground surface-panel card-glow",
+        "flex flex-col gap-3 p-4 border rounded-2xl text-card-foreground surface-panel card-glow",
       )}
     >
       <div>

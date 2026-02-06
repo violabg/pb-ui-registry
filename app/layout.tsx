@@ -1,16 +1,16 @@
 import type { Metadata } from "next";
-import { JetBrains_Mono, Onest, Outfit } from "next/font/google";
+import { DM_Sans, JetBrains_Mono, Unbounded } from "next/font/google";
 
 import { SiteHeader } from "@/components/site-header";
 import { ThemeProvider } from "@/components/theme-provider";
 import "./globals.css";
 
-const sans = Onest({
+const sans = DM_Sans({
   subsets: ["latin"],
   variable: "--font-sans",
 });
 
-const display = Outfit({
+const display = Unbounded({
   subsets: ["latin"],
   variable: "--font-display",
 });

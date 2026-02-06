@@ -12,9 +12,15 @@ type CodeBlockProps = {
   code: string;
   language?: string;
   className?: string;
+  preClassName?: string;
 };
 
-export function CodeBlock({ code, language, className }: CodeBlockProps) {
+export function CodeBlock({
+  code,
+  language,
+  className,
+  preClassName,
+}: CodeBlockProps) {
   const { resolvedTheme } = useTheme();
   const [mounted, setMounted] = React.useState(false);
 
@@ -30,7 +36,7 @@ export function CodeBlock({ code, language, className }: CodeBlockProps) {
     return (
       <div
         className={cn(
-          "relative border border-border/60 rounded-xl surface-panel-soft",
+          "relative bg-background/60 border border-border/60 rounded-xl",
           className,
         )}
       >
@@ -38,7 +44,12 @@ export function CodeBlock({ code, language, className }: CodeBlockProps) {
           <span>{languageKey}</span>
           <CopyButton value={code} label="Copy code" />
         </div>
-        <pre className="bg-muted/30 p-4 overflow-x-auto text-sm leading-relaxed">
+        <pre
+          className={cn(
+            "bg-muted/30 p-4 overflow-x-auto text-sm leading-relaxed",
+            preClassName,
+          )}
+        >
           <code className="text-foreground">{code}</code>
         </pre>
       </div>
@@ -48,7 +59,7 @@ export function CodeBlock({ code, language, className }: CodeBlockProps) {
   return (
     <div
       className={cn(
-        "relative border border-border/60 rounded-xl surface-panel-soft",
+        "relative bg-background/60 border border-border/60 rounded-xl",
         className,
       )}
     >
@@ -67,6 +78,7 @@ export function CodeBlock({ code, language, className }: CodeBlockProps) {
           <pre
             className={cn(
               "p-4 overflow-x-auto text-sm leading-relaxed",
+              preClassName,
               prismClassName,
             )}
             style={style}

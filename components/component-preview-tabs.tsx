@@ -23,7 +23,7 @@ export function ComponentPreviewTabs({
   const defaultTab = preview ? "preview" : "code";
 
   return (
-    <section className="border border-border/70 rounded-3xl surface-ring overflow-hidden surface-panel-soft">
+    <section className="border border-border/70 rounded-3xl surface-panel-soft">
       <div className="flex flex-wrap justify-between items-center gap-3 px-4 py-3 border-border border-b">
         <div className="font-medium text-muted-foreground text-sm uppercase tracking-[0.2em]">
           Example
@@ -53,7 +53,12 @@ export function ComponentPreviewTabs({
           )}
         </TabsContent>
         <TabsContent value="code" className="pt-4">
-          <CodeBlock code={code} language={language} className="border-0" />
+          <CodeBlock
+            code={code}
+            language={language}
+            className="border-0"
+            preClassName="rounded-b-xl"
+          />
         </TabsContent>
       </Tabs>
     </section>
