@@ -36,7 +36,7 @@ export default async function ComponentsPage() {
   const sections = groupToSidebarSections(items);
 
   return (
-    <div className="relative bg-catalog-grid px-4 sm:px-6 xl:px-10 py-12 w-full min-h-screen">
+    <div className="relative bg-catalog-grid px-4 sm:px-6 xl:px-10 py-12 w-full min-h-screen overflow-hidden">
       {/* Floating neon accents */}
       <div className="top-40 -right-20 float-slow absolute bg-[var(--neon-blue)] opacity-15 blur-[100px] rounded-full size-[400px]" />
       <div

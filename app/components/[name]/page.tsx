@@ -87,7 +87,7 @@ export default async function ComponentPage({
   const componentExamples = examples[name] || [];
 
   return (
-    <div className="relative bg-catalog-grid px-4 xl:px-10 py-12 w-full min-h-screen">
+    <div className="relative bg-catalog-grid px-4 xl:px-10 py-12 w-full min-h-screen overflow-hidden">
       {/* Floating neon accents */}
       <div className="top-60 -right-24 float-slow absolute bg-(--neon-blue) opacity-15 blur-[100px] rounded-full size-[350px]" />
       <div
