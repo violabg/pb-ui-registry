@@ -19,8 +19,8 @@ export function CatalogSidebar({
   currentItemName,
 }: CatalogSidebarProps) {
   return (
-    <aside className="hidden lg:block top-20 sticky self-start text-sm">
-      <div className="p-5 border border-border/50 rounded-xl max-h-[calc(100vh-6rem)] overflow-y-auto surface-panel-soft">
+    <aside className="hidden lg:block top-20 sticky self-start border border-border/50 rounded-xl text-sm surface-panel-soft">
+      <div className="p-5 max-h-[calc(100vh-6rem)] overflow-y-auto">
         <div className="flex items-center gap-2 mb-5 pb-3 border-border/50 border-b">
           <Blocks className="size-4 text-primary" />
           <span className="font-display font-semibold text-xs uppercase tracking-[0.15em]">

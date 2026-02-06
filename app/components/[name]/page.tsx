@@ -192,7 +192,7 @@ export default async function ComponentPage({
 
           {/* Right Sidebar - Table of Contents */}
           <aside className="hidden xl:block text-sm">
-            <div className="top-12 sticky h-[calc(100vh-6rem)] overflow-y-auto">
+            <div className="top-20 sticky h-[calc(100vh-6rem)] overflow-y-auto">
               <div className="p-5 border border-border/50 rounded-xl surface-panel-soft">
                 <div className="mb-4 font-display font-semibold text-[10px] text-muted-foreground uppercase tracking-[0.2em]">
                   On this page

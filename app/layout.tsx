@@ -66,8 +66,8 @@ export default function RootLayout({
       <body className="bg-background min-h-screen font-sans antialiased">
         <ThemeProvider>
           <SiteHeader />
-          <main className="relative bg-catalog-grid w-full">
-            <div className="absolute w-full h-full overflow-hidden">
+          <main className="relative dark:bg-catalog-grid w-full">
+            <div className="hidden dark:block absolute w-full h-full overflow-hidden">
               {/* Floating neon orbs */}
               <div className="top-20 -right-32 float-slow absolute bg-(--neon-blue) opacity-20 blur-[100px] rounded-full size-[500px]" />
               <div
