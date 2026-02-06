@@ -62,7 +62,7 @@
   --neon-lime: oklch(0.85 0.25 130);
   --neon-blue: oklch(0.57 0.21 258.25);
   /* Cooler gray-white for better card contrast */
-  --background: oklch(0.97 0 0);
+  --background: oklch(0.962 0 0);
   --foreground: oklch(0.18 0.02 260);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.18 0.02 260);
@@ -70,15 +70,15 @@
   --popover-foreground: oklch(0.18 0.02 260);
   --primary: oklch(56.989% 0.25512 289.471);
   --primary-foreground: oklch(100% 0.00011 271.152);
-  --secondary: oklch(0.96 0.006 260);
+  --secondary: oklch(0.952 0.006 260);
   --secondary-foreground: oklch(0.22 0.02 260);
-  --muted: oklch(0.97 0.004 260);
+  --muted: oklch(0.952 0.004 260);
   --muted-foreground: oklch(0.45 0.015 260);
   --accent: oklch(0.95 0.02 280);
   --accent-foreground: oklch(0.22 0.02 260);
   --destructive: oklch(0.62 0.19 25);
-  --border: oklch(0.91 0.008 260);
-  --input: oklch(0.91 0.008 260);
+  --border: oklch(0.892 0.01 260);
+  --input: oklch(0.892 0.01 260);
   --ring: oklch(0.65 0.15 289);
   --chart-1: oklch(0.7 0.16 180);
   --chart-2: oklch(0.62 0.14 230);
@@ -176,17 +176,17 @@
   background:
     linear-gradient(
       160deg,
-      oklch(from var(--primary) l c h / 0.02),
+      oklch(from var(--primary) l c h / 0.035),
       transparent 55%
     ),
     linear-gradient(
       320deg,
-      oklch(from var(--neon-blue) l c h / 0.02),
+      oklch(from var(--neon-blue) l c h / 0.03),
       transparent 60%
     ),
     var(--card);
-  border-color: oklch(from var(--primary) l c h / 0.06);
-  box-shadow: 0 18px 40px -30px oklch(from var(--neon-blue) l c h / 0.08);
+  border-color: oklch(from var(--primary) l c h / 0.1);
+  box-shadow: 0 18px 40px -30px oklch(from var(--neon-blue) l c h / 0.14);
 }
 
 @utility surface-panel-soft {
@@ -194,11 +194,11 @@
   background:
     linear-gradient(
       140deg,
-      oklch(from var(--primary) l c h / 0.02),
+      oklch(from var(--primary) l c h / 0.03),
       transparent 70%
     ),
     var(--muted);
-  border-color: oklch(from var(--primary) l c h / 0.05);
+  border-color: oklch(from var(--primary) l c h / 0.085);
 }
 
 @utility surface-ring {
