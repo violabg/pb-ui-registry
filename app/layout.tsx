@@ -1,14 +1,12 @@
 import type { Metadata } from "next";
-import { DM_Sans, JetBrains_Mono, Unbounded } from "next/font/google";
+import { DM_Sans, JetBrains_Mono, Unbounded, Inter } from "next/font/google";
 
 import { SiteHeader } from "@/components/site-header";
 import { ThemeProvider } from "@/components/theme-provider";
 import "./globals.css";
+import { cn } from "@/lib/utils";
 
-const sans = DM_Sans({
-  subsets: ["latin"],
-  variable: "--font-sans",
-});
+const inter = Inter({subsets:['latin'],variable:'--font-sans'});
 
 const display = Unbounded({
   subsets: ["latin"],
@@ -60,7 +58,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${sans.variable} ${display.variable} ${mono.variable}`}
+      className={cn(display.variable, mono.variable, "font-sans", inter.variable)}
       suppressHydrationWarning
     >
       <body className="bg-background min-h-screen font-sans antialiased">
