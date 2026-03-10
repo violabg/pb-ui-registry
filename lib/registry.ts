@@ -577,7 +577,7 @@ const registryItems: RegistryItem[] = [
     type: "registry:ui",
     docs: "/components/rhf-switch-field",
     categories: ["forms"],
-    registryDependencies: ["rhf-base-controller", "switch"],
+    registryDependencies: ["field", "switch"],
     dependencies: ["react-hook-form"],
     files: [
       {
