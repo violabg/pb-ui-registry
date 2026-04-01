@@ -1,6 +1,7 @@
-import { Github, List, Zap } from "lucide-react";
+import { List, Zap } from "lucide-react";
 import Link from "next/link";
 
+import { GithubIcon } from "@/app/assets/icons/github";
 import { Logo } from "@/components/logo";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { Button } from "@/components/ui/button";
@@ -69,7 +70,7 @@ export function SiteHeader() {
                 rel="noopener noreferrer"
                 aria-label="GitHub repository"
               >
-                <Github className="size-4" />
+                <GithubIcon className="size-4" />
               </Link>
             }
           ></Button>
