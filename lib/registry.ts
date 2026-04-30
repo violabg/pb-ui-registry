@@ -11,6 +11,13 @@ import {
 } from "./registry-files";
 import { RegistryItem, registryItems } from "./registry-items";
 
+const registryItemNames = new Set(registryItems.map((item) => item.name));
+
+// Validate registry metadata at import time so invalid categories, file entries,
+// or dependency declarations fail fast before routes or build scripts consume it.
+validateRegistryCategories(registryItems);
+validateRegistryItemFiles(registryItems);
+validateRegistryDependencies(registryItems);
 
 export type RegistryIndex = {
   name: string;
@@ -30,12 +37,6 @@ type RegistryItemResolutionOptions = {
 export const exampleEnabledRegistryItemNames = registryItems.map(
   (item) => item.name,
 );
-
-const registryItemNames = new Set(registryItems.map((item) => item.name));
-
-validateRegistryCategories(registryItems);
-validateRegistryItemFiles(registryItems);
-validateRegistryDependencies(registryItems);
 
 export function getRegistryDependencyValidationIssues() {
   return getRegistryDependencyIssues(registryItems);
