@@ -36,34 +36,3 @@ export function RhfTextareaFieldDemo() {
   );
 }
 
-export const RhfTextareaFieldDemoCode = `import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
-import { Button } from "@/components/ui/button";
-import { TextareaField } from "@/components/ui/rhf-inputs";
-
-const schema = z.object({
-  bio: z.string().max(500, "Bio must not exceed 500 characters"),
-});
-
-type FormValues = z.infer<typeof schema>;
-
-export function Demo() {
-  const { control, handleSubmit } = useForm<FormValues>({
-    resolver: zodResolver(schema),
-    defaultValues: { bio: "" },
-  });
-
-  return (
-    <form onSubmit={handleSubmit((data) => alert(JSON.stringify(data, null, 2)))}>
-      <TextareaField
-        control={control}
-        name="bio"
-        label="Bio"
-        placeholder="Tell us about yourself..."
-        description="Max 500 characters"
-      />
-      <Button type="submit">Submit</Button>
-    </form>
-  );
-}`;

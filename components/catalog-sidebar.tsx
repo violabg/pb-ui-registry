@@ -1,16 +1,10 @@
 import { Blocks } from "lucide-react";
 import Link from "next/link";
 
-interface Section {
-  key: string;
-  items: Array<{
-    name: string;
-    title: string;
-  }>;
-}
+import type { RegistrySection } from "@/lib/registry-groups";
 
 interface CatalogSidebarProps {
-  sections: Section[];
+  sections: RegistrySection[];
   currentItemName?: string;
 }
 

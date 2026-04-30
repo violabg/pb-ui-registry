@@ -1,6 +1,6 @@
 import { CodeBlock } from "@/components/code-block";
-import { ComponentPreview } from "@/components/component-previews";
 import { FadeIn, StaggerContainer, StaggerItem } from "@/components/fade-in";
+import { getCurrentExample } from "@/lib/examples";
 
 import {
   ArrowRight,
@@ -40,6 +40,21 @@ export const metadata: Metadata = {
     canonical: "/",
   },
 };
+
+function LivePreviewCard({ name, title }: { name: string; title: string }) {
+  const currentExample = getCurrentExample(name);
+
+  return (
+    <div className="relative p-4 sm:p-6 border border-border/50 rounded-xl h-full surface-panel card-glow">
+      <div className="mb-4 font-display font-semibold">{title}</div>
+      {currentExample?.component ?? (
+        <p className="text-muted-foreground text-sm">
+          Preview for {name} is not available yet.
+        </p>
+      )}
+    </div>
+  );
+}
 
 export default function GetStartedPage() {
   return (
@@ -467,22 +482,13 @@ export default function GetStartedPage() {
             staggerDelay={0.1}
           >
             <StaggerItem className="h-full">
-              <div className="relative p-4 sm:p-6 border border-border/50 rounded-xl h-full surface-panel card-glow">
-                <div className="mb-4 font-display font-semibold">Input</div>
-                <ComponentPreview name="input" />
-              </div>
+              <LivePreviewCard name="input" title="Input" />
             </StaggerItem>
             <StaggerItem className="h-full">
-              <div className="relative p-4 sm:p-6 border border-border/50 rounded-xl h-full surface-panel card-glow">
-                <div className="mb-4 font-display font-semibold">Select</div>
-                <ComponentPreview name="select" />
-              </div>
+              <LivePreviewCard name="select" title="Select" />
             </StaggerItem>
             <StaggerItem className="h-full">
-              <div className="relative p-4 sm:p-6 border border-border/50 rounded-xl h-full surface-panel card-glow">
-                <div className="mb-4 font-display font-semibold">Tag input</div>
-                <ComponentPreview name="tag-input" />
-              </div>
+              <LivePreviewCard name="tag-input" title="Tag input" />
             </StaggerItem>
           </StaggerContainer>
         </div>

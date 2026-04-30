@@ -5,6 +5,15 @@ export type PartitionedRegistry = {
   baseItems: RegistryItemSummary[];
 };
 
+export type RegistrySection = {
+  key: "React Hook Form" | "Base Components";
+  items: RegistryItemSummary[];
+};
+
+function sortRegistryItems(items: RegistryItemSummary[]) {
+  return [...items].sort((a, b) => a.title.localeCompare(b.title));
+}
+
 export function partitionRegistryItems(
   items: RegistryItemSummary[],
 ): PartitionedRegistry {
@@ -19,15 +28,10 @@ export function partitionRegistryItems(
     }
   }
 
-  rhf.sort((a, b) => {
-    if (a.name === "rhf-inputs") return -1;
-    if (b.name === "rhf-inputs") return 1;
-    return a.title.localeCompare(b.title);
-  });
-
-  base.sort((a, b) => a.title.localeCompare(b.title));
-
-  return { rhfItems: rhf, baseItems: base };
+  return {
+    rhfItems: sortRegistryItems(rhf),
+    baseItems: sortRegistryItems(base),
+  };
 }
 
 export function groupToSidebarSections(items: RegistryItemSummary[]) {
@@ -36,5 +40,5 @@ export function groupToSidebarSections(items: RegistryItemSummary[]) {
   return [
     { key: "React Hook Form", items: rhfItems },
     { key: "Base Components", items: baseItems },
-  ];
+  ] satisfies RegistrySection[];
 }

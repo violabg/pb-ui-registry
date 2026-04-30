@@ -1003,6 +1003,32 @@ const registryItems: RegistryItem[] = [
   },
 ];
 
+export const exampleEnabledRegistryItemNames = registryItems.map(
+  (item) => item.name,
+);
+
+const registryItemNames = new Set(registryItems.map((item) => item.name));
+
+function validateRegistryDependencies() {
+  const unknownDependencies = registryItems.flatMap((item) =>
+    (item.registryDependencies ?? [])
+      .filter((dependency) => !registryItemNames.has(dependency))
+      .map((dependency) => `${item.name} -> ${dependency}`),
+  );
+
+  if (unknownDependencies.length > 0) {
+    throw new Error(
+      `Unknown registryDependencies: ${unknownDependencies.join(", ")}`,
+    );
+  }
+}
+
+validateRegistryDependencies();
+
+export function isExampleEnabledRegistryItem(name: string) {
+  return exampleEnabledRegistryItemNames.includes(name);
+}
+
 function normalizeSiteUrl(siteUrl: string) {
   return siteUrl.replace(/\/$/, "");
 }
@@ -1013,25 +1039,14 @@ function getSiteUrl() {
   );
 }
 
-/**
- * Helper to get the full registry URL for a dependency.
- * Custom registry items (those defined in this registry) need full URLs,
- * while official shadcn components can use just the name.
- */
 function getRegistryDependencyUrl(name: string): string {
-  // List of component names that exist in this custom registry
-  const customRegistryItems = registryItems.map((item) => item.name);
-
-  if (customRegistryItems.includes(name)) {
-    return `${getSiteUrl()}/registry/${name}`;
+  if (!registryItemNames.has(name)) {
+    throw new Error(`Unknown registry dependency: ${name}`);
   }
-  // Return just the name for official shadcn components
-  return name;
+
+  return `${getSiteUrl()}/registry/${name}`;
 }
 
-/**
- * Transform registryDependencies to use full URLs for custom items
- */
 function resolveRegistryDependencies(deps?: string[]): string[] | undefined {
   if (!deps) return undefined;
   return deps.map(getRegistryDependencyUrl);
@@ -1057,26 +1072,24 @@ export async function getRegistryItems(): Promise<RegistryItemSummary[]> {
     .sort((a, b) => a.name.localeCompare(b.name));
 }
 
-export async function getRegistryItem(
-  name: string,
-  withContent = false,
-): Promise<RegistryItem | null> {
+async function resolveRegistryItem(name: string): Promise<RegistryItem | null> {
   const item = registryItems.find((entry) => entry.name === name);
 
   if (!item) {
     return null;
   }
 
-  // Resolve registryDependencies to use full URLs for custom registry items
-  const resolvedItem = {
+  return {
     ...item,
     registryDependencies: resolveRegistryDependencies(
       item.registryDependencies,
     ),
   };
+}
 
-  if (!withContent || !item.files?.length) {
-    return resolvedItem;
+async function loadRegistryItemFiles(item: RegistryItem): Promise<RegistryItem> {
+  if (!item.files?.length) {
+    return item;
   }
 
   const files = await Promise.all(
@@ -1092,14 +1105,32 @@ export async function getRegistryItem(
   );
 
   return {
-    ...resolvedItem,
+    ...item,
     files,
   };
 }
 
+export async function getRegistryItemSummary(
+  name: string,
+): Promise<RegistryItem | null> {
+  return resolveRegistryItem(name);
+}
+
+export async function getRegistryItemWithContent(
+  name: string,
+): Promise<RegistryItem | null> {
+  const item = await resolveRegistryItem(name);
+
+  if (!item) {
+    return null;
+  }
+
+  return loadRegistryItemFiles(item);
+}
+
 export async function getRegistryIndex(): Promise<RegistryIndex> {
   const items = await Promise.all(
-    registryItems.map(async (item) => getRegistryItem(item.name, true)),
+    registryItems.map(async (item) => getRegistryItemWithContent(item.name)),
   );
 
   return {

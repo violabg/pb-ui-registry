@@ -8,6 +8,7 @@ import { ViewTransition } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import type { RegistryItemSummary } from "@/lib/registry";
+import { groupToSidebarSections } from "@/lib/registry-groups";
 import { cn } from "@/lib/utils";
 
 type ComponentBrowserProps = {
@@ -60,26 +61,8 @@ export function ComponentBrowser({ items }: ComponentBrowserProps) {
     });
   }, [items, query, selectedTags]);
 
-  const { rhfItems, baseItems } = React.useMemo(() => {
-    const rhf: RegistryItemSummary[] = [];
-    const base: RegistryItemSummary[] = [];
-
-    for (const item of filtered) {
-      if (item.name.startsWith("rhf-")) {
-        rhf.push(item);
-      } else {
-        base.push(item);
-      }
-    }
-
-    // Sort RHF items to put "rhf-inputs" first, then by title
-    rhf.sort((a, b) => {
-      if (a.name === "rhf-inputs") return -1;
-      if (b.name === "rhf-inputs") return 1;
-      return a.title.localeCompare(b.title);
-    });
-
-    return { rhfItems: rhf, baseItems: base };
+  const sections = React.useMemo(() => {
+    return groupToSidebarSections(filtered);
   }, [filtered]);
 
   return (
@@ -169,30 +152,19 @@ export function ComponentBrowser({ items }: ComponentBrowserProps) {
         </div>
       </div>
 
-      {rhfItems.length > 0 && (
-        <div className="flex flex-col gap-4">
-          <h2 className="pb-2 border-border border-b font-display text-2xl tracking-tight">
-            React Hook Form
-          </h2>
-          <div className="gap-4 grid md:grid-cols-2">
-            {rhfItems.map((item) => (
-              <ComponentCard key={item.name} item={item} />
-            ))}
+      {sections.map((section) =>
+        section.items.length > 0 ? (
+          <div key={section.key} className="flex flex-col gap-4">
+            <h2 className="pb-2 border-border border-b font-display text-2xl tracking-tight">
+              {section.key}
+            </h2>
+            <div className="gap-4 grid md:grid-cols-2">
+              {section.items.map((item) => (
+                <ComponentCard key={item.name} item={item} />
+              ))}
+            </div>
           </div>
-        </div>
-      )}
-
-      {baseItems.length > 0 && (
-        <div className="flex flex-col gap-4">
-          <h2 className="pb-2 border-border border-b font-display text-2xl tracking-tight">
-            Base Components
-          </h2>
-          <div className="gap-4 grid md:grid-cols-2">
-            {baseItems.map((item) => (
-              <ComponentCard key={item.name} item={item} />
-            ))}
-          </div>
-        </div>
+        ) : null,
       )}
     </section>
   );

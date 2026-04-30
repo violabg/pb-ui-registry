@@ -1,262 +1,202 @@
 // Checkbox
 export {
-  CheckboxDemo,
-  CheckboxDemoCode,
-  CheckboxDisabled,
-  CheckboxDisabledCode,
+    CheckboxDemo,
+    CheckboxDisabled
 } from "./checkbox-examples";
 
 // Alert Dialog
-export { AlertDialogDemo, AlertDialogDemoCode } from "./alert-dialog-examples";
+export { AlertDialogDemo } from "./alert-dialog-examples";
 
 // Badge
-export { BadgeDemo, BadgeDemoCode } from "./badge-examples";
+export { BadgeDemo } from "./badge-examples";
 
 // Button
 export {
-  ButtonDemo,
-  ButtonDemoCode,
-  ButtonSizes,
-  ButtonSizesCode,
+    ButtonDemo,
+    ButtonSizes
 } from "./button-examples";
 
 // Card
-export { CardDemo, CardDemoCode } from "./card-examples";
+export { CardDemo } from "./card-examples";
 
 // Combobox
-export { ComboboxDemo, ComboboxDemoCode } from "./combobox-examples";
+export { ComboboxDemo } from "./combobox-examples";
 
 // Dropdown Menu
 export {
-  DropdownMenuDemo,
-  DropdownMenuDemoCode,
+    DropdownMenuDemo
 } from "./dropdown-menu-examples";
 
 // Field
-export { FieldDemo, FieldDemoCode } from "./field-examples";
+export { FieldDemo } from "./field-examples";
 
 // Input
-export { InputDemo, InputDemoCode } from "./input-examples";
+export { InputDemo } from "./input-examples";
 
 // Input Group
-export { InputGroupDemo, InputGroupDemoCode } from "./input-group-examples";
+export { InputGroupDemo } from "./input-group-examples";
 
 // Label
-export { LabelDemo, LabelDemoCode } from "./label-examples";
+export { LabelDemo } from "./label-examples";
 
 // Select
-export { SelectDemo, SelectDemoCode } from "./select-examples";
+export { SelectDemo } from "./select-examples";
 
 // Separator
-export { SeparatorDemo, SeparatorDemoCode } from "./separator-examples";
+export { SeparatorDemo } from "./separator-examples";
 
 // Textarea
-export { TextareaDemo, TextareaDemoCode } from "./textarea-examples";
+export { TextareaDemo } from "./textarea-examples";
 
 // Switch
 export {
-  SwitchDemo,
-  SwitchDemoCode,
-  SwitchSmall,
-  SwitchSmallCode,
+    SwitchDemo,
+    SwitchSmall
 } from "./switch-examples";
 
 // Slider
 export {
-  SliderDemo,
-  SliderDemoCode,
-  SliderRange,
-  SliderRangeCode,
+    SliderDemo,
+    SliderRange
 } from "./slider-examples";
 
 // Radio Group
-export { RadioGroupDemo, RadioGroupDemoCode } from "./radio-group-examples";
+export { RadioGroupDemo } from "./radio-group-examples";
 
 // Popover
-export { PopoverDemo, PopoverDemoCode } from "./popover-examples";
+export { PopoverDemo } from "./popover-examples";
 
 // Dialog
-export { DialogDemo, DialogDemoCode } from "./dialog-examples";
+export { DialogDemo } from "./dialog-examples";
 
 // Command
-export { CommandDemo, CommandDemoCode } from "./command-examples";
+export { CommandDemo } from "./command-examples";
 
 // Date Field
 export {
-  DateFieldDefaultValueDemo,
-  DateFieldDefaultValueDemoCode,
-  DateFieldDemo,
-  DateFieldDemoCode,
+    DateFieldDefaultValueDemo,
+    DateFieldDemo
 } from "./datefield-examples";
 
 // RHF Date/Time Pickers
 export {
-  RhfDatePickerFieldDefaultValuesDemo,
-  RhfDatePickerFieldDefaultValuesDemoCode,
-  RhfDatePickerFieldDemo,
-  RhfDatePickerFieldDemoCode,
-  RhfDatePickerFieldFormatDemo,
-  RhfDatePickerFieldFormatDemoCode,
-  RhfDateTimePickerFieldDemo,
-  RhfDateTimePickerFieldDemoCode,
-  RhfRangeDatePickerFieldDefaultValuesDemo,
-  RhfRangeDatePickerFieldDefaultValuesDemoCode,
-  RhfRangeDatePickerFieldDemo,
-  RhfRangeDatePickerFieldDemoCode,
-  RhfTimePickerFieldDemo,
-  RhfTimePickerFieldDemoCode,
+    RhfDatePickerFieldDefaultValuesDemo,
+    RhfDatePickerFieldDemo,
+    RhfDatePickerFieldFormatDemo,
+    RhfDateTimePickerFieldDemo,
+    RhfRangeDatePickerFieldDefaultValuesDemo,
+    RhfRangeDatePickerFieldDemo,
+    RhfTimePickerFieldDemo
 } from "./rhf/individual/rhf-date-picker-examples";
 
 // Password Input
 export {
-  PasswordInputDemo,
-  PasswordInputDemoCode,
+    PasswordInputDemo
 } from "./password-input-examples";
 
 // File Upload
-export { FileUploadDemo, FileUploadDemoCode } from "./file-upload-examples";
+export { FileUploadDemo } from "./file-upload-examples";
 
 // Multi Select
 export {
-  MultiSelectDemo,
-  MultiSelectDemoCode,
-  MultiSelectGroupedDemo,
-  MultiSelectGroupedDemoCode,
+    MultiSelectDemo,
+    MultiSelectGroupedDemo
 } from "./multi-select-examples";
 
 // Tabs
 export {
-  TabsDemo,
-  TabsDemoCode,
-  TabsLineVariant,
-  TabsLineVariantCode,
+    TabsDemo,
+    TabsLineVariant
 } from "./tabs-examples";
 
 // RHF Inputs
-export { RhfInputsDemo, RhfInputsDemoCode } from "./rhf/rhf-inputs-examples";
+export { RhfInputsDemo } from "./rhf/rhf-inputs-examples";
 
 // RHF Individual Inputs
 export {
-  RhfCheckboxFieldDemo,
-  RhfCheckboxFieldDemoCode,
-  RhfFileUploadFieldDemo,
-  RhfFileUploadFieldDemoCode,
-  RhfInputDateFieldDefaultDemo,
-  RhfInputDateFieldDefaultDemoCode,
-  RhfInputDateFieldEmptyDemo,
-  RhfInputDateFieldEmptyDemoCode,
-  RhfInputFieldDemo,
-  RhfInputFieldDemoCode,
-  RhfInputWithTagFieldClearDemo,
-  RhfInputWithTagFieldClearDemoCode,
-  RhfInputWithTagFieldDemo,
-  RhfInputWithTagFieldDemoCode,
-  RhfMultiSelectFieldClearDemo,
-  RhfMultiSelectFieldClearDemoCode,
-  RhfMultiSelectFieldDemo,
-  RhfMultiSelectFieldDemoCode,
-  RhfPasswordFieldDemo,
-  RhfPasswordFieldDemoCode,
-  RhfRadioGroupFieldDemo,
-  RhfRadioGroupFieldDemoCode,
-  RhfSelectFieldDemo,
-  RhfSelectFieldDemoCode,
-  RhfSliderFieldDemo,
-  RhfSliderFieldDemoCode,
-  RhfSwitchFieldDemo,
-  RhfSwitchFieldDemoCode,
-  RhfTextareaFieldDemo,
-  RhfTextareaFieldDemoCode,
+    RhfCheckboxFieldDemo,
+    RhfFileUploadFieldDemo,
+    RhfInputDateFieldDefaultDemo,
+    RhfInputDateFieldEmptyDemo,
+    RhfInputFieldDemo,
+    RhfInputWithTagFieldClearDemo,
+    RhfInputWithTagFieldDemo,
+    RhfMultiSelectFieldClearDemo,
+    RhfMultiSelectFieldDemo,
+    RhfPasswordFieldDemo,
+    RhfRadioGroupFieldDemo,
+    RhfSelectFieldDemo,
+    RhfSliderFieldDemo,
+    RhfSwitchFieldDemo,
+    RhfTextareaFieldDemo
 } from "./rhf/rhf-individual-examples";
 
 // Tag Input
 export {
-  TagInputClear,
-  TagInputClearCode,
-  TagInputDemo,
-  TagInputDemoCode,
-  TagInputDisabled,
-  TagInputDisabledCode,
-  TagInputMax,
-  TagInputMaxCode,
+    TagInputClear,
+    TagInputDemo,
+    TagInputDisabled,
+    TagInputMax
 } from "./tag-input-examples";
 
 // Number Input
 export {
-  NumberInputDecimalDemo,
-  NumberInputDecimalDemoCode,
-  NumberInputDemo,
-  NumberInputDemoCode,
+    NumberInputDecimalDemo,
+    NumberInputDemo
 } from "./number-input-examples";
 
 // Input OTP
-export { InputOtpDemo, InputOtpDemoCode } from "./input-otp-examples";
+export { InputOtpDemo } from "./input-otp-examples";
 
 // Color Picker
-export { ColorPickerDemo, ColorPickerDemoCode } from "./color-picker-examples";
+export { ColorPickerDemo } from "./color-picker-examples";
 
 // Rating
 export {
-  RatingDemo,
-  RatingDemoCode,
-  RatingHalf,
-  RatingHalfCode,
-  RatingReadOnly,
-  RatingReadOnlyCode,
+    RatingDemo,
+    RatingHalf,
+    RatingReadOnly
 } from "./rating-examples";
 
 // Calendar
-export { CalendarDemo, CalendarDemoCode } from "./calendar-examples";
+export { CalendarDemo } from "./calendar-examples";
 
 // New RHF Individual Examples
 export {
-  RhfComboboxFieldDemo,
-  RhfComboboxFieldDemoCode,
+    RhfComboboxFieldDemo
 } from "./rhf/individual/rhf-combobox-field-examples";
 
 export {
-  RhfNumberFieldDecimalDemo,
-  RhfNumberFieldDecimalDemoCode,
-  RhfNumberFieldDemo,
-  RhfNumberFieldDemoCode,
-  RhfNumberFieldLocaleDemo,
-  RhfNumberFieldLocaleDemoCode,
+    RhfNumberFieldDecimalDemo,
+    RhfNumberFieldDemo,
+    RhfNumberFieldLocaleDemo
 } from "./rhf/individual/rhf-number-field-examples";
 
 export {
-  RhfOtpFieldDemo,
-  RhfOtpFieldDemoCode,
+    RhfOtpFieldDemo
 } from "./rhf/individual/rhf-otp-field-examples";
 
 export {
-  RhfCheckboxGroupFieldDemo,
-  RhfCheckboxGroupFieldDemoCode,
-  RhfCheckboxGroupFieldHorizontalDemo,
-  RhfCheckboxGroupFieldHorizontalDemoCode,
+    RhfCheckboxGroupFieldDemo,
+    RhfCheckboxGroupFieldHorizontalDemo
 } from "./rhf/individual/rhf-checkbox-group-field-examples";
 
 export {
-  RhfPhoneFieldDemo,
-  RhfPhoneFieldDemoCode,
+    RhfPhoneFieldDemo
 } from "./rhf/individual/rhf-phone-field-examples";
 
 export {
-  RhfCurrencyFieldCentsDemo,
-  RhfCurrencyFieldCentsDemoCode,
-  RhfCurrencyFieldDemo,
-  RhfCurrencyFieldDemoCode,
-  RhfCurrencyFieldEuroDemo,
-  RhfCurrencyFieldEuroDemoCode,
+    RhfCurrencyFieldCentsDemo,
+    RhfCurrencyFieldDemo,
+    RhfCurrencyFieldEuroDemo
 } from "./rhf/individual/rhf-currency-field-examples";
 
 export {
-  RhfColorPickerFieldDemo,
-  RhfColorPickerFieldDemoCode,
+    RhfColorPickerFieldDemo
 } from "./rhf/individual/rhf-color-picker-field-examples";
 
 export {
-  RhfRatingFieldDemo,
-  RhfRatingFieldDemoCode,
-  RhfRatingFieldHalfDemo,
-  RhfRatingFieldHalfDemoCode,
+    RhfRatingFieldDemo,
+    RhfRatingFieldHalfDemo
 } from "./rhf/individual/rhf-rating-field-examples";
+

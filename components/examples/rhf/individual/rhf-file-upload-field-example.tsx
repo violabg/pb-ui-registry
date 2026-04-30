@@ -36,34 +36,3 @@ export function RhfFileUploadFieldDemo() {
   );
 }
 
-export const RhfFileUploadFieldDemoCode = `import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
-import { Button } from "@/components/ui/button";
-import { FileUploadField } from "@/components/ui/rhf-inputs";
-
-const schema = z.object({
-  resume: z.instanceof(File).optional(),
-});
-
-type FormValues = z.infer<typeof schema>;
-
-export function Demo() {
-  const { control, handleSubmit } = useForm<FormValues>({
-    resolver: zodResolver(schema),
-    defaultValues: { resume: undefined },
-  });
-
-  return (
-    <form onSubmit={handleSubmit((data) => alert(JSON.stringify(data, null, 2)))}>
-      <FileUploadField
-        control={control}
-        name="resume"
-        label="Resume"
-        description="Upload your resume (PDF, DOC, DOCX)"
-        required
-      />
-      <Button type="submit">Submit</Button>
-    </form>
-  );
-}`;

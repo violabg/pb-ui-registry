@@ -1,167 +1,91 @@
 import {
   AlertDialogDemo,
-  AlertDialogDemoCode,
   BadgeDemo,
-  BadgeDemoCode,
   ButtonDemo,
-  ButtonDemoCode,
   ButtonSizes,
-  ButtonSizesCode,
   CalendarDemo,
-  CalendarDemoCode,
   CardDemo,
-  CardDemoCode,
   CheckboxDemo,
-  CheckboxDemoCode,
   CheckboxDisabled,
-  CheckboxDisabledCode,
   ColorPickerDemo,
-  ColorPickerDemoCode,
   ComboboxDemo,
-  ComboboxDemoCode,
   CommandDemo,
-  CommandDemoCode,
   DateFieldDefaultValueDemo,
-  DateFieldDefaultValueDemoCode,
   DateFieldDemo,
-  DateFieldDemoCode,
   DialogDemo,
-  DialogDemoCode,
   DropdownMenuDemo,
-  DropdownMenuDemoCode,
   FieldDemo,
-  FieldDemoCode,
   FileUploadDemo,
-  FileUploadDemoCode,
   InputDemo,
-  InputDemoCode,
   InputGroupDemo,
-  InputGroupDemoCode,
   InputOtpDemo,
-  InputOtpDemoCode,
   LabelDemo,
-  LabelDemoCode,
   MultiSelectDemo,
-  MultiSelectDemoCode,
   MultiSelectGroupedDemo,
-  MultiSelectGroupedDemoCode,
   NumberInputDecimalDemo,
-  NumberInputDecimalDemoCode,
   NumberInputDemo,
-  NumberInputDemoCode,
   PasswordInputDemo,
-  PasswordInputDemoCode,
   PopoverDemo,
-  PopoverDemoCode,
   RadioGroupDemo,
-  RadioGroupDemoCode,
   RatingDemo,
-  RatingDemoCode,
   RatingHalf,
-  RatingHalfCode,
   RatingReadOnly,
-  RatingReadOnlyCode,
   RhfCheckboxFieldDemo,
-  RhfCheckboxFieldDemoCode,
   RhfCheckboxGroupFieldDemo,
-  RhfCheckboxGroupFieldDemoCode,
   RhfCheckboxGroupFieldHorizontalDemo,
-  RhfCheckboxGroupFieldHorizontalDemoCode,
   RhfColorPickerFieldDemo,
-  RhfColorPickerFieldDemoCode,
   RhfComboboxFieldDemo,
-  RhfComboboxFieldDemoCode,
   RhfCurrencyFieldCentsDemo,
-  RhfCurrencyFieldCentsDemoCode,
   RhfCurrencyFieldDemo,
-  RhfCurrencyFieldDemoCode,
   RhfCurrencyFieldEuroDemo,
-  RhfCurrencyFieldEuroDemoCode,
   RhfDatePickerFieldDefaultValuesDemo,
-  RhfDatePickerFieldDefaultValuesDemoCode,
   RhfDatePickerFieldDemo,
-  RhfDatePickerFieldDemoCode,
   RhfDatePickerFieldFormatDemo,
-  RhfDatePickerFieldFormatDemoCode,
   RhfDateTimePickerFieldDemo,
-  RhfDateTimePickerFieldDemoCode,
   RhfFileUploadFieldDemo,
-  RhfFileUploadFieldDemoCode,
   RhfInputDateFieldDefaultDemo,
-  RhfInputDateFieldDefaultDemoCode,
   RhfInputDateFieldEmptyDemo,
-  RhfInputDateFieldEmptyDemoCode,
   RhfInputFieldDemo,
-  RhfInputFieldDemoCode,
   RhfInputsDemo,
-  RhfInputsDemoCode,
   RhfInputWithTagFieldClearDemo,
-  RhfInputWithTagFieldClearDemoCode,
   RhfInputWithTagFieldDemo,
-  RhfInputWithTagFieldDemoCode,
   RhfMultiSelectFieldClearDemo,
-  RhfMultiSelectFieldClearDemoCode,
   RhfMultiSelectFieldDemo,
-  RhfMultiSelectFieldDemoCode,
   RhfNumberFieldDecimalDemo,
-  RhfNumberFieldDecimalDemoCode,
   RhfNumberFieldDemo,
-  RhfNumberFieldDemoCode,
   RhfNumberFieldLocaleDemo,
-  RhfNumberFieldLocaleDemoCode,
   RhfOtpFieldDemo,
-  RhfOtpFieldDemoCode,
   RhfPasswordFieldDemo,
-  RhfPasswordFieldDemoCode,
   RhfPhoneFieldDemo,
-  RhfPhoneFieldDemoCode,
   RhfRadioGroupFieldDemo,
-  RhfRadioGroupFieldDemoCode,
   RhfRangeDatePickerFieldDefaultValuesDemo,
-  RhfRangeDatePickerFieldDefaultValuesDemoCode,
   RhfRangeDatePickerFieldDemo,
-  RhfRangeDatePickerFieldDemoCode,
   RhfRatingFieldDemo,
-  RhfRatingFieldDemoCode,
   RhfRatingFieldHalfDemo,
-  RhfRatingFieldHalfDemoCode,
   RhfSelectFieldDemo,
-  RhfSelectFieldDemoCode,
   RhfSliderFieldDemo,
-  RhfSliderFieldDemoCode,
   RhfSwitchFieldDemo,
-  RhfSwitchFieldDemoCode,
   RhfTextareaFieldDemo,
-  RhfTextareaFieldDemoCode,
   RhfTimePickerFieldDemo,
-  RhfTimePickerFieldDemoCode,
   SelectDemo,
-  SelectDemoCode,
   SeparatorDemo,
-  SeparatorDemoCode,
   SliderDemo,
-  SliderDemoCode,
   SliderRange,
-  SliderRangeCode,
   SwitchDemo,
-  SwitchDemoCode,
   SwitchSmall,
-  SwitchSmallCode,
   TabsDemo,
-  TabsDemoCode,
   TabsLineVariant,
-  TabsLineVariantCode,
   TagInputClear,
-  TagInputClearCode,
   TagInputDemo,
-  TagInputDemoCode,
   TagInputDisabled,
-  TagInputDisabledCode,
   TagInputMax,
-  TagInputMaxCode,
   TextareaDemo,
-  TextareaDemoCode,
 } from "@/components/examples";
+import { getExampleCode } from "@/lib/example-code";
+import {
+  exampleEnabledRegistryItemNames,
+  isExampleEnabledRegistryItem,
+} from "@/lib/registry";
 import React from "react";
 
 export type Example = {
@@ -169,33 +93,38 @@ export type Example = {
   title: string;
   component: React.ReactNode;
   code: string;
+  sourceExportName?: string;
 };
 
-export const examples: Record<string, Example[]> = {
+const exampleDefinitions: Record<string, Example[]> = {
   "tag-input": [
     {
       name: "default",
       title: "Default",
       component: <TagInputDemo />,
-      code: TagInputDemoCode,
+      code: "",
+      sourceExportName: "TagInputDemo",
     },
     {
       name: "max-tags",
       title: "Max Tags (3)",
       component: <TagInputMax />,
-      code: TagInputMaxCode,
+      code: "",
+      sourceExportName: "TagInputMax",
     },
     {
       name: "disabled",
       title: "Disabled",
       component: <TagInputDisabled />,
-      code: TagInputDisabledCode,
+      code: "",
+      sourceExportName: "TagInputDisabled",
     },
     {
       name: "clear",
       title: "With Clear Button",
       component: <TagInputClear />,
-      code: TagInputClearCode,
+      code: "",
+      sourceExportName: "TagInputClear",
     },
   ],
   "alert-dialog": [
@@ -203,7 +132,8 @@ export const examples: Record<string, Example[]> = {
       name: "default",
       title: "Default",
       component: <AlertDialogDemo />,
-      code: AlertDialogDemoCode,
+      code: "",
+      sourceExportName: "AlertDialogDemo",
     },
   ],
   badge: [
@@ -211,7 +141,8 @@ export const examples: Record<string, Example[]> = {
       name: "default",
       title: "Variants",
       component: <BadgeDemo />,
-      code: BadgeDemoCode,
+      code: "",
+      sourceExportName: "BadgeDemo",
     },
   ],
   button: [
@@ -219,13 +150,15 @@ export const examples: Record<string, Example[]> = {
       name: "default",
       title: "Variants",
       component: <ButtonDemo />,
-      code: ButtonDemoCode,
+      code: "",
+      sourceExportName: "ButtonDemo",
     },
     {
       name: "sizes",
       title: "Sizes",
       component: <ButtonSizes />,
-      code: ButtonSizesCode,
+      code: "",
+      sourceExportName: "ButtonSizes",
     },
   ],
   card: [
@@ -233,7 +166,8 @@ export const examples: Record<string, Example[]> = {
       name: "default",
       title: "Default",
       component: <CardDemo />,
-      code: CardDemoCode,
+      code: "",
+      sourceExportName: "CardDemo",
     },
   ],
   combobox: [
@@ -241,7 +175,8 @@ export const examples: Record<string, Example[]> = {
       name: "default",
       title: "Default",
       component: <ComboboxDemo />,
-      code: ComboboxDemoCode,
+      code: "",
+      sourceExportName: "ComboboxDemo",
     },
   ],
   "dropdown-menu": [
@@ -249,7 +184,8 @@ export const examples: Record<string, Example[]> = {
       name: "default",
       title: "Default",
       component: <DropdownMenuDemo />,
-      code: DropdownMenuDemoCode,
+      code: "",
+      sourceExportName: "DropdownMenuDemo",
     },
   ],
   field: [
@@ -257,7 +193,8 @@ export const examples: Record<string, Example[]> = {
       name: "default",
       title: "Default",
       component: <FieldDemo />,
-      code: FieldDemoCode,
+      code: "",
+      sourceExportName: "FieldDemo",
     },
   ],
   input: [
@@ -265,7 +202,8 @@ export const examples: Record<string, Example[]> = {
       name: "default",
       title: "Default",
       component: <InputDemo />,
-      code: InputDemoCode,
+      code: "",
+      sourceExportName: "InputDemo",
     },
   ],
   "input-group": [
@@ -273,7 +211,8 @@ export const examples: Record<string, Example[]> = {
       name: "default",
       title: "Default",
       component: <InputGroupDemo />,
-      code: InputGroupDemoCode,
+      code: "",
+      sourceExportName: "InputGroupDemo",
     },
   ],
   label: [
@@ -281,7 +220,8 @@ export const examples: Record<string, Example[]> = {
       name: "default",
       title: "Default",
       component: <LabelDemo />,
-      code: LabelDemoCode,
+      code: "",
+      sourceExportName: "LabelDemo",
     },
   ],
   select: [
@@ -289,7 +229,8 @@ export const examples: Record<string, Example[]> = {
       name: "default",
       title: "Default",
       component: <SelectDemo />,
-      code: SelectDemoCode,
+      code: "",
+      sourceExportName: "SelectDemo",
     },
   ],
   separator: [
@@ -297,7 +238,8 @@ export const examples: Record<string, Example[]> = {
       name: "default",
       title: "Default",
       component: <SeparatorDemo />,
-      code: SeparatorDemoCode,
+      code: "",
+      sourceExportName: "SeparatorDemo",
     },
   ],
   textarea: [
@@ -305,7 +247,8 @@ export const examples: Record<string, Example[]> = {
       name: "default",
       title: "Default",
       component: <TextareaDemo />,
-      code: TextareaDemoCode,
+      code: "",
+      sourceExportName: "TextareaDemo",
     },
   ],
   checkbox: [
@@ -313,13 +256,15 @@ export const examples: Record<string, Example[]> = {
       name: "default",
       title: "Default",
       component: <CheckboxDemo />,
-      code: CheckboxDemoCode,
+      code: "",
+      sourceExportName: "CheckboxDemo",
     },
     {
       name: "disabled",
       title: "Disabled",
       component: <CheckboxDisabled />,
-      code: CheckboxDisabledCode,
+      code: "",
+      sourceExportName: "CheckboxDisabled",
     },
   ],
   switch: [
@@ -327,13 +272,15 @@ export const examples: Record<string, Example[]> = {
       name: "default",
       title: "Default",
       component: <SwitchDemo />,
-      code: SwitchDemoCode,
+      code: "",
+      sourceExportName: "SwitchDemo",
     },
     {
       name: "small",
       title: "Small Size",
       component: <SwitchSmall />,
-      code: SwitchSmallCode,
+      code: "",
+      sourceExportName: "SwitchSmall",
     },
   ],
   slider: [
@@ -341,13 +288,15 @@ export const examples: Record<string, Example[]> = {
       name: "default",
       title: "Default",
       component: <SliderDemo />,
-      code: SliderDemoCode,
+      code: "",
+      sourceExportName: "SliderDemo",
     },
     {
       name: "range",
       title: "Range",
       component: <SliderRange />,
-      code: SliderRangeCode,
+      code: "",
+      sourceExportName: "SliderRange",
     },
   ],
   "radio-group": [
@@ -355,7 +304,8 @@ export const examples: Record<string, Example[]> = {
       name: "default",
       title: "Default",
       component: <RadioGroupDemo />,
-      code: RadioGroupDemoCode,
+      code: "",
+      sourceExportName: "RadioGroupDemo",
     },
   ],
   popover: [
@@ -363,7 +313,8 @@ export const examples: Record<string, Example[]> = {
       name: "default",
       title: "Default",
       component: <PopoverDemo />,
-      code: PopoverDemoCode,
+      code: "",
+      sourceExportName: "PopoverDemo",
     },
   ],
   dialog: [
@@ -371,7 +322,8 @@ export const examples: Record<string, Example[]> = {
       name: "default",
       title: "Default",
       component: <DialogDemo />,
-      code: DialogDemoCode,
+      code: "",
+      sourceExportName: "DialogDemo",
     },
   ],
   command: [
@@ -379,7 +331,8 @@ export const examples: Record<string, Example[]> = {
       name: "default",
       title: "Default",
       component: <CommandDemo />,
-      code: CommandDemoCode,
+      code: "",
+      sourceExportName: "CommandDemo",
     },
   ],
   "datefield-rac": [
@@ -387,13 +340,15 @@ export const examples: Record<string, Example[]> = {
       name: "default",
       title: "Default",
       component: <DateFieldDemo />,
-      code: DateFieldDemoCode,
+      code: "",
+      sourceExportName: "DateFieldDemo",
     },
     {
       name: "default-value",
       title: "Default Value",
       component: <DateFieldDefaultValueDemo />,
-      code: DateFieldDefaultValueDemoCode,
+      code: "",
+      sourceExportName: "DateFieldDefaultValueDemo",
     },
   ],
   "password-input": [
@@ -401,7 +356,8 @@ export const examples: Record<string, Example[]> = {
       name: "default",
       title: "Default",
       component: <PasswordInputDemo />,
-      code: PasswordInputDemoCode,
+      code: "",
+      sourceExportName: "PasswordInputDemo",
     },
   ],
   "file-upload": [
@@ -409,7 +365,8 @@ export const examples: Record<string, Example[]> = {
       name: "default",
       title: "Default",
       component: <FileUploadDemo />,
-      code: FileUploadDemoCode,
+      code: "",
+      sourceExportName: "FileUploadDemo",
     },
   ],
   "multi-select": [
@@ -417,13 +374,15 @@ export const examples: Record<string, Example[]> = {
       name: "default",
       title: "Default",
       component: <MultiSelectDemo />,
-      code: MultiSelectDemoCode,
+      code: "",
+      sourceExportName: "MultiSelectDemo",
     },
     {
       name: "grouped",
       title: "Grouped",
       component: <MultiSelectGroupedDemo />,
-      code: MultiSelectGroupedDemoCode,
+      code: "",
+      sourceExportName: "MultiSelectGroupedDemo",
     },
   ],
   tabs: [
@@ -431,13 +390,15 @@ export const examples: Record<string, Example[]> = {
       name: "default",
       title: "Default",
       component: <TabsDemo />,
-      code: TabsDemoCode,
+      code: "",
+      sourceExportName: "TabsDemo",
     },
     {
       name: "line-variant",
       title: "Line Variant",
       component: <TabsLineVariant />,
-      code: TabsLineVariantCode,
+      code: "",
+      sourceExportName: "TabsLineVariant",
     },
   ],
   "rhf-inputs": [
@@ -445,7 +406,8 @@ export const examples: Record<string, Example[]> = {
       name: "default",
       title: "Overview",
       component: <RhfInputsDemo />,
-      code: RhfInputsDemoCode,
+      code: "",
+      sourceExportName: "RhfInputsDemo",
     },
   ],
   "rhf-input-field": [
@@ -453,7 +415,8 @@ export const examples: Record<string, Example[]> = {
       name: "default",
       title: "Default",
       component: <RhfInputFieldDemo />,
-      code: RhfInputFieldDemoCode,
+      code: "",
+      sourceExportName: "RhfInputFieldDemo",
     },
   ],
   "rhf-checkbox-field": [
@@ -461,7 +424,8 @@ export const examples: Record<string, Example[]> = {
       name: "default",
       title: "Default",
       component: <RhfCheckboxFieldDemo />,
-      code: RhfCheckboxFieldDemoCode,
+      code: "",
+      sourceExportName: "RhfCheckboxFieldDemo",
     },
   ],
   "rhf-select-field": [
@@ -469,7 +433,8 @@ export const examples: Record<string, Example[]> = {
       name: "default",
       title: "Default",
       component: <RhfSelectFieldDemo />,
-      code: RhfSelectFieldDemoCode,
+      code: "",
+      sourceExportName: "RhfSelectFieldDemo",
     },
   ],
   "rhf-textarea-field": [
@@ -477,7 +442,8 @@ export const examples: Record<string, Example[]> = {
       name: "default",
       title: "Default",
       component: <RhfTextareaFieldDemo />,
-      code: RhfTextareaFieldDemoCode,
+      code: "",
+      sourceExportName: "RhfTextareaFieldDemo",
     },
   ],
   "rhf-radio-group-field": [
@@ -485,7 +451,8 @@ export const examples: Record<string, Example[]> = {
       name: "default",
       title: "Default",
       component: <RhfRadioGroupFieldDemo />,
-      code: RhfRadioGroupFieldDemoCode,
+      code: "",
+      sourceExportName: "RhfRadioGroupFieldDemo",
     },
   ],
   "rhf-slider-field": [
@@ -493,7 +460,8 @@ export const examples: Record<string, Example[]> = {
       name: "default",
       title: "Default",
       component: <RhfSliderFieldDemo />,
-      code: RhfSliderFieldDemoCode,
+      code: "",
+      sourceExportName: "RhfSliderFieldDemo",
     },
   ],
   "rhf-switch-field": [
@@ -501,7 +469,8 @@ export const examples: Record<string, Example[]> = {
       name: "default",
       title: "Default",
       component: <RhfSwitchFieldDemo />,
-      code: RhfSwitchFieldDemoCode,
+      code: "",
+      sourceExportName: "RhfSwitchFieldDemo",
     },
   ],
   "rhf-password-field": [
@@ -509,7 +478,8 @@ export const examples: Record<string, Example[]> = {
       name: "default",
       title: "Default",
       component: <RhfPasswordFieldDemo />,
-      code: RhfPasswordFieldDemoCode,
+      code: "",
+      sourceExportName: "RhfPasswordFieldDemo",
     },
   ],
   "rhf-input-with-tag-field": [
@@ -517,13 +487,15 @@ export const examples: Record<string, Example[]> = {
       name: "default",
       title: "Default",
       component: <RhfInputWithTagFieldDemo />,
-      code: RhfInputWithTagFieldDemoCode,
+      code: "",
+      sourceExportName: "RhfInputWithTagFieldDemo",
     },
     {
       name: "show-clear",
       title: "With Clear Button",
       component: <RhfInputWithTagFieldClearDemo />,
-      code: RhfInputWithTagFieldClearDemoCode,
+      code: "",
+      sourceExportName: "RhfInputWithTagFieldClearDemo",
     },
   ],
   "rhf-multi-select-field": [
@@ -531,13 +503,15 @@ export const examples: Record<string, Example[]> = {
       name: "default",
       title: "Default",
       component: <RhfMultiSelectFieldDemo />,
-      code: RhfMultiSelectFieldDemoCode,
+      code: "",
+      sourceExportName: "RhfMultiSelectFieldDemo",
     },
     {
       name: "show-clear",
       title: "With Clear Button",
       component: <RhfMultiSelectFieldClearDemo />,
-      code: RhfMultiSelectFieldClearDemoCode,
+      code: "",
+      sourceExportName: "RhfMultiSelectFieldClearDemo",
     },
   ],
   "rhf-file-upload-field": [
@@ -545,7 +519,8 @@ export const examples: Record<string, Example[]> = {
       name: "default",
       title: "Default",
       component: <RhfFileUploadFieldDemo />,
-      code: RhfFileUploadFieldDemoCode,
+      code: "",
+      sourceExportName: "RhfFileUploadFieldDemo",
     },
   ],
   "rhf-input-date-field": [
@@ -553,13 +528,15 @@ export const examples: Record<string, Example[]> = {
       name: "empty",
       title: "Empty",
       component: <RhfInputDateFieldEmptyDemo />,
-      code: RhfInputDateFieldEmptyDemoCode,
+      code: "",
+      sourceExportName: "RhfInputDateFieldEmptyDemo",
     },
     {
       name: "default-values",
       title: "Default Values",
       component: <RhfInputDateFieldDefaultDemo />,
-      code: RhfInputDateFieldDefaultDemoCode,
+      code: "",
+      sourceExportName: "RhfInputDateFieldDefaultDemo",
     },
   ],
   "rhf-date-picker-field": [
@@ -567,19 +544,22 @@ export const examples: Record<string, Example[]> = {
       name: "default",
       title: "Default",
       component: <RhfDatePickerFieldDemo />,
-      code: RhfDatePickerFieldDemoCode,
+      code: "",
+      sourceExportName: "RhfDatePickerFieldDemo",
     },
     {
       name: "default-values",
       title: "Default Values",
       component: <RhfDatePickerFieldDefaultValuesDemo />,
-      code: RhfDatePickerFieldDefaultValuesDemoCode,
+      code: "",
+      sourceExportName: "RhfDatePickerFieldDefaultValuesDemo",
     },
     {
       name: "custom-format",
       title: "Custom Format",
       component: <RhfDatePickerFieldFormatDemo />,
-      code: RhfDatePickerFieldFormatDemoCode,
+      code: "",
+      sourceExportName: "RhfDatePickerFieldFormatDemo",
     },
   ],
   "rhf-date-time-picker-field": [
@@ -587,7 +567,8 @@ export const examples: Record<string, Example[]> = {
       name: "default",
       title: "Default",
       component: <RhfDateTimePickerFieldDemo />,
-      code: RhfDateTimePickerFieldDemoCode,
+      code: "",
+      sourceExportName: "RhfDateTimePickerFieldDemo",
     },
   ],
   "rhf-range-date-picker-field": [
@@ -595,13 +576,15 @@ export const examples: Record<string, Example[]> = {
       name: "default",
       title: "Default",
       component: <RhfRangeDatePickerFieldDemo />,
-      code: RhfRangeDatePickerFieldDemoCode,
+      code: "",
+      sourceExportName: "RhfRangeDatePickerFieldDemo",
     },
     {
       name: "default-values",
       title: "Default Values",
       component: <RhfRangeDatePickerFieldDefaultValuesDemo />,
-      code: RhfRangeDatePickerFieldDefaultValuesDemoCode,
+      code: "",
+      sourceExportName: "RhfRangeDatePickerFieldDefaultValuesDemo",
     },
   ],
   "rhf-time-picker-field": [
@@ -609,7 +592,8 @@ export const examples: Record<string, Example[]> = {
       name: "default",
       title: "Default",
       component: <RhfTimePickerFieldDemo />,
-      code: RhfTimePickerFieldDemoCode,
+      code: "",
+      sourceExportName: "RhfTimePickerFieldDemo",
     },
   ],
   "rhf-base-controller": [
@@ -617,7 +601,8 @@ export const examples: Record<string, Example[]> = {
       name: "default",
       title: "Usage",
       component: <RhfInputFieldDemo />,
-      code: RhfInputFieldDemoCode,
+      code: "",
+      sourceExportName: "RhfInputFieldDemo",
     },
   ],
   // New Base Components
@@ -626,13 +611,15 @@ export const examples: Record<string, Example[]> = {
       name: "default",
       title: "Default",
       component: <NumberInputDemo />,
-      code: NumberInputDemoCode,
+      code: "",
+      sourceExportName: "NumberInputDemo",
     },
     {
       name: "decimal",
       title: "Decimal",
       component: <NumberInputDecimalDemo />,
-      code: NumberInputDecimalDemoCode,
+      code: "",
+      sourceExportName: "NumberInputDecimalDemo",
     },
   ],
   "input-otp": [
@@ -640,7 +627,8 @@ export const examples: Record<string, Example[]> = {
       name: "default",
       title: "Default",
       component: <InputOtpDemo />,
-      code: InputOtpDemoCode,
+      code: "",
+      sourceExportName: "InputOtpDemo",
     },
   ],
   "color-picker": [
@@ -648,7 +636,8 @@ export const examples: Record<string, Example[]> = {
       name: "default",
       title: "Default",
       component: <ColorPickerDemo />,
-      code: ColorPickerDemoCode,
+      code: "",
+      sourceExportName: "ColorPickerDemo",
     },
   ],
   rating: [
@@ -656,19 +645,22 @@ export const examples: Record<string, Example[]> = {
       name: "default",
       title: "Default",
       component: <RatingDemo />,
-      code: RatingDemoCode,
+      code: "",
+      sourceExportName: "RatingDemo",
     },
     {
       name: "readonly",
       title: "Read Only",
       component: <RatingReadOnly />,
-      code: RatingReadOnlyCode,
+      code: "",
+      sourceExportName: "RatingReadOnly",
     },
     {
       name: "half",
       title: "Half Star",
       component: <RatingHalf />,
-      code: RatingHalfCode,
+      code: "",
+      sourceExportName: "RatingHalf",
     },
   ],
   // New RHF Components
@@ -677,7 +669,8 @@ export const examples: Record<string, Example[]> = {
       name: "default",
       title: "Default",
       component: <RhfComboboxFieldDemo />,
-      code: RhfComboboxFieldDemoCode,
+      code: "",
+      sourceExportName: "RhfComboboxFieldDemo",
     },
   ],
   "rhf-number-field": [
@@ -685,19 +678,22 @@ export const examples: Record<string, Example[]> = {
       name: "default",
       title: "Default",
       component: <RhfNumberFieldDemo />,
-      code: RhfNumberFieldDemoCode,
+      code: "",
+      sourceExportName: "RhfNumberFieldDemo",
     },
     {
       name: "decimal",
       title: "Decimal",
       component: <RhfNumberFieldDecimalDemo />,
-      code: RhfNumberFieldDecimalDemoCode,
+      code: "",
+      sourceExportName: "RhfNumberFieldDecimalDemo",
     },
     {
       name: "locale",
       title: "Locale aware (it-IT)",
       component: <RhfNumberFieldLocaleDemo />,
-      code: RhfNumberFieldLocaleDemoCode,
+      code: "",
+      sourceExportName: "RhfNumberFieldLocaleDemo",
     },
   ],
   "rhf-otp-field": [
@@ -705,7 +701,8 @@ export const examples: Record<string, Example[]> = {
       name: "default",
       title: "Default",
       component: <RhfOtpFieldDemo />,
-      code: RhfOtpFieldDemoCode,
+      code: "",
+      sourceExportName: "RhfOtpFieldDemo",
     },
   ],
   "rhf-checkbox-group-field": [
@@ -713,13 +710,15 @@ export const examples: Record<string, Example[]> = {
       name: "default",
       title: "Default",
       component: <RhfCheckboxGroupFieldDemo />,
-      code: RhfCheckboxGroupFieldDemoCode,
+      code: "",
+      sourceExportName: "RhfCheckboxGroupFieldDemo",
     },
     {
       name: "horizontal",
       title: "Horizontal",
       component: <RhfCheckboxGroupFieldHorizontalDemo />,
-      code: RhfCheckboxGroupFieldHorizontalDemoCode,
+      code: "",
+      sourceExportName: "RhfCheckboxGroupFieldHorizontalDemo",
     },
   ],
   "rhf-phone-field": [
@@ -727,7 +726,8 @@ export const examples: Record<string, Example[]> = {
       name: "default",
       title: "Default",
       component: <RhfPhoneFieldDemo />,
-      code: RhfPhoneFieldDemoCode,
+      code: "",
+      sourceExportName: "RhfPhoneFieldDemo",
     },
   ],
   "rhf-currency-field": [
@@ -735,19 +735,22 @@ export const examples: Record<string, Example[]> = {
       name: "default",
       title: "Default (USD)",
       component: <RhfCurrencyFieldDemo />,
-      code: RhfCurrencyFieldDemoCode,
+      code: "",
+      sourceExportName: "RhfCurrencyFieldDemo",
     },
     {
       name: "euro",
       title: "Euro",
       component: <RhfCurrencyFieldEuroDemo />,
-      code: RhfCurrencyFieldEuroDemoCode,
+      code: "",
+      sourceExportName: "RhfCurrencyFieldEuroDemo",
     },
     {
       name: "with-cents",
       title: "With Cents",
       component: <RhfCurrencyFieldCentsDemo />,
-      code: RhfCurrencyFieldCentsDemoCode,
+      code: "",
+      sourceExportName: "RhfCurrencyFieldCentsDemo",
     },
   ],
   "rhf-color-picker-field": [
@@ -755,7 +758,8 @@ export const examples: Record<string, Example[]> = {
       name: "default",
       title: "Default",
       component: <RhfColorPickerFieldDemo />,
-      code: RhfColorPickerFieldDemoCode,
+      code: "",
+      sourceExportName: "RhfColorPickerFieldDemo",
     },
   ],
   "rhf-rating-field": [
@@ -763,13 +767,15 @@ export const examples: Record<string, Example[]> = {
       name: "default",
       title: "Default",
       component: <RhfRatingFieldDemo />,
-      code: RhfRatingFieldDemoCode,
+      code: "",
+      sourceExportName: "RhfRatingFieldDemo",
     },
     {
       name: "half",
       title: "Half Star",
       component: <RhfRatingFieldHalfDemo />,
-      code: RhfRatingFieldHalfDemoCode,
+      code: "",
+      sourceExportName: "RhfRatingFieldHalfDemo",
     },
   ],
   calendar: [
@@ -777,7 +783,92 @@ export const examples: Record<string, Example[]> = {
       name: "default",
       title: "Default",
       component: <CalendarDemo />,
-      code: CalendarDemoCode,
+      code: "",
+      sourceExportName: "CalendarDemo",
     },
   ],
 };
+
+function createValidatedExamples(
+  definitions: Record<string, Example[]>,
+): Record<string, Example[]> {
+  const registryItemNames = new Set(exampleEnabledRegistryItemNames);
+  const definitionNames = Object.keys(definitions);
+  const unknownExampleItems = definitionNames.filter(
+    (name) => !registryItemNames.has(name),
+  );
+  const missingExampleItems = exampleEnabledRegistryItemNames.filter((name) => {
+    const itemExamples = definitions[name];
+
+    return !itemExamples || itemExamples.length === 0;
+  });
+  const blankCodeExamples = Object.entries(definitions).flatMap(
+    ([name, itemExamples]) =>
+      itemExamples
+        .filter((example) => example.code.trim().length === 0)
+        .map((example) => `${name}#${example.name}`),
+  );
+
+  if (
+    unknownExampleItems.length > 0 ||
+    missingExampleItems.length > 0 ||
+    blankCodeExamples.length > 0
+  ) {
+    throw new Error(
+      [
+        "Invalid example registry state.",
+        unknownExampleItems.length > 0
+          ? `Unknown example items: ${unknownExampleItems.join(", ")}`
+          : null,
+        missingExampleItems.length > 0
+          ? `Missing required examples: ${missingExampleItems.join(", ")}`
+          : null,
+        blankCodeExamples.length > 0
+          ? `Examples missing code: ${blankCodeExamples.join(", ")}`
+          : null,
+      ]
+        .filter(Boolean)
+        .join(" "),
+    );
+  }
+
+  return definitions;
+}
+
+function hydrateExampleCode(
+  definitions: Record<string, Example[]>,
+): Record<string, Example[]> {
+  return Object.fromEntries(
+    Object.entries(definitions).map(([name, itemExamples]) => [
+      name,
+      itemExamples.map((example) => ({
+        ...example,
+        code: getExampleCode(
+          example.component,
+          example.code,
+          example.sourceExportName,
+        ),
+      })),
+    ]),
+  );
+}
+
+const examples = createValidatedExamples(
+  hydrateExampleCode(exampleDefinitions),
+);
+
+export function getExamples(name: string): Example[] {
+  return examples[name] ?? [];
+}
+
+export function getCurrentExample(name: string): Example | null {
+  return getExamples(name)[0] ?? null;
+}
+
+export function hasExamples(name: string) {
+  if (!isExampleEnabledRegistryItem(name)) {
+    return false;
+  }
+
+  return getExamples(name).length > 0;
+}

@@ -35,33 +35,3 @@ export function RhfCheckboxFieldDemo() {
   );
 }
 
-export const RhfCheckboxFieldDemoCode = `import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
-import { Button } from "@/components/ui/button";
-import { CheckboxField } from "@/components/ui/rhf-inputs";
-
-const schema = z.object({
-  terms: z.boolean().refine((val) => val === true, "You must accept the terms"),
-});
-
-type FormValues = z.infer<typeof schema>;
-
-export function Demo() {
-  const { control, handleSubmit } = useForm<FormValues>({
-    resolver: zodResolver(schema),
-    defaultValues: { terms: false },
-  });
-
-  return (
-    <form onSubmit={handleSubmit((data) => alert(JSON.stringify(data, null, 2)))}>
-      <CheckboxField
-        control={control}
-        name="terms"
-        label="I accept the terms and conditions"
-        required
-      />
-      <Button type="submit">Submit</Button>
-    </form>
-  );
-}`;

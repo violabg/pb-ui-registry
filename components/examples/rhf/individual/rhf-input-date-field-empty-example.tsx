@@ -38,38 +38,3 @@ export function RhfInputDateFieldEmptyDemo() {
   );
 }
 
-export const RhfInputDateFieldEmptyDemoCode = `import { Resolver, useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
-import { Button } from "@/components/ui/button";
-import { InputDateField } from "@/components/ui/rhf-inputs";
-
-const schema = z.object({
-  emptyDate: z.preprocess(
-    (value) => (typeof value === "string" ? new Date(value) : value),
-    z.date().optional(),
-  ),
-});
-
-type FormInput = z.input<typeof schema>;
-type FormOutput = z.output<typeof schema>;
-
-export function Demo() {
-  const { control, handleSubmit } = useForm<FormInput>({
-    resolver: zodResolver(schema) as Resolver<FormInput>,
-    defaultValues: {
-      emptyDate: undefined,
-    },
-  });
-
-  return (
-    <form onSubmit={handleSubmit((data) => console.log(data as FormOutput))}>
-      <InputDateField
-        control={control}
-        name="emptyDate"
-        label="Empty Date"
-      />
-      <Button type="submit">Submit</Button>
-    </form>
-  );
-}`;

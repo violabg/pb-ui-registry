@@ -39,37 +39,3 @@ export function RhfInputFieldDemo() {
   );
 }
 
-export const RhfInputFieldDemoCode = `import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
-import { Button } from "@/components/ui/button";
-import { InputField } from "@/components/ui/rhf-inputs";
-
-const schema = z.object({
-  username: z
-    .string()
-    .min(3, "Username must be at least 3 characters")
-    .regex(/^[a-zA-Z0-9_]+$/, "Only letters, numbers, and underscores"),
-});
-
-type FormValues = z.infer<typeof schema>;
-
-export function Demo() {
-  const { control, handleSubmit } = useForm<FormValues>({
-    resolver: zodResolver(schema),
-    defaultValues: { username: "" },
-  });
-
-  return (
-    <form onSubmit={handleSubmit((data) => alert(JSON.stringify(data, null, 2)))}>
-      <InputField
-        control={control}
-        name="username"
-        label="Username"
-        placeholder="Enter your username"
-        required
-      />
-      <Button type="submit">Submit</Button>
-    </form>
-  );
-}`;

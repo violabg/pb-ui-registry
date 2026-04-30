@@ -8,10 +8,10 @@ import { ComponentPreviewTabs } from "@/components/component-preview-tabs";
 import { FadeIn } from "@/components/fade-in";
 import { InstallCommand } from "@/components/install-command";
 import { Badge } from "@/components/ui/badge";
-import { examples } from "@/lib/examples";
+import { getExamples } from "@/lib/examples";
 import {
   getInstallCommand,
-  getRegistryItem,
+  getRegistryItemSummary,
   getRegistryItems,
 } from "@/lib/registry";
 import { groupToSidebarSections } from "@/lib/registry-groups";
@@ -31,7 +31,7 @@ export async function generateMetadata({
   params: Promise<{ name: string }>;
 }): Promise<Metadata> {
   const { name } = await params;
-  const item = await getRegistryItem(name);
+  const item = await getRegistryItemSummary(name);
 
   if (!item) {
     return {
@@ -76,7 +76,7 @@ export default async function ComponentPage({
   params: Promise<{ name: string }>;
 }) {
   const { name } = await params;
-  const item = await getRegistryItem(name);
+  const item = await getRegistryItemSummary(name);
 
   const allItems = await getRegistryItems();
   const sections = groupToSidebarSections(allItems);
@@ -85,7 +85,7 @@ export default async function ComponentPage({
     notFound();
   }
 
-  const componentExamples = examples[name] || [];
+  const componentExamples = getExamples(name);
 
   return (
     <div className="px-4 xl:px-10 py-12 w-full min-h-screen">
