@@ -1,5 +1,15 @@
-import fs from "node:fs/promises";
-import path from "node:path";
+import {
+  validateRegistryCategories,
+  type RegistryCategory,
+} from "./registry-categories";
+import {
+  getRegistryDependencyIssues,
+  validateRegistryDependencies,
+} from "./registry-dependencies";
+import {
+  loadRegistryItemFiles,
+  validateRegistryItemFiles,
+} from "./registry-files";
 
 export type RegistryFile = {
   path: string;
@@ -17,7 +27,7 @@ export type RegistryItem = {
   registryDependencies?: string[];
   dependencies?: string[];
   docs?: string;
-  categories?: string[];
+  categories?: RegistryCategory[];
 };
 
 export type RegistryIndex = {
@@ -30,6 +40,10 @@ export type RegistryItemSummary = Pick<
   RegistryItem,
   "name" | "title" | "description" | "docs" | "categories"
 >;
+
+type RegistryItemResolutionOptions = {
+  includeContent?: boolean;
+};
 
 const registryItems: RegistryItem[] = [
   {
@@ -1009,21 +1023,13 @@ export const exampleEnabledRegistryItemNames = registryItems.map(
 
 const registryItemNames = new Set(registryItems.map((item) => item.name));
 
-function validateRegistryDependencies() {
-  const unknownDependencies = registryItems.flatMap((item) =>
-    (item.registryDependencies ?? [])
-      .filter((dependency) => !registryItemNames.has(dependency))
-      .map((dependency) => `${item.name} -> ${dependency}`),
-  );
+validateRegistryCategories(registryItems);
+validateRegistryItemFiles(registryItems);
+validateRegistryDependencies(registryItems);
 
-  if (unknownDependencies.length > 0) {
-    throw new Error(
-      `Unknown registryDependencies: ${unknownDependencies.join(", ")}`,
-    );
-  }
+export function getRegistryDependencyValidationIssues() {
+  return getRegistryDependencyIssues(registryItems);
 }
-
-validateRegistryDependencies();
 
 export function isExampleEnabledRegistryItem(name: string) {
   return exampleEnabledRegistryItemNames.includes(name);
@@ -1072,42 +1078,28 @@ export async function getRegistryItems(): Promise<RegistryItemSummary[]> {
     .sort((a, b) => a.name.localeCompare(b.name));
 }
 
-async function resolveRegistryItem(name: string): Promise<RegistryItem | null> {
+async function resolveRegistryItem(
+  name: string,
+  options: RegistryItemResolutionOptions = {},
+): Promise<RegistryItem | null> {
   const item = registryItems.find((entry) => entry.name === name);
 
   if (!item) {
     return null;
   }
 
-  return {
+  const resolvedItem = {
     ...item,
     registryDependencies: resolveRegistryDependencies(
       item.registryDependencies,
     ),
   };
-}
 
-async function loadRegistryItemFiles(item: RegistryItem): Promise<RegistryItem> {
-  if (!item.files?.length) {
-    return item;
+  if (options.includeContent) {
+    return loadRegistryItemFiles(resolvedItem);
   }
 
-  const files = await Promise.all(
-    item.files.map(async (file) => {
-      const filePath = path.join(process.cwd(), file.path);
-      const content = await fs.readFile(filePath, "utf8");
-
-      return {
-        ...file,
-        content,
-      };
-    }),
-  );
-
-  return {
-    ...item,
-    files,
-  };
+  return resolvedItem;
 }
 
 export async function getRegistryItemSummary(
@@ -1119,13 +1111,7 @@ export async function getRegistryItemSummary(
 export async function getRegistryItemWithContent(
   name: string,
 ): Promise<RegistryItem | null> {
-  const item = await resolveRegistryItem(name);
-
-  if (!item) {
-    return null;
-  }
-
-  return loadRegistryItemFiles(item);
+  return resolveRegistryItem(name, { includeContent: true });
 }
 
 export async function getRegistryIndex(): Promise<RegistryIndex> {

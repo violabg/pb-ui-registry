@@ -96,7 +96,11 @@ export type Example = {
   sourceExportName?: string;
 };
 
-const exampleDefinitions: Record<string, Example[]> = {
+type ExampleDefinition = Omit<Example, "code"> & {
+  code?: unknown;
+};
+
+const exampleDefinitions: Record<string, ExampleDefinition[]> = {
   "tag-input": [
     {
       name: "default",
@@ -789,9 +793,7 @@ const exampleDefinitions: Record<string, Example[]> = {
   ],
 };
 
-function createValidatedExamples(
-  definitions: Record<string, Example[]>,
-): Record<string, Example[]> {
+function createValidatedExamples(definitions: Record<string, Example[]>) {
   const registryItemNames = new Set(exampleEnabledRegistryItemNames);
   const definitionNames = Object.keys(definitions);
   const unknownExampleItems = definitionNames.filter(
@@ -836,7 +838,7 @@ function createValidatedExamples(
 }
 
 function hydrateExampleCode(
-  definitions: Record<string, Example[]>,
+  definitions: Record<string, ExampleDefinition[]>,
 ): Record<string, Example[]> {
   return Object.fromEntries(
     Object.entries(definitions).map(([name, itemExamples]) => [
@@ -856,6 +858,10 @@ function hydrateExampleCode(
 const examples = createValidatedExamples(
   hydrateExampleCode(exampleDefinitions),
 );
+
+export function getExampleItemNames() {
+  return Object.keys(exampleDefinitions);
+}
 
 export function getExamples(name: string): Example[] {
   return examples[name] ?? [];

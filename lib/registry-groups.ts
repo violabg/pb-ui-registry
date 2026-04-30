@@ -5,10 +5,28 @@ export type PartitionedRegistry = {
   baseItems: RegistryItemSummary[];
 };
 
+export type RegistrySectionKey = "React Hook Form" | "Base Components";
+
+export type RegistrySectionRule = {
+  key: RegistrySectionKey;
+  matches: (item: RegistryItemSummary) => boolean;
+};
+
 export type RegistrySection = {
-  key: "React Hook Form" | "Base Components";
+  key: RegistrySectionKey;
   items: RegistryItemSummary[];
 };
+
+export const registrySectionRules = [
+  {
+    key: "React Hook Form",
+    matches: (item) => item.name.startsWith("rhf-"),
+  },
+  {
+    key: "Base Components",
+    matches: () => true,
+  },
+] satisfies RegistrySectionRule[];
 
 function sortRegistryItems(items: RegistryItemSummary[]) {
   return [...items].sort((a, b) => a.title.localeCompare(b.title));
@@ -19,9 +37,10 @@ export function partitionRegistryItems(
 ): PartitionedRegistry {
   const rhf: RegistryItemSummary[] = [];
   const base: RegistryItemSummary[] = [];
+  const [rhfRule] = registrySectionRules;
 
   for (const item of items) {
-    if (item.name.startsWith("rhf-")) {
+    if (rhfRule.matches(item)) {
       rhf.push(item);
     } else {
       base.push(item);

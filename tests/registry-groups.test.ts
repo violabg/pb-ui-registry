@@ -3,7 +3,10 @@
 import { describe, expect, it } from "vitest";
 
 import type { RegistryItemSummary } from "@/lib/registry";
-import { groupToSidebarSections } from "@/lib/registry-groups";
+import {
+    groupToSidebarSections,
+    registrySectionRules,
+} from "@/lib/registry-groups";
 
 describe("registry groups", () => {
   it("classifies and sorts RHF and base items through one shared seam", () => {
@@ -27,5 +30,18 @@ describe("registry groups", () => {
       "alert-dialog",
       "button",
     ]);
+  });
+
+  it("keeps section classification rules explicit", () => {
+    expect(registrySectionRules.map((rule) => rule.key)).toEqual([
+      "React Hook Form",
+      "Base Components",
+    ]);
+    expect(
+      registrySectionRules[0]?.matches({
+        name: "rhf-input-field",
+        title: "RHF Input Field",
+      }),
+    ).toBe(true);
   });
 });
