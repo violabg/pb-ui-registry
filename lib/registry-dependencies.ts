@@ -1,7 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
+import { RegistryItem } from "./registry-items";
 
-import type { RegistryItem } from "./registry";
 
 type RegistryDependencyIssueKind = "missing" | "unknown";
 

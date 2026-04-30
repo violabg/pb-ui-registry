@@ -1,7 +1,7 @@
 import fs from "node:fs/promises";
 import path from "node:path";
+import { RegistryFile, RegistryItem } from "./registry-items";
 
-import type { RegistryFile, RegistryItem } from "./registry";
 
 const registryFileTypes = new Set<RegistryFile["type"]>([
   "registry:component",
