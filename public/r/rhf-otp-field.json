@@ -1,0 +1,26 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "rhf-otp-field",
+  "title": "RHF OTP Field",
+  "description": "OTP/PIN input field with React Hook Form integration.",
+  "dependencies": [
+    "react-hook-form"
+  ],
+  "registryDependencies": [
+    "http://localhost:3000/r/rhf-base-controller.json",
+    "http://localhost:3000/r/input-otp.json"
+  ],
+  "files": [
+    {
+      "path": "components/ui/rhf-inputs/otp-field.tsx",
+      "content": "\"use client\";\n\nimport { FieldValues } from \"react-hook-form\";\nimport { InputOTP, InputOTPGroup, InputOTPSlot } from \"../input-otp\";\nimport { BaseController, BaseControllerProps } from \"./base-controller\";\n\ntype OTPFieldProps<T extends FieldValues> = Omit<\n  BaseControllerProps<T>,\n  \"children\"\n> & {\n  /** Number of OTP digits */\n  length?: number;\n  /** Pattern for input validation (e.g., /^[0-9]*$/) */\n  pattern?: RegExp;\n  disabled?: boolean;\n  className?: string;\n};\n\nexport function OTPField<T extends FieldValues>({\n  control,\n  name,\n  label,\n  description,\n  required,\n  disableFieldError = false,\n  length = 6,\n  pattern,\n  disabled = false,\n  className,\n}: OTPFieldProps<T>) {\n  return (\n    <BaseController\n      control={control}\n      name={name}\n      label={label}\n      required={required}\n      description={description}\n      disableFieldError={disableFieldError}\n    >\n      {({ field, fieldState, ariaDescribedBy }) => (\n        <InputOTP\n          id={field.name}\n          maxLength={length}\n          value={field.value ?? \"\"}\n          onChange={(value) => field.onChange(value)}\n          disabled={disabled}\n          pattern={pattern?.source}\n          aria-invalid={!!fieldState.error}\n          aria-describedby={ariaDescribedBy}\n          className={className}\n        >\n          <InputOTPGroup>\n            {Array.from({ length }, (_, index) => (\n              <InputOTPSlot\n                key={index}\n                index={index}\n                aria-invalid={!!fieldState.error}\n              />\n            ))}\n          </InputOTPGroup>\n        </InputOTP>\n      )}\n    </BaseController>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/ui/rhf-inputs/otp-field.tsx"
+    }
+  ],
+  "docs": "/components/rhf-otp-field",
+  "categories": [
+    "forms"
+  ],
+  "type": "registry:ui"
+}

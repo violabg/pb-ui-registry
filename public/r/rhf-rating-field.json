@@ -1,0 +1,26 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "rhf-rating-field",
+  "title": "RHF Rating Field",
+  "description": "Star rating field with React Hook Form integration.",
+  "dependencies": [
+    "react-hook-form"
+  ],
+  "registryDependencies": [
+    "http://localhost:3000/r/rhf-base-controller.json",
+    "http://localhost:3000/r/rating.json"
+  ],
+  "files": [
+    {
+      "path": "components/ui/rhf-inputs/rating-field.tsx",
+      "content": "\"use client\";\n\nimport { FieldValues } from \"react-hook-form\";\nimport { Rating, RatingProps } from \"../rating\";\nimport { BaseController, BaseControllerProps } from \"./base-controller\";\n\ntype RatingFieldProps<T extends FieldValues> = Omit<\n  BaseControllerProps<T>,\n  \"children\"\n> &\n  Omit<RatingProps, \"value\" | \"onChange\">;\n\nexport function RatingField<T extends FieldValues>({\n  control,\n  name,\n  label,\n  description,\n  required,\n  disableFieldError = false,\n  max,\n  disabled,\n  readOnly,\n  allowHalf,\n  size,\n  className,\n}: RatingFieldProps<T>) {\n  return (\n    <BaseController\n      control={control}\n      name={name}\n      label={label}\n      required={required}\n      description={description}\n      disableFieldError={disableFieldError}\n    >\n      {({ field, fieldState, ariaDescribedBy }) => (\n        <Rating\n          value={field.value ?? 0}\n          onChange={(value) => field.onChange(value)}\n          max={max}\n          disabled={disabled}\n          readOnly={readOnly}\n          allowHalf={allowHalf}\n          size={size}\n          aria-invalid={!!fieldState.error}\n          aria-describedby={ariaDescribedBy}\n          className={className}\n        />\n      )}\n    </BaseController>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/ui/rhf-inputs/rating-field.tsx"
+    }
+  ],
+  "docs": "/components/rhf-rating-field",
+  "categories": [
+    "forms"
+  ],
+  "type": "registry:ui"
+}

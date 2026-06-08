@@ -1,0 +1,27 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "rhf-radio-group-field",
+  "title": "RHF Radio Group Field",
+  "description": "Radio group field with React Hook Form integration.",
+  "dependencies": [
+    "react-hook-form"
+  ],
+  "registryDependencies": [
+    "http://localhost:3000/r/rhf-base-controller.json",
+    "http://localhost:3000/r/radio-group.json",
+    "http://localhost:3000/r/label.json"
+  ],
+  "files": [
+    {
+      "path": "components/ui/rhf-inputs/radio-group-field.tsx",
+      "content": "import { FieldValues } from \"react-hook-form\";\nimport { Label } from \"../label\";\nimport { RadioGroup, RadioGroupItem } from \"../radio-group\";\nimport { BaseController, BaseControllerProps } from \"./base-controller\";\n\ntype RadioOption = {\n  value: string;\n  label: string;\n  disabled?: boolean;\n};\n\ntype FieldRadioGroupProps<T extends FieldValues> = Omit<\n  React.ComponentProps<typeof RadioGroup>,\n  \"value\" | \"onValueChange\"\n> &\n  Omit<BaseControllerProps<T>, \"children\"> & {\n    options: RadioOption[];\n  };\n\nexport function RadioGroupField<T extends FieldValues>({\n  control,\n  name,\n  label,\n  description,\n  disableFieldError = false,\n  options,\n  required,\n  ...radioGroupProps\n}: FieldRadioGroupProps<T>) {\n  return (\n    <BaseController\n      control={control}\n      name={name}\n      label={label}\n      required={required}\n      description={description}\n      disableFieldError={disableFieldError}\n    >\n      {({ field, fieldState, ariaDescribedBy }) => (\n        <RadioGroup\n          id={field.name}\n          value={field.value}\n          onValueChange={field.onChange}\n          aria-invalid={!!fieldState.error}\n          aria-describedby={ariaDescribedBy}\n          {...radioGroupProps}\n        >\n          {options.map((option) => (\n            <div key={option.value} className=\"flex items-center space-x-2\">\n              <RadioGroupItem\n                value={option.value}\n                id={`${field.name}-${option.value}`}\n                disabled={option.disabled}\n              />\n              <Label\n                htmlFor={`${field.name}-${option.value}`}\n                className=\"cursor-pointer\"\n              >\n                {option.label}\n              </Label>\n            </div>\n          ))}\n        </RadioGroup>\n      )}\n    </BaseController>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/ui/rhf-inputs/radio-group-field.tsx"
+    }
+  ],
+  "docs": "/components/rhf-radio-group-field",
+  "categories": [
+    "forms"
+  ],
+  "type": "registry:ui"
+}

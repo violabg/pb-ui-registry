@@ -1,0 +1,26 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "rhf-file-upload-field",
+  "title": "RHF File Upload Field",
+  "description": "File upload field with React Hook Form integration.",
+  "dependencies": [
+    "react-hook-form"
+  ],
+  "registryDependencies": [
+    "http://localhost:3000/r/rhf-base-controller.json",
+    "http://localhost:3000/r/file-upload.json"
+  ],
+  "files": [
+    {
+      "path": "components/ui/rhf-inputs/file-upload-field.tsx",
+      "content": "\"use client\";\n\nimport { FieldValues } from \"react-hook-form\";\nimport { FileUpload, FileUploadProps } from \"../file-upload\";\nimport { BaseController, BaseControllerProps } from \"./base-controller\";\n\ntype FileUploadFieldProps<T extends FieldValues> = Omit<\n  FileUploadProps,\n  \"onFileSelect\" | \"error\" | \"label\" | \"description\" | \"required\"\n> &\n  Omit<BaseControllerProps<T>, \"children\">;\n\nexport function FileUploadField<T extends FieldValues>({\n  control,\n  name,\n  label,\n  description,\n  disableFieldError = false,\n  required,\n  ...fileUploadProps\n}: FileUploadFieldProps<T>) {\n  return (\n    <BaseController\n      control={control}\n      name={name}\n      label={label}\n      required={required}\n      description={description}\n      disableFieldError={disableFieldError}\n    >\n      {({ field, fieldState, ariaDescribedBy }) => (\n        <FileUpload\n          {...fileUploadProps}\n          label=\"\"\n          description=\"\"\n          required={required}\n          showError={false}\n          error={fieldState.error?.message}\n          aria-describedby={ariaDescribedBy}\n          onFileSelect={(file) => {\n            field.onChange(file);\n          }}\n        />\n      )}\n    </BaseController>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/ui/rhf-inputs/file-upload-field.tsx"
+    }
+  ],
+  "docs": "/components/rhf-file-upload-field",
+  "categories": [
+    "forms"
+  ],
+  "type": "registry:ui"
+}

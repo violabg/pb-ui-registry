@@ -1,0 +1,26 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "rhf-color-picker-field",
+  "title": "RHF Color Picker Field",
+  "description": "Color picker field with React Hook Form integration.",
+  "dependencies": [
+    "react-hook-form"
+  ],
+  "registryDependencies": [
+    "http://localhost:3000/r/rhf-base-controller.json",
+    "http://localhost:3000/r/color-picker.json"
+  ],
+  "files": [
+    {
+      "path": "components/ui/rhf-inputs/color-picker-field.tsx",
+      "content": "\"use client\";\n\nimport { FieldValues } from \"react-hook-form\";\nimport { ColorPicker, ColorPickerProps } from \"../color-picker\";\nimport { BaseController, BaseControllerProps } from \"./base-controller\";\n\ntype ColorPickerFieldProps<T extends FieldValues> = Omit<\n  BaseControllerProps<T>,\n  \"children\"\n> &\n  Omit<ColorPickerProps, \"value\" | \"onChange\">;\n\nexport function ColorPickerField<T extends FieldValues>({\n  control,\n  name,\n  label,\n  description,\n  required,\n  disableFieldError = false,\n  showInput,\n  disabled,\n  className,\n}: ColorPickerFieldProps<T>) {\n  return (\n    <BaseController\n      control={control}\n      name={name}\n      label={label}\n      required={required}\n      description={description}\n      disableFieldError={disableFieldError}\n    >\n      {({ field, fieldState, ariaDescribedBy }) => (\n        <ColorPicker\n          id={field.name}\n          value={field.value ?? \"#000000\"}\n          onChange={(value) => field.onChange(value)}\n          showInput={showInput}\n          disabled={disabled}\n          aria-invalid={!!fieldState.error}\n          aria-describedby={ariaDescribedBy}\n          className={className}\n        />\n      )}\n    </BaseController>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/ui/rhf-inputs/color-picker-field.tsx"
+    }
+  ],
+  "docs": "/components/rhf-color-picker-field",
+  "categories": [
+    "forms"
+  ],
+  "type": "registry:ui"
+}

@@ -1,0 +1,26 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "rhf-switch-field",
+  "title": "RHF Switch Field",
+  "description": "Switch field with React Hook Form integration.",
+  "dependencies": [
+    "react-hook-form"
+  ],
+  "registryDependencies": [
+    "http://localhost:3000/r/field.json",
+    "http://localhost:3000/r/switch.json"
+  ],
+  "files": [
+    {
+      "path": "components/ui/rhf-inputs/switch-field.tsx",
+      "content": "\"use client\";\n\nimport { Control, Controller, FieldPath, FieldValues } from \"react-hook-form\";\nimport {\n  Field,\n  FieldContent,\n  FieldDescription,\n  FieldError,\n  FieldLabel,\n} from \"../field\";\nimport { Switch } from \"../switch\";\n\ntype FieldSwitchProps<T extends FieldValues> = Omit<\n  React.ComponentProps<typeof Switch>,\n  \"checked\" | \"onCheckedChange\"\n> & {\n  control: Control<T>;\n  name: FieldPath<T>;\n  label?: string;\n  description?: string;\n  disableFieldError?: boolean;\n  required?: boolean;\n};\n\nexport function SwitchField<T extends FieldValues>({\n  control,\n  name,\n  label,\n  description,\n  disableFieldError = false,\n  required,\n  ...switchProps\n}: FieldSwitchProps<T>) {\n  return (\n    <Controller\n      control={control}\n      name={name}\n      render={({ field, fieldState }) => (\n        <Field\n          className=\"flex flex-row justify-between items-center p-3 border rounded-lg\"\n          orientation=\"horizontal\"\n        >\n          <div className=\"space-y-0.5\">\n            {label && (\n              <FieldLabel className=\"text-base\">\n                {label}\n                {required && (\n                  <span aria-hidden className=\"ps-1 text-destructive\">\n                    *\n                  </span>\n                )}\n              </FieldLabel>\n            )}\n            {description && <FieldDescription id={`${field.name}-description`}>{description}</FieldDescription>}\n          </div>\n          <FieldContent className=\"flex justify-end items-end\">\n            <Switch\n              checked={field.value}\n              onCheckedChange={field.onChange}\n              {...switchProps}\n            />\n          </FieldContent>\n          {!disableFieldError && fieldState.invalid && (\n            <FieldError id={`${field.name}-error`} errors={[fieldState.error]} />\n          )}\n        </Field>\n      )}\n    />\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/ui/rhf-inputs/switch-field.tsx"
+    }
+  ],
+  "docs": "/components/rhf-switch-field",
+  "categories": [
+    "forms"
+  ],
+  "type": "registry:ui"
+}

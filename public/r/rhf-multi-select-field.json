@@ -1,0 +1,26 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "rhf-multi-select-field",
+  "title": "RHF Multi Select Field",
+  "description": "Multi select field with React Hook Form integration.",
+  "dependencies": [
+    "react-hook-form"
+  ],
+  "registryDependencies": [
+    "http://localhost:3000/r/rhf-base-controller.json",
+    "http://localhost:3000/r/multi-select.json"
+  ],
+  "files": [
+    {
+      "path": "components/ui/rhf-inputs/multi-select-field.tsx",
+      "content": "import { FieldValues } from \"react-hook-form\";\nimport { MultiSelect, OptionType } from \"../multi-select\";\nimport { BaseController, BaseControllerProps } from \"./base-controller\";\n\ntype FieldSelectProps<T extends FieldValues> = {\n  placeholder?: string;\n  options: OptionType[];\n  grouped?: boolean;\n  disabled?: boolean;\n  showClear?: boolean;\n  onChange?: (values: string[]) => void;\n} & Omit<BaseControllerProps<T>, \"children\">;\n\nexport function MultiSelectField<T extends FieldValues>({\n  control,\n  name,\n  label,\n  description,\n  disableFieldError = false,\n  required,\n  options,\n  grouped,\n  placeholder,\n  disabled,\n  showClear,\n  onChange,\n}: FieldSelectProps<T>) {\n  return (\n    <BaseController\n      control={control}\n      name={name}\n      label={label}\n      description={description}\n      disableFieldError={disableFieldError}\n      required={required}\n    >\n      {({ field, fieldState, ariaDescribedBy }) => (\n        <MultiSelect\n          options={options}\n          selected={field.value || []}\n          onChange={(values) => {\n            field.onChange(values);\n            onChange?.(values);\n          }}\n          placeholder={placeholder}\n          invalid={!!fieldState.error}\n          grouped={grouped}\n          disabled={disabled}\n          showClear={showClear}\n          aria-describedby={ariaDescribedBy}\n        />\n      )}\n    </BaseController>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/ui/rhf-inputs/multi-select-field.tsx"
+    }
+  ],
+  "docs": "/components/rhf-multi-select-field",
+  "categories": [
+    "forms"
+  ],
+  "type": "registry:ui"
+}

@@ -1,0 +1,25 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "rhf-base-controller",
+  "title": "RHF Base Controller",
+  "description": "Base controller wrapper for React Hook Form fields.",
+  "dependencies": [
+    "react-hook-form"
+  ],
+  "registryDependencies": [
+    "http://localhost:3000/r/field.json"
+  ],
+  "files": [
+    {
+      "path": "components/ui/rhf-inputs/base-controller.tsx",
+      "content": "\"use client\";\n\nimport { ReactNode } from \"react\";\nimport {\n  Control,\n  Controller,\n  ControllerFieldState,\n  ControllerRenderProps,\n  FieldPath,\n  FieldValues,\n  UseFormStateReturn,\n} from \"react-hook-form\";\nimport {\n  Field,\n  FieldContent,\n  FieldDescription,\n  FieldError,\n  FieldLabel,\n} from \"../field\";\n\ntype ControllerRenderParams<T extends FieldValues> = {\n  field: ControllerRenderProps<T, FieldPath<T>>;\n  fieldState: ControllerFieldState;\n  formState: UseFormStateReturn<T>;\n  ariaDescribedBy: string | undefined;\n};\n\nexport type BaseControllerProps<T extends FieldValues> = {\n  control: Control<T>;\n  name: FieldPath<T>;\n  label?: string;\n  description?: string | ReactNode;\n  disableFieldError?: boolean;\n  required?: boolean;\n  orientation?: \"vertical\" | \"horizontal\";\n  layout?: \"standard\" | \"inline\";\n  containerClassName?: string;\n  children: (params: ControllerRenderParams<T>) => ReactNode;\n};\n\nexport function BaseController<T extends FieldValues>({\n  control,\n  name,\n  label,\n  description,\n  disableFieldError = false,\n  required = false,\n  orientation = \"vertical\",\n  layout = \"standard\",\n  containerClassName,\n  children,\n}: BaseControllerProps<T>) {\n  const isInline = layout === \"inline\";\n\n  return (\n    <Controller\n      name={name}\n      control={control}\n      rules={{ required }}\n      render={({ field, fieldState, formState }) => {\n        const ariaDescribedBy =\n          [\n            description ? `${field.name}-description` : undefined,\n            fieldState.error ? `${field.name}-error` : undefined,\n          ]\n            .filter(Boolean)\n            .join(\" \") || undefined;\n\n        const labelContent = label && (\n          <FieldLabel\n            htmlFor={field.name}\n            className={isInline ? undefined : \"font-bold\"}\n          >\n            {label}\n            {required && (\n              <span aria-hidden className=\"ps-1 text-destructive\">\n                *\n              </span>\n            )}\n          </FieldLabel>\n        );\n\n        const descriptionContent = description && (\n          <FieldDescription id={`${field.name}-description`}>\n            {description}\n          </FieldDescription>\n        );\n\n        const errorContent = !disableFieldError && fieldState.invalid && (\n          <FieldError id={`${field.name}-error`} errors={[fieldState.error]} />\n        );\n\n        return (\n          <Field\n            data-invalid={fieldState.invalid}\n            orientation={orientation}\n            className={containerClassName}\n          >\n            {isInline ? (\n              <FieldContent className=\"gap-1\">\n                <div className=\"flex items-center gap-3\">\n                  {children({ field, fieldState, formState, ariaDescribedBy })}\n                  <div className=\"space-y-1 leading-none\">\n                    {labelContent}\n                    {descriptionContent}\n                  </div>\n                </div>\n                {errorContent}\n              </FieldContent>\n            ) : (\n              <>\n                {labelContent}\n                <FieldContent className=\"gap-1\">\n                  {children({ field, fieldState, formState, ariaDescribedBy })}\n                  {descriptionContent}\n                  {errorContent}\n                </FieldContent>\n              </>\n            )}\n          </Field>\n        );\n      }}\n    />\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/ui/rhf-inputs/base-controller.tsx"
+    }
+  ],
+  "docs": "/components/rhf-base-controller",
+  "categories": [
+    "forms"
+  ],
+  "type": "registry:ui"
+}

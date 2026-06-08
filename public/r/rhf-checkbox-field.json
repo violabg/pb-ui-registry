@@ -1,0 +1,26 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "rhf-checkbox-field",
+  "title": "RHF Checkbox Field",
+  "description": "Checkbox field with React Hook Form integration.",
+  "dependencies": [
+    "react-hook-form"
+  ],
+  "registryDependencies": [
+    "http://localhost:3000/r/rhf-base-controller.json",
+    "http://localhost:3000/r/checkbox.json"
+  ],
+  "files": [
+    {
+      "path": "components/ui/rhf-inputs/checkbox-field.tsx",
+      "content": "\"use client\";\n\nimport { FieldValues } from \"react-hook-form\";\nimport { Checkbox } from \"../checkbox\";\nimport { BaseController, BaseControllerProps } from \"./base-controller\";\n\ntype FieldCheckboxProps<T extends FieldValues> = Omit<\n  React.ComponentProps<typeof Checkbox>,\n  \"checked\" | \"onCheckedChange\" | \"id\"\n> &\n  Omit<BaseControllerProps<T>, \"children\" | \"layout\"> & {\n    orientation?: \"vertical\" | \"horizontal\";\n  };\n\nexport function CheckboxField<T extends FieldValues>({\n  control,\n  name,\n  label,\n  description,\n  disableFieldError = false,\n  orientation = \"horizontal\",\n  required,\n  ...checkboxProps\n}: FieldCheckboxProps<T>) {\n  return (\n    <BaseController\n      control={control}\n      name={name}\n      label={label}\n      description={description}\n      disableFieldError={disableFieldError}\n      required={required}\n      layout=\"inline\"\n      orientation={orientation}\n    >\n      {({ field, ariaDescribedBy }) => (\n        <Checkbox\n          id={field.name}\n          checked={field.value}\n          onCheckedChange={field.onChange}\n          aria-describedby={ariaDescribedBy}\n          {...checkboxProps}\n        />\n      )}\n    </BaseController>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/ui/rhf-inputs/checkbox-field.tsx"
+    }
+  ],
+  "docs": "/components/rhf-checkbox-field",
+  "categories": [
+    "forms"
+  ],
+  "type": "registry:ui"
+}

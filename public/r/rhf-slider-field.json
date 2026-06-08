@@ -1,0 +1,26 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "rhf-slider-field",
+  "title": "RHF Slider Field",
+  "description": "Slider field with React Hook Form integration.",
+  "dependencies": [
+    "react-hook-form"
+  ],
+  "registryDependencies": [
+    "http://localhost:3000/r/rhf-base-controller.json",
+    "http://localhost:3000/r/slider.json"
+  ],
+  "files": [
+    {
+      "path": "components/ui/rhf-inputs/slider-field.tsx",
+      "content": "import { FieldValues } from \"react-hook-form\";\nimport { Slider } from \"../slider\";\nimport { BaseController, BaseControllerProps } from \"./base-controller\";\n\ntype FieldSliderProps<T extends FieldValues> = Omit<\n  React.ComponentProps<typeof Slider>,\n  \"value\" | \"onValueChange\"\n> &\n  Omit<BaseControllerProps<T>, \"children\"> & {\n    showValue?: boolean;\n    valueFormatter?: (value: number) => string;\n  };\n\nexport function SliderField<T extends FieldValues>({\n  control,\n  name,\n  label,\n  description,\n  disableFieldError = false,\n  showValue = false,\n  valueFormatter,\n  required,\n  ...sliderProps\n}: FieldSliderProps<T>) {\n  return (\n    <BaseController\n      control={control}\n      name={name}\n      label={label}\n      required={required}\n      description={description}\n      disableFieldError={disableFieldError}\n    >\n      {({ field, fieldState, ariaDescribedBy }) => {\n        // Base UI Slider requires a valid number array.\n        // Fallback to min (or 0) when field value is undefined.\n        const min = sliderProps.min ?? 0;\n        const sliderValue = field.value ?? min;\n\n        return (\n          <div className=\"space-y-2\">\n            <Slider\n              id={field.name}\n              {...sliderProps}\n              value={[sliderValue]}\n              onValueChange={(newValue) => {\n                // Base UI can return number or number[] depending on how it's set\n                const actualValue = Array.isArray(newValue)\n                  ? newValue[0]\n                  : newValue;\n                field.onChange(actualValue);\n              }}\n              aria-invalid={!!fieldState.error}\n              aria-describedby={ariaDescribedBy}\n            />\n            {showValue && (\n              <div className=\"text-muted-foreground text-sm text-center\">\n                {valueFormatter ? valueFormatter(sliderValue) : sliderValue}\n              </div>\n            )}\n          </div>\n        );\n      }}\n    </BaseController>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/ui/rhf-inputs/slider-field.tsx"
+    }
+  ],
+  "docs": "/components/rhf-slider-field",
+  "categories": [
+    "forms"
+  ],
+  "type": "registry:ui"
+}

@@ -1,0 +1,27 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "rhf-time-picker-field",
+  "title": "RHF Time Picker Field",
+  "description": "Time picker field with React Hook Form integration.",
+  "dependencies": [
+    "react-hook-form",
+    "date-fns"
+  ],
+  "registryDependencies": [
+    "http://localhost:3000/r/rhf-base-controller.json",
+    "http://localhost:3000/r/input.json"
+  ],
+  "files": [
+    {
+      "path": "components/ui/rhf-inputs/time-picker-field.tsx",
+      "content": "\"use client\";\nimport { InputHTMLAttributes } from \"react\";\nimport { ControllerFieldState, FieldValues } from \"react-hook-form\";\n\nimport { Input } from \"../input\";\nimport { BaseController, BaseControllerProps } from \"./base-controller\";\n\ntype TimePickerFieldProps<T extends FieldValues> = Omit<\n  BaseControllerProps<T>,\n  \"children\"\n> &\n  Omit<InputHTMLAttributes<HTMLInputElement>, \"name\" | \"id\" | \"type\"> & {\n    showSeconds?: boolean;\n  };\n\nfunction normalizeTimeValue(value: string, showSeconds: boolean) {\n  if (!value) return value;\n  if (!showSeconds) return value;\n  if (/^\\d{2}:\\d{2}$/.test(value)) return `${value}:00`;\n  return value;\n}\n\nexport function TimePickerField<T extends FieldValues>({\n  control,\n  name,\n  label,\n  description,\n  disableFieldError = false,\n  required,\n  showSeconds = false,\n  ...inputProps\n}: TimePickerFieldProps<T>) {\n  const { step, ...restInputProps } = inputProps;\n  const resolvedStep =\n    typeof step === \"number\" ? step : showSeconds ? 1 : undefined;\n\n  return (\n    <BaseController\n      control={control}\n      name={name}\n      label={label}\n      required={required}\n      description={description}\n      disableFieldError={disableFieldError}\n    >\n      {({ field, fieldState, ariaDescribedBy }) => (\n        <TimePickerInput\n          name={field.name}\n          value={field.value}\n          onBlur={field.onBlur}\n          onChange={field.onChange}\n          fieldState={fieldState}\n          required={required}\n          showSeconds={showSeconds}\n          step={resolvedStep}\n          inputProps={restInputProps}\n          ariaDescribedBy={ariaDescribedBy}\n        />\n      )}\n    </BaseController>\n  );\n}\n\ntype TimePickerInputProps<T extends FieldValues> = {\n  name: string;\n  value: T[keyof T] | undefined;\n  onBlur: () => void;\n  onChange: (value: string | undefined) => void;\n  fieldState: ControllerFieldState;\n  required?: boolean;\n  showSeconds: boolean;\n  step?: number;\n  inputProps: Omit<\n    InputHTMLAttributes<HTMLInputElement>,\n    \"name\" | \"id\" | \"type\"\n  >;\n  ariaDescribedBy?: string;\n};\n\nfunction TimePickerInput<T extends FieldValues>({\n  name,\n  value: fieldValue,\n  onBlur,\n  onChange,\n  fieldState,\n  required,\n  showSeconds,\n  step,\n  inputProps,\n  ariaDescribedBy,\n}: TimePickerInputProps<T>) {\n  const rawValue = fieldValue as unknown;\n  const value = typeof rawValue === \"string\" ? rawValue : \"\";\n  const inputValue = value;\n\n  return (\n    <Input\n      id={name}\n      name={name}\n      type=\"time\"\n      aria-invalid={!!fieldState.error}\n      aria-required={required}\n      aria-describedby={ariaDescribedBy}\n      value={inputValue}\n      onBlur={() => {\n        onBlur();\n\n        const normalizedValue = normalizeTimeValue(inputValue, showSeconds);\n        if (!normalizedValue) {\n          onChange(undefined);\n          return;\n        }\n\n        onChange(normalizedValue);\n      }}\n      onChange={(event) => {\n        const nextInputValue = event.target.value;\n        if (!nextInputValue) {\n          onChange(undefined);\n          return;\n        }\n\n        onChange(nextInputValue);\n      }}\n      step={step}\n      {...inputProps}\n    />\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/ui/rhf-inputs/time-picker-field.tsx"
+    }
+  ],
+  "docs": "/components/rhf-time-picker-field",
+  "categories": [
+    "forms"
+  ],
+  "type": "registry:ui"
+}

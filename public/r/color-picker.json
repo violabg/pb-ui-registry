@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "color-picker",
+  "title": "Color Picker",
+  "description": "Color selection with visual swatch and hex input.",
+  "registryDependencies": [
+    "http://localhost:3000/r/input.json"
+  ],
+  "files": [
+    {
+      "path": "components/ui/color-picker.tsx",
+      "content": "\"use client\";\n\nimport { cn } from \"@/lib/utils\";\nimport * as React from \"react\";\nimport { Input } from \"./input\";\n\nexport type ColorPickerProps = Omit<\n  React.InputHTMLAttributes<HTMLInputElement>,\n  \"type\" | \"value\" | \"onChange\"\n> & {\n  value?: string;\n  onChange?: (value: string) => void;\n  showInput?: boolean;\n};\n\nfunction ColorPicker({\n  value = \"#000000\",\n  onChange,\n  showInput = true,\n  disabled,\n  className,\n  ...props\n}: ColorPickerProps) {\n  const [inputValue, setInputValue] = React.useState(value);\n\n  React.useEffect(() => {\n    setInputValue(value);\n  }, [value]);\n\n  const handleColorChange = (e: React.ChangeEvent<HTMLInputElement>) => {\n    const newValue = e.target.value;\n    setInputValue(newValue);\n    onChange?.(newValue);\n  };\n\n  const handleTextChange = (e: React.ChangeEvent<HTMLInputElement>) => {\n    const newValue = e.target.value;\n    setInputValue(newValue);\n\n    // Only trigger onChange if it's a valid hex color\n    if (/^#[0-9A-Fa-f]{6}$/.test(newValue)) {\n      onChange?.(newValue);\n    }\n  };\n\n  const handleBlur = () => {\n    // Normalize to valid hex on blur\n    if (!/^#[0-9A-Fa-f]{6}$/.test(inputValue)) {\n      setInputValue(value);\n    }\n  };\n\n  return (\n    <div className={cn(\"flex items-center gap-2\", className)}>\n      <div className=\"relative\">\n        <input\n          type=\"color\"\n          value={value}\n          onChange={handleColorChange}\n          disabled={disabled}\n          className={cn(\n            \"bg-transparent shadow-xs p-1 border border-input rounded-md size-10 transition-shadow cursor-pointer\",\n            \"focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-ring/50 focus-visible:border-ring\",\n            disabled && \"cursor-not-allowed opacity-50\",\n          )}\n          {...props}\n        />\n      </div>\n      {showInput && (\n        <Input\n          type=\"text\"\n          value={inputValue}\n          onChange={handleTextChange}\n          onBlur={handleBlur}\n          disabled={disabled}\n          placeholder=\"#000000\"\n          className=\"w-28 font-mono uppercase\"\n          maxLength={7}\n        />\n      )}\n    </div>\n  );\n}\n\nexport { ColorPicker };\n",
+      "type": "registry:ui",
+      "target": "components/ui/color-picker.tsx"
+    }
+  ],
+  "docs": "/components/color-picker",
+  "categories": [
+    "forms"
+  ],
+  "type": "registry:ui"
+}

@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "multi-select",
+  "title": "Multi Select",
+  "description": "Select multiple options with grouped support.",
+  "registryDependencies": [
+    "http://localhost:3000/r/combobox.json"
+  ],
+  "files": [
+    {
+      "path": "components/ui/multi-select.tsx",
+      "content": "\"use client\";\n\nimport {\n  Combobox,\n  ComboboxChip,\n  ComboboxChips,\n  ComboboxChipsInput,\n  ComboboxClear,\n  ComboboxContent,\n  ComboboxEmpty,\n  ComboboxGroup,\n  ComboboxItem,\n  ComboboxLabel,\n  ComboboxList,\n  ComboboxSeparator,\n  ComboboxValue,\n  useComboboxAnchor,\n} from \"@/components/ui/combobox\";\nimport { cn } from \"@/lib/utils\";\nimport * as React from \"react\";\n\nexport type OptionType = {\n  label: string;\n  value: string;\n  category?: string;\n};\n\ninterface MultiSelectProps {\n  options: OptionType[];\n  selected: string[];\n  onChange: (selected: string[]) => void;\n  placeholder?: string;\n  className?: string;\n  grouped?: boolean;\n  invalid?: boolean;\n  disabled?: boolean;\n  showClear?: boolean;\n}\n\nexport function MultiSelect({\n  options,\n  selected,\n  onChange,\n  placeholder = \"Select options...\",\n  className,\n  grouped = false,\n  invalid = false,\n  disabled = false,\n  showClear = false,\n}: MultiSelectProps) {\n  const anchor = useComboboxAnchor();\n\n  const groupedOptions = React.useMemo(() => {\n    if (!grouped) return null;\n\n    return options.reduce<Record<string, OptionType[]>>((acc, option) => {\n      const category = option.category || \"Other\";\n      if (!acc[category]) {\n        acc[category] = [];\n      }\n      acc[category].push(option);\n      return acc;\n    }, {});\n  }, [options, grouped]);\n\n  const categories = groupedOptions ? Object.keys(groupedOptions) : [];\n\n  // Convert string[] selected to OptionType[] for Combobox\n  const selectedOptions = React.useMemo(\n    () => options.filter((o) => selected.includes(o.value)),\n    [options, selected],\n  );\n\n  // Handle value change from Combobox (converts OptionType[] back to string[])\n  const handleValueChange = React.useCallback(\n    (newValue: OptionType[]) => {\n      onChange(newValue.map((item) => item.value));\n    },\n    [onChange],\n  );\n\n  return (\n    <Combobox\n      items={options}\n      itemToStringValue={(item) => item.label}\n      multiple\n      value={selectedOptions}\n      onValueChange={handleValueChange}\n      disabled={disabled}\n    >\n      <ComboboxChips\n        ref={anchor}\n        aria-invalid={invalid}\n        className={cn(\"w-full\", className)}\n      >\n        <ComboboxValue>\n          {selectedOptions.map((option) => (\n            <ComboboxChip key={option.value}>{option.label}</ComboboxChip>\n          ))}\n        </ComboboxValue>\n        <ComboboxChipsInput placeholder={placeholder} />\n        {showClear && selected.length > 0 && (\n          <ComboboxClear disabled={disabled} className=\"ms-auto\" />\n        )}\n      </ComboboxChips>\n      <ComboboxContent anchor={anchor}>\n        <ComboboxEmpty>No results found.</ComboboxEmpty>\n        <ComboboxList>\n          {grouped && groupedOptions\n            ? categories.map((category, index) => (\n                <React.Fragment key={category}>\n                  <ComboboxGroup>\n                    <ComboboxLabel>{category}</ComboboxLabel>\n                    {groupedOptions[category].map((option) => (\n                      <ComboboxItem key={option.value} value={option}>\n                        {option.label}\n                      </ComboboxItem>\n                    ))}\n                  </ComboboxGroup>\n                  {index < categories.length - 1 && <ComboboxSeparator />}\n                </React.Fragment>\n              ))\n            : (item) => (\n                <ComboboxItem key={item.value} value={item}>\n                  {item.label}\n                </ComboboxItem>\n              )}\n        </ComboboxList>\n      </ComboboxContent>\n    </Combobox>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/ui/multi-select.tsx"
+    }
+  ],
+  "docs": "/components/multi-select",
+  "categories": [
+    "forms"
+  ],
+  "type": "registry:ui"
+}

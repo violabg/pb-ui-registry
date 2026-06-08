@@ -1,0 +1,27 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "rhf-checkbox-group-field",
+  "title": "RHF Checkbox Group Field",
+  "description": "Multiple checkboxes as array with React Hook Form integration.",
+  "dependencies": [
+    "react-hook-form"
+  ],
+  "registryDependencies": [
+    "http://localhost:3000/r/rhf-base-controller.json",
+    "http://localhost:3000/r/checkbox.json",
+    "http://localhost:3000/r/label.json"
+  ],
+  "files": [
+    {
+      "path": "components/ui/rhf-inputs/checkbox-group-field.tsx",
+      "content": "\"use client\";\n\nimport { FieldValues } from \"react-hook-form\";\nimport { Checkbox } from \"../checkbox\";\nimport { Label } from \"../label\";\nimport { BaseController, BaseControllerProps } from \"./base-controller\";\n\nexport type CheckboxGroupOption = {\n  value: string;\n  label: string;\n  disabled?: boolean;\n};\n\ntype CheckboxGroupFieldProps<T extends FieldValues> = Omit<\n  BaseControllerProps<T>,\n  \"children\"\n> & {\n  options: CheckboxGroupOption[];\n  orientation?: \"horizontal\" | \"vertical\";\n  disabled?: boolean;\n  className?: string;\n};\n\nexport function CheckboxGroupField<T extends FieldValues>({\n  control,\n  name,\n  label,\n  description,\n  required,\n  disableFieldError = false,\n  options,\n  orientation = \"vertical\",\n  disabled = false,\n  className,\n}: CheckboxGroupFieldProps<T>) {\n  return (\n    <BaseController\n      control={control}\n      name={name}\n      label={label}\n      required={required}\n      description={description}\n      disableFieldError={disableFieldError}\n    >\n      {({ field, fieldState, ariaDescribedBy }) => {\n        const values: string[] = Array.isArray(field.value) ? field.value : [];\n\n        const handleChange = (optionValue: string, checked: boolean) => {\n          if (checked) {\n            field.onChange([...values, optionValue]);\n          } else {\n            field.onChange(values.filter((v) => v !== optionValue));\n          }\n        };\n\n        return (\n          <div\n            role=\"group\"\n            aria-describedby={ariaDescribedBy}\n            className={`flex ${\n              orientation === \"horizontal\"\n                ? \"flex-row flex-wrap gap-4\"\n                : \"flex-col gap-2\"\n            } ${className ?? \"\"}`}\n          >\n            {options.map((option) => (\n              <div key={option.value} className=\"flex items-center gap-2\">\n                <Checkbox\n                  id={`${field.name}-${option.value}`}\n                  checked={values.includes(option.value)}\n                  onCheckedChange={(checked) =>\n                    handleChange(option.value, !!checked)\n                  }\n                  disabled={disabled || option.disabled}\n                  aria-invalid={!!fieldState.error}\n                />\n                <Label\n                  htmlFor={`${field.name}-${option.value}`}\n                  className=\"font-normal cursor-pointer\"\n                >\n                  {option.label}\n                </Label>\n              </div>\n            ))}\n          </div>\n        );\n      }}\n    </BaseController>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/ui/rhf-inputs/checkbox-group-field.tsx"
+    }
+  ],
+  "docs": "/components/rhf-checkbox-group-field",
+  "categories": [
+    "forms"
+  ],
+  "type": "registry:ui"
+}

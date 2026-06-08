@@ -1,0 +1,26 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "rhf-combobox-field",
+  "title": "RHF Combobox Field",
+  "description": "Searchable combobox field with React Hook Form integration.",
+  "dependencies": [
+    "react-hook-form"
+  ],
+  "registryDependencies": [
+    "http://localhost:3000/r/rhf-base-controller.json",
+    "http://localhost:3000/r/combobox.json"
+  ],
+  "files": [
+    {
+      "path": "components/ui/rhf-inputs/combobox-field.tsx",
+      "content": "\"use client\";\n\nimport { FieldValues } from \"react-hook-form\";\nimport {\n  Combobox,\n  ComboboxContent,\n  ComboboxEmpty,\n  ComboboxGroup,\n  ComboboxInput,\n  ComboboxItem,\n  ComboboxLabel,\n  ComboboxList,\n} from \"../combobox\";\nimport { BaseController, BaseControllerProps } from \"./base-controller\";\n\nexport type ComboboxOption = {\n  value: string;\n  label: string;\n  disabled?: boolean;\n};\n\nexport type ComboboxOptionGroup = {\n  label: string;\n  options: ComboboxOption[];\n};\n\ntype ComboboxFieldProps<T extends FieldValues> = Omit<\n  BaseControllerProps<T>,\n  \"children\"\n> & {\n  options: (ComboboxOption | ComboboxOptionGroup)[];\n  placeholder?: string;\n  emptyMessage?: string;\n  disabled?: boolean;\n  showClear?: boolean;\n  className?: string;\n};\n\nfunction isOptionGroup(\n  option: ComboboxOption | ComboboxOptionGroup,\n): option is ComboboxOptionGroup {\n  return \"options\" in option;\n}\n\nexport function ComboboxField<T extends FieldValues>({\n  control,\n  name,\n  label,\n  description,\n  required,\n  disableFieldError = false,\n  options,\n  placeholder = \"Search...\",\n  emptyMessage = \"No options found.\",\n  disabled = false,\n  showClear = true,\n  className,\n}: ComboboxFieldProps<T>) {\n  return (\n    <BaseController\n      control={control}\n      name={name}\n      label={label}\n      required={required}\n      description={description}\n      disableFieldError={disableFieldError}\n    >\n      {({ field, fieldState, ariaDescribedBy }) => (\n        <Combobox\n          value={field.value ?? \"\"}\n          onValueChange={(value) => field.onChange(value)}\n          disabled={disabled}\n        >\n          <ComboboxInput\n            id={field.name}\n            placeholder={placeholder}\n            showClear={showClear}\n            aria-invalid={!!fieldState.error}\n            aria-describedby={ariaDescribedBy}\n            className={className}\n          />\n          <ComboboxContent>\n            <ComboboxList>\n              <ComboboxEmpty>{emptyMessage}</ComboboxEmpty>\n              {options.map((option, index) =>\n                isOptionGroup(option) ? (\n                  <ComboboxGroup key={`group-${index}`}>\n                    <ComboboxLabel>{option.label}</ComboboxLabel>\n                    {option.options.map((opt) => (\n                      <ComboboxItem\n                        key={opt.value}\n                        value={opt.value}\n                        disabled={opt.disabled}\n                      >\n                        {opt.label}\n                      </ComboboxItem>\n                    ))}\n                  </ComboboxGroup>\n                ) : (\n                  <ComboboxItem\n                    key={option.value}\n                    value={option.value}\n                    disabled={option.disabled}\n                  >\n                    {option.label}\n                  </ComboboxItem>\n                ),\n              )}\n            </ComboboxList>\n          </ComboboxContent>\n        </Combobox>\n      )}\n    </BaseController>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/ui/rhf-inputs/combobox-field.tsx"
+    }
+  ],
+  "docs": "/components/rhf-combobox-field",
+  "categories": [
+    "forms"
+  ],
+  "type": "registry:ui"
+}

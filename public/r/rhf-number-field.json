@@ -1,0 +1,26 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "rhf-number-field",
+  "title": "RHF Number Field",
+  "description": "Numeric input field with React Hook Form integration.",
+  "dependencies": [
+    "react-hook-form"
+  ],
+  "registryDependencies": [
+    "http://localhost:3000/r/rhf-base-controller.json",
+    "http://localhost:3000/r/number-input.json"
+  ],
+  "files": [
+    {
+      "path": "components/ui/rhf-inputs/number-field.tsx",
+      "content": "\"use client\";\n\nimport { FieldValues } from \"react-hook-form\";\nimport { NumberInput, NumberInputProps } from \"../number-input\";\nimport { BaseController, BaseControllerProps } from \"./base-controller\";\n\ntype NumberFieldProps<T extends FieldValues> = Omit<\n  BaseControllerProps<T>,\n  \"children\"\n> &\n  Omit<NumberInputProps, \"value\" | \"onChange\" | \"name\" | \"id\">;\n\nexport function NumberField<T extends FieldValues>({\n  control,\n  name,\n  label,\n  description,\n  required,\n  disableFieldError = false,\n  min,\n  max,\n  step,\n  showControls,\n  allowDecimals,\n  decimalPlaces,\n  locale,\n  disabled,\n  className,\n  ...inputProps\n}: NumberFieldProps<T>) {\n  return (\n    <BaseController\n      control={control}\n      name={name}\n      label={label}\n      required={required}\n      description={description}\n      disableFieldError={disableFieldError}\n    >\n      {({ field, fieldState, ariaDescribedBy }) => (\n        <NumberInput\n          id={field.name}\n          value={field.value ?? null}\n          onChange={(value) => field.onChange(value)}\n          min={min}\n          max={max}\n          step={step}\n          showControls={showControls}\n          allowDecimals={allowDecimals}\n          decimalPlaces={decimalPlaces}\n          locale={locale}\n          disabled={disabled}\n          aria-invalid={!!fieldState.error}\n          aria-required={required}\n          aria-describedby={ariaDescribedBy}\n          className={className}\n          {...inputProps}\n        />\n      )}\n    </BaseController>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/ui/rhf-inputs/number-field.tsx"
+    }
+  ],
+  "docs": "/components/rhf-number-field",
+  "categories": [
+    "forms"
+  ],
+  "type": "registry:ui"
+}

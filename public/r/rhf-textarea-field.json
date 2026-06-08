@@ -1,0 +1,26 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "rhf-textarea-field",
+  "title": "RHF Textarea Field",
+  "description": "Textarea field with React Hook Form integration.",
+  "dependencies": [
+    "react-hook-form"
+  ],
+  "registryDependencies": [
+    "http://localhost:3000/r/rhf-base-controller.json",
+    "http://localhost:3000/r/textarea.json"
+  ],
+  "files": [
+    {
+      "path": "components/ui/rhf-inputs/textarea-field.tsx",
+      "content": "import { FieldValues } from \"react-hook-form\";\nimport { Textarea } from \"../textarea\";\nimport { BaseController, BaseControllerProps } from \"./base-controller\";\n\ntype FieldTextareaProps<T extends FieldValues> = Omit<\n  React.TextareaHTMLAttributes<HTMLTextAreaElement>,\n  \"name\" | \"id\"\n> & {\n  maxLength?: number;\n} & Omit<BaseControllerProps<T>, \"children\">;\n\nexport function TextareaField<T extends FieldValues>({\n  control,\n  name,\n  label,\n  description,\n  maxLength,\n  disableFieldError = false,\n  required,\n  ...textareaProps\n}: FieldTextareaProps<T> & { required?: boolean }) {\n  return (\n    <BaseController\n      control={control}\n      name={name}\n      label={label}\n      required={required}\n      description={description}\n      disableFieldError={disableFieldError}\n    >\n      {({ field, fieldState, ariaDescribedBy }) => (\n        <div className=\"relative\">\n          <Textarea\n            id={field.name}\n            aria-required={required}\n            {...field}\n            {...textareaProps}\n            aria-invalid={!!fieldState.error}\n            aria-describedby={ariaDescribedBy}\n            className={`${maxLength ? \"pr-16\" : \"\"} ${\n              textareaProps.className || \"\"\n            }`}\n          />\n          {maxLength && (\n            <div className=\"top-3 right-3 absolute bg-background/80 px-1 rounded text-muted-foreground text-xs pointer-events-none\">\n              {(field.value || \"\").length}/{maxLength}\n            </div>\n          )}\n        </div>\n      )}\n    </BaseController>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/ui/rhf-inputs/textarea-field.tsx"
+    }
+  ],
+  "docs": "/components/rhf-textarea-field",
+  "categories": [
+    "forms"
+  ],
+  "type": "registry:ui"
+}

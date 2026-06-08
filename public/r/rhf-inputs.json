@@ -1,0 +1,50 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "rhf-inputs",
+  "title": "React Hook Form Inputs (All)",
+  "description": "Complete collection of form field components with React Hook Form integration.",
+  "dependencies": [
+    "react-hook-form"
+  ],
+  "registryDependencies": [
+    "http://localhost:3000/r/rhf-base-controller.json",
+    "http://localhost:3000/r/rhf-input-field.json",
+    "http://localhost:3000/r/rhf-checkbox-field.json",
+    "http://localhost:3000/r/rhf-checkbox-group-field.json",
+    "http://localhost:3000/r/rhf-select-field.json",
+    "http://localhost:3000/r/rhf-combobox-field.json",
+    "http://localhost:3000/r/rhf-textarea-field.json",
+    "http://localhost:3000/r/rhf-radio-group-field.json",
+    "http://localhost:3000/r/rhf-slider-field.json",
+    "http://localhost:3000/r/rhf-switch-field.json",
+    "http://localhost:3000/r/rhf-password-field.json",
+    "http://localhost:3000/r/rhf-input-with-tag-field.json",
+    "http://localhost:3000/r/rhf-multi-select-field.json",
+    "http://localhost:3000/r/rhf-number-field.json",
+    "http://localhost:3000/r/rhf-otp-field.json",
+    "http://localhost:3000/r/rhf-input-date-field.json",
+    "http://localhost:3000/r/rhf-date-picker-field.json",
+    "http://localhost:3000/r/rhf-date-time-picker-field.json",
+    "http://localhost:3000/r/rhf-range-date-picker-field.json",
+    "http://localhost:3000/r/rhf-time-picker-field.json",
+    "http://localhost:3000/r/rhf-file-upload-field.json",
+    "http://localhost:3000/r/rhf-phone-field.json",
+    "http://localhost:3000/r/rhf-currency-field.json",
+    "http://localhost:3000/r/rhf-color-picker-field.json",
+    "http://localhost:3000/r/rhf-rating-field.json"
+  ],
+  "files": [
+    {
+      "path": "components/ui/rhf-inputs/index.ts",
+      "content": "export { BaseController, type BaseControllerProps } from \"./base-controller\";\nexport { CheckboxField } from \"./checkbox-field\";\nexport { CheckboxGroupField, type CheckboxGroupOption } from \"./checkbox-group-field\";\nexport { ColorPickerField } from \"./color-picker-field\";\nexport { ComboboxField, type ComboboxOption, type ComboboxOptionGroup } from \"./combobox-field\";\nexport { CurrencyField } from \"./currency-field\";\nexport { DatePickerField } from \"./date-picker-field\";\nexport { DateTimePickerField } from \"./date-time-picker-field\";\nexport { FileUploadField } from \"./file-upload-field\";\nexport { InputDateField } from \"./input-date-field\";\nexport { InputField } from \"./input-field\";\nexport { InputWithTagField } from \"./input-with-tag-field\";\nexport { MultiSelectField } from \"./multi-select-field\";\nexport { NumberField } from \"./number-field\";\nexport { OTPField } from \"./otp-field\";\nexport { PasswordField } from \"./password-field\";\nexport { PhoneField, type Country } from \"./phone-field\";\nexport { RadioGroupField } from \"./radio-group-field\";\nexport { RangeDatePickerField } from \"./range-date-picker-field\";\nexport { RatingField } from \"./rating-field\";\nexport { SelectField } from \"./select-field\";\nexport { SliderField } from \"./slider-field\";\nexport { SwitchField } from \"./switch-field\";\nexport { TextareaField } from \"./textarea-field\";\nexport { TimePickerField } from \"./time-picker-field\";\n",
+      "type": "registry:ui",
+      "target": "components/ui/rhf-inputs/index.ts"
+    }
+  ],
+  "docs": "/components/rhf-inputs",
+  "categories": [
+    "forms",
+    "data-entry"
+  ],
+  "type": "registry:ui"
+}

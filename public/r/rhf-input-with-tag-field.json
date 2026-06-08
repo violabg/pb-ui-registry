@@ -1,0 +1,26 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "rhf-input-with-tag-field",
+  "title": "RHF Input with Tag Field",
+  "description": "Tag input field with React Hook Form integration.",
+  "dependencies": [
+    "react-hook-form"
+  ],
+  "registryDependencies": [
+    "http://localhost:3000/r/rhf-base-controller.json",
+    "http://localhost:3000/r/tag-input.json"
+  ],
+  "files": [
+    {
+      "path": "components/ui/rhf-inputs/input-with-tag-field.tsx",
+      "content": "import { FieldValues } from \"react-hook-form\";\nimport { TagInput } from \"../tag-input\";\nimport { BaseController, BaseControllerProps } from \"./base-controller\";\n\ntype Props<T extends FieldValues> = {\n  placeholder?: string;\n  showClear?: boolean;\n} & Omit<BaseControllerProps<T>, \"children\">;\n\nexport function InputWithTagField<T extends FieldValues>({\n  control,\n  name,\n  label,\n  description,\n  disableFieldError = false,\n  placeholder,\n  required,\n  showClear,\n}: Props<T>) {\n  return (\n    <BaseController\n      control={control}\n      name={name}\n      label={label}\n      required={required}\n      description={description}\n      disableFieldError={disableFieldError}\n    >\n      {({ field, fieldState, ariaDescribedBy }) => (\n        <TagInput\n          id={field.name}\n          // The TagInput component expects an array of tags\n          // Ensure we always pass an array, defaulting to empty if undefined\n          placeholder={placeholder}\n          value={(field.value as string[] | undefined) || []}\n          onValueChange={(newTags: string[]) => field.onChange(newTags)}\n          showClear={showClear}\n          aria-invalid={!!fieldState.error}\n          aria-describedby={ariaDescribedBy}\n        />\n      )}\n    </BaseController>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": "components/ui/rhf-inputs/input-with-tag-field.tsx"
+    }
+  ],
+  "docs": "/components/rhf-input-with-tag-field",
+  "categories": [
+    "forms"
+  ],
+  "type": "registry:ui"
+}
