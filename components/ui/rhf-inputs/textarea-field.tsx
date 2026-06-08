@@ -41,7 +41,7 @@ export function TextareaField<T extends FieldValues>({
               textareaProps.className || ""
             }`}
           />
-          {maxLength && (
+          {maxLength && maxLength > 0 && (
             <div className="top-3 right-3 absolute bg-background/80 px-1 rounded text-muted-foreground text-xs pointer-events-none">
               {(field.value || "").length}/{maxLength}
             </div>

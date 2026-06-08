@@ -82,9 +82,9 @@ export function ComboboxField<T extends FieldValues>({
           <ComboboxContent>
             <ComboboxList>
               <ComboboxEmpty>{emptyMessage}</ComboboxEmpty>
-              {options.map((option, index) =>
+              {options.map((option) =>
                 isOptionGroup(option) ? (
-                  <ComboboxGroup key={`group-${index}`}>
+                  <ComboboxGroup key={option.label}>
                     <ComboboxLabel>{option.label}</ComboboxLabel>
                     {option.options.map((opt) => (
                       <ComboboxItem

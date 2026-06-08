@@ -76,9 +76,10 @@ export default async function ComponentPage({
   params: Promise<{ name: string }>;
 }) {
   const { name } = await params;
-  const item = await getRegistryItemSummary(name);
-
-  const allItems = await getRegistryItems();
+  const [item, allItems] = await Promise.all([
+    getRegistryItemSummary(name),
+    getRegistryItems(),
+  ]);
   const sections = groupToSidebarSections(allItems);
 
   if (!item) {

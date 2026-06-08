@@ -45,7 +45,7 @@ export function InputField<T extends FieldValues>({
               inputProps.className || ""
             }`}
           />
-          {maxLength && (
+          {maxLength && maxLength > 0 && (
             <div className="top-1/2 right-3 absolute text-muted-foreground text-xs -translate-y-1/2 pointer-events-none">
               {(field.value || "").length}/{maxLength}
             </div>
