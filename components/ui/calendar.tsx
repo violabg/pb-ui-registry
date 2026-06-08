@@ -5,6 +5,7 @@ import {
   DayPicker,
   getDefaultClassNames,
   type DayButton,
+  type Locale,
 } from "react-day-picker";
 
 import { Button, buttonVariants } from "@/components/ui/button";
@@ -29,7 +30,6 @@ function Calendar({
   buttonVariant?: React.ComponentProps<typeof Button>["variant"];
 }) {
   const defaultClassNames = getDefaultClassNames();
-  const resolvedLocaleCode = locale?.code ?? "en-US";
 
   return (
     <DayPicker
@@ -44,7 +44,7 @@ function Calendar({
       locale={locale}
       formatters={{
         formatMonthDropdown: (date) =>
-          date.toLocaleString(resolvedLocaleCode, { month: "short" }),
+          date.toLocaleString(locale?.code, { month: "short" }),
         ...formatters,
       }}
       classNames={{
@@ -91,7 +91,7 @@ function Calendar({
             : "flex items-center gap-1 rounded-(--cell-radius) text-sm [&>svg]:size-3.5 [&>svg]:text-muted-foreground",
           defaultClassNames.caption_label,
         ),
-        table: "w-full border-collapse",
+        month_grid: "w-full border-collapse",
         weekdays: cn("flex", defaultClassNames.weekdays),
         weekday: cn(
           "flex-1 rounded-(--cell-radius) text-[0.8rem] font-normal text-muted-foreground select-none",
@@ -169,7 +169,7 @@ function Calendar({
           );
         },
         DayButton: ({ ...props }) => (
-          <CalendarDayButton localeCode={resolvedLocaleCode} {...props} />
+          <CalendarDayButton locale={locale} {...props} />
         ),
         WeekNumber: ({ children, ...props }) => {
           return (
@@ -191,9 +191,9 @@ function CalendarDayButton({
   className,
   day,
   modifiers,
-  localeCode,
+  locale,
   ...props
-}: React.ComponentProps<typeof DayButton> & { localeCode: string }) {
+}: React.ComponentProps<typeof DayButton> & { locale?: Partial<Locale> }) {
   const defaultClassNames = getDefaultClassNames();
 
   const ref = React.useRef<HTMLButtonElement>(null);
@@ -205,7 +205,7 @@ function CalendarDayButton({
     <Button
       variant="ghost"
       size="icon"
-      data-day={day.date.toLocaleDateString(localeCode)}
+      data-day={day.date.toLocaleDateString(locale?.code)}
       data-selected-single={
         modifiers.selected &&
         !modifiers.range_start &&

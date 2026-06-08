@@ -65,7 +65,7 @@ export function DatePickerField<T extends FieldValues>({
                 aria-invalid={!!fieldState.error}
                 aria-describedby={ariaDescribedBy}
                 className={cn(
-                  "justify-start font-normal data-[empty=true]:text-muted-foreground text-left",
+                  "justify-start bg-background dark:bg-input/30 dark:hover:bg-input/50 font-normal data-[empty=true]:text-muted-foreground text-left",
                   buttonClassName,
                   fieldState.error &&
                     "border-destructive focus-visible:border-destructive focus-visible:ring-destructive/50 focus-visible:ring-[3px] aria-invalid:ring-0",

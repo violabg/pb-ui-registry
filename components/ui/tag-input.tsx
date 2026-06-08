@@ -80,7 +80,7 @@ export function TagInput({
     <div
       data-slot="tag-input"
       className={cn(
-        "flex flex-wrap items-center gap-2 bg-transparent dark:bg-input/30 px-2.5 py-2 border border-input aria-invalid:border-destructive aria-invalid:focus-within:border-destructive focus-within:border-ring dark:aria-invalid:border-destructive/50 rounded-md aria-invalid:focus-within:ring-destructive/50 focus-within:ring-[3px] focus-within:ring-ring/50 w-full min-h-10 text-foreground",
+        "flex flex-wrap items-center gap-2 bg-background dark:bg-input/30 px-2.5 py-2 border border-input aria-invalid:border-destructive aria-invalid:focus-within:border-destructive focus-within:border-ring dark:aria-invalid:border-destructive/50 rounded-md aria-invalid:focus-within:ring-destructive/50 focus-within:ring-[3px] focus-within:ring-ring/50 w-full min-h-10 text-foreground",
         disabled && "opacity-50",
         className,
       )}
