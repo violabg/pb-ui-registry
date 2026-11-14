@@ -267,7 +267,7 @@ export default function GetStartedPage() {
     </Field>
   )}
 />`}
-                        className="bg-transparent border-0"
+                        className="border-0 bg-transparent dark:bg-transparent"
                       />
                     </div>
                   </div>
@@ -293,7 +293,7 @@ export default function GetStartedPage() {
   placeholder="shadcn"
   description="This is your public display name."
 />`}
-                        className="bg-transparent border-0"
+                        className="border-0 bg-transparent dark:bg-transparent"
                       />
                     </div>
                   </div>
@@ -359,7 +359,7 @@ export default function GetStartedPage() {
     </Field>
   )}
 />`}
-                        className="bg-transparent border-0"
+                        className="border-0 bg-transparent dark:bg-transparent"
                       />
                     </div>
                   </div>
@@ -384,7 +384,7 @@ export default function GetStartedPage() {
   label="Date of birth"
   placeholder="Pick a date"
 />`}
-                        className="bg-transparent border-0"
+                        className="border-0 bg-transparent dark:bg-transparent"
                       />
                     </div>
                   </div>

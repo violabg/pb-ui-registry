@@ -1,12 +1,15 @@
 "use client";
 
-import { useTheme } from "next-themes";
-import type { Language } from "prism-react-renderer";
-import { Highlight, themes } from "prism-react-renderer";
-
-import { CopyButton } from "@/components/copy-button";
-import { useMounted } from "@/hooks/use-mounted";
-import { cn } from "cn";
+import { useHighlightedCode } from "@/hooks/use-highlighted-code";
+import {
+  CodeBlock as CodeBlockRoot,
+  CodeBlockActions,
+  CodeBlockContent,
+  CodeBlockCopyButton,
+  CodeBlockHeader,
+  CodeBlockLine,
+  CodeBlockTitle,
+} from "@/components/ui/code-block";
 
 type CodeBlockProps = {
   code: string;
@@ -15,82 +18,35 @@ type CodeBlockProps = {
   preClassName?: string;
 };
 
+/**
+ * Site-level adapter around the shadcn `CodeBlock` compound components.
+ * Keeps the simple `code` / `language` API used across the marketing pages
+ * while highlighting with Shiki and exposing line/actions affordances.
+ */
 export function CodeBlock({
   code,
   language,
   className,
   preClassName,
 }: CodeBlockProps) {
-  const { resolvedTheme } = useTheme();
-  const mounted = useMounted();
-
-  const activeTheme = mounted && resolvedTheme === "dark" ? "dark" : "light";
-  const prismTheme = activeTheme === "dark" ? themes.vsDark : themes.github;
-  const languageKey = (language ?? "tsx") as Language;
-
-  if (!mounted) {
-    return (
-      <div
-        className={cn(
-          "relative bg-background/60 border border-border/60 rounded-xl",
-          className,
-        )}
-      >
-        <div className="flex justify-between items-center px-3 py-2 border-border/60 border-b text-muted-foreground text-xs">
-          <span>{languageKey}</span>
-          <CopyButton value={code} label="Copy code" />
-        </div>
-        <pre
-          className={cn(
-            "bg-muted/30 p-4 overflow-x-auto text-sm leading-relaxed",
-            preClassName,
-          )}
-        >
-          <code className="text-foreground">{code}</code>
-        </pre>
-      </div>
-    );
-  }
+  const languageKey = language ?? "tsx";
+  const lines = useHighlightedCode(code, languageKey);
 
   return (
-    <div
-      className={cn(
-        "relative bg-background/60 border border-border/60 rounded-xl",
-        className,
-      )}
-    >
-      <div className="flex justify-between items-center px-3 py-2 border-border/60 border-b text-muted-foreground text-xs">
-        <span>{languageKey}</span>
-        <CopyButton value={code} label="Copy code" />
-      </div>
-      <Highlight theme={prismTheme} code={code} language={languageKey}>
-        {({
-          className: prismClassName,
-          style,
-          tokens,
-          getLineProps,
-          getTokenProps,
-        }) => (
-          <pre
-            className={cn(
-              "p-4 overflow-x-auto text-sm leading-relaxed",
-              preClassName,
-              prismClassName,
-            )}
-            style={style}
-          >
-            <code>
-              {tokens.map((line, lineIndex) => (
-                <div key={lineIndex} {...getLineProps({ line })}>
-                  {line.map((token, tokenIndex) => (
-                    <span key={tokenIndex} {...getTokenProps({ token })} />
-                  ))}
-                </div>
-              ))}
-            </code>
-          </pre>
-        )}
-      </Highlight>
-    </div>
+    <CodeBlockRoot className={className}>
+      <CodeBlockHeader className="pb-2 border-border/60 border-b">
+        <CodeBlockTitle className="font-mono font-normal text-muted-foreground text-xs uppercase tracking-wide">
+          {languageKey}
+        </CodeBlockTitle>
+        <CodeBlockActions>
+          <CodeBlockCopyButton value={code} />
+        </CodeBlockActions>
+      </CodeBlockHeader>
+      <CodeBlockContent className={preClassName}>
+        {lines.map((line, index) => (
+          <CodeBlockLine key={index}>{line}</CodeBlockLine>
+        ))}
+      </CodeBlockContent>
+    </CodeBlockRoot>
   );
 }
