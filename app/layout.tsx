@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
-import { DM_Sans, JetBrains_Mono, Unbounded, Inter } from "next/font/google";
+import { JetBrains_Mono, Unbounded, Inter } from "next/font/google";
 
 import { SiteHeader } from "@/components/site-header";
 import { ThemeProvider } from "@/components/theme-provider";
 import "./globals.css";
-import { cn } from "@/lib/utils";
+import { cn } from "cn";
 
 const inter = Inter({subsets:['latin'],variable:'--font-sans'});
 

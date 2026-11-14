@@ -3,10 +3,10 @@
 import { useTheme } from "next-themes";
 import type { Language } from "prism-react-renderer";
 import { Highlight, themes } from "prism-react-renderer";
-import * as React from "react";
 
 import { CopyButton } from "@/components/copy-button";
-import { cn } from "@/lib/utils";
+import { useMounted } from "@/hooks/use-mounted";
+import { cn } from "cn";
 
 type CodeBlockProps = {
   code: string;
@@ -22,11 +22,7 @@ export function CodeBlock({
   preClassName,
 }: CodeBlockProps) {
   const { resolvedTheme } = useTheme();
-  const [mounted, setMounted] = React.useState(false);
-
-  React.useEffect(() => {
-    setMounted(true);
-  }, []);
+  const mounted = useMounted();
 
   const activeTheme = mounted && resolvedTheme === "dark" ? "dark" : "light";
   const prismTheme = activeTheme === "dark" ? themes.vsDark : themes.github;

@@ -3,7 +3,7 @@
 import { Radio as RadioPrimitive } from "@base-ui/react/radio";
 import { RadioGroup as RadioGroupPrimitive } from "@base-ui/react/radio-group";
 
-import { cn } from "@/lib/utils";
+import { cn } from "cn";
 
 function RadioGroup({ className, ...props }: RadioGroupPrimitive.Props) {
   return (
@@ -20,7 +20,7 @@ function RadioGroupItem({ className, ...props }: RadioPrimitive.Root.Props) {
     <RadioPrimitive.Root
       data-slot="radio-group-item"
       className={cn(
-        "group/radio-group-item peer after:absolute relative after:-inset-x-3 after:-inset-y-2 flex bg-background data-checked:bg-primary dark:bg-input/30 dark:data-checked:bg-primary disabled:opacity-50 border border-input data-checked:border-primary aria-invalid:aria-checked:border-primary aria-invalid:border-destructive focus-visible:border-ring dark:aria-invalid:border-destructive/50 dark:border-muted-foreground/40 rounded-full outline-none aria-invalid:ring-3 aria-invalid:ring-destructive/20 focus-visible:ring-3 focus-visible:ring-ring/50 dark:aria-invalid:ring-destructive/40 size-4 aspect-square data-checked:text-primary-foreground disabled:cursor-not-allowed shrink-0",
+        "group/radio-group-item peer after:absolute relative group-has-[:focus-visible]/field-label:ring-0 group-has-[:focus-visible]/field-label:not-data-checked:border-input group-has-[:focus-visible]/field-label:data-checked:border-primary after:-inset-x-3 after:-inset-y-2 flex bg-background data-checked:bg-primary dark:bg-input/30 dark:data-checked:bg-primary disabled:opacity-50 border border-input data-checked:border-primary aria-invalid:aria-checked:border-primary aria-invalid:border-destructive focus-visible:border-ring dark:aria-invalid:border-destructive/50 dark:border-muted-foreground/40 rounded-full outline-none aria-invalid:ring-3 aria-invalid:ring-destructive/20 focus-visible:ring-3 focus-visible:ring-ring/50 dark:aria-invalid:ring-destructive/40 size-4 aspect-square data-checked:text-primary-foreground disabled:cursor-not-allowed shrink-0",
         className,
       )}
       {...props}

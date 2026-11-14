@@ -5,7 +5,8 @@ import * as React from "react";
 
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { cn } from "@/lib/utils";
+import { useMounted } from "@/hooks/use-mounted";
+import { cn } from "cn";
 
 type InstallCommandProps = {
   command: string;
@@ -14,11 +15,7 @@ type InstallCommandProps = {
 
 export function InstallCommand({ command, className }: InstallCommandProps) {
   // Defer rendering until after hydration to prevent ID mismatch
-  const [mounted, setMounted] = React.useState(false);
-
-  React.useEffect(() => {
-    setMounted(true);
-  }, []);
+  const mounted = useMounted();
 
   // Extract the args from the command (remove "npx shadcn@latest add ")
   // The command comes in as "npx shadcn@latest add @pb-ui/component-name"

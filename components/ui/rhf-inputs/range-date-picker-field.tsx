@@ -4,7 +4,7 @@ import * as React from "react";
 import { DateRange } from "react-day-picker";
 import { FieldValues } from "react-hook-form";
 
-import { cn } from "@/lib/utils";
+import { cn } from "cn";
 import { Button } from "../button";
 import { Calendar } from "../calendar";
 import { Popover, PopoverContent, PopoverTrigger } from "../popover";

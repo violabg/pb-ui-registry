@@ -1,6 +1,6 @@
 "use client";
 
-import { cn } from "@/lib/utils";
+import { cn } from "cn";
 import * as React from "react";
 import { Input } from "./input";
 
@@ -23,9 +23,12 @@ function ColorPicker({
 }: ColorPickerProps) {
   const [inputValue, setInputValue] = React.useState(value);
 
-  React.useEffect(() => {
+  // Re-sync the text input when the controlled value changes from outside.
+  const [prevValue, setPrevValue] = React.useState(value);
+  if (value !== prevValue) {
+    setPrevValue(value);
     setInputValue(value);
-  }, [value]);
+  }
 
   const handleColorChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = e.target.value;

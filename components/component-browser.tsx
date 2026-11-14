@@ -9,7 +9,7 @@ import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import type { RegistryItemSummary } from "@/lib/registry";
 import { groupToSidebarSections } from "@/lib/registry-groups";
-import { cn } from "@/lib/utils";
+import { cn } from "cn";
 
 type ComponentBrowserProps = {
   items: RegistryItemSummary[];

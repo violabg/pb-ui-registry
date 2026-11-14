@@ -1,6 +1,6 @@
 "use client";
 
-import { cn } from "@/lib/utils";
+import { cn } from "cn";
 import * as React from "react";
 import { FieldValues } from "react-hook-form";
 import { Input } from "../input";
@@ -53,16 +53,15 @@ function CurrencyInput({
   formatValue: (value: number) => string;
   ariaDescribedBy?: string;
 }) {
-  const [inputValue, setInputValue] = React.useState<string>(
-    value != null ? formatValue(value) : "",
-  );
+  // Raw text is only tracked while editing; when blurred the input shows the
+  // formatted form value, derived during render.
+  const [inputValue, setInputValue] = React.useState("");
   const [isFocused, setIsFocused] = React.useState(false);
-
-  React.useEffect(() => {
-    if (!isFocused) {
-      setInputValue(value != null ? formatValue(value) : "");
-    }
-  }, [value, formatValue, isFocused]);
+  const displayValue = isFocused
+    ? inputValue
+    : value != null
+      ? formatValue(value)
+      : "";
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const input = e.target.value;
@@ -99,22 +98,17 @@ function CurrencyInput({
   const handleFocus = () => {
     setIsFocused(true);
     // Show raw number when focused for easier editing
-    if (value != null) {
-      const rawValue = allowCents
-        ? String(value).replace(".", decimalSeparator)
-        : String(value);
-      setInputValue(rawValue);
-    }
+    setInputValue(
+      value == null
+        ? ""
+        : allowCents
+          ? String(value).replace(".", decimalSeparator)
+          : String(value),
+    );
   };
 
   const handleBlurInput = () => {
     setIsFocused(false);
-    // Format value on blur
-    if (value != null) {
-      setInputValue(formatValue(value));
-    } else {
-      setInputValue("");
-    }
     onBlur();
   };
 
@@ -127,7 +121,7 @@ function CurrencyInput({
         id={id}
         type="text"
         inputMode="decimal"
-        value={inputValue}
+        value={displayValue}
         onChange={handleChange}
         onFocus={handleFocus}
         onBlur={handleBlurInput}

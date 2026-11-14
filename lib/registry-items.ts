@@ -28,6 +28,7 @@ export const registryItems: RegistryItem[] = [
     docs: "/components/alert-dialog",
     categories: ["overlay", "feedback"],
     registryDependencies: ["button"],
+    dependencies: ["cn"],
     files: [
       {
         path: "components/ui/alert-dialog.tsx",
@@ -43,6 +44,7 @@ export const registryItems: RegistryItem[] = [
     type: "registry:ui",
     docs: "/components/badge",
     categories: ["data-display"],
+    dependencies: ["cn"],
     files: [
       {
         path: "components/ui/badge.tsx",
@@ -58,6 +60,7 @@ export const registryItems: RegistryItem[] = [
     type: "registry:ui",
     docs: "/components/button",
     categories: ["forms"],
+    dependencies: ["cn"],
     files: [
       {
         path: "components/ui/button.tsx",
@@ -73,6 +76,7 @@ export const registryItems: RegistryItem[] = [
     type: "registry:ui",
     docs: "/components/card",
     categories: ["layout"],
+    dependencies: ["cn"],
     files: [
       {
         path: "components/ui/card.tsx",
@@ -89,6 +93,7 @@ export const registryItems: RegistryItem[] = [
     docs: "/components/combobox",
     categories: ["forms"],
     registryDependencies: ["button", "input-group"],
+    dependencies: ["cn"],
     files: [
       {
         path: "components/ui/combobox.tsx",
@@ -104,6 +109,7 @@ export const registryItems: RegistryItem[] = [
     type: "registry:ui",
     docs: "/components/dropdown-menu",
     categories: ["overlay"],
+    dependencies: ["cn"],
     files: [
       {
         path: "components/ui/dropdown-menu.tsx",
@@ -120,6 +126,7 @@ export const registryItems: RegistryItem[] = [
     docs: "/components/field",
     categories: ["forms"],
     registryDependencies: ["label", "separator"],
+    dependencies: ["cn"],
     files: [
       {
         path: "components/ui/field.tsx",
@@ -135,6 +142,7 @@ export const registryItems: RegistryItem[] = [
     type: "registry:ui",
     docs: "/components/input",
     categories: ["forms"],
+    dependencies: ["cn"],
     files: [
       {
         path: "components/ui/input.tsx",
@@ -151,6 +159,7 @@ export const registryItems: RegistryItem[] = [
     docs: "/components/input-group",
     categories: ["forms"],
     registryDependencies: ["button", "input", "textarea"],
+    dependencies: ["cn"],
     files: [
       {
         path: "components/ui/input-group.tsx",
@@ -166,6 +175,7 @@ export const registryItems: RegistryItem[] = [
     type: "registry:ui",
     docs: "/components/label",
     categories: ["forms"],
+    dependencies: ["cn"],
     files: [
       {
         path: "components/ui/label.tsx",
@@ -181,6 +191,7 @@ export const registryItems: RegistryItem[] = [
     type: "registry:ui",
     docs: "/components/select",
     categories: ["forms"],
+    dependencies: ["cn"],
     files: [
       {
         path: "components/ui/select.tsx",
@@ -196,6 +207,7 @@ export const registryItems: RegistryItem[] = [
     type: "registry:ui",
     docs: "/components/separator",
     categories: ["layout"],
+    dependencies: ["cn"],
     files: [
       {
         path: "components/ui/separator.tsx",
@@ -211,6 +223,7 @@ export const registryItems: RegistryItem[] = [
     type: "registry:ui",
     docs: "/components/textarea",
     categories: ["forms"],
+    dependencies: ["cn"],
     files: [
       {
         path: "components/ui/textarea.tsx",
@@ -227,6 +240,7 @@ export const registryItems: RegistryItem[] = [
     docs: "/components/tag-input",
     categories: ["forms", "data-entry"],
     registryDependencies: ["badge", "button", "input"],
+    dependencies: ["cn"],
     files: [
       {
         path: "components/ui/tag-input.tsx",
@@ -242,6 +256,7 @@ export const registryItems: RegistryItem[] = [
     type: "registry:ui",
     docs: "/components/checkbox",
     categories: ["forms"],
+    dependencies: ["cn"],
     files: [
       {
         path: "components/ui/checkbox.tsx",
@@ -257,6 +272,7 @@ export const registryItems: RegistryItem[] = [
     type: "registry:ui",
     docs: "/components/switch",
     categories: ["forms"],
+    dependencies: ["cn"],
     files: [
       {
         path: "components/ui/switch.tsx",
@@ -272,6 +288,7 @@ export const registryItems: RegistryItem[] = [
     type: "registry:ui",
     docs: "/components/slider",
     categories: ["forms"],
+    dependencies: ["cn"],
     files: [
       {
         path: "components/ui/slider.tsx",
@@ -287,6 +304,7 @@ export const registryItems: RegistryItem[] = [
     type: "registry:ui",
     docs: "/components/radio-group",
     categories: ["forms"],
+    dependencies: ["cn"],
     files: [
       {
         path: "components/ui/radio-group.tsx",
@@ -302,6 +320,7 @@ export const registryItems: RegistryItem[] = [
     type: "registry:ui",
     docs: "/components/popover",
     categories: ["overlay"],
+    dependencies: ["cn"],
     files: [
       {
         path: "components/ui/popover.tsx",
@@ -318,7 +337,7 @@ export const registryItems: RegistryItem[] = [
     docs: "/components/calendar",
     categories: ["forms", "data-entry"],
     registryDependencies: ["button"],
-    dependencies: ["react-day-picker"],
+    dependencies: ["react-day-picker", "cn"],
     files: [
       {
         path: "components/ui/calendar.tsx",
@@ -335,6 +354,7 @@ export const registryItems: RegistryItem[] = [
     docs: "/components/dialog",
     categories: ["overlay"],
     registryDependencies: ["button"],
+    dependencies: ["cn"],
     files: [
       {
         path: "components/ui/dialog.tsx",
@@ -351,7 +371,7 @@ export const registryItems: RegistryItem[] = [
     docs: "/components/command",
     categories: ["overlay", "navigation"],
     registryDependencies: ["dialog", "input-group"],
-    dependencies: ["cmdk"],
+    dependencies: ["cmdk", "cn"],
     files: [
       {
         path: "components/ui/command.tsx",
@@ -367,7 +387,7 @@ export const registryItems: RegistryItem[] = [
     type: "registry:ui",
     docs: "/components/datefield-rac",
     categories: ["forms", "data-entry"],
-    dependencies: ["react-aria-components"],
+    dependencies: ["react-aria-components", "cn"],
     files: [
       {
         path: "components/ui/datefield-rac.tsx",
@@ -384,6 +404,7 @@ export const registryItems: RegistryItem[] = [
     docs: "/components/password-input",
     categories: ["forms"],
     registryDependencies: ["input"],
+    dependencies: ["cn"],
     files: [
       {
         path: "components/ui/password-input.tsx",
@@ -400,6 +421,7 @@ export const registryItems: RegistryItem[] = [
     docs: "/components/file-upload",
     categories: ["forms", "data-entry"],
     registryDependencies: ["button", "input", "label"],
+    dependencies: ["cn"],
     files: [
       {
         path: "components/ui/file-upload.tsx",
@@ -416,6 +438,7 @@ export const registryItems: RegistryItem[] = [
     docs: "/components/multi-select",
     categories: ["forms"],
     registryDependencies: ["combobox"],
+    dependencies: ["cn"],
     files: [
       {
         path: "components/ui/multi-select.tsx",
@@ -431,6 +454,7 @@ export const registryItems: RegistryItem[] = [
     type: "registry:ui",
     docs: "/components/tabs",
     categories: ["navigation", "layout"],
+    dependencies: ["cn"],
     files: [
       {
         path: "components/ui/tabs.tsx",
@@ -656,7 +680,7 @@ export const registryItems: RegistryItem[] = [
       "popover",
       "button",
     ],
-    dependencies: ["react-hook-form", "date-fns"],
+    dependencies: ["react-hook-form", "date-fns", "cn"],
     files: [
       {
         path: "components/ui/rhf-inputs/date-picker-field.tsx",
@@ -679,7 +703,7 @@ export const registryItems: RegistryItem[] = [
       "button",
       "input",
     ],
-    dependencies: ["react-hook-form", "date-fns"],
+    dependencies: ["react-hook-form", "date-fns", "cn"],
     files: [
       {
         path: "components/ui/rhf-inputs/date-time-picker-field.tsx",
@@ -701,7 +725,7 @@ export const registryItems: RegistryItem[] = [
       "popover",
       "button",
     ],
-    dependencies: ["react-hook-form", "date-fns"],
+    dependencies: ["react-hook-form", "date-fns", "cn"],
     files: [
       {
         path: "components/ui/rhf-inputs/range-date-picker-field.tsx",
@@ -752,6 +776,7 @@ export const registryItems: RegistryItem[] = [
     docs: "/components/number-input",
     categories: ["forms"],
     registryDependencies: ["button", "input"],
+    dependencies: ["cn"],
     files: [
       {
         path: "components/ui/number-input.tsx",
@@ -767,7 +792,7 @@ export const registryItems: RegistryItem[] = [
     type: "registry:ui",
     docs: "/components/input-otp",
     categories: ["forms"],
-    dependencies: ["input-otp"],
+    dependencies: ["input-otp", "cn"],
     files: [
       {
         path: "components/ui/input-otp.tsx",
@@ -784,6 +809,7 @@ export const registryItems: RegistryItem[] = [
     docs: "/components/color-picker",
     categories: ["forms"],
     registryDependencies: ["input"],
+    dependencies: ["cn"],
     files: [
       {
         path: "components/ui/color-picker.tsx",
@@ -799,6 +825,7 @@ export const registryItems: RegistryItem[] = [
     type: "registry:ui",
     docs: "/components/rating",
     categories: ["forms", "data-entry"],
+    dependencies: ["cn"],
     files: [
       {
         path: "components/ui/rating.tsx",
@@ -885,7 +912,7 @@ export const registryItems: RegistryItem[] = [
     docs: "/components/rhf-phone-field",
     categories: ["forms"],
     registryDependencies: ["rhf-base-controller", "input", "select"],
-    dependencies: ["react-hook-form"],
+    dependencies: ["react-hook-form", "cn"],
     files: [
       {
         path: "components/ui/rhf-inputs/phone-field.tsx",
@@ -902,7 +929,7 @@ export const registryItems: RegistryItem[] = [
     docs: "/components/rhf-currency-field",
     categories: ["forms"],
     registryDependencies: ["rhf-base-controller", "input"],
-    dependencies: ["react-hook-form"],
+    dependencies: ["react-hook-form", "cn"],
     files: [
       {
         path: "components/ui/rhf-inputs/currency-field.tsx",

@@ -16,6 +16,9 @@
       "registryDependencies": [
         "http://localhost:3000/r/button.json"
       ],
+      "dependencies": [
+        "cn"
+      ],
       "files": [
         {
           "path": "components/ui/alert-dialog.tsx",
@@ -32,6 +35,9 @@
       "docs": "/components/badge",
       "categories": [
         "data-display"
+      ],
+      "dependencies": [
+        "cn"
       ],
       "files": [
         {
@@ -50,6 +56,9 @@
       "categories": [
         "forms"
       ],
+      "dependencies": [
+        "cn"
+      ],
       "files": [
         {
           "path": "components/ui/button.tsx",
@@ -66,6 +75,9 @@
       "docs": "/components/card",
       "categories": [
         "layout"
+      ],
+      "dependencies": [
+        "cn"
       ],
       "files": [
         {
@@ -88,6 +100,9 @@
         "http://localhost:3000/r/button.json",
         "http://localhost:3000/r/input-group.json"
       ],
+      "dependencies": [
+        "cn"
+      ],
       "files": [
         {
           "path": "components/ui/combobox.tsx",
@@ -104,6 +119,9 @@
       "docs": "/components/dropdown-menu",
       "categories": [
         "overlay"
+      ],
+      "dependencies": [
+        "cn"
       ],
       "files": [
         {
@@ -126,6 +144,9 @@
         "http://localhost:3000/r/label.json",
         "http://localhost:3000/r/separator.json"
       ],
+      "dependencies": [
+        "cn"
+      ],
       "files": [
         {
           "path": "components/ui/field.tsx",
@@ -142,6 +163,9 @@
       "docs": "/components/input",
       "categories": [
         "forms"
+      ],
+      "dependencies": [
+        "cn"
       ],
       "files": [
         {
@@ -165,6 +189,9 @@
         "http://localhost:3000/r/input.json",
         "http://localhost:3000/r/textarea.json"
       ],
+      "dependencies": [
+        "cn"
+      ],
       "files": [
         {
           "path": "components/ui/input-group.tsx",
@@ -181,6 +208,9 @@
       "docs": "/components/label",
       "categories": [
         "forms"
+      ],
+      "dependencies": [
+        "cn"
       ],
       "files": [
         {
@@ -199,6 +229,9 @@
       "categories": [
         "forms"
       ],
+      "dependencies": [
+        "cn"
+      ],
       "files": [
         {
           "path": "components/ui/select.tsx",
@@ -216,6 +249,9 @@
       "categories": [
         "layout"
       ],
+      "dependencies": [
+        "cn"
+      ],
       "files": [
         {
           "path": "components/ui/separator.tsx",
@@ -232,6 +268,9 @@
       "docs": "/components/textarea",
       "categories": [
         "forms"
+      ],
+      "dependencies": [
+        "cn"
       ],
       "files": [
         {
@@ -256,6 +295,9 @@
         "http://localhost:3000/r/button.json",
         "http://localhost:3000/r/input.json"
       ],
+      "dependencies": [
+        "cn"
+      ],
       "files": [
         {
           "path": "components/ui/tag-input.tsx",
@@ -272,6 +314,9 @@
       "docs": "/components/checkbox",
       "categories": [
         "forms"
+      ],
+      "dependencies": [
+        "cn"
       ],
       "files": [
         {
@@ -290,6 +335,9 @@
       "categories": [
         "forms"
       ],
+      "dependencies": [
+        "cn"
+      ],
       "files": [
         {
           "path": "components/ui/switch.tsx",
@@ -306,6 +354,9 @@
       "docs": "/components/slider",
       "categories": [
         "forms"
+      ],
+      "dependencies": [
+        "cn"
       ],
       "files": [
         {
@@ -324,6 +375,9 @@
       "categories": [
         "forms"
       ],
+      "dependencies": [
+        "cn"
+      ],
       "files": [
         {
           "path": "components/ui/radio-group.tsx",
@@ -340,6 +394,9 @@
       "docs": "/components/popover",
       "categories": [
         "overlay"
+      ],
+      "dependencies": [
+        "cn"
       ],
       "files": [
         {
@@ -363,7 +420,8 @@
         "http://localhost:3000/r/button.json"
       ],
       "dependencies": [
-        "react-day-picker"
+        "react-day-picker",
+        "cn"
       ],
       "files": [
         {
@@ -384,6 +442,9 @@
       ],
       "registryDependencies": [
         "http://localhost:3000/r/button.json"
+      ],
+      "dependencies": [
+        "cn"
       ],
       "files": [
         {
@@ -408,7 +469,8 @@
         "http://localhost:3000/r/input-group.json"
       ],
       "dependencies": [
-        "cmdk"
+        "cmdk",
+        "cn"
       ],
       "files": [
         {
@@ -429,7 +491,8 @@
         "data-entry"
       ],
       "dependencies": [
-        "react-aria-components"
+        "react-aria-components",
+        "cn"
       ],
       "files": [
         {
@@ -450,6 +513,9 @@
       ],
       "registryDependencies": [
         "http://localhost:3000/r/input.json"
+      ],
+      "dependencies": [
+        "cn"
       ],
       "files": [
         {
@@ -474,6 +540,9 @@
         "http://localhost:3000/r/input.json",
         "http://localhost:3000/r/label.json"
       ],
+      "dependencies": [
+        "cn"
+      ],
       "files": [
         {
           "path": "components/ui/file-upload.tsx",
@@ -494,6 +563,9 @@
       "registryDependencies": [
         "http://localhost:3000/r/combobox.json"
       ],
+      "dependencies": [
+        "cn"
+      ],
       "files": [
         {
           "path": "components/ui/multi-select.tsx",
@@ -511,6 +583,9 @@
       "categories": [
         "navigation",
         "layout"
+      ],
+      "dependencies": [
+        "cn"
       ],
       "files": [
         {
@@ -825,7 +900,8 @@
       ],
       "dependencies": [
         "react-hook-form",
-        "date-fns"
+        "date-fns",
+        "cn"
       ],
       "files": [
         {
@@ -853,7 +929,8 @@
       ],
       "dependencies": [
         "react-hook-form",
-        "date-fns"
+        "date-fns",
+        "cn"
       ],
       "files": [
         {
@@ -880,7 +957,8 @@
       ],
       "dependencies": [
         "react-hook-form",
-        "date-fns"
+        "date-fns",
+        "cn"
       ],
       "files": [
         {
@@ -952,6 +1030,9 @@
         "http://localhost:3000/r/button.json",
         "http://localhost:3000/r/input.json"
       ],
+      "dependencies": [
+        "cn"
+      ],
       "files": [
         {
           "path": "components/ui/number-input.tsx",
@@ -970,7 +1051,8 @@
         "forms"
       ],
       "dependencies": [
-        "input-otp"
+        "input-otp",
+        "cn"
       ],
       "files": [
         {
@@ -992,6 +1074,9 @@
       "registryDependencies": [
         "http://localhost:3000/r/input.json"
       ],
+      "dependencies": [
+        "cn"
+      ],
       "files": [
         {
           "path": "components/ui/color-picker.tsx",
@@ -1009,6 +1094,9 @@
       "categories": [
         "forms",
         "data-entry"
+      ],
+      "dependencies": [
+        "cn"
       ],
       "files": [
         {
@@ -1130,7 +1218,8 @@
         "http://localhost:3000/r/select.json"
       ],
       "dependencies": [
-        "react-hook-form"
+        "react-hook-form",
+        "cn"
       ],
       "files": [
         {
@@ -1154,7 +1243,8 @@
         "http://localhost:3000/r/input.json"
       ],
       "dependencies": [
-        "react-hook-form"
+        "react-hook-form",
+        "cn"
       ],
       "files": [
         {
