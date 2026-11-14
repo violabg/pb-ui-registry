@@ -10,7 +10,8 @@
     "test": "pnpm test:unit",
     "test:unit": "vitest run",
     "test:watch": "vitest",
-    "registry:build": "tsx scripts/generate-registry.ts && shadcn build"
+    "registry:build": "tsx scripts/generate-registry.ts && shadcn build",
+    "icons:build": "tsx scripts/generate-icons.ts"
   },
   "dependencies": {
     "@base-ui/react": "^1.9.0",
@@ -52,6 +53,7 @@
     "eslint": "^10.14.0",
     "eslint-config-next": "16.4.6",
     "jsdom": "^31.0.1",
+    "sharp": "^0.35.5",
     "tailwindcss": "^4.3.5",
     "tsx": "^4.23.15",
     "typescript": "^7.0.2",
